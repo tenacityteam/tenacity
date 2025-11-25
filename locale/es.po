@@ -10,13 +10,14 @@
 # andee SANXCEH <maestronoov324953@gmail.com>, 2025.
 # Héctor Ruz Yebra <hector.principal@tutanota.com>, 2025.
 # Marco Moreno <hibarioath@proton.me>, 2025.
+# Salvador Peña <salvadorp74@hotmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-11-13 08:02+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2025-11-25 16:51+0000\n"
+"Last-Translator: Salvador Peña <salvadorp74@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/es/>\n"
 "Language: es\n"
@@ -60,16 +61,9 @@ msgid "Internal Error"
 msgstr "Error interno"
 
 #: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-#| msgid ""
-#| "Failed to open database file:\n"
-#| "\n"
-#| "%s"
+#, c-format
 msgid "Tenacity failed to open a file in %s."
-msgstr ""
-"No se ha podido abrir la base de datos:\n"
-"\n"
-"%s"
+msgstr "No se ha podido abrir un archivo in %s."
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -446,10 +440,9 @@ msgstr "%s, imágenes prebifurcación"
 
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
-#, fuzzy, c-format
-#| msgid "%s, Tenacity developer"
+#, c-format
 msgid "%s, Tenacity contributor"
-msgstr "%s, desarrollo de Tenacity"
+msgstr "%s, colaborador de Tenacity"
 
 #: src/AboutDialog.cpp
 #, c-format
@@ -1300,10 +1293,8 @@ msgid "Release build (debug level %d)"
 msgstr "Compilación de distribución (nivel de debug %d)"
 
 #: src/BuildInfo.h
-#, fuzzy
-#| msgid "24 bit"
 msgid ", 64 bits"
-msgstr "24 bit"
+msgstr ", 64 bits"
 
 #. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
 #: src/CommonCommandFlags.cpp
@@ -1757,7 +1748,7 @@ msgstr "La compactación libera %s de espacio en disco."
 #, fuzzy
 #| msgid "Recording Saved:"
 msgid "Journal recording failed"
-msgstr "Grabación guardada:"
+msgstr "Grabación guardada"
 
 #: src/LabelDialog.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Edit Labels"
@@ -2034,17 +2025,13 @@ msgstr ""
 "No se cargará."
 
 #: src/ModuleManager.cpp
-#, fuzzy, c-format
-#| msgid ""
-#| "The module \"%s\" does not provide a version string.\n"
-#| "\n"
-#| "It will not be loaded."
+#, c-format
 msgid ""
 "The module \"%s\" is matched with Tenacity version \"%s\".\n"
 "\n"
 "It will not be loaded."
 msgstr ""
-"El módulo «%s» no tiene un indicador de versión.\n"
+"El módulo \"%s\" coincide con la versión de Tenacity \"%s\".\n"
 "\n"
 "No se cargará."
 
@@ -2085,10 +2072,8 @@ msgid "No"
 msgstr "No"
 
 #: src/ModuleManager.cpp
-#, fuzzy
-#| msgid "%s, Tenacity developer"
 msgid "Tenacity Module Loader"
-msgstr "%s, desarrollo de Tenacity"
+msgstr "Módulo cargador de Tenacity"
 
 #: src/ModuleManager.cpp
 msgid "Try and load this module?"
@@ -2769,11 +2754,10 @@ msgstr "Recuperar"
 
 #. i18n-hint Name default name assigned to a clip on track import
 #: src/ProjectFileManager.cpp
-#, fuzzy, c-format
-#| msgid "%s %d of %d"
+#, c-format
 msgctxt "clip name template"
 msgid "%s %d"
-msgstr "%s %d de %d"
+msgstr "%s %d"
 
 #: src/ProjectFileManager.cpp
 #, c-format
@@ -3116,10 +3100,8 @@ msgstr ""
 "que requiere un reinicio."
 
 #: src/TenacityApp.cpp
-#, fuzzy
-#| msgid "Tenacity is starting up..."
 msgid "Tenacity Startup Failure"
-msgstr "Tenacity se está iniciando..."
+msgstr "Falla en el inicio de Tenacity"
 
 #: src/TenacityApp.cpp
 msgid ""
@@ -3158,19 +3140,13 @@ msgstr ""
 "que requiere un reinicio."
 
 #: src/TenacityApp.cpp
-#, fuzzy
-#| msgid ""
-#| "Unable to acquire server semaphore.\n"
-#| "\n"
-#| "This is likely due to a resource shortage\n"
-#| "and a reboot may be required."
 msgid ""
 "The Tenacity IPC server failed to initialize.\n"
 "\n"
 "This is likely due to a resource shortage\n"
 "and a reboot may be required."
 msgstr ""
-"No se puede controlar el servidor de semáforos.\n"
+"La inicialización del servidor IPC de Tenacity falló.\n"
 "\n"
 "Este error se produce por una falta de recursos\n"
 "que requiere un reinicio."
@@ -3197,10 +3173,8 @@ msgstr "ejecutar diagnósticos internos"
 
 #. i18n-hint: This displays the Audacity version
 #: src/TenacityApp.cpp
-#, fuzzy
-#| msgid "%s, lead Tenacity developer"
 msgid "display Tenacity version"
-msgstr "%s, desarrollo principal de Tenacity"
+msgstr "muestra la versión de Tenacity"
 
 #. i18n-hint: This is a list of one or more files that Audacity
 #. *           should open upon startup
@@ -3213,10 +3187,8 @@ msgid "Audacity Project Files"
 msgstr "Archivos de proyecto de Tenacity"
 
 #: src/TenacityFileConfig.cpp
-#, fuzzy
-#| msgid "Reset &Configuration"
 msgid "Tenacity Configuration Error"
-msgstr "Restablecer &configuración"
+msgstr "Error de configuración de Tenacity"
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
 #: src/effects/Equalization.cpp src/export/Export.cpp
@@ -3351,10 +3323,8 @@ msgid "Action after Timer Recording:"
 msgstr "Acción tras la grabación programada:"
 
 #: src/TimerRecordDialog.cpp
-#, fuzzy
-#| msgid "Error Saving Timer Recording Project"
 msgid "Tenacity Timer Record Progress"
-msgstr "Error al guardar el proyecto de grabación programada"
+msgstr "Progreso de grabación programada de Tenacity"
 
 #: src/TimerRecordDialog.cpp
 msgid "Timer Recording stopped."
@@ -3550,10 +3520,8 @@ msgid "Recording Exported:"
 msgstr "Grabación exportada:"
 
 #: src/TimerRecordDialog.cpp
-#, fuzzy
-#| msgid "Timer Recording"
 msgid "Tenacity Timer Record - Waiting"
-msgstr "Grabación programada"
+msgstr "Grabación programada de Tenacity - En espera"
 
 #: src/TrackPanel.cpp
 msgid "Track Panel"
@@ -3603,7 +3571,7 @@ msgstr " Sincronización bloqueada"
 
 #: src/TrackPanelAx.cpp
 msgid " Mute On"
-msgstr "Silencio activado"
+msgstr " Silencio activado"
 
 #: src/TrackPanelAx.cpp
 msgid " Solo On"
@@ -3719,10 +3687,8 @@ msgid "Resampling failed."
 msgstr "No se ha podido remuestrear."
 
 #: src/WaveTrack.cpp
-#, fuzzy
-#| msgid "Move Track"
 msgid "Wave Track"
-msgstr "Desplazar pista"
+msgstr "Pista de onda"
 
 #: src/WaveTrack.cpp
 msgid "There is not enough room available to paste the selection"
@@ -3902,7 +3868,7 @@ msgstr "Respecto a:"
 
 #: src/commands/DragCommand.h
 msgid "Drags mouse from one place to another."
-msgstr "Arrastra el ratón de un lugar a otro"
+msgstr "Arrastra el ratón de un lugar a otro."
 
 #: src/commands/GetInfoCommand.cpp
 msgid "Get Info"
@@ -4261,7 +4227,7 @@ msgstr "Envolvente"
 
 #: src/commands/SetEnvelopeCommand.h
 msgid "Sets an envelope point position."
-msgstr "Establece un punto de de posición de envolvente."
+msgstr "Establece un punto de posición de envolvente."
 
 #: src/commands/SetLabelCommand.cpp
 msgid "Set Label"
@@ -4396,7 +4362,7 @@ msgstr "Establecer pista"
 
 #: src/commands/SetTrackInfoCommand.h
 msgid "Sets various values for a track."
-msgstr "Establece varios valores de una pista"
+msgstr "Establece varios valores de una pista."
 
 #: src/effects/Amplify.cpp
 msgid "Amplify"
@@ -4432,7 +4398,7 @@ msgid ""
 "specified \"control\" track reaches a particular level"
 msgstr ""
 "Reduce (duck) el volumen de una o mas pistas cada vez que el volumen de una "
-"pista de \"control\" concreta alcanza el nivel específico."
+"pista de \"control\" concreta alcanza el nivel específico"
 
 #. i18n-hint: Auto duck is the name of an effect that 'ducks' (reduces the volume)
 #. * of the audio automatically when there is sound on another track.  Not as
@@ -4742,7 +4708,6 @@ msgstr "Pulsos por minuto"
 
 #. i18n-hint: changing tempo "from" one value "to" another
 #: src/effects/ChangeTempo.cpp
-#, fuzzy
 msgid "Beats per minute, from"
 msgstr "Pulsos por minuto, desde"
 
@@ -4780,9 +4745,9 @@ msgid "t&o"
 msgstr "&a"
 
 #: src/effects/ChangeTempo.cpp
-#, c-format, fuzzy
+#, c-format
 msgid "Length in seconds from %s, to"
-msgstr "Duración en segundos desde %s a"
+msgstr "Duración en segundos desde %s, a"
 
 #: src/effects/ClickRemoval.cpp
 msgid "Click Removal"
@@ -6540,7 +6505,6 @@ msgid "&Remove DC offset (center on 0.0 vertically)"
 msgstr "Elimina&r desplazamiento DC (centrar en 0.0 verticalmente)"
 
 #: src/effects/Normalize.cpp
-#, fuzzy
 msgid "&Normalize peak amplitude to   "
 msgstr "&Normalizar pico de amplitud a   "
 
@@ -7260,13 +7224,11 @@ msgstr "Archivo VST bank estándar"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Standard VST program file"
-msgstr "Archivo programa  VST estándar"
+msgstr "Archivo de programa VST estándar"
 
 #: src/effects/VST/VSTEffect.cpp
-#, fuzzy
-#| msgid "VST preset files"
 msgid "Tenacity VST preset file"
-msgstr "Archivos de valores predefinidos VST"
+msgstr "Archivo de valores predefinidos VST de Tenacity"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Unrecognized file extension."
@@ -7326,7 +7288,7 @@ msgid ""
 "1970's"
 msgstr ""
 "Variaciones rápidas de la calidad del tono, como ese sonido de guitarra tan "
-"popular en los 70."
+"popular en los 70"
 
 #: src/effects/Wahwah.cpp
 msgid "Dept&h (%):"
@@ -7354,10 +7316,8 @@ msgid "Audio Unit Effects"
 msgstr "Efectos Audio Unit"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-#| msgid "Audio Unit Effect Options"
 msgid "Provides Audio Unit Effects support to Tenacity"
-msgstr "Opciones de efectos Audio Unit"
+msgstr "Provee soporte de efectos Audio Unit a Tenacity"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Could not find component"
@@ -7542,7 +7502,7 @@ msgstr "Configuración de efecto LV2"
 #: src/effects/lv2/LV2Effect.cpp
 #, c-format
 msgid "&Buffer Size (8 to %d) samples:"
-msgstr "Tamaño de &buffer (8 a  %d) muestras:"
+msgstr "Tamaño de &buffer (8 a %d) muestras:"
 
 #: src/effects/lv2/LV2Effect.cpp
 msgid ""
@@ -8118,12 +8078,11 @@ msgstr "Tamaño de datos incorrecto. No se ha podido importar el audio"
 #. clips.
 #.
 #: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-#| msgid "%s %d of %d"
+#, c-format
 msgid "%s %s, %d of %d clip %s"
 msgid_plural "%s %s, %d of %d clips %s"
-msgstr[0] "%s %d de %d"
-msgstr[1] "%s %d de %d"
+msgstr[0] "%s%s, %d de %d bloque %s"
+msgstr[1] "%s %s, %d de %d bloques %s"
 
 #: src/menus/ClipMenus.cpp
 msgid "start"
@@ -8140,12 +8099,11 @@ msgstr "final"
 #. last number counts all clips,
 #. last string names a track
 #: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-#| msgid "%s %d of %d"
+#, c-format
 msgid "%s, %d of %d clip %s"
 msgid_plural "%s, %d of %d clips %s"
-msgstr[0] "%s %d de %d"
-msgstr[1] "%s %d de %d"
+msgstr[0] "%s, %d de %d bloque %s"
+msgstr[1] "%s, %d de %d bloques %s"
 
 #: src/menus/ClipMenus.cpp
 msgid "clip not moved"
@@ -8762,11 +8720,11 @@ msgstr "Enfocar &la última pista"
 
 #: src/menus/NavigationMenus.cpp
 msgid "Move Focus to P&revious and Select"
-msgstr "Enfoca&r y seleccionar la la pista anterior"
+msgstr "Enfoca&r y seleccionar la pista anterior"
 
 #: src/menus/NavigationMenus.cpp
 msgid "Move Focus to N&ext and Select"
-msgstr "&Enfocar y seleccionar la la pista siguiente"
+msgstr "&Enfocar y seleccionar la pista siguiente"
 
 #: src/menus/NavigationMenus.cpp
 msgid "&Toggle Focused Track"
@@ -9438,7 +9396,7 @@ msgstr "Remuestrear pista"
 
 #: src/menus/TrackMenus.cpp
 msgid "Please select at least one audio track and one MIDI track."
-msgstr "Seleccione al menos una pista de audio o una pista MIDI"
+msgstr "Seleccione al menos una pista de audio o una pista MIDI."
 
 #: src/menus/TrackMenus.cpp
 #, c-format
@@ -9462,7 +9420,7 @@ msgstr ""
 
 #: src/menus/TrackMenus.cpp
 msgid "Internal error reported by alignment process."
-msgstr "El proceso de alineado generó un error interno"
+msgstr "El proceso de alineado generó un error interno."
 
 #: src/menus/TrackMenus.cpp
 msgid "Tracks sorted by time"
@@ -9695,7 +9653,6 @@ msgid "%s %d of %d"
 msgstr "%s %d de %d"
 
 #: src/menus/TransportMenus.cpp
-#, fuzzy
 msgid "no labels in label track"
 msgstr "sin etiquetas en la pista de etiquetas"
 
@@ -9735,12 +9692,11 @@ msgstr "Seleccione al menos %d canales."
 
 #: src/menus/TransportMenus.cpp
 msgid "Please select a time within a clip."
-msgstr "Seleccione un instante dentro del bloque"
+msgstr "Seleccione un instante dentro del bloque."
 
 #. i18n-hint: 'Transport' is the name given to the set of controls that
 #. play, record, pause etc.
 #: src/menus/TransportMenus.cpp
-#, fuzzy
 msgid "Tra&nsport"
 msgstr "Reproducció&n"
 
@@ -10433,10 +10389,9 @@ msgstr ""
 "   *   «%s»  (porque el atajo de teclado «%s» se está usando para «%s»)\n"
 
 #: src/prefs/KeyConfigPrefs.cpp
-#, fuzzy
-#| msgid "Select a text file containing labels"
 msgid "Select an XML file containing Tenacity keyboard shortcuts..."
-msgstr "Seleccione un archivo de texto que contenga etiquetas"
+msgstr ""
+"Seleccione un archivo XML que contenga atajos de teclado para Tenacity..."
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Error Importing Keyboard Shortcuts"
@@ -10516,7 +10471,7 @@ msgid ""
 "\n"
 "instead. Otherwise, click Cancel."
 msgstr ""
-"El atajo de teclado «%s» ya está asignado a:\n"
+"El atajo de teclado '%s' ya está asignado a:\n"
 "\n"
 "\t%s\n"
 "\n"
@@ -10525,7 +10480,7 @@ msgstr ""
 "\n"
 "\t%s\n"
 "\n"
-"en su lugar.  En caso contrario pulse Cancelar."
+"en su lugar. En caso contrario pulse Cancelar."
 
 #: src/prefs/KeyConfigPrefs.h
 msgid "Key Config"
@@ -10847,7 +10802,7 @@ msgstr "La ganancia de frecuencia no puede ser negativa"
 
 #: src/prefs/SpectrogramSettings.cpp
 msgid "The frequency gain must be no more than 60 dB/dec"
-msgstr "La ganancia de frecuencia  no debe superar los 60 db/dec"
+msgstr "La ganancia de frecuencia no debe superar los 60 db/dec"
 
 #: src/prefs/SpectrumPrefs.cpp
 msgid "Spectrogram Settings"
@@ -11232,29 +11187,33 @@ msgid "High Contrast"
 msgstr "Contraste alto"
 
 #: src/theme/Theme.cpp
-#, fuzzy, c-format
-#| msgid "Couldn't write to file: %s"
+#, c-format
 msgid ""
 "Tenacity could not write file:\n"
 "  %s."
-msgstr "No se ha podido escribir en el archivo: %s"
+msgstr ""
+"No se ha podido escribir en el archivo:\n"
+"   %s."
 
 #: src/theme/Theme.cpp
-#, fuzzy, c-format
-#| msgid "Unable to open target file for writing"
+#, c-format
 msgid ""
 "Tenacity could not open file:\n"
 "  %s\n"
 "for writing."
-msgstr "No se puede abrir el archivo de destino para escritura"
+msgstr ""
+"No se puede abrir el archivo:\n"
+"  %s\n"
+"para escritura."
 
 #: src/theme/Theme.cpp
-#, fuzzy, c-format
-#| msgid "Couldn't write to file: %s"
+#, c-format
 msgid ""
 "Tenacity could not write images to file:\n"
 "  %s."
-msgstr "No se ha podido escribir en el archivo: %s"
+msgstr ""
+"No se han podido escribir imágenes en el archivo:\n"
+"  %s."
 
 #: src/theme/Theme.cpp
 #, c-format
@@ -11288,12 +11247,13 @@ msgstr ""
 "ya están presentes. ¿Quiere sobrescribirlos?"
 
 #: src/theme/Theme.cpp
-#, fuzzy, c-format
-#| msgid "Could not open file: %s"
+#, c-format
 msgid ""
 "Tenacity could not save file:\n"
 "  %s"
-msgstr "No se ha podido abrir el archivo: %s"
+msgstr ""
+"No se ha podido guardar el archivo:\n"
+"  %s"
 
 #. i18n-hint: user defined
 #: src/theme/Theme.cpp
@@ -11839,7 +11799,7 @@ msgstr "Pulse y arrastre para editar las muestras"
 msgid "To use Draw, zoom in further until you can see the individual samples."
 msgstr ""
 "Para utilizar la herramienta de dibujo debe acercar la pista hasta poder ver "
-"cada muestra"
+"cada muestra."
 
 #: src/tracks/playabletrack/wavetrack/ui/SampleHandle.cpp
 msgid "Moved Samples"
@@ -11879,40 +11839,28 @@ msgid "S&pectrogram Settings..."
 msgstr "Configuración de es&pectrograma..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
-#, fuzzy
-#| msgid "Click and drag to move a track in time"
 msgid "Click and drag to move clip boundary in time"
-msgstr "Haga clic y arrastre para desplazar una pista en el tiempo"
+msgstr "Haga clic y arrastre para desplazar el límite del clip en el tiempo"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-#| msgid "Set Track Name"
 msgid "Set Wave Clip Name"
-msgstr "Establecer nombre de pista"
+msgstr "Establecer nombre de clip de onda"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-#| msgid "Click and drag to select audio"
 msgid "Click and drag to select text"
-msgstr "Haga clic y arrastre para seleccionar audio"
+msgstr "Haga clic y arrastre para seleccionar texto"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-#| msgid "Modified Label"
 msgid "Modified Clip Name"
-msgstr "Etiqueta modificada"
+msgstr "Nombre de clip modificado"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-#| msgid "Sample Edit"
 msgid "Clip Name Edit"
-msgstr "Edición de muestra"
+msgstr "Edición de nombre del clip"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-#| msgid "Rename..."
 msgid "Rename Clip..."
-msgstr "Renombrar..."
+msgstr "Renombrar clip..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "&Format"
@@ -12112,28 +12060,23 @@ msgid "Close sub-view"
 msgstr "Cerrar subvista"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-#| msgid "Set Clip"
 msgid "Split Clip"
-msgstr "Establecer bloque"
+msgstr "Dividir clip"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-#| msgid "M&ute/Unmute Focused Track"
 msgid "Mute/Unmute Track"
-msgstr "&Activar o desactivar silencio en pista enfocada"
+msgstr "Silenciar/Escuchar pista"
 
 #. i18n-hint:
 #. string is the name of a clip
 #. first number is the position of that clip in a sequence of clips,
 #. second number counts the clips
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy, c-format
-#| msgid "%s %d of %d"
+#, c-format
 msgid "%s, %d of %d clip"
 msgid_plural "%s, %d of %d clips"
-msgstr[0] "%s %d de %d"
-msgstr[1] "%s %d de %d"
+msgstr[0] "%s, %d de %d clip"
+msgstr[1] "%s, %d de %d clips"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Half Wave"
@@ -12351,7 +12294,7 @@ msgstr "Editar, Preferencias..."
 #: src/tracks/ui/SelectHandle.cpp
 #, c-format
 msgid "Multi-Tool Mode: %s for Mouse and Keyboard Preferences."
-msgstr "Modo multiherramienta: %s para preferencias de ratón y teclado"
+msgstr "Modo multiherramienta: %s para preferencias de ratón y teclado."
 
 #: src/tracks/ui/SelectHandle.cpp
 msgid "Click and drag to set frequency bandwidth."
@@ -12514,9 +12457,8 @@ msgid ""
 "the meter affecting audio quality on slower machines."
 msgstr ""
 "Las frecuencias de actualización mayores hacen que el medidor muestre\n"
-"los cambios más frecuentemente. Una frecuencia de 30 por segundo \n"
-"o inferior evitará que el medidor afecte a la calidad del audio en equipos\n"
-"más lentos."
+"los cambios más frecuentemente. Una frecuencia de 30 por segundo o inferior\n"
+"evitará que el medidor afecte a la calidad del audio en equipos mas lentos."
 
 #: src/widgets/MeterPanel.cpp
 msgid "Meter refresh rate per second [1-100]"
@@ -12555,14 +12497,13 @@ msgid " Monitoring "
 msgstr " Monitorización "
 
 #: src/widgets/MeterPanel.cpp
-#, fuzzy
 msgid " Active "
 msgstr " Activa "
 
 #: src/widgets/MeterPanel.cpp
 #, c-format
 msgid " Peak %2.f dB"
-msgstr "Pico %2.f dB"
+msgstr " Pico %2.f dB"
 
 #: src/widgets/MeterPanel.cpp
 #, c-format
@@ -12570,7 +12511,6 @@ msgid " Peak %.2f "
 msgstr " Pico %.2f "
 
 #: src/widgets/MeterPanel.cpp
-#, fuzzy
 msgid " Clipped "
 msgstr " Recortado "
 
@@ -13002,7 +12942,7 @@ msgstr "Número mal creado"
 #: src/widgets/valnum.cpp
 #, c-format
 msgid "Not in range %d to %d"
-msgstr "No está en el rango %d a  %d"
+msgstr "No está en el rango %d a %d"
 
 #: src/widgets/valnum.cpp
 msgid "Value overflow"
@@ -13714,7 +13654,6 @@ msgid "RMS level"
 msgstr "Nivel RMS"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "Minimum silence duration"
 msgstr "Duración mínima del silencio"
 
@@ -13779,7 +13718,7 @@ msgid ""
 "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound "
 "duration'."
 msgstr ""
-"No se han encontrado sonidos. ~%  Intente bajar  el 'Umbral' o reducir el "
+"No se han encontrado sonidos. ~% Intente bajar el 'Umbral' o reducir el "
 "valor 'Duración mínima del silencio'."
 
 #: plug-ins/label-sounds.ny
@@ -14162,7 +14101,7 @@ msgstr "Se usa si «Número de barras» = 0"
 
 #: plug-ins/rhythmtrack.ny
 msgid "Start time offset"
-msgstr "Desplazamiento de tiempo inicial:"
+msgstr "Desplazamiento de tiempo inicial"
 
 #: plug-ins/rhythmtrack.ny
 msgid "Silence before first beat"
@@ -14238,7 +14177,7 @@ msgstr "Steven Jones"
 
 #: plug-ins/rissetdrum.ny
 msgid "Decay (seconds)"
-msgstr "Decaimiento (segundos):"
+msgstr "Decaimiento (segundos)"
 
 #: plug-ins/rissetdrum.ny
 msgid "Center frequency of noise (Hz)"
@@ -14257,7 +14196,6 @@ msgid "Amplitude (0 - 1)"
 msgstr "Amplitud (0 - 1)"
 
 #: plug-ins/sample-data-export.ny
-#, fuzzy
 msgid "Sample Data Export"
 msgstr "Exportar datos de muestra"
 
@@ -14274,7 +14212,6 @@ msgid "Measurement scale"
 msgstr "Escala de medida"
 
 #: plug-ins/sample-data-export.ny
-#, fuzzy
 msgid "Export data to"
 msgstr "Exportar datos a"
 
@@ -15249,60 +15186,8 @@ msgstr "Error.~%Se necesita una pista estéreo."
 #~ msgid "Sound card mixer support"
 #~ msgstr "Compatibilidad con mezclador de tarjeta de sonido"
 
-#~ msgid "Error Initializing Audio"
-#~ msgstr "Error al inicializar el audio"
-
 #~ msgid "Error Initializing Midi"
 #~ msgstr "Error al inicializar el audio Midi"
-
-#~ msgid "Out of memory!"
-#~ msgstr "Se agotó la memoria"
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too high."
-#~ msgstr ""
-#~ "Autoajuste de nivel de grabación detenido. No se pudo optimizar más. Aún "
-#~ "es demasiado alto."
-
-#, c-format
-#~ msgid "Automated Recording Level Adjustment decreased the volume to %f."
-#~ msgstr "Autoajuste de nivel de grabación ha reducido el volumen a %f."
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too low."
-#~ msgstr ""
-#~ "Autoajuste de nivel de grabación detenido. No se pudo optimizar más. Aún "
-#~ "es demasiado bajo."
-
-#, c-format
-#~ msgid "Automated Recording Level Adjustment increased the volume to %.2f."
-#~ msgstr "Autoajuste de nivel de grabación ha incrementado el volumen a %.2f."
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. The total number of "
-#~ "analyses has been exceeded without finding an acceptable volume. Still "
-#~ "too high."
-#~ msgstr ""
-#~ "Autoajuste de nivel de grabación detenido. Se ha excedido el número total "
-#~ "de análisis sin encontrar un volumen aceptable. Aún es demasiado alto."
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. The total number of "
-#~ "analyses has been exceeded without finding an acceptable volume. Still "
-#~ "too low."
-#~ msgstr ""
-#~ "Autoajuste de nivel de grabación detenido. Se ha excedido el número total "
-#~ "de análisis sin encontrar un volumen aceptable. Aún es demasiado bajo."
-
-#, c-format
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
-#~ "volume."
-#~ msgstr ""
-#~ "Autoajuste de nivel de grabación detenido. %.2f parece ser un volumen "
-#~ "aceptable."
 
 #, c-format
 #~ msgid "Received %d while opening devices\n"
@@ -19915,3 +19800,196 @@ msgstr "Archivo WebVTT"
 #: libraries/lib-import-export/Import.cpp
 msgid "Importing files"
 msgstr "Importando archivos"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Selected recording device: %d - %s\n"
+msgstr "Dispositivo de grabación seleccionado: %d - %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No recording device found for '%s'.\n"
+msgstr "No se encontró dispositivo de grabación para '%s'.\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Selected playback device: %d - %s\n"
+msgstr "Dispositivo de reproducción seleccionado: %d - %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No playback device found for '%s'.\n"
+msgstr "No se encontró dispositivo de reproducción para '%s'.\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+"No se pueden verificar tasas de muestro mutuas sin ambos dispositivos.\n"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid "Error Initializing Audio"
+msgstr "Error inicializando audio"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid "Out of memory!"
+msgstr "¡Sin memoria suficiente!"
+
+#. i18n-hint:
+#. First and third %s are each replaced with the noun "start"
+#. or with "end", identifying and end of a clip,
+#. second and fourth strings are the names of those clips,
+#. first and second numbers give the position of those clips in
+#. a sequence of clips,
+#. last number counts all clips,
+#. and the last string is the name of the track containing the
+#. clips.
+#.
+#: src/menus/ClipMenus.cpp
+#, c-format
+msgid "%s %s and %s %s, %d and %d of %d clip %s"
+msgid_plural "%s %s and %s %s, %d and %d of %d clips %s"
+msgstr[0] "%s %s y %s %s, %d y %d de %d clip %s"
+msgstr[1] "%s %s y %s %s, %d y %d de %d clips %s"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. It was not possible to "
+"optimize it more. Still too high."
+msgstr ""
+"El ajuste de nivel de grabación automatizado se detuvo. No fue posible "
+"optimizarlo mas. Aún es muy alto."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid "Automated Recording Level Adjustment decreased the volume to %f."
+msgstr "El ajuste de nivel de grabación automatizado bajó el volumen a %f."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. It was not possible to "
+"optimize it more. Still too low."
+msgstr ""
+"El ajuste de nivel de grabación automatizado se detuvo. No fue posible "
+"optimizarlo mas. Aún es muy bajo."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid "Automated Recording Level Adjustment increased the volume to %.2f."
+msgstr "El ajuste de nivel de grabación automatizado subió el volumen a %.2f."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. The total number of analyses "
+"has been exceeded without finding an acceptable volume. Still too high."
+msgstr ""
+"El ajuste de nivel de grabación automatizado se detuvo. Se ha excedido el "
+"número total de análisis sin encontrar un volumen aceptable. Aún muy alto."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. The total number of analyses "
+"has been exceeded without finding an acceptable volume. Still too low."
+msgstr ""
+"El ajuste de nivel de grabación automatizado se detuvo. Se ha excedido el "
+"número total de análisis sin encontrar un volumen aceptable. Aún muy bajo."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid ""
+"Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
+"volume."
+msgstr ""
+"El ajuste de nivel de grabación automatizado se detuvo. Parece que %.2f es "
+"un volumen aceptable."
+
+#: libraries/lib-audio-unit/AudioUnitEffectsModule.cpp
+#: libraries/lib-effects/LoadEffects.cpp src/effects/vamp/LoadVamp.cpp
+msgid "The Tenacity Team and contributors"
+msgstr "El equipo de Tenacity y colaboradores"
+
+#: libraries/lib-builtin-effects/ChangeSpeedBase.cpp
+msgid "Change Speed and Pitch"
+msgstr "Cambiar velocidad y tono"
+
+#. i18n-hint: Two numbers are substituted; the second is the
+#. size of a set, the first is the size of a subset, and not
+#. understood as an ordinal (i.e., not meaning "first", or
+#. "second", etc.)
+#.
+#: libraries/lib-builtin-effects/FindClippingBase.cpp
+#, c-format
+msgctxt "find clipping"
+msgid "%lld of %lld"
+msgstr "%lld de %lld"
+
+#: libraries/lib-builtin-effects/PlotSpectrumBase.cpp
+msgid ""
+"To plot the spectrum, all selected tracks must have the same sample rate."
+msgstr ""
+"Para graficar el espectro, todas las pistas seleccionadas deben tener la "
+"misma tasa de muestreo."
+
+#: libraries/lib-effects/LoadEffects.cpp
+msgid "Provides builtin effects to Tenacity"
+msgstr "Provee efectos integrados a Tenacity"
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error in %s at %s line %d.\n"
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/"
+"tenacity/issues"
+msgstr ""
+"Error interno en %s en %s línea %d.\n"
+"Por favor repórtelo al equipo de Tenacity en https://codeberg.org/"
+"tenacityteam/tenacity/issues"
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error at %s line %d.\n"
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/"
+"tenacity/issues"
+msgstr ""
+"Error interno en %s línea %d.\n"
+"Por favor repórtelo al equipo de Tenacity en https://codeberg.org/"
+"tenacityteam/tenacity/issues"
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Tenacity failed to read from a file in %s."
+msgstr "Tenacity falló al leer de un archivo en %s."
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Tenacity successfully wrote a file in %s but failed to rename it as %s."
+msgstr ""
+"Tenacity escribió exitosamente un archivo en %s pero falló al renombrarlo "
+"como %s."
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid ""
+"Tenacity failed to write to a file.\n"
+"Perhaps %s is not writable or the disk is full."
+msgstr ""
+"Tenacity falló al escribir a un archivo.\n"
+"Quizás no se puede escribir en %s o la unidad ya no tiene espacio disponible."
+
+#: libraries/lib-files/FileNames.cpp
+#, c-format
+msgid ""
+"\n"
+"%s does not have write permissions."
+msgstr ""
+"\n"
+"%s no tiene permiso de escritura."
+
+#: libraries/lib-import-export/ExportProgressUI.cpp
+#: libraries/lib-import-export/ExportProgressUI.h
+msgid "Export error"
+msgstr "Exportar error"
+
+#: libraries/lib-import-export/ExportProgressUI.cpp
+msgid "Export completed with error."
+msgstr "Exportación terminada con error."
