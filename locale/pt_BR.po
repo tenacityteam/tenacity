@@ -1,13 +1,14 @@
 # Avery King <avery98@pm.me>, 2022, 2023.
 # Felipe Nogueira <contato.fnog@gmail.com>, 2023.
 # delvani <inavleb@users.noreply.hosted.weblate.org>, 2024.
+# Edmilson Santos <edmilsonds26152@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2024-01-24 20:23+0000\n"
-"Last-Translator: delvani <inavleb@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2025-11-27 05:01+0000\n"
+"Last-Translator: Edmilson Santos <edmilsonds26152@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "tenacity/tenacity/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -15,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -7357,10 +7358,8 @@ msgid "Audio Unit Effects"
 msgstr "Efeitos Audio Unit"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-#| msgid "Audio Unit Effect Options"
 msgid "Provides Audio Unit Effects support to Tenacity"
-msgstr "Opções de efeitos Audio Unit"
+msgstr "Fornece suporte ao audio Unit Effects para o Tenacity"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Could not find component"
@@ -15035,9 +15034,6 @@ msgstr "Erro.~%Requer faixa estéreo."
 #~ msgid "Show alternative &styling (Mac vs PC)"
 #~ msgstr "Exibir e&stilo alternativo (Mac vs PC)"
 
-#~ msgid "No devices found\n"
-#~ msgstr "Nenhum dispositivo encontrado\n"
-
 #~ msgid "&Nyquist Workbench..."
 #~ msgstr "Linha de Comandos &Nyquist..."
 
@@ -15253,64 +15249,8 @@ msgstr "Erro.~%Requer faixa estéreo."
 #~ msgid "Sound card mixer support"
 #~ msgstr "Suporte ao mixer da placa de som"
 
-#~ msgid "Error Initializing Audio"
-#~ msgstr "Erro ao Iniciar o Áudio"
-
 #~ msgid "Error Initializing Midi"
 #~ msgstr "Erro ao iniciar o MIDI"
-
-#~ msgid "Out of memory!"
-#~ msgstr "Memória cheia!"
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too high."
-#~ msgstr ""
-#~ "O ajuste automático do volume de gravação terminou. Não foi possível "
-#~ "otimizar completamente, o nível continua muito alto."
-
-#, c-format
-#~ msgid "Automated Recording Level Adjustment decreased the volume to %f."
-#~ msgstr ""
-#~ "O ajuste automático do volume de gravação diminuiu o volume para %f."
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too low."
-#~ msgstr ""
-#~ "O ajuste automático do volume de gravação terminou. Não foi possível "
-#~ "otimizar completamente, o nível continua muito baixo."
-
-#, c-format
-#~ msgid "Automated Recording Level Adjustment increased the volume to %.2f."
-#~ msgstr ""
-#~ "O ajuste automático do volume de gravação aumentou o volume para %f."
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. The total number of "
-#~ "analyses has been exceeded without finding an acceptable volume. Still "
-#~ "too high."
-#~ msgstr ""
-#~ "O ajuste automático de volume de gravação terminou. O número total de "
-#~ "análises foi excedido sem encontrar um volume aceitável. Ainda está muito "
-#~ "alto."
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. The total number of "
-#~ "analyses has been exceeded without finding an acceptable volume. Still "
-#~ "too low."
-#~ msgstr ""
-#~ "O ajuste automático de volume de gravação terminou. O número total de "
-#~ "análises foi excedido sem encontrar um volume aceitável. O volume ainda "
-#~ "está muito baixo."
-
-#, c-format
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
-#~ "volume."
-#~ msgstr ""
-#~ "O Ajuste automático de volume de gravação terminou. %.2f parece um volume "
-#~ "aceitável."
 
 #, c-format
 #~ msgid "Received %d while opening devices\n"
@@ -15938,3 +15878,246 @@ msgstr "Erro.~%Requer faixa estéreo."
 
 #~ msgid "Can't open new empty project"
 #~ msgstr "Não é possível abrir um novo projeto vazio"
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: src/RealtimeEffectPanel.cpp
+msgid ""
+"This plugin could not be loaded.\n"
+"It may have been deleted."
+msgstr ""
+"Esse plugin não conseguiu ser carregado.\n"
+"Ele possivelmente foi excluído."
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: src/RealtimeEffectPanel.cpp
+msgid "Plugin Error"
+msgstr "Erro de plugin"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Default recording device number: %d\n"
+msgstr "Dispositivo de gravação número:%d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Default playback device number: %d\n"
+msgstr "Dispositivo padrão de ouvir número:%d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+msgid "No devices found\n"
+msgstr "Nenhum dispositivo encontrado\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device info unavailable for: %d\n"
+msgstr "Informação do dispositivo não disponível para:%d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device ID: %d\n"
+msgstr "ID Do dispositivo:%d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device name: %s\n"
+msgstr "Nome do dispositivo:%s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Host name: %s\n"
+msgstr "Nome do host:%s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Recording channels: %d\n"
+msgstr "Canais de gravação:%d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Playback channels: %d\n"
+msgstr "Canais de reprodução:%d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Low Recording Latency: %g\n"
+msgstr "Baixa latência de gravação:%g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Low Playback Latency: %g\n"
+msgstr "Baixa latência de reprodução:%g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "High Recording Latency: %g\n"
+msgstr "Alta latência de gravação:%g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "High Playback Latency: %g\n"
+msgstr "Alta latência de reprodução:%g\n"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Playback Rates:\n"
+msgstr "Taxas de reprodução suportadas:\n"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Capture Rates:\n"
+msgstr "Taxas de captura suportadas:\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Selected recording device: %d - %s\n"
+msgstr "Dispositivo de gravação selecionado:%d-%s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No recording device found for '%s'.\n"
+msgstr "Nenhum dispositivo de gravação encontrado para '%s'\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Selected playback device: %d - %s\n"
+msgstr "Dispositivo de reprodução selecionado:%d-%s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No playback device found for '%s'.\n"
+msgstr "Nenhum dispositivo de reprodução encontrado para '%s'.\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Rates:\n"
+msgstr "Taxas suportadas:\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+"Não é possível verificar as taxas de amostragem mútuas sem ambos os "
+"dispositivos.\n"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid "Error Initializing Audio"
+msgstr "Erro inicializando o áudio"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid "Out of memory!"
+msgstr "Sem memória!"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. It was not possible to "
+"optimize it more. Still too high."
+msgstr ""
+"Ajustamento de nível automatizado de gravação parou. Não era possível "
+"otimizar mais. Ainda muito alto."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid "Automated Recording Level Adjustment decreased the volume to %f."
+msgstr ""
+"Ajustamento de nível de gravação automatizado abaixou o nível de volume para "
+"%f."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. It was not possible to "
+"optimize it more. Still too low."
+msgstr ""
+"O ajustamento nivel de gravação automatizado parou. Não foi possivel "
+"otimizar mais. Ainda muito baixo."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid "Automated Recording Level Adjustment increased the volume to %.2f."
+msgstr ""
+"O ajustamento de nivel de gravação automatizado aumentou o nivel do volume "
+"para %.2f."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. The total number of analyses "
+"has been exceeded without finding an acceptable volume. Still too high."
+msgstr ""
+"O ajustamento de nível de gravação automatizado parou. O número de análises "
+"foi excedido sem encontrar um volume aceitável. Ainda muito alto."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. The total number of analyses "
+"has been exceeded without finding an acceptable volume. Still too low."
+msgstr ""
+"O ajustamento de nível de gravação automatizado parou. O número de análises "
+"foi excedido sem encontrar um volume aceitável. Ainda muito baixo."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid ""
+"Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
+"volume."
+msgstr ""
+"O ajuste de nível de volume automatizado parou. %.2f parece um volume "
+"aceitavel."
+
+#: libraries/lib-audio-unit/AudioUnitEffectsModule.cpp
+#: libraries/lib-effects/LoadEffects.cpp src/effects/vamp/LoadVamp.cpp
+msgid "The Tenacity Team and contributors"
+msgstr "O time tenacity e contribuidores"
+
+#: libraries/lib-audio-unit/AudioUnitWrapper.cpp
+#, c-format
+msgid "Failed to decode \"%s\" preset"
+msgstr "Falha ao Decodificar \"%s\" Preset"
+
+#: libraries/lib-audio-unit/AudioUnitWrapper.cpp
+#, c-format
+msgid "Failed to convert \"%s\" preset to internal format"
+msgstr "Falha ao converter \"%s\" preset para o formato interno"
+
+#: libraries/lib-audio-unit/AudioUnitWrapper.cpp
+#, c-format
+msgid "Failed to create property list for \"%s\" preset"
+msgstr "Falha ao criar uma lista de Propriedades para o preset \"%s\""
+
+#: libraries/lib-builtin-effects/AutoDuckBase.cpp
+msgid "Rendering Control-Track Time-Stretched Audio"
+msgstr "Rederinzando a Pista de controle de audio de tempo Esticado"
+
+#: libraries/lib-builtin-effects/ChangeSpeedBase.cpp
+msgid "Change Speed and Pitch"
+msgstr "Mudar velocidade e tom"
+
+#. i18n-hint: Two numbers are substituted; the second is the
+#. size of a set, the first is the size of a subset, and not
+#. understood as an ordinal (i.e., not meaning "first", or
+#. "second", etc.)
+#.
+#: libraries/lib-builtin-effects/FindClippingBase.cpp
+#, c-format
+msgctxt "find clipping"
+msgid "%lld of %lld"
+msgstr "%lld de %lld"
+
+#: libraries/lib-builtin-effects/LegacyCompressorBase.cpp
+msgid "Legacy Compressor"
+msgstr "Compressor legado"
+
+#: libraries/lib-builtin-effects/PlotSpectrumBase.cpp
+msgid ""
+"To plot the spectrum, all selected tracks must have the same sample rate."
+msgstr ""
+"Para traçar o espectro, todas as faixas selecionadas devem ter a mesma taxa "
+"de amostragem."
+
+#: libraries/lib-builtin-effects/Repair.cpp
+msgid "The Repair effect cannot be applied within stretched or shrunk clips"
+msgstr ""
+"O effeito de reparar não pode ser aplicado com clips pequenos ou esticados"
