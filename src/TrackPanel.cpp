@@ -711,6 +711,11 @@ void TrackPanel::OnKeyDown(wxKeyEvent & event)
 void TrackPanel::OnMouseEvent(wxMouseEvent & event)
 {
    if (event.ButtonUp()) {
+      // Stop the timer if it's running and audio isn't currently active
+      if (mTimer.IsRunning() && !IsAudioActive()) {
+         mTimer.Stop();
+      }
+
       //ShowTrack should be called after processing the up-click.
       this->CallAfter( [this, event]{
          const auto foundCell = FindCell(event.m_x, event.m_y);
@@ -721,6 +726,11 @@ void TrackPanel::OnMouseEvent(wxMouseEvent & event)
             Viewport::Get(*GetProject()).ShowTrack(*t);
          }
       } );
+   } else if (event.LeftIsDown() && !mTimer.IsRunning()) {
+      // Some parts of the UI still rely on the TrackPanel's timer. For now, if
+      // the timer hasn't started and the left button is currently down, start
+      // the timer.
+      mTimer.Start(std::chrono::milliseconds{kTimerInterval}.count());
    }
 
    // Must also fall through to base class handler
