@@ -1142,6 +1142,8 @@ public:
    }
 
 private:
+   bool mDragged = false;
+
    Result Click(
       const TrackPanelMouseEvent &event, AudacityProject *pProject) override
    {
@@ -1170,10 +1172,12 @@ private:
    Result Drag(
       const TrackPanelMouseEvent &event, AudacityProject *pProject) override
    {
+      mDragged = true;
+
       auto result = CommonRulerHandle::Drag(event, pProject);
       if (!( result & RefreshCode::Cancelled )) {
-         // Nothing needed here.  The scrubber works by polling mouse state
-         // after the start has been marked.
+         // Start scrubbing
+         Scrubber::Get(*pProject).MaybeStartScrubbing(event.event.m_x);
       }
       return result;
    }
@@ -1186,10 +1190,17 @@ private:
       const TrackPanelMouseEvent &event, AudacityProject *pProject,
       wxWindow *pParent) override {
       auto result = CommonRulerHandle::Release(event, pProject, pParent);
-      if (!( result & RefreshCode::Cancelled )) {
-         // Nothing needed here either.  The scrub poller may have decided to
-         // seek because a drag happened before button up, or it may decide
-         // to start a scrub, as it watches mouse movement after the button up.
+
+      // Start scrubbing only if we didn't come from a drag event
+      if (!( result & RefreshCode::Cancelled ) && !mDragged) {
+         // Start audio playback before we start scrubbing, or else scrubbing here won't work.
+         auto& projectAudioManager = ProjectAudioManager::Get(*pProject);
+         if (!projectAudioManager.Playing()) {
+            projectAudioManager.PlayCurrentRegion();
+         }
+
+         // Actually start scrubbing
+         Scrubber::Get(*pProject).MaybeStartScrubbing(event.event.m_x);
       }
       return result;
    }
