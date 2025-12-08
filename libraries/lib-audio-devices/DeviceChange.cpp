@@ -23,6 +23,7 @@
 
 #include <wx/module.h>
 #include <wx/thread.h>
+#include <wx/timer.h> // For wxTimerEvent
 
 #if defined(__WXMSW__)
 
