@@ -27,6 +27,7 @@ using DeviceChangeMessagePublisher = Observer::Publisher<DeviceChangeMessage>;
 #if defined(HAVE_DEVICE_CHANGE)
 
 #include "Observer.h"
+#include <wx/event.h>
 
 class DeviceChangeInterface /* not final */
 {
