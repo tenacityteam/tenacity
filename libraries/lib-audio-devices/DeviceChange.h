@@ -28,6 +28,7 @@ using DeviceChangeMessagePublisher = Observer::Publisher<DeviceChangeMessage>;
 
 #include "Observer.h"
 #include <wx/event.h>
+#include <wx/timer.h> // For wxTimerEvent
 
 class DeviceChangeInterface /* not final */
 {
