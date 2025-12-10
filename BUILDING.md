@@ -154,7 +154,7 @@ run the following commands:
 
 ``` powershell
 > Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-> Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression]
+> Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 ```
 
 Then, from the same PowerShell window, run the command to install Tenacity's
