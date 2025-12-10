@@ -352,7 +352,7 @@ set( _DATADIR "${CMAKE_INSTALL_DATADIR}" )
 set( _PKGLIB "${_LIBDIR}/tenacity" )
 set( _PKGDATA "${_DATADIR}/tenacity/" )
 set( _MANDIR "${CMAKE_INSTALL_MANDIR}" )
-set( _MODDIR "${_DEST}/modules" )
+set( _MODDIR "${_DEST}/${_LIBDIR}/modules" )
 set( _EXEDIR "${_DEST}" )
 
 # Setup RPATH handling
