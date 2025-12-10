@@ -83,7 +83,7 @@ ComponentInterfaceSymbol VSTEffectsModule::GetSymbol() const
 
 VendorSymbol VSTEffectsModule::GetVendor() const
 {
-   return XO("The Audacity Team");
+   return XO("The Tenacity Team");
 }
 
 wxString VSTEffectsModule::GetVersion() const

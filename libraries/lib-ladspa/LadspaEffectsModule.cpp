@@ -89,7 +89,7 @@ ComponentInterfaceSymbol LadspaEffectsModule::GetSymbol() const
 
 VendorSymbol LadspaEffectsModule::GetVendor() const
 {
-   return XO("The Audacity Team");
+   return XO("The Tenacity Team");
 }
 
 wxString LadspaEffectsModule::GetVersion() const

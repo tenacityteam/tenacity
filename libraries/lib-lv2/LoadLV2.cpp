@@ -91,7 +91,7 @@ ComponentInterfaceSymbol LV2EffectsModule::GetSymbol() const
 
 VendorSymbol LV2EffectsModule::GetVendor() const
 {
-   return XO("The Audacity Team");
+   return XO("The Tenacity Team");
 }
 
 wxString LV2EffectsModule::GetVersion() const
@@ -102,7 +102,7 @@ wxString LV2EffectsModule::GetVersion() const
 
 TranslatableString LV2EffectsModule::GetDescription() const
 {
-   return XO("Provides LV2 Effects support to Audacity");
+   return XO("Provides LV2 Effects support for Tenacity");
 }
 
 // ============================================================================

@@ -102,7 +102,7 @@ ComponentInterfaceSymbol VST3EffectsModule::GetSymbol() const
 
 VendorSymbol VST3EffectsModule::GetVendor() const
 {
-   return XO("The Audacity Team");
+   return XO("The Tenacity Team");
 }
 
 wxString VST3EffectsModule::GetVersion() const
