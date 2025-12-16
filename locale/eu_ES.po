@@ -5,13 +5,14 @@
 # Avery King <avery98@pm.me>, 2022, 2023.
 # mondstern <mondstern@monocles.de>, 2023.
 # Aitor Salaberria <trslbrr@gmail.com>, 2023.
+# "Thadah D. Denyse" <thadahdenyse@protonmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-02-16 00:19+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2025-12-16 14:11+0000\n"
+"Last-Translator: \"Thadah D. Denyse\" <thadahdenyse@protonmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/tenacity/tenacity/"
 "eu/>\n"
 "Language: eu_ES\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10\n"
+"X-Generator: Weblate 5.15.1-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -15052,9 +15053,6 @@ msgstr "Errorea.~%Pista estereoa behar da."
 #~ msgid "Show alternative &styling (Mac vs PC)"
 #~ msgstr "Erakutsi aukeran beste e&stiloa (Mac vs PC)"
 
-#~ msgid "No devices found\n"
-#~ msgstr "Ez da gailurik aurkitu\n"
-
 #~ msgid "&Nyquist Workbench..."
 #~ msgstr "&Nyquist lan-mahaia..."
 
@@ -17431,3 +17429,122 @@ msgstr "Errorea.~%Pista estereoa behar da."
 
 #~ msgid "Error opening a new empty project"
 #~ msgstr "Errorea proiektu huts berri bat irekitzean"
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: src/RealtimeEffectPanel.cpp
+msgid ""
+"This plugin could not be loaded.\n"
+"It may have been deleted."
+msgstr ""
+"Ezin izan da plugin hau kargatu.\n"
+"Baliteke ezabatua izana."
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: src/RealtimeEffectPanel.cpp
+msgid "Plugin Error"
+msgstr "Plugin errorea"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Default recording device number: %d\n"
+msgstr "Grabaketa gailu lehenetsiaren zenbakia: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Default playback device number: %d\n"
+msgstr "Erreprodukzio-gailu lehenetsiaren zenbakia: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+msgid "No devices found\n"
+msgstr "Ez da gailurik aurkitu\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device info unavailable for: %d\n"
+msgstr "Ez dago gailuaren informaziorik honentzat: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device ID: %d\n"
+msgstr "Gailuaren IDa: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device name: %s\n"
+msgstr "Gailuaren izena: %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Host name: %s\n"
+msgstr "Ostalariaren izena: %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Recording channels: %d\n"
+msgstr "Grabaketa kanalak: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Playback channels: %d\n"
+msgstr "Erreprodukzio-kanalak: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Low Recording Latency: %g\n"
+msgstr "Grabaketa-latentzia baxua: %g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Low Playback Latency: %g\n"
+msgstr "Erreprodukzio-latentzia baxua: %g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "High Recording Latency: %g\n"
+msgstr "Grabaketa-latentzia handia: %g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "High Playback Latency: %g\n"
+msgstr "Erreprodukzio-latentzia handia: %g\n"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Playback Rates:\n"
+msgstr "Onartutako erreprodukzio-tasak:\n"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Capture Rates:\n"
+msgstr "Onartutako harrapaketa-tasak:\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Selected recording device: %d - %s\n"
+msgstr "Hautatutako grabazio gailua: %d - %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No recording device found for '%s'.\n"
+msgstr "Ez da grabazio gailurik aurkitu '%s'-rentzat.\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Selected playback device: %d - %s\n"
+msgstr "Hautatutako erreprodukzio-gailua: %d - %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No playback device found for '%s'.\n"
+msgstr "Ez da '%s'-rentzako erreprodukzio-gailurik aurkitu.\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Rates:\n"
+msgstr "Onartutako tasak:\n"
