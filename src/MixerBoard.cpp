@@ -1194,7 +1194,7 @@ void MixerBoard::UpdateWidth()
 //
 
 
-void MixerBoard::MakeButtonBitmap( wxMemoryDC & dc, wxBitmap & WXUNUSED(bitmap), wxRect & bev, const TranslatableString & str, bool up )
+void MixerBoard::MakeButtonBitmap( wxMemoryDC & dc, wxBitmap & bitmap, wxRect & bev, const TranslatableString & str, bool up )
 {
 
    const auto translation = str.Translation();
@@ -1204,6 +1204,8 @@ void MixerBoard::MakeButtonBitmap( wxMemoryDC & dc, wxBitmap & WXUNUSED(bitmap),
    #ifdef __WXMSW__
       fontSize = 8;
    #endif
+
+   dc.SelectObject(bitmap);
    wxFont font(fontSize, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
    GetTextExtent(translation, &textWidth, &textHeight, NULL, NULL, &font);
 
@@ -1219,6 +1221,7 @@ void MixerBoard::MakeButtonBitmap( wxMemoryDC & dc, wxBitmap & WXUNUSED(bitmap),
    dc.SetBackgroundMode(wxTRANSPARENT);
    dc.DrawText(translation, x, y);
 //   dc.DrawText(translation, 0, 0);
+   dc.SelectObject(wxNullBitmap);
 }
 
 void MixerBoard::CreateMuteSoloImages()
@@ -1232,7 +1235,6 @@ void MixerBoard::CreateMuteSoloImages()
    mMuteSoloWidth = kRightSideStackWidth - kInset;
 
    wxBitmap bitmap(mMuteSoloWidth, MUTE_SOLO_HEIGHT,24);
-   dc.SelectObject(bitmap);
    wxRect bev(0, 0, mMuteSoloWidth, MUTE_SOLO_HEIGHT);
 
    const bool up=true;
