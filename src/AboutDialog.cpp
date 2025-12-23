@@ -608,8 +608,12 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
       << XO("Core Libraries")
       << wxT("</h3>\n<table>");  // start table of core libraries
 
+   // Use wxVersionInfo to get the runtime version of wxWidgets. Using the
+   // macro gets the version originally linked with, and we prefer to know the
+   // current version being used instead.
+   wxVersionInfo versionInfo;
    AddBuildinfoRow(&informationStr, wxT("wxWidgets"),
-         XO("Cross-platform GUI library"), Verbatim(wxVERSION_NUM_DOT_STRING_T));
+         XO("Cross-platform GUI library"), Verbatim(versionInfo.GetVersionString()));
 
    AddBuildinfoRow(&informationStr, wxT("PortAudio"),
          XO("Audio playback and recording"), Verbatim(wxT("v19")));
