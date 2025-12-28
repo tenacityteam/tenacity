@@ -182,10 +182,7 @@ static const wxChar *DefaultGenres[] =
    wxT("Terror"),
    wxT("Indie"),
    wxT("BritPop"),
-
-   // Standard name is offensive (see "http://www.audacityteam.org/forum/viewtopic.php?f=11&t=3924").
-   wxT("Offensive"), // wxT("Negerpunk"),
-
+   wxT("Afro-Punk"), // Previously "Offensive", renamed for clarity
    wxT("Polsk Punk"),
    wxT("Beat"),
    wxT("Christian Gangsta Rap"),
