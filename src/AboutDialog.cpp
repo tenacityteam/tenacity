@@ -462,7 +462,7 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
 
       /* i18n-hint A copyright symbol substitutes the 1st %s and Tenacity's
          name substitues the 2nd. */
-      << XO("Copyright %s 2021-2024 %s Team.")
+      << XO("Copyright %s 2021-2026 %s Team.")
          .Format( wxT("&copy;"), ProgramName )
 
       << "<br/>"
