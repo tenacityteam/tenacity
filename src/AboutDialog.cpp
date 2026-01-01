@@ -482,11 +482,11 @@ void AboutDialog::PopulateAudacityPage( ShuttleGui & S )
 
       << wxT("<p><br>")
       /* i18n-hint A "copyright" symbol substitutes for the '%s'. */
-      << XO("Copyright %s 1999-2025 Audacity Team").Format(wxT("&copy;"))
+      << XO("Copyright %s 1999-2026 Audacity Team").Format(wxT("&copy;"))
       << wxT("<br>")
       // i18n-hint A "copyright" symbol substitutes for the first '%s' while
       // the program name substitutes for the second '%s'.
-      << XO("Copyright %s 2021-2025 %s Team.")
+      << XO("Copyright %s 2021-2026 %s Team.")
          .Format(
             wxT("&copy;"),
             ProgramName )
