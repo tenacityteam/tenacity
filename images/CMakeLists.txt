@@ -16,7 +16,7 @@ list( APPEND PIXMAPS
 )
 
 if( NOT CMAKE_SYSTEM_NAME MATCHES "Darwin" AND NOT CMAKE_SYSTEM_NAME MATCHES "Windows")
-   install( FILES "${_SRCDIR}/${APP_NAME}.svg"
+   install( FILES "${_SRCDIR}/${APP_ID}.svg"
             DESTINATION "${_DATADIR}/icons/hicolor/scalable/apps" )
    install( DIRECTORY "${_SRCDIR}/icons/"
             DESTINATION "${_DATADIR}/icons/hicolor"
