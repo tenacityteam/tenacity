@@ -1170,8 +1170,8 @@ else()
     endif()
 
     # Create the desktop file
-    configure_file( ${APP_NAME}.desktop.in ${_INTDIR}/${APP_NAME}.desktop )
-    
+    configure_file( ${APP_ID}.desktop.in ${_INTDIR}/${APP_ID}.desktop )
+
     if( CMAKE_SYSTEM_NAME MATCHES "Linux" )
         add_executable(findlib ../linux/findlib.c)
         target_link_libraries(findlib ${CMAKE_DL_LIBS})
@@ -1324,12 +1324,12 @@ else()
                  USE_SOURCE_PERMISSIONS
                  FILES_MATCHING PATTERN "*.so*" )
 
-        install( FILES "${_INTDIR}/${APP_NAME}.desktop"
+        install( FILES "${_INTDIR}/${APP_ID}.desktop"
                  DESTINATION "${_DATADIR}/applications" )
 
         install( FILES "${CMAKE_SOURCE_DIR}/LICENSE.txt" "${CMAKE_SOURCE_DIR}/README.md"
                  DESTINATION "${_DATADIR}/doc/${APP_NAME}" )
-        install( FILES "${_SRCDIR}/audacity.xml"
+        install( FILES "${_SRCDIR}/${APP_ID}.audacity.xml"
                  DESTINATION "${_DATADIR}/mime/packages" )
     endif()
 endif()

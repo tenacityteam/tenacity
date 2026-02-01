@@ -7,7 +7,7 @@ message( STATUS "========== Configuring ${TARGET} ==========" )
 def_vars()
 
 if (NOT WIN32 AND NOT APPLE)
-   configure_file( ${APP_NAME}.metainfo.xml.in ${_INTDIR}/${APP_NAME}.metainfo.xml )
+   configure_file( ${APP_ID}.metainfo.xml.in ${_INTDIR}/${APP_ID}.metainfo.xml )
 endif()
 
 add_custom_target( ${TARGET} DEPENDS "${MANUAL_PATH}" )
@@ -43,6 +43,6 @@ if( NOT CMAKE_SYSTEM_NAME MATCHES "Darwin" AND NOT CMAKE_SYSTEM_NAME MATCHES "Wi
             DESTINATION "${_DATADIR}/tenacity/help" )
    install( FILES "${_SRCDIR}/tenacity.1"
             DESTINATION "${_MANDIR}/man1" )
-   install( FILES "${_INTDIR}/${APP_NAME}.metainfo.xml"
+   install( FILES "${_INTDIR}/${APP_ID}.metainfo.xml"
             DESTINATION "${_DATADIR}/metainfo" )
 endif()
