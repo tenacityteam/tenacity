@@ -1,0 +1,277 @@
+app-id: org.tenacityaudio.Tenacity
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+command: tenacity
+finish-args:
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --device=all # ALSA
+  - --env=LADSPA_PATH=/app/extensions/Plugins/ladspa
+  - --env=VST_PATH=/app/extensions/Plugins/vst
+  - --env=VST3_PATH=/app/extensions/Plugins/vst3
+  # JACK support via pipewire
+  - --filesystem=xdg-run/pipewire-0
+
+add-extensions:
+  # org.audacityteam.Audacity.Codecs:
+  #   directory: lib/codecs
+  #   add-ld-path: lib
+  #   bundle: true
+  #   autodelete: true
+  org.freedesktop.LinuxAudio.Plugins:
+    directory: extensions/Plugins
+    version: '25.08'
+    add-ld-path: lib
+    merge-dirs: ladspa;lv2;vst;vst3
+    subdirectories: true
+    no-autodownload: true
+
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /share/aclocal
+  - /share/doc
+  - /share/man
+  - '*.la'
+  - '*.a'
+
+modules:
+  - name: wxwidgets
+    buildsystem: cmake-ninja
+    config-opts:
+      # Most of these options disable a lot of the toolkit. We might add more
+      # as Tenacity changes.
+      - -DwxUSE_LIBPNG=sys
+      - -DwxUSE_ZLIB=sys
+      - -DwxBUILD_CXX_STANDARD=17
+      - -DwxBUILD_TESTS=OFF
+      - -DwxUSE_WEBVIEW=OFF
+      - -DwxUSE_WEBVIEW_WEBKIT=OFF
+      - -DwxUSE_RIBBON=OFF
+      - -DwxUSE_PROPGRID=OFF
+      - -DwxUSE_RICHTEXT=OFF
+      - -DwxUSE_EXPAT=sys
+      - -DwxUSE_MDI=OFF
+      - -DwxUSE_STC=OFF
+      - -DwxUSE_MEDIACTRL=OFF
+      - -DwxUSE_PROTOCOL=OFF
+      - -DwxUSE_FS_INET=OFF
+      - -DwxUSE_URL=OFF
+      - -DwxUSE_MDI_ARCHITECTURE=OFF
+      - -DwxUSE_LIBJPEG=OFF
+      - -DwxUSE_LIBTIFF=OFF
+      - -DwxUSE_NANOSVG=OFF
+      - -DwxUSE_SVG=OFF
+      - -DwxUSE_DIALUP_MANAGER=OFF
+      - -DwxUSE_DYNAMIC_LOADER=OFF
+      - -DwxUSE_LIBGNOMEVFS=OFF # Probably unnecessary, but just in case
+      - -DwxUSE_AUI=OFF
+      - -DwxUSE_STACKWALKER=OFF
+      # FIXME: Uncomment these build options once the next stable release is
+      # out. See https://codeberg.org/tenacityteam/tenacity/pulls/525 for more
+      # details.
+      # - -DwxUSE_DEBUGREPORT=OFF
+      # Disabling XRC causes issues ('cannot find -lwxxml')
+      # - -DwxUSE_XRC=OFF
+    cleanup:
+      - /share/bakefile
+    sources:
+      - type: git
+        url: https://github.com/wxWidgets/wxWidgets
+        tag: v3.3.1
+        commit: 49c6810948f40c457e3d0848b9111627b5b61de5
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+
+  - name: libid3tag
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+    sources:
+      - type: git
+        url: https://codeberg.org/tenacityteam/libid3tag.git
+        tag: 0.16.3
+        commit: e02ecf1276b467a8a5dd20c55ce711e6f7116d3e
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d.]+)$
+
+  - shared-modules/libmad/libmad.json
+  - shared-modules/linux-audio/lv2.json
+  - shared-modules/linux-audio/lilv.json
+  - deps/suil.json
+
+  - name: libebml
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      - -DBUILD_SHARED_LIBS=ON
+    sources:
+      - type: git
+        url: https://github.com/Matroska-Org/libebml.git
+        tag: release-1.4.5
+        commit: 1878e784321673561039a6a37076b2736f4dc98f
+        x-checker-data:
+          type: git
+          tag-pattern: ^release-([\d.]+)$
+
+  - name: libmatroska
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      - -DBUILD_SHARED_LIBS=ON
+      - -DCMAKE_CXX_STANDARD=17
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    sources:
+      - type: git
+        url: https://github.com/Matroska-Org/libmatroska.git
+        tag: release-1.7.1
+        commit: f5315fddda2d434e47035c038549a808d8b8eac7
+        x-checker-data:
+          type: git
+          tag-pattern: ^release-([\d.]+)$
+
+  - name: portaudio
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+    sources:
+      - type: git
+        url: https://github.com/PortAudio/portaudio.git
+        tag: v19.7.0
+        commit: 147dd722548358763a8b649b3e4b41dfffbcfbb6
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+
+  - name: portsmf
+    config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+    buildsystem: cmake-ninja
+    sources:
+      - type: git
+        url: https://codeberg.org/tenacityteam/portsmf.git
+        tag: '239'
+        commit: 951b636f7d0cba370d483a91f1897c71f3d98530
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d.]+)$
+
+  - name: portmidi
+    buildsystem: cmake-ninja
+    sources:
+      - type: git
+        url: https://github.com/PortMidi/portmidi.git
+        tag: v2.0.8
+        commit: 101dac9455e2718512c94e24cbcae6a6f34b908b
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+
+  - name: soxr
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+    sources:
+      - type: git
+        url: https://github.com/chirlu/soxr.git
+        tag: 0.1.3
+        commit: 945b592b70470e29f917f4de89b4281fbbd540c0
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d.]+)$
+
+  - name: libsbsms
+    config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+    buildsystem: cmake-ninja
+    sources:
+      - type: git
+        url: https://github.com/claytonotey/libsbsms.git
+        tag: 2.3.0
+        commit: e99cd7e6c6367e476577be34d2fdbe2023904d7e
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d.]+)$
+
+  - name: vamp-plugin-sdk
+    no-parallel-make: true
+    sources:
+      - type: archive
+        url: https://github.com/vamp-plugins/vamp-plugin-sdk/releases/download/vamp-plugin-sdk-v2.10/vamp-plugin-sdk-2.10.0.tar.gz
+        sha256: aeaf3762a44b148cebb10cde82f577317ffc9df2720e5445c3df85f3739ff75f
+    post-install:
+      - install -Dm644 -t /app/share/licenses/vamp-plugin-sdk COPYING
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - /share/licenses
+      - '*.a'
+
+  - name: soundtouch
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DBUILD_SHARED_LIBS=ON
+    sources:
+      - type: git
+        url: https://codeberg.org/soundtouch/soundtouch.git
+        tag: 2.4.0
+        commit: d994965fbbcf0f6ceeed0e72516968130c2912f0
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d.]+)$
+
+  - name: twolame
+    sources:
+      - type: archive
+        url: https://github.com/njh/twolame/releases/download/0.4.0/twolame-0.4.0.tar.gz
+        sha256: cc35424f6019a88c6f52570b63e1baf50f62963a3eac52a03a800bb070d7c87d
+
+  - name: rapidjson
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      - -DRAPIDJSON_BUILD_DOC=OFF
+      - -DRAPIDJSON_BUILD_EXAMPLES=OFF
+      - -DRAPIDJSON_BUILD_TESTS=OFF
+      - -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF
+      - -DRAPIDJSON_BUILD_CXX17=ON
+    sources:
+      - type: git
+        url: https://github.com/Tencent/rapidjson.git
+        commit: 24b5e7a8b27f42fa16b96fc70aade9106cf7102f
+
+  - name: libzip
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      - -DBUILD_DOC=OFF
+      - -DBUILD_EXAMPLES=OFF
+      - -DBUILD_REGRESS=OFF
+    sources:
+      - type: git
+        url: https://github.com/nih-at/libzip.git
+        tag: v1.11.4
+        commit: 6f8a0cdd24a0dc6cce9dac4a7679da784ab124ea
+
+  - name: tenacity
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DWX_CONFIG=/app/bin/wx-config
+      - -DSBSMS=On
+    post-install:
+      - install -d /app/extensions/Plugins
+    cleanup:
+      - /share/tenacity/include
+      - /share/audacity/include
+      - /share/pixmaps
+    sources:
+      - type: dir
+        path: ../

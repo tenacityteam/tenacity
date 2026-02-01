@@ -1,0 +1,27 @@
+{
+      "name": "suil",
+      "buildsystem": "meson",
+      "config_opts": [
+        "--prefix=/app"
+      ],
+      "cleanup": [
+        "/include",
+        "/lib/pkgconfig"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "http://download.drobilla.net/suil-0.10.20.tar.xz",
+          "sha256": "334a3ed3e73d5e17ff400b3db9801f63809155b0faa8b1b9046f9dd3ffef934e"
+        }
+      ],
+      "post-install": [
+        "install -Dm644 -t /app/share/licenses/suil ../COPYING"
+      ],
+      "cleanup": [
+        "/bin",
+        "/etc",
+        "/include",
+        "/share/man"
+      ]
+}
