@@ -259,7 +259,7 @@ void PopulatePreferences()
    // FIXME: Some toolbars aren't resizable, but we save their size information
    // anyways. Make it so we don't restore their size information as this could
    // change across versions at any time.
-   if(std::pair{vMajor, vMinor} < std::pair{1, 3})
+   if(std::pair{vMajor, vMinor} <= std::pair{1, 3})
    {
       if (gPrefs->Exists(wxT("/GUI/ToolBars")))
          gPrefs->DeleteGroup(wxT("/GUI/ToolBars"));
