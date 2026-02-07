@@ -730,15 +730,6 @@ void ToolManager::ReadConfig()
 
    int vMajor, vMinor, vMicro;
    GetPreferencesVersion(vMajor, vMinor, vMicro);
-   bool useLegacyDock = false;
-   // note that vMajor, vMinor, and vMicro will all be zero if either it's a new audacity.cfg file
-   // or the version is less than 1.3.13 (when there were no version keys according to the comments in
-   // InitPreferences()). So for new audacity.cfg
-   // file useLegacyDock will be true, but this doesn't matter as there are no Dock or DockV2 keys in the file yet.
-   if (vMajor <= 1 ||
-      (vMajor == 2 && (vMinor <= 1 || (vMinor == 2 && vMicro <= 1))))   // version <= 2.2.1
-      useLegacyDock = true;
-
 
    // Load and apply settings for each bar
    ForEach([&](ToolBar *bar){
@@ -755,11 +746,11 @@ void ToolManager::ReadConfig()
       const int defaultDock = bar->DefaultDockID();
 
       // Read in all the settings
-
-      if (useLegacyDock)
-         gPrefs->Read( wxT("Dock"), &dock, -1);       // legacy version of DockV2
-      else
-         gPrefs->Read( wxT("DockV2"), &dock, -1);
+      // Note: in previous versions of Tenacity, this was the DockV2
+      // preference, a remnant from Audacity. However, since the toolbar layout
+      // has changed in 1.4, we reset all of our toolbar preferences, and thus
+      // we will be okay to reuse the "Dock" preference instead.
+      gPrefs->Read( wxT("Dock"), &dock, -1);
 
       const bool found = (dock != -1);
       if (found)
@@ -939,13 +930,8 @@ void ToolManager::WriteConfig()
       bool bo = mBotDock->GetConfiguration().Contains( bar );
 
       // Save
-      // Note that DockV2 was introduced in 2.2.2 to fix bug #1554. Dock is retained so that
-      // the toolbar layout is not changed when opening a version before 2.2.2, and in particular
-      // its value is compatible with versions 2.1.3 to 2.2.1 which have this bug.
       ToolDock* dock = bar->GetDock();       // dock for both shown and hidden toolbars
-      gPrefs->Write( wxT("DockV2"), static_cast<int>(dock == mTopDock ? TopDockID : dock == mBotDock ? BotDockID : NoDockID ));
-
-      gPrefs->Write( wxT("Dock"), static_cast<int>( to ? TopDockID : bo ? BotDockID : NoDockID));
+      gPrefs->Write( wxT("Dock"), static_cast<int>(dock == mTopDock ? TopDockID : dock == mBotDock ? BotDockID : NoDockID ));
 
       dock = to ? mTopDock : bo ? mBotDock : nullptr;    // dock for shown toolbars
       ToolBarConfiguration::Write
