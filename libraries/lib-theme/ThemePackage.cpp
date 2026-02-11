@@ -280,7 +280,7 @@ void ThemePackage::ParsePackage()
     //     throw std::runtime_error("Incompatible theme");
     // }
 
-    // TODO: handle other properities.
+    // TODO: handle other properties.
 }
 
 void ThemePackage::ClosePackage()

@@ -60,7 +60,7 @@ class THEME_API Theme final
         Theme& operator=(const Theme& other);
         Theme& operator=(Theme&& other);
 
-        /// Returns the theme package's resurce map if available.
+        /// Returns the theme package's resource map if available.
         const ThemeResourceMap& GetResourceMap();
 
         void SetName(const std::string& name);
