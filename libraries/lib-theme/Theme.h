@@ -17,7 +17,6 @@
 #include <unordered_map>
 #include <string>
 
-#include "ThemePackage.h"
 #include "Types.h"
 
 /** @brief Represents a theme in Tenacity.
@@ -27,78 +26,47 @@
  * resources rather than act as a singleton for managing themes. See @ref
  * ThemeResources to see that functionality.
  * 
- * Themes can be constructed either from a ThemePackage or in-memory. If a
- * theme is backed by a ThemePackage, it can commit any changes to the package.
- * (Note that it's currently not possible to create an in-memory ThemePackage.
- * See TODO for more details).
- * 
- * @todo Implementing the following:
- * 
- * 1. Support for multi-theme packages.
- * 2. Support for committing in-memory changes.
- * 
-*/
+ * Themes can be constructed either from a theme package or in-memory. The
+ * @ref ThemePackage class allows you to load a theme from a theme package or
+ * create one in meomry. Regardless of how a theme is created, themes do not
+ * know whether they originate from a theme package or not.
+ */
 class THEME_API Theme final
 {
     private:
-        std::optional<ThemePackage> mPackage;
         std::string mName;
         ThemeResourceMap mResources;
 
     public:
         Theme() = default;
 
-        /// Copy constructor. Any backing theme package is **not** copied.
+        /** @brief Copy constructor
+         *
+         * @warning Calling one of these constructors means **everything** in
+         * the theme is copied, including resources! You probably want to use a
+         * reference to a Theme instead.
+         */
         Theme(const Theme& other) : mResources{other.mResources} {}
+
+        /// Move constructor.
         Theme(Theme&& other) : mResources{std::move(other.mResources)} {}
 
-        /// Constructs a theme from a ThemePackage
-        Theme(ThemePackage&& package);
-
-        /// Copy assignment operator. Any backing theme package is **not**
-        /// copied.
+        /** @brief Copy assignment operators.
+         *
+         * @warning Calling one of these operators means **everything** in the
+         * theme is copied, including resources! You probably want to use a
+         * reference to a Theme instead.
+         */
         Theme& operator=(const Theme& other);
+
+        /// Move assignment operator.
         Theme& operator=(Theme&& other);
 
-        /// Returns the theme package's resource map if available.
+        /// Returns the theme's resource map if available.
         const ThemeResourceMap& GetResourceMap();
 
         void SetName(const std::string& name);
         std::string GetName();
-
-        /** @brief Sets the backing theme package.
-         * 
-         * Any current backing package is closed after a call to this function.
-         * To unset the backing theme package, call @ref ReleasePackage()
-         * ignoring the return value.
-         * 
-         * Because ThemePackage cannot be copied, it must be moved, and thus
-         * Theme takes ownership over the package. You can still access the
-         * package via @ref GetPackage().
-         * 
-         * @param package The package to set.
-         * 
-        */
-        void SetPackage(ThemePackage&& package);
-
-        /// Returns the backing theme package.
-        const ThemePackage& GetPackage();
-
-        /** @brief Loads all attributes from a backing theme package.
-         * 
-         * @exception InvalidState Thrown if there is no backing package set.
-         * 
-        */
-        void LoadAttributesFromPackage();
-
-        /** @brief Releases the current theme package if any.
-         * 
-         * This member functions releases ownership of the current theme
-         * package to the current owner. Simply ignore the return value if you
-         * only want to reset the backing package.
-         * 
-        */
-        ThemePackage&& ReleasePackage();
 
         /** @brief Returns data associated with an individual resource.
          * 
