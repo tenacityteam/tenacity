@@ -30,6 +30,7 @@
 #include "CommandContext.h"
 
 // For compilers that support precompilation, includes "wx/wx.h".
+#include <wx/popupwin.h>
 #include <wx/wxprec.h>
 
 #ifndef WX_PRECOMP
@@ -391,17 +392,12 @@ ToolManager::ToolManager( AudacityProject *parent )
 
    // Create the indicator frame
    // parent is null but FramePtr ensures destruction
-   mIndicator = FramePtr{ safenew wxFrame( NULL,
-                             wxID_ANY,
-                             wxEmptyString,
-                             wxDefaultPosition,
-                             wxSize( 32, 32 ),
-                             wxFRAME_TOOL_WINDOW |
-                             wxFRAME_SHAPED |
-                             wxNO_BORDER |
-                             wxFRAME_NO_TASKBAR |
-                             wxSTAY_ON_TOP )
-   };
+   mIndicator.reset(
+      new wxPopupWindow(
+         FindProjectFrame(mParent),
+         wxFRAME_SHAPED | wxBORDER_NONE | wxFRAME_FLOAT_ON_PARENT
+      )
+   );
 
    // Hook the creation event...only needed on GTK, but doesn't hurt for all
    mIndicator->Bind( wxEVT_CREATE,

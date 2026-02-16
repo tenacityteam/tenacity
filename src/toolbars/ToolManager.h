@@ -18,6 +18,7 @@
 #include <wx/defs.h>
 #include <wx/eventfilter.h> // to inherit
 #include <wx/frame.h> // to inherit
+#include <wx/popupwin.h> // to inherit
 #include <wx/timer.h> // member variable
 
 #include "ClientData.h"
@@ -148,8 +149,7 @@ class TENACITY_DLL_API ToolManager final
    wxPoint mLastPos;
    wxRect mBarPos;
 
-   using FramePtr = Destroy_ptr<wxFrame>;
-   FramePtr mIndicator;
+   wxWindowPtr<wxPopupWindow> mIndicator;
    std::unique_ptr<wxRegion> mLeft, mDown;
    wxRegion *mCurrent;
 
