@@ -21,13 +21,14 @@
 # Andréa FERRULLI <andreagoldorak1410@gmail.com>, 2023.
 # Y0plait <antochkamoul@gmail.com>, 2023.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2024.
+# Philippe Mignard <philippe.mignard@free.fr>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-02-16 00:19+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2026-03-30 00:09+0000\n"
+"Last-Translator: Philippe Mignard <philippe.mignard@free.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tenacity/tenacity/"
 "fr/>\n"
 "Language: fr\n"
@@ -35,7 +36,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.10\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -11376,7 +11377,7 @@ msgstr "millisecondes"
 
 #: src/prefs/TracksPrefs.cpp
 msgid "Samples"
-msgstr "échantillons"
+msgstr "Echantillons"
 
 #: src/prefs/TracksPrefs.cpp
 msgid "4 Pixels per Sample"
@@ -16063,17 +16064,11 @@ msgstr "Erreur.~%Piste stéréo nécessaire."
 #~ msgid "&Increase Playback Volume"
 #~ msgstr "Augmenter le volume de lecture (&i)"
 
-#~ msgid "&Decrease Playback Volume"
-#~ msgstr "Ré&duire le volume de lecture"
-
 #~ msgid "Adj&ust Recording Volume..."
 #~ msgstr "Aj&uster le volume d’enregistrement…"
 
 #~ msgid "I&ncrease Recording Volume"
 #~ msgstr "Augme&nter le volume d’enregistrement"
-
-#~ msgid "D&ecrease Recording Volume"
-#~ msgstr "Réduir&e le volume d’enregistrement"
 
 # trebmuh to check (accélérateur)
 #~ msgid "&Quick Fix..."
@@ -16218,3 +16213,111 @@ msgstr "Erreur.~%Piste stéréo nécessaire."
 
 #~ msgid "Error opening a new empty project"
 #~ msgstr "Erreur d'ouverture d'un nouveau projet vide"
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: src/RealtimeEffectPanel.cpp
+msgid ""
+"This plugin could not be loaded.\n"
+"It may have been deleted."
+msgstr ""
+"Ce plugin n'a pas pût être chargé.\n"
+"Il a peut-être été supprimé."
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: src/RealtimeEffectPanel.cpp
+msgid "Plugin Error"
+msgstr "Erreur de plugin"
+
+#: src/prefs/DevicePrefs.cpp
+msgid "D&efault Sample Rate:"
+msgstr "Taux d’échantillonnag&e par défaut:"
+
+#: src/toolbars/MeterToolBar.cpp
+msgid "&Decrease Playback Volume"
+msgstr "Ré&duire Volume Lecture"
+
+#: src/toolbars/MeterToolBar.cpp
+msgid "D&ecrease Recording Volume"
+msgstr "Réduire Volume &Enregistrement"
+
+#: libraries/lib-snapping/details/TimeSnapFunctions.cpp
+msgid "Deciseconds"
+msgstr "Décisecondes"
+
+#: libraries/lib-snapping/details/TimeSnapFunctions.cpp
+msgid "Centiseconds"
+msgstr "Centisecondes"
+
+#: libraries/lib-snapping/details/TimeSnapFunctions.cpp
+msgid "Milliseconds"
+msgstr "Millisecondes"
+
+#: libraries/lib-sqlite-helpers/sqlite/Error.cpp
+msgid "SQLite3 error"
+msgstr "Erreur SQLite3"
+
+#. i18n-hint: database operation was successful
+#: libraries/lib-sqlite-helpers/sqlite/Error.cpp
+msgid "No error"
+msgstr "Aucune erreur"
+
+#. i18n-hint: database operation has failed, but there is no specific reason
+#: libraries/lib-sqlite-helpers/sqlite/Error.cpp
+msgid "Generic error"
+msgstr "Erreur générique"
+
+#. i18n-hint: database operation has failed due to the internal error
+#: libraries/lib-sqlite-helpers/sqlite/Error.cpp
+msgid "Internal logic error in SQLite"
+msgstr "Erreur de logique interne dans SQLite"
+
+#. i18n-hint: database operation has failed due to the permission error
+#: libraries/lib-sqlite-helpers/sqlite/Error.cpp
+msgid "Access permission denied"
+msgstr "Permission d'accès refusée"
+
+#. i18n-hint: database operation has failed because database is locked
+#: libraries/lib-sqlite-helpers/sqlite/Error.cpp
+msgid "The database file is locked"
+msgstr "Le fichier de données est verrouillé"
+
+#. i18n-hint: database operation has failed because table is locked
+#: libraries/lib-sqlite-helpers/sqlite/Error.cpp
+msgid "A table in the database is locked"
+msgstr "Une table dans le fichier de données est verrouillée"
+
+#. i18n-hint: database operation has failed due to the lack of memory
+#: libraries/lib-sqlite-helpers/sqlite/Error.cpp
+msgid "A malloc() failed"
+msgstr "Un malloc() a échoué"
+
+#. i18n-hint: database operation has failed because database is read-only
+#: libraries/lib-sqlite-helpers/sqlite/Error.cpp
+msgid "Attempt to write a read-only database"
+msgstr "Essai d'écriture dans un fichier de données en lecture seule"
+
+#. i18n-hint: database operation was interrupted
+#: libraries/lib-sqlite-helpers/sqlite/Error.cpp
+msgid "Operation terminated"
+msgstr "Opération terminée"
+
+#. i18n-hint: database operation has failed due to the I/O failure
+#: libraries/lib-sqlite-helpers/sqlite/Error.cpp
+#, fuzzy
+msgid "I/O error occurred"
+msgstr "Erreur d'E/S apparue"
+
+#. i18n-hint: database operation has failed because the requested item was not found
+#: libraries/lib-sqlite-helpers/sqlite/Error.cpp
+msgid "File not found"
+msgstr "Fichier non trouvé"
+
+#. i18n-hint: database operation has failed because the drive is full
+#: libraries/lib-sqlite-helpers/sqlite/Error.cpp
+msgid "Insertion failed because the drive is full"
+msgstr "Echec insertion car le disque est plein"
+
+#. i18n-hint: database operation has failed because the file cannot be opened
+#: libraries/lib-sqlite-helpers/sqlite/Error.cpp
+msgid "Unable to open the database file"
+msgstr "Ouverture fichier de données impossible"
