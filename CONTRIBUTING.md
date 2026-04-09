@@ -5,42 +5,38 @@ valuable to us as people like **you** help us build Tenacity. Some guidelines
 have been put in place in an effort to keep the codebase clean.
 
 ## The Use of LLMs and AI in Contributions
-**Please read this section IN FULL before continuing with your contribution.
-We reserve the right to close or ignore any issue, feature request, or
-contribution if you fail to read this section otherwise.**
+**TL;DR**: Due to concerns with a lack of copyright eligibility, we do **NOT**
+accept AI-generated code, issues, or any other contributions.
 
-As of 2025, within the last few years, advancements in AI have shown us the
-true capabilities we can achieve with AI. It is quite amazing, and also quite
-scary, how AI has advanced to this state compared to previous states. However,
-with these advancements also come their problems.
+In recent times, there has been major developments in generative AI
+technologies, particularly with LLMs like ChatGPT, Claude Code, Google Gemini,
+and plenty of others. Paired with these new developments are also concerns and
+controversies.
 
-A problem fellow open-source projects have experienced, and, at the time of
-writing this section, are still experiencing, is the use of AI to generate
-_entire reports_. [This article](https://thelibre.news/foss-infrastructure-is-under-attack-by-ai-companies)
-gives a good overview of the situation they are facing. It also includes
-the larger infrastructure situation many open-source projects are facing too.
+Due to the surrounding controversies with LLMs, including legal controversies,
+**we will not accept any PR that contains code generated with AI**. The primary
+reasons concerns the copyrightability, or lack thereof, of AI-generated
+materials. For example, per the US Copyright Office, from their _Copyright and
+Artificial Intelligence Part 2: Copyrightability_, AI generated works are not
+eligible for copyright because they lack the necessary human authorship. Even
+with human authorship, works can still fail to be eligible for copyright if
+authors do not adequately disclose which parts of the work are AI generated
+(per the Congressional Research Service Legal Sidebar 10922,
+https://www.congress.gov/crs-product/LSB10922).
 
-You may feel _very compelled_ to use AI to generate a bug report for you. **DO
-NOT DO THIS** please! This especially applies if you are intending to report a
-security vulnerability. As has been the case before, and still continues to be
-the case, AI is susceptible to hallucinations, meaning they can give false
-information in a report. At the very least, if you are going to use AI
-inevitably, please double-check the report to ensure everything is completely
-accurate.
+AI may also be used to generate issue reports, and while this can speed up
+the process of finding bugs, it can also slow down maintainers due to incorrect
+details in those generated reports. Therefore, **we do not accept AI-generated
+issues as well**. We have seen the negative affects of AI-generated reports
+on open source projects.
+[This article](https://thelibre.news/foss-infrastructure-is-under-attack-by-ai-companies)
+gives a good overview of the situation they are facing, including how AI has
+also affected some projects' infrastructures too.
 
-A good use of AI, subjectively, is as a companion or an assistant. Using it to
-do your job for you is **NOT** a good idea. Therefore, while we prefer you to
-**NOT** use AI in any report, if you, for any reason, are going to inevitably
-use AI in a report, please _check_ what the generated report contains.
-
-If we suspect, with justification, that a report is AI-generated, we reserve
-the right to, at worst, ignore your report. We do not have the time to spend
-weeding through inaccurate AI-generated reports.
-
-Similarly, **DO NOT USE AI FOR PULL REQUESTS, ESPECIALLY FOR CODE!** Who
-actually owns the code is uncertain, to say the least, and that is the reason
-why we don't accept AI-generated code. We will close pull-requests that
-otherwise violate this rule.
+If we suspect that, with justification, a contribution is AI-generated, we
+reserve the right to reject it. We unfortunately have limited time and cannot
+afford to go through inaccurate AI-generated issues, and neither can we afford
+to jeopardize the project's copyright status.
 
 ## Reporting bugs and feature requests
 
