@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2026-03-30 00:09+0000\n"
+"PO-Revision-Date: 2026-04-11 22:09+0000\n"
 "Last-Translator: Philippe Mignard <philippe.mignard@free.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tenacity/tenacity/"
 "fr/>\n"
@@ -72,16 +72,12 @@ msgid "Internal Error"
 msgstr "Erreur interne"
 
 #: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-#| msgid ""
-#| "Failed to open database file:\n"
-#| "\n"
-#| "%s"
+#, c-format
 msgid "Tenacity failed to open a file in %s."
 msgstr ""
-"Impossible d’ouvrir le fichier de la base de données :\n"
+"Tenacity n'a pas pût ouvrir un fichier:\n"
 "\n"
-"%s"
+". dans %s."
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -1520,7 +1516,7 @@ msgstr ""
 #: src/FileFormats.cpp
 #, c-format
 msgid "Error (file may not have been written): %s"
-msgstr "Erreur (le fichier pourrait ne pas avoir été écrit) : %s"
+msgstr "Erreur (le fichier pourrait ne pas avoir été écrit) : %s"
 
 #: src/FreqWindow.cpp
 msgid "Frequency Analysis"
@@ -3825,9 +3821,8 @@ msgstr "Pas assez de place pour étendre la ligne de coupe"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #: src/effects/nyquist/Nyquist.cpp src/prefs/PrefsPanel.cpp plug-ins/beat.ny
-#, fuzzy
 msgid "Tenacity"
-msgstr "Journal d’Audacity"
+msgstr "Tenacity"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #, c-format
@@ -3836,7 +3831,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"%s : n’a pas pu charger les paramètres ci-dessous. Les paramètres par défaut "
+"%s : n’a pas pu charger les paramètres ci-dessous. Les paramètres par défaut "
 "seront utilisés.\n"
 "\n"
 "%s"
@@ -16321,3 +16316,39 @@ msgstr "Echec insertion car le disque est plein"
 #: libraries/lib-sqlite-helpers/sqlite/Error.cpp
 msgid "Unable to open the database file"
 msgstr "Ouverture fichier de données impossible"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Lead Vocals"
+msgstr "Voix principales"
+
+#: libraries/lib-effects/LoadEffects.cpp
+msgid "Provides builtin effects to Tenacity"
+msgstr "Fourni des effets intégrés à Tenacity"
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error in %s at %s line %d.\n"
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/"
+"tenacity/issues"
+msgstr ""
+"Erreur interne dans %s à la %s ligne %d.\n"
+"Merci d'en informer l'équipe de Tenacity sur https://codeberg.org/"
+"tenacityteam/tenacity/issues"
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error at %s line %d.\n"
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/"
+"tenacity/issues"
+msgstr ""
+"Erreur interne à la %s ligne %d.\n"
+"Merci d'en informer l'équipe de Tenacity sur https://codeberg.org/"
+"tenacityteam/tenacity/issues"
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid "Tenacity failed to read from a file in %s."
+msgstr "Tenacity n'a pas pût lire à partir d'un fichier dans %s."
