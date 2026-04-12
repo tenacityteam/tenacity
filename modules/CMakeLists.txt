@@ -28,6 +28,13 @@ foreach( FOLDER ${FOLDERS} )
    add_subdirectory("${FOLDER}")
 endforeach()
 
+if( NOT CMAKE_SYSTEM_NAME MATCHES "Darwin" )
+   if( NOT "${CMAKE_GENERATOR}" MATCHES "Visual Studio*")
+      install( DIRECTORY "${_DEST}/modules"
+               DESTINATION "${_PKGLIB}" )
+   endif()
+endif()
+
 #propagate collected edges and subgraphs up to root CMakeLists.txt
 set( GRAPH_EDGES "${GRAPH_EDGES}" PARENT_SCOPE )
 set( GRAPH_SUBGRAPHS "${GRAPH_SUBGRAPHS}" PARENT_SCOPE )
