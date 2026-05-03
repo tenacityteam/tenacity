@@ -1240,7 +1240,6 @@ ProjectFileManager::AddImportedTracks(const FilePath &fileName,
    wxFileName fn(fileName);
 
    bool initiallyEmpty = tracks.empty();
-   double newRate = 0;
    wxString trackNameBase = fn.GetName();
    int i = -1;
 
@@ -1286,8 +1285,6 @@ ProjectFileManager::AddImportedTracks(const FilePath &fileName,
          newTrack->SetName(trackNameBase);
 
       newTrack->TypeSwitch([&](WaveTrack &wt) {
-         if (newRate == 0)
-            newRate = wt.GetRate();
          const auto trackName = wt.GetName();
          for (const auto &interval : wt.Intervals())
             interval->SetName(trackName);
