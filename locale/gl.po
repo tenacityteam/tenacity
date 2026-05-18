@@ -2,13 +2,14 @@
 # Avery King <avery98@pm.me>, 2022, 2023.
 # Iago <translate@delthia.com>, 2023.
 # antonpaidoslalin <anton.paidoslalin@gmail.com>, 2024.
+# Xosé Calvo <xosecalvo@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-02-16 00:19+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2026-05-18 16:11+0000\n"
+"Last-Translator: Xosé Calvo <xosecalvo@gmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/gl/>\n"
 "Language: gl\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10\n"
+"X-Generator: Weblate 2026.6.dev0\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
@@ -655,13 +656,13 @@ msgid ""
 "You will not be able to play or record audio.\n"
 "\n"
 msgstr ""
-"Vostede non será quen de reproducir ou gravar son. \n"
+"Non será quen de reproducir ou gravar son.\n"
 "\n"
 
 #: src/AudioIO.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Error: %s"
-msgstr "Erro: "
+msgstr "Erro: %s"
 
 #: src/AudioIO.cpp
 msgid "There was an error initializing the midi i/o layer.\n"
@@ -679,14 +680,16 @@ msgstr ""
 #, fuzzy
 #| msgid "Trim Audio"
 msgid "Tenacity Audio"
-msgstr "Recortar son"
+msgstr "Tenacity Audio"
 
 #: src/AudioIO.cpp src/ProjectAudioManager.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error opening recording device.\n"
 "Error code: %s"
-msgstr "Produciuse un erro ao abrir o dispositivo de son"
+msgstr ""
+"Erro ao abrir dispositivo de gravación.\n"
+"Código do erro: %s"
 
 #: src/AutoRecoveryDialog.cpp
 msgid "Automatic Crash Recovery"
@@ -6385,9 +6388,9 @@ msgid "Import Audio Unit Presets"
 msgstr "Importar valores predefinidos de «Audio Unit»"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn't open \"%s\""
-msgstr "Non foi posíbel abrir o ficheiro: «%s»"
+msgstr "Non foi posíbel abrir «%s»"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy, c-format
@@ -6395,14 +6398,13 @@ msgid "Unable to read the preset from \"%s\""
 msgstr "Non é posíbel ler o ficheiro de valores predefinidos."
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to encode preset from \"%s\""
-msgstr "Produciuse unha falla ao retirar %s"
+msgstr "Non foi posíbel codificar a predefinición de «%s»"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
 msgid "Unable to store preset in config file"
-msgstr "Non é posíbel ler o ficheiro de valores predefinidos."
+msgstr "Non é posíbel almacenar a predefinición no ficheiro de configuración"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 #, fuzzy, c-format
@@ -13449,10 +13451,6 @@ msgstr "Frecuencia (Hz)"
 #~ msgstr "Ferramentas de &captura de pantalla..."
 
 #, fuzzy
-#~ msgid "No devices found\n"
-#~ msgstr "Non se atopan dispositivos"
-
-#, fuzzy
 #~ msgid "&Nyquist Workbench..."
 #~ msgstr "Indicador de «Nyquist»..."
 
@@ -13623,60 +13621,8 @@ msgstr "Frecuencia (Hz)"
 #~ msgid "Sound card mixer support"
 #~ msgstr "Compatibilidade con mesturador de tarxeta de son"
 
-#~ msgid "Error Initializing Audio"
-#~ msgstr "Produciuse un erro ao inicializar o son"
-
 #~ msgid "Error Initializing Midi"
 #~ msgstr "Produciuse un erro ao inicializar o MIDI"
-
-#~ msgid "Out of memory!"
-#~ msgstr "Sen memoria!"
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too high."
-#~ msgstr ""
-#~ "O axuste automático do nivel de gravación está detido. Non foi posíbel "
-#~ "optimizalo máis. Aínda é demasiado alto."
-
-#, c-format
-#~ msgid "Automated Recording Level Adjustment decreased the volume to %f."
-#~ msgstr "O axuste automático do nivel de gravación diminuíu o volume a %f."
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too low."
-#~ msgstr ""
-#~ "O axuste automático do nivel de gravación está detido. Non foi posíbel "
-#~ "optimizalo máis. Aínda é demasiado baixo."
-
-#, c-format
-#~ msgid "Automated Recording Level Adjustment increased the volume to %.2f."
-#~ msgstr "O axuste automático do nivel de gravación aumentou o volume a %f."
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. The total number of "
-#~ "analyses has been exceeded without finding an acceptable volume. Still "
-#~ "too high."
-#~ msgstr ""
-#~ "O axuste automático do nivel de gravación está detido. Excedeuse o número "
-#~ "total de análises sen atopar un volume aceptábel. Aínda é demasiado alto."
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. The total number of "
-#~ "analyses has been exceeded without finding an acceptable volume. Still "
-#~ "too low."
-#~ msgstr ""
-#~ "O axuste automático do nivel de gravación está detido. Excedeuse o número "
-#~ "total de análises sen atopar un volume aceptábel. Aínda é demasiado baixo."
-
-#, c-format
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
-#~ "volume."
-#~ msgstr ""
-#~ "O axuste automático do nivel de gravación está detido. %.2f semella seren "
-#~ "un volume aceptábel."
 
 #, fuzzy
 #~ msgid "Unable to open Portmixer\n"
@@ -16746,3 +16692,180 @@ msgstr "%s, asesor/a de accesibilidade"
 #: src/BuildInfo.h
 msgid "No revision identifier was provided"
 msgstr "Non se achegou identificador de revisión"
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: src/RealtimeEffectPanel.cpp
+msgid ""
+"This plugin could not be loaded.\n"
+"It may have been deleted."
+msgstr ""
+"Non foi posíbel cargar este engadido.\n"
+"Pode que fose eliminado."
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: src/RealtimeEffectPanel.cpp
+msgid "Plugin Error"
+msgstr "Erro de engadido"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr "O fluxo está activo ... non é posíbel reunir información.\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Default recording device number: %d\n"
+msgstr "Número de dispositivo de gravación predeterminado: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+msgid "No devices found\n"
+msgstr "Non se atoparon dispositivos\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device info unavailable for: %d\n"
+msgstr "Non hai información de dispositivo para: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device ID: %d\n"
+msgstr "Identificador do dispositivo: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device name: %s\n"
+msgstr "Nome do dispositivo: %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Recording channels: %d\n"
+msgstr "Canles de gravación: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Playback channels: %d\n"
+msgstr "Canles de reprodución: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Low Recording Latency: %g\n"
+msgstr "Latencia de gravación baixa: %g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Low Playback Latency: %g\n"
+msgstr "Latencia de reprodución baixa: %g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "High Recording Latency: %g\n"
+msgstr "Latencia de gravación alta: %g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "High Playback Latency: %g\n"
+msgstr "Latencia de reprodución alta: %g\n"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Playback Rates:\n"
+msgstr "Taxas de reprodución admitidas:\n"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Capture Rates:\n"
+msgstr "Taxas de captura admitidas:\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Selected recording device: %d - %s\n"
+msgstr "Dispositivo de gravación seleccionado: %d - %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No recording device found for '%s'.\n"
+msgstr "Non se atoparon dispositivos de gravación para «%s».\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Selected playback device: %d - %s\n"
+msgstr "Dispositivo de reprodución seleccionado: %d - %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No playback device found for '%s'.\n"
+msgstr "Non se atoparon dispositivos de reprodución para «%s».\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Rates:\n"
+msgstr "Taxas admitidas:\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+"Non é posíbel comprobar taxas de mostras mutuas sen ambos os dous "
+"dispositivos.\n"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid "Error Initializing Audio"
+msgstr "Erro ao inicializar o son"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid "Out of memory!"
+msgstr "Sen memoria!"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. It was not possible to "
+"optimize it more. Still too high."
+msgstr ""
+"O axuste automático do nivel de gravación está detido. Non foi posíbel "
+"optimizalo máis. Aínda é demasiado alto."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid "Automated Recording Level Adjustment decreased the volume to %f."
+msgstr "O axuste automático do nivel de gravación diminuíu o volume a %f."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. It was not possible to "
+"optimize it more. Still too low."
+msgstr ""
+"O axuste automático do nivel de gravación está detido. Non foi posíbel "
+"optimizalo máis. Aínda é demasiado baixo."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid "Automated Recording Level Adjustment increased the volume to %.2f."
+msgstr "O axuste automático do nivel de gravación aumentou o volume a %2f."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. The total number of analyses "
+"has been exceeded without finding an acceptable volume. Still too high."
+msgstr ""
+"O axuste automático do nivel de gravación está detido. Excedeuse o número "
+"total de análises sen atopar un volume aceptábel. Aínda é demasiado alto."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. The total number of analyses "
+"has been exceeded without finding an acceptable volume. Still too low."
+msgstr ""
+"O axuste automático do nivel de gravación está detido. Excedeuse o número "
+"total de análises sen atopar un volume aceptábel. Aínda é demasiado baixo."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid ""
+"Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
+"volume."
+msgstr ""
+"O axuste automático do nivel de gravación está detido. %.2f semella ser un "
+"volume aceptábel."
