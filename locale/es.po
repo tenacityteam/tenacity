@@ -12,13 +12,14 @@
 # Marco Moreno <hibarioath@proton.me>, 2025.
 # Salvador Peña <salvadorp74@hotmail.com>, 2025.
 # Fried Tofu <friedtofu@users.noreply.hosted.weblate.org>, 2026.
+# Libre <6n0n1m0s@proton.me>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2026-03-15 07:09+0000\n"
-"Last-Translator: Fried Tofu <friedtofu@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-05-18 16:11+0000\n"
+"Last-Translator: Libre <6n0n1m0s@proton.me>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/es/>\n"
 "Language: es\n"
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 2026.6.dev0\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -1895,7 +1896,7 @@ msgstr "Guardar registro en:"
 #: src/LogWindow.cpp
 #, c-format
 msgid "Couldn't save log to file: %s"
-msgstr "No se ha podido escribir el registro en el archivo: %s"
+msgstr "No se pudo guardar el registro en el archivo: %s"
 
 #: src/LyricsWindow.cpp
 msgid "&Karaoke..."
@@ -10193,11 +10194,11 @@ msgstr "-48 dB (rango PCM de muestras de 8 bit)"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "-60 dB (PCM range of 10 bit samples)"
-msgstr "-60 dB (rango PCM de muestras de 10 bits)"
+msgstr "-60 dB (rango PCM de muestras de 10 bit)"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "-72 dB (PCM range of 12 bit samples)"
-msgstr "-72 dB (rango PCM de muestras de 12 bits)"
+msgstr "-72 dB (rango PCM de muestras de 12 bit)"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "-84 dB (PCM range of 14 bit samples)"
@@ -10205,7 +10206,7 @@ msgstr "-84 dB (rango PCM de muestras de 14 bit)"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "-96 dB (PCM range of 16 bit samples)"
-msgstr "-96 dB (rango PCM de muestras de 16 bits)"
+msgstr "-96 dB (rango PCM de muestras de 16 bit)"
 
 #: src/prefs/GUIPrefs.cpp
 msgid "-120 dB (approximate limit of human hearing)"
@@ -10736,6 +10737,7 @@ msgstr "Mel"
 
 #. i18n-hint: The name of a frequency scale in psychoacoustics, named for Heinrich Barkhausen
 #: src/prefs/SpectrogramSettings.cpp
+#, fuzzy
 msgid "Bark"
 msgstr "Bark"
 
@@ -15725,18 +15727,6 @@ msgstr "Error.~%Se necesita una pista estéreo."
 
 #~ msgid "File type:"
 #~ msgstr "Tipo de archivo:"
-
-#~ msgid "Backwards"
-#~ msgstr "Retrocesos"
-
-#~ msgid "<"
-#~ msgstr "<"
-
-#~ msgid "Forwards"
-#~ msgstr "Avances"
-
-#~ msgid ">"
-#~ msgstr ">"
 
 #, c-format
 #~ msgid "%s %s 1999-%s %s contributors"
@@ -20830,3 +20820,147 @@ msgstr "Tema oscuro de Audacity"
 #: libraries/lib-theme-resources/AudacityLightThemeAsCeeCode.cpp
 msgid "Audacity Light"
 msgstr "Tema claro de Audacity"
+
+#. i18n-hint: database operation has failed due to the lack of memory
+#: libraries/lib-sqlite-helpers/sqlite/Error.cpp
+#, fuzzy
+msgid "A malloc() failed"
+msgstr "Un malloc() incorrecto"
+
+#. i18n-hint: A theme is a consistent visual style across an application's
+#. graphical user interface, including choices of colors, and similarity of images
+#. such as those on button controls.  Audacity can load and save alternative
+#. themes.
+#: libraries/lib-theme/Theme.cpp
+#, c-format, fuzzy
+msgid ""
+"Themes written to:\n"
+"  %s/*/%s."
+msgstr ""
+"Temas escritos a:\n"
+"  %s/* /%s."
+
+#. i18n-hint VST3 effect description string
+#: libraries/lib-vst3/VST3EffectBase.cpp
+#, c-format, fuzzy
+msgid "SubCategories: %s"
+msgstr "SubCategorías: %s"
+
+#: libraries/lib-vst3/VST3EffectsModule.cpp
+#, fuzzy
+msgid "VST3 Effects"
+msgstr "Efectos VST3"
+
+#: libraries/lib-vst3/VST3EffectsModule.cpp
+#, fuzzy
+msgid "Adds the ability to use VST3 effects in Audacity."
+msgstr "Añade la capacidad de utilizar efectos VST3 en Audacity."
+
+#: libraries/lib-vst3/VST3EffectsModule.cpp
+#, c-format, fuzzy
+msgid "VST3 module error: %s"
+msgstr "Error de módulo VST3: %s"
+
+#. i18n-hint: abbreviates decibels
+#: libraries/lib-wave-track-settings/WaveformSettings.cpp
+#: src/commands/SetTrackInfoCommand.cpp
+#, fuzzy
+msgid "Linear (dB)"
+msgstr "Lineal (dB)"
+
+#: libraries/lib-wx-init/HelpSystem.cpp
+#, fuzzy
+msgid "Forwards"
+msgstr "Avances"
+
+#. i18n-hint arrowhead meaning forward movement
+#: libraries/lib-wx-init/HelpSystem.cpp
+msgid ">"
+msgstr ">"
+
+#. i18n-hint Template for clip name generation on copy-paste
+#. i18n-hint Template for clip name generation on inserting new empty clip
+#: libraries/lib-wave-track/WaveTrack.cpp
+#, c-format, fuzzy
+msgctxt "clip name template"
+msgid "%s.%i"
+msgstr "%s.%i"
+
+#: libraries/lib-wx-init/HelpSystem.cpp
+#, fuzzy
+msgid "Backwards"
+msgstr "Retrocesos"
+
+#. i18n-hint arrowhead meaning backward movement
+#: libraries/lib-wx-init/HelpSystem.cpp
+msgid "<"
+msgstr "<"
+
+#: libraries/lib-wave-track/TimeStretching.cpp
+#, fuzzy
+msgid "Pre-processing"
+msgstr "Pre‐proceso"
+
+#. i18n-hint: New color scheme for spectrograms, Roseus is proper name of the color scheme
+#: libraries/lib-wave-track-settings/SpectrogramSettings.cpp
+#, fuzzy
+msgctxt "spectrum prefs"
+msgid "Color (Roseus)"
+msgstr "Color (Roseus)"
+
+#: libraries/lib-vst3/VST3Wrapper.cpp
+#, c-format, fuzzy
+msgid "Unable to apply VST3 preset file %s"
+msgstr "No es capaz de aplicar el archivo de preajuste VST3 %s"
+
+#: libraries/lib-vst3/VST3Wrapper.cpp
+#, fuzzy
+msgid "Failed to save VST3 preset to file"
+msgstr "No se pudo guardar el preset VST3 en el archivo"
+
+#: libraries/lib-theme/Theme.cpp
+#, c-format, fuzzy
+msgid ""
+"Themes written to:\n"
+"  %s/*/Components/."
+msgstr ""
+"Temas escritos a:\n"
+"  %s/*/Components/."
+
+#. i18n-hint "Cee" means the C computer programming language
+#: libraries/lib-theme/Theme.cpp
+#, c-format, fuzzy
+msgid ""
+"Themes as Cee code written to:\n"
+"  %s/*%s."
+msgstr ""
+"Temas como código Cee escrito a:\n"
+"  %s/*%s."
+
+#: libraries/lib-theme/Theme.cpp
+#, c-format, fuzzy
+msgid ""
+"Tenacity could not find file:\n"
+"  %s.\n"
+"Theme not loaded."
+msgstr ""
+"No se pudo encontrar archivo Tenacity:\n"
+"  %s.\n"
+"Tema no cargado."
+
+#: libraries/lib-vst3/VST3EffectBase.cpp
+#, fuzzy
+msgid "VST3"
+msgstr "VST3"
+
+#. i18n-hint: abbreviates amplitude
+#: libraries/lib-wave-track-settings/WaveformSettings.cpp
+#: src/commands/SetTrackInfoCommand.cpp
+#, fuzzy
+msgid "Linear (amp)"
+msgstr "Lineal (amp)"
+
+#: libraries/lib-wave-track/WaveTrack.cpp
+#, fuzzy
+msgid "A track has a corrupted sample sequence."
+msgstr "Una pista tiene una secuencia de muestra corrupta."
