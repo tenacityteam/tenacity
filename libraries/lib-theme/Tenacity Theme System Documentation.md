@@ -132,32 +132,21 @@ package's `info.json`.
 The theme name.
 
 ### `minAppVersion`
-**Type**: string
+**Type**: integer array
 **Required**: yes
 
 The minimum version the theme package supports.
 
-The version string must follow the following format: `x.y[.z]`. Except in unusual
-circumstances, we only make changes to themes across major and minor versions
-(you can expect major versions to have major changes). Therefore, it is
-recommended to provide only a minor version, i.e., a version string following
-the x.y format.
+This value should be a 2-element array of numbers. The first element represents
+the major version, while the second element represents the minor version.
+Consider a version string of "1.4", for example. The major version is "1" and
+the minor version is "4", so a valid array would look something like this:
+`[1, 4]`.
 
-Do not specify any specific git tags, alphas, or betas. Do not also add any
-other characters other than numbers and either one or two dots (`.`). Tenacity
-will reject those and may render the theme invalid.
+Other acceptable values:
 
-**Acceptable** version strings:
-
-* 1.4
-* 1.4.0
-
-**Unacceptable** version strings:
-
-* v1.4
-* v1.4.0
-* 1.4.0-alpha
-* 1.4.0-beta3
+* `[3, 8]` - Represents a version of 3.8.
+* `[2, 5]` - Represents a version of 2.5.
 
 ### `themeType`
 **Type**: string
