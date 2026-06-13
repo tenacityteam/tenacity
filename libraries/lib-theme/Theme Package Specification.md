@@ -130,12 +130,12 @@ theme package if this field is absent or empty.
 ### 4.1.2 The `minAppVersion` Field
 
 This field describes the minimum app version required to load the theme
-package. The provided value MUST be a string. Theme packages MUST specify this
-field. If a package does not specify this field, it is up to the application to
-define what behavior is present.
+package. The provided value MUST be an integer array. Theme packages MUST
+specify this field. If a package does not specify this field, it is up to the
+application to define what behavior is present.
 
-The provided string is application-specific. Applications are free to define
-the version string format used for this field.
+The provided integer array is application-specific. Applications are free to
+define acceptable values for this field.
 
 ## 4.2 Optional Fields
 
