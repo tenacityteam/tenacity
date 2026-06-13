@@ -175,57 +175,15 @@ void ThemePackage::OpenPackage(const std::string& path)
     }
 }
 
-/** @brief Parses a version string.
- * 
- * This function expects a version string in the 'x.y.z' format and only
- * parses the major, minor, and patch releases. Anything else is not parsed. If
- * a version number can't be parsed, it defaults to 0.
- * 
- * @param versionString The version string to parse.
- * @return Returns a std::vector<int> containing the version string values.
- * 
-*/
-std::vector<int> ParseVersionString(const std::string& versionString)
-{
-    std::vector<int> version;
-    std::string      tempString;
-    int              tempVersion;
-    std::size_t      previousPeriod = 0;
-    std::size_t      period;
-
-    // This is a very simple version string parsing algorithm that merely
-    // creates substrings and converts them to an integer.
-    do
-    {
-        period = versionString.find('.', previousPeriod);
-        tempString = versionString.substr(previousPeriod, period - previousPeriod);
-
-        try
-        {
-            tempVersion = std::stoi(tempString);
-        } catch(...)
-        {
-            tempVersion = 0;
-        }
-
-        version.push_back(tempVersion);
-        previousPeriod = period + 1;
-    } while (period != std::string::npos);
-
-    return version;
-}
-
 void ThemePackage::ParsePackage()
 {
     // Prepare the package first.
     LoadTheme(mSelectedSubtheme);
 
     rapidjson::Value themeName;
-    rapidjson::Value minAppVersionString;
-    std::vector<int> minAppVersion;
-    int minVersionMajor    = TENACITY_VERSION;
-    int minVersionRelease  = TENACITY_RELEASE;
-    int minVersionRevision = TENACITY_REVISION;
+    rapidjson::Value minAppVersion;
+    int minVersionMajor;
+    int minVersionRelease;
 
     auto& themeInfo = IsMultiThemePackage() ? mCurrentSubthemeInfo : mInfo;
 
@@ -236,10 +194,10 @@ void ThemePackage::ParsePackage()
     }
 
     themeName = themeInfo["name"];
-    minAppVersionString = themeInfo["minAppVersion"];
+    minAppVersion = themeInfo["minAppVersion"];
 
     // Check for required types and their types
-    if (!themeName.IsString() && !minAppVersionString.IsString())
+    if (!themeName.IsString() || !minAppVersion.IsArray())
     {
         throw ArchiveError(ArchiveError::Type::Invalid);
     }
@@ -251,34 +209,22 @@ void ThemePackage::ParsePackage()
     }
 
     // Parse minimum app version and check if its compatible
-    minAppVersion = ParseVersionString(GetJsonString(minAppVersionString));
-
     try
     {
-        minVersionMajor = minAppVersion.at(0);
-        minVersionRelease = minAppVersion.at(1);
-        if (minAppVersion.size() >= 3) minVersionRevision = minAppVersion[2];
+        minVersionMajor = minAppVersion[0].GetInt();
+        minVersionRelease = minAppVersion[1].GetInt();
     } catch (...)
     {
         // Something happened when parsing the version number. Assume '0.0.0' by default
-        minVersionMajor = minVersionRelease = minVersionRevision = 0;
+        minVersionMajor = minVersionRelease = 0;
     }
 
     // Handle minimum version compatibility
     if (minVersionMajor < TENACITY_VERSION || minVersionRelease < TENACITY_RELEASE)
     {
         // TODO: Better exception handling
-        throw IncompatibleTheme(minVersionMajor, minVersionRelease, minVersionRevision);
+        throw IncompatibleTheme(minVersionMajor, minVersionRelease, 0);
     }
-
-    // FIXME: Should the revision number really matter between theme packages?
-    // I don't think it should, but I'm leaving this in until we decide on that
-    // behavior...
-    // else if (minVersionRevision < TENACITY_REVISION)
-    // {
-    //     // TODO: Better exception handling
-    //     throw std::runtime_error("Incompatible theme");
-    // }
 
     // TODO: handle other properties.
 }
