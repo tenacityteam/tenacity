@@ -191,8 +191,9 @@ dependencies.
 Note that building the dependencies requires 10 GB of storage space.
 
 #### Building with MSYS2 (Experimental)
-**NOTE**: These instructions are experimental. Tenacity may not build at all
-yet.
+**NOTE**: The following instructions are only meant for contributors interested
+in addressing issues under this build environment. Tenacity may not
+successfully build with these instructions.
 
 If you don't want to use Tenacity with Visual Studio and MSVC, you can
 alternatively build Tenacity under MSYS2 using your environment of choice. This
