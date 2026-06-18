@@ -146,11 +146,19 @@ test against the latest version of Visual Studio, so we may not catch bugs
 affecting older versions of Visual Studio, but please report them as we will
 still fix them.
 
-We srongly recommend using a package manager for managing build tools as it
-makes general management, such as updating or removing them, easier. We like to
-use [Scoop](https://scoop.sh) in CI. It contains all of the build tools needed
-for Tenacity. If you don't already have Scoop installed, open PowerShell and
-run the following commands:
+You also need the following additional dependencies as well:
+
+- Git
+- CMake
+- Ninja
+- gettext
+
+However you install these dependencies is up to you. We strongly recommend
+using [Scoop](https://scoop.sh) for easier management. Other package managers
+may not have all the required dependencies.
+
+If you don't already have Scoop installed, open PowerShell and run the
+following commands:
 
 ``` powershell
 > Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -164,24 +172,15 @@ build tools:
 > scoop install git cmake ninja gettext
 ```
 
-Optionally, you can install sccache for faster builds. We highly recommend you
-do so:
+Optionally, if using the Ninja generator, you can install ccache for faster
+builds. We highly recommend you do so:
 
 ``` powershell
-> scoop install sccache
+> scoop install ccache
 ```
 
-**Note**: Compiler caching is only supported when using the Ninja generator on
-Windows. Using the Visual Studio generator will disable any compiler caching
-for Tenacity as it's unsupported by CMake.
-
-Alternatively, you can use a different package manager such as Chocolatey or
-winget. You may even use a package manager for a different language, such as
-Cargo, if that works for you. However, they might not contain all the build
-tools you need. For example, Chocolatey does not contain gettext, so you'll
-need to install it yourself. winget is also missing a few other build tools
-too. Finally, you can install all the build tools yourself, but once you
-starting using a package manager, you'll realize there's no going back :)
+Unfortunately, compiler caching isn't supported by CMake's Visual Studio
+generator and is automatically disabled even when (s)ccache is installed.
 
 Tenacity's dependencies will be built automatically with vcpkg when configuring
 CMake. You can turn off vcpkg by passing `-DVCPKG=OFF` to the CMake
