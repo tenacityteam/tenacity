@@ -490,6 +490,12 @@ do not build with Tenacity.
   * **VST2** (ON|OFF): VST2 plugin hosting support. No libraries are required.
     ON by default.
 
+### Miscellaneous Build Options
+
+The following build options are miscellaneously categorized.
+
+  * **GPL3** (ON|OFF): Use the GPL v3 license in builds. Enabled by default.
+
 ### vcpkg Options
 
 These options apply to all platforms where vcpkg is available. They are
