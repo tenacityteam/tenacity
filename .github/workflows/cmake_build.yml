@@ -28,7 +28,6 @@ jobs:
         - name: Ubuntu
           os: ubuntu-latest
           arch: x86_64 # as reported by `arch` or `uname -m`
-          generator: Ninja
           cc: cc
           cxx: c++
           compiler_cache: ccache
@@ -47,7 +46,6 @@ jobs:
         #- name: macOS_Intel
         #  os: macos-latest
         #  arch: Intel # as reported by Apple menu > About This Mac
-        #  generator: Ninja
         #  cc: cc
         #  cxx: c++
         #  compiler_cache: ccache
@@ -60,7 +58,6 @@ jobs:
         #- name: macOS_Apple_Silicon
         #  os: macos-latest
         #  arch: Apple Silicon # as reported by Apple menu > About This Mac
-        #  generator: Ninja
         #  cc: cc
         #  cxx: c++
         #  compiler_cache: ccache
@@ -73,10 +70,11 @@ jobs:
         - name: Windows_32bit
           os: windows-latest
           arch: x86
-          generator: Visual Studio 18 2026
           # required so CMake uses MSVC rather than MinGW
           cc: cl
           cxx: cl
+          compiler_cache: ccache
+          compiler_cache_path: C:\Users\runneradmin\AppData\Local\ccache
           use_vcpkg: ON
           vcpkg_binary_cache: C:\Users\runneradmin\AppData\Local\vcpkg
           vcpkg_triplet: x86-windows
@@ -87,7 +85,8 @@ jobs:
         - name: Windows_64bit
           os: windows-latest
           arch: x86_64
-          generator: Visual Studio 18 2026
+          compiler_cache: ccache
+          compiler_cache_path: C:\Users\runneradmin\AppData\Local\ccache
           # required so CMake uses MSVC rather than MinGW
           cc: cl
           cxx: cl
@@ -99,8 +98,9 @@ jobs:
         - name: Windows_ARM
           os: windows-11-arm
           arch: arm
-          generator: Visual Studio 17 2022
           # required so CMake uses MSVC rather than MinGW
+          compiler_cache: ccache
+          compiler_cache_path: C:\Users\runneradmin\AppData\Local\ccache
           cc: cl
           cxx: cl
           use_vcpkg: ON
@@ -168,7 +168,6 @@ jobs:
     # cache on Windows.
     - name: "Set up compiler cache"
       uses: actions/cache@v6
-      if: runner.os != 'Windows'
       with:
         path: ${{ matrix.config.compiler_cache_path }}
         key: ${{ matrix.config.os }}-${{ matrix.config.arch }}-${{ github.head_ref }}-${{ github.run_number }}
@@ -176,10 +175,16 @@ jobs:
           ${{ matrix.config.os }}-${{ matrix.config.arch }}-${{ github.head_ref }}-
           ${{ matrix.config.os }}-${{ matrix.config.arch }}-
 
+    - name: "[Windows] Setup Developer Command Prompt"
+      uses: ilammy/msvc-dev-cmd@v1
+      if: runner.os == 'Windows'
+      with:
+        arch: ${{matrix.config.arch}}
+
     - name: Configure
       run: >-
         cmake
-        -G "${{ matrix.config.generator }}"
+        -G Ninja
         -D CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
         -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install
         -D VCPKG=${{ matrix.config.use_vcpkg }}
@@ -199,7 +204,6 @@ jobs:
       run: cmake --build build --config ${{ env.CMAKE_BUILD_TYPE }}
 
     - name: "Print compiler cache stats"
-      if: runner.os != 'Windows'
       run: ${{ matrix.config.compiler_cache }} -s
 
     - name: Install
