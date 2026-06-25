@@ -609,9 +609,9 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
    // Use wxVersionInfo to get the runtime version of wxWidgets. Using the
    // macro gets the version originally linked with, and we prefer to know the
    // current version being used instead.
-   wxVersionInfo versionInfo;
+   wxVersionInfo versionInfo = wxGetLibraryVersionInfo();
    AddBuildinfoRow(&informationStr, wxT("wxWidgets"),
-         XO("Cross-platform GUI library"), Verbatim(versionInfo.GetVersionString()));
+         XO("Cross-platform GUI library"), Verbatim(versionInfo.GetNumericVersionString()));
 
    AddBuildinfoRow(&informationStr, wxT("PortAudio"),
          XO("Audio playback and recording"), Verbatim(wxT("v19")));
