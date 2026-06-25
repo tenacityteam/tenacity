@@ -122,6 +122,7 @@ void AboutDialog::CreateCreditsList()
 
    // The Tenacity Team and some contributors
    AddCredit("Avery \"Generic Person\" King ([[https://github.com/generic-pers0n|GitHub]])", developerFormat, roleTeamMember);
+   AddCredit("Emily \"emabrey\" Mabrey ([[https://github.com/emabrey|GitHub]])", developerFormat, roleTeamMember);
    AddCredit("caughtquick", tenacity_contributorFormat, roleTeamMember);
    AddCredit("Hari \"TheEvilSkeleton\" Rana ([[https://github.com/theevilskeleton|GitHub]])", tenacity_contributorFormat, roleTeamMember);
    AddCredit("Rikard \"akleja\" Jansson ([[https://github.com/akleja|GitHub]])", tenacity_contributorFormat, roleTeamMember);
@@ -134,7 +135,6 @@ void AboutDialog::CreateCreditsList()
    AddCredit("David Karoly ([[https://github.com/davidkaroly|GitHub]])", tenacity_contributorFormat, roleContributor);
 
    // Tenacity Team Emeritus
-   AddCredit("Emily \"emabrey\" Mabrey ([[https://github.com/emabrey|GitHub]])", developerFormat, roleEmeritusTeam);
    AddCredit("Panagiotis \"Ivory\" Vasilopoulos (n0toose) ([[https://n0toose.net|Website]])", developerFormat, roleEmeritusTeam);
    AddCredit("Be ([[https://github.com/Be-ing/|GitHub]])", developerFormat, roleEmeritusTeam);
 
