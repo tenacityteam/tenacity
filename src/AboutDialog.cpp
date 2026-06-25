@@ -70,7 +70,7 @@ void AboutDialog::CreateCreditsList()
    const auto coFounderFormat =
    /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, co-founder and developer");
-  const auto designerFormat =
+   const auto designerFormat =
    /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, designer");
    const auto developerFormat =
@@ -115,7 +115,6 @@ void AboutDialog::CreateCreditsList()
    const auto presetsFormat =
    /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
       XO("%s, effects presets");
-
    /* i18n-hint: For "About Tenacity..." credits, substituting a person's proper name */
    const auto tenacity_contributorFormat
       = XO("%s, Tenacity contributor");
@@ -163,8 +162,7 @@ void AboutDialog::CreateCreditsList()
    // longer active.
    AddCredit(wxT("Gale Andrews"), qualityAssuranceFormat, roleAudacityEmeritusTeam);
    AddCredit(wxT("Richard Ash"), developerFormat, roleAudacityEmeritusTeam);
-   AddCredit(wxT("Christian Brochec"),
-      documentationAndSupportFrenchFormat, roleAudacityEmeritusTeam);
+   AddCredit(wxT("Christian Brochec"), documentationAndSupportFrenchFormat, roleAudacityEmeritusTeam);
    AddCredit(wxT("Matt Brubeck"), developerFormat, roleAudacityEmeritusTeam);
    AddCredit(wxT("Arturo \"Buanzo\" Busleiman"), sysAdminFormat, roleAudacityEmeritusTeam);
    AddCredit(wxT("Michael Chinen"), developerFormat, roleAudacityEmeritusTeam);
