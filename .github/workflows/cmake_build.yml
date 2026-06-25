@@ -120,7 +120,7 @@ jobs:
     steps:
 
     - name: Checkout Git repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
       with:
         submodules: true
 
@@ -134,7 +134,7 @@ jobs:
       run: choco install innosetup
 
     - name: Install Apple codesigning certificates
-      uses: apple-actions/import-codesign-certs@v1
+      uses: apple-actions/import-codesign-certs@v7
       if: startswith( matrix.config.os, 'macos' ) && github.event_name == 'push' && github.repository_owner == 'audacity'
       with:
         p12-file-base64: ${{ secrets.APPLE_CERTIFICATE }}
@@ -144,7 +144,7 @@ jobs:
       run: echo VCPKG_COMMIT=$(git ls-tree HEAD vcpkg | awk '{print $3}') >> ${GITHUB_ENV}
 
     - name: Setup vcpkg cache
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       if: runner.os != 'Linux'
       with:
         # cache the vcpkg executable to avoid having to bootstrap vcpkg every time
@@ -160,7 +160,7 @@ jobs:
     # Compiler caching on Windows currently doesn't work, so don't setup the
     # cache on Windows.
     - name: "Set up compiler cache"
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       if: runner.os != 'Windows'
       with:
         path: ${{ matrix.config.compiler_cache_path }}
@@ -208,7 +208,7 @@ jobs:
         && rm -r package/_CPack_Packages
 
     - name: Upload package artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: tenacity_${{ matrix.config.name }}_${{ github.run_id }}_${{ env.GIT_HASH_SHORT }}
         path: |
@@ -219,7 +219,7 @@ jobs:
 
     - name: Upload artifact of vcpkg build logs
       if: runner.os != 'Linux'
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: vcpkg-logs-${{ runner.os }}-${{ matrix.config.arch }}
         path: ${{ github.workspace }}/vcpkg/buildtrees/**/*.log
