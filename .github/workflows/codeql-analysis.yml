@@ -41,7 +41,7 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
       with:
         submodules: true
 
@@ -50,7 +50,7 @@ jobs:
         exec bash "scripts/ci/dependencies.sh"
 
     - name: "Set up compiler cache"
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: ${{ matrix.config.compiler_cache_path }}
         key: ${{ matrix.config.os }}-${{ matrix.config.arch }}-${{ github.head_ref }}-${{ github.run_number }}
