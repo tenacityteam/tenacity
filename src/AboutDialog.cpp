@@ -610,8 +610,10 @@ void AboutDialog::PopulateInformationPage( ShuttleGui & S )
    // macro gets the version originally linked with, and we prefer to know the
    // current version being used instead.
    wxVersionInfo versionInfo = wxGetLibraryVersionInfo();
-   AddBuildinfoRow(&informationStr, wxT("wxWidgets"),
-         XO("Cross-platform GUI library"), Verbatim(versionInfo.GetNumericVersionString()));
+   wxString wxVersionAsString = wxString::Format(wxT("%d.%d.%d"),
+     versionInfo.GetMajor(), versionInfo.GetMinor(), versionInfo.GetMicro());
+   AddBuildinfoRow(&informationStr, wxT("wxWidgets"), 
+         XO("Cross-platform GUI library"), Verbatim(wxVersionAsString));
 
    AddBuildinfoRow(&informationStr, wxT("PortAudio"),
          XO("Audio playback and recording"), Verbatim(wxT("v19")));
