@@ -452,7 +452,7 @@ if (CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "x86_64|AMD64")
             if (HAVE_AVX)
                 set(AVX_FLAG "-mavx")
             endif()
-        elseif (CMAKE_CXX_COMPILER_ID_MATCHES "MSVC")
+        elseif (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
             set(HAVE_AVX ON) # Currently unused, might get used later
             set(AVX_FLAG "/arch:AVX")
         endif()
