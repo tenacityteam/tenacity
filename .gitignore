@@ -14,7 +14,20 @@ stamp-po
 *.stamp
 
 # Files created by VSCode
-.vscode/*
+.vscode/
+
+# Files created by the full Visual Studio
+.vs/
+
+# Files created by IntelliJ IDEs
+.idea/
+
+# Emacs backup files
+*~
+
+# Sublime files
+*.sublime-project
+*.sublime-workspace
 
 # Handcrafted makefiles
 !lib-src/expat/amiga/Makefile
@@ -62,6 +75,8 @@ src/tenacity.desktop
 src/RevisionIdent.h
 src/configunix.h
 src/configwin.h
+src/RevisionIdent.h
+libraries/lib-theme-resources/*AsCeeCode.h
 *.pc
 
 # CMake build output
@@ -119,6 +134,10 @@ dox/
 *.vcxproj.user
 *.sbr
 *.bsc
+*/not-for-git/*
+scripts/*.dot
+scripts/*.svg
+/tests/results/*.png
 
 # Precompiled Headers
 *.gch
@@ -138,6 +157,9 @@ dox/
 *.la
 *.a
 *.lib
+
+#Compiled Dynamic Libraries
+*.dll
 
 # Executables
 *.exe
@@ -182,6 +204,8 @@ xcuserdata
 mac/build
 
 # Windows specific
+win/resetPrefs.txt
+win/xaudacity.ico
 win/Debug
 win/Release
 win/Projects/*/Debug
@@ -195,30 +219,12 @@ win-alt-build
 help/manual*
 help/temp*
 
-# Misc
-src/RevisionIdent.h
-win/resetPrefs.txt
-
-# Emacs backup files
-*~
-win/xaudacity.ico
-*.sublime-project
-*.sublime-workspace
-/tests/results/*.png
-
-#other files that get in the way
-*/not-for-git/*
-*.dll
-scripts/*.dot
-scripts/*.svg
-.idea/
-.vscode/
-
 # AppImage
 linuxdeploy/*
 appimagetool/*
 
-# VSCode
-.vscode/
+# Flatpak
+linux/flatpak/shared-modules/
 
+# vcpkg
 vcpkg_installed
