@@ -33,9 +33,34 @@
       }
     },
     {
-      "name": "wsl-clang-debug-makefiles",
-      "displayName": "WSL-Clang-Debug (Unix Makefiles)",
+      "name": "x64-clang-debug-makefiles",
+      "displayName": "x64-Clang-Debug (Unix Makefiles)",
       "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "installDir": "${sourceDir}/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": [ "Linux" ]
+        },
+        "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+          "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
+        }
+      }
+    },
+    {
+      "name": "x64-clang-debug-ninja",
+      "displayName": "x64-Clang-Debug (Ninja)",
+      "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "installDir": "${sourceDir}/install/${presetName}",
       "cacheVariables": {
@@ -59,13 +84,15 @@
     }
   ],
   "buildPresets": [
-    { "name": "x64-msvc-debug-ninja",   "configurePreset": "x64-msvc-debug-ninja",   "configuration": "Debug" },
-    { "name": "x64-msvc-debug-msbuild", "configurePreset": "x64-msvc-debug-msbuild", "configuration": "Debug" },
-    { "name": "wsl-clang-debug-makefiles",  "configurePreset": "wsl-clang-debug-makefiles",  "configuration": "Debug" }
+    { "name": "x64-msvc-debug-ninja",     "configurePreset": "x64-msvc-debug-ninja",     "configuration": "Debug" },
+    { "name": "x64-msvc-debug-msbuild",   "configurePreset": "x64-msvc-debug-msbuild",   "configuration": "Debug" },
+    { "name": "x64-clang-debug-makefiles","configurePreset": "x64-clang-debug-makefiles","configuration": "Debug" },
+    { "name": "x64-clang-debug-ninja",    "configurePreset": "x64-clang-debug-ninja",    "configuration": "Debug" }
   ],
   "testPresets": [
-    { "name": "x64-msvc-debug-ninja",   "configurePreset": "x64-msvc-debug-ninja",   "configuration": "Debug" },
-    { "name": "x64-msvc-debug-msbuild", "configurePreset": "x64-msvc-debug-msbuild", "configuration": "Debug" },
-    { "name": "wsl-clang-debug-makefiles",  "configurePreset": "wsl-clang-debug-makefiles",  "configuration": "Debug" }
+    { "name": "x64-msvc-debug-ninja",     "configurePreset": "x64-msvc-debug-ninja",     "configuration": "Debug" },
+    { "name": "x64-msvc-debug-msbuild",   "configurePreset": "x64-msvc-debug-msbuild",   "configuration": "Debug" },
+    { "name": "x64-clang-debug-makefiles","configurePreset": "x64-clang-debug-makefiles","configuration": "Debug" },
+    { "name": "x64-clang-debug-ninja",    "configurePreset": "x64-clang-debug-ninja",    "configuration": "Debug" }
   ]
 }

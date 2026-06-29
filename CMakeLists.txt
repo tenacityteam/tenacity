@@ -334,7 +334,7 @@ if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
     include( InstallRequiredSystemLibraries )
 endif()
 
-# Only kept for compatibity (FIXME)
+# Only kept for compatibility (FIXME)
 set ( _SHARED_PROXY_BASE_PATH "${CMAKE_BINARY_DIR}/shared")
 
 # Define the non-install and executable paths
@@ -745,17 +745,25 @@ endif()
 option(NYQUIST "Enable Nyquist support" ON)
 if (NYQUIST)
     set(USE_NYQUIST ON)
-    add_subdirectory(lib-src/libnyquist)
+
+    if (NOT GIT_FOUND)
+        message(FATAL_ERROR "Git not found; cannot initialize the libnyquist submodule. Install git or disable Nyquist with -DNYQUIST=OFF.")
+    endif()
+
+    message(STATUS "Ensuring libnyquist Git submodule is initialized")
+    execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init lib-src/libnyquist WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
+
+    if (NOT EXISTS "${CMAKE_SOURCE_DIR}/lib-src/libnyquist/CMakeLists.txt")
+        message(FATAL_ERROR "libnyquist submodule directory is still empty after 'git submodule update --init'. Check your Git configuration and network access.")
+    endif()
+
+    add_subdirectory("lib-src/libnyquist")
     set_target_properties(nyquist PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
     add_subdirectory("nyquist")
     add_subdirectory("plug-ins")
 
-    if (NOT EXISTS "${CMAKE_SOURCE_DIR}/lib-src/libnyquist/CMakeLists.txt")
-        message(FATAL_ERROR "libnyquist submodule not initialized. Please initialize it.")
-    else()
-        message(STATUS "Nyquist support enabled")
-    endif()
+    message(STATUS "Nyquist support enabled")
 else()
     set(USE_NYQUIST OFF)
     message(STATUS "Nyquist support disabled")
