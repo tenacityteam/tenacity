@@ -89,23 +89,14 @@ class THEME_API ThemePackage final
         /** @brief Opens a theme package.
          * 
          * OpenPackage() first extracts a package with libzip and then attempts
-         * to read all the JSON data. If reading the archive fails, or if
+         * to read all of `info.json` and `colors.json`. If reading the archive fails, or if
          * parsing the JSON data fails, this member function throws an
          * exception.
+         *
+         * After
          * 
-         * @note OpenPackage() does _not_ do any actual parsing.
-         * 
-        */
+         */
         void OpenPackage(const std::string& path);
-
-        /** @brief Parses the package 
-         * 
-         * The package must have been opened prior to parsing. If the package
-         * was not opened prior to calling this function, an exception is
-         * thrown.
-         * 
-        */
-        void ParsePackage();
 
         /** @brief Closes a theme package.
          * 

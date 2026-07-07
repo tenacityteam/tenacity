@@ -227,7 +227,6 @@ void ThemePrefs::OnLoadThemePackage(wxCommandEvent&)
    try
    {
       theme.OpenPackage(path.ToStdString(wxConvUTF8));
-      theme.ParsePackage();
       AudacityMessageBox(XO("Package OK!"), XO("Success!"), wxOK);
    } catch (std::invalid_argument& e)
    {

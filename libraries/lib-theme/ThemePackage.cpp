@@ -173,10 +173,7 @@ void ThemePackage::OpenPackage(const std::string& path)
         // not have them at the root of the archive.
         return;
     }
-}
 
-void ThemePackage::ParsePackage()
-{
     // Prepare the package first.
     LoadTheme(mSelectedSubtheme);
 
@@ -187,28 +184,17 @@ void ThemePackage::ParsePackage()
 
     auto& themeInfo = IsMultiThemePackage() ? mCurrentSubthemeInfo : mInfo;
 
-    // Check for required fields and their types
-    if (!themeInfo.HasMember("name") && !themeInfo.HasMember("minAppVersion"))
+    // Parse the `minAppVersion` field. If it's not found, throw an invalid
+    // theme package exception.
+    if (!themeInfo.HasMember("minAppVersion"))
     {
         throw ArchiveError(ArchiveError::Type::Invalid);
     }
 
-    themeName = themeInfo["name"];
+    // Otherwise, if the current program version is
+    // less than the package's minimum required program version, throw an
+    // incompatible theme exception
     minAppVersion = themeInfo["minAppVersion"];
-
-    // Check for required types and their types
-    if (!themeName.IsString() || !minAppVersion.IsArray())
-    {
-        throw ArchiveError(ArchiveError::Type::Invalid);
-    }
-
-    // Check if the name is empty
-    if (GetJsonString(themeName).empty())
-    {
-        throw ArchiveError(ArchiveError::Type::Invalid);
-    }
-
-    // Parse minimum app version and check if its compatible
     try
     {
         minVersionMajor = minAppVersion[0].GetInt();
@@ -224,6 +210,26 @@ void ThemePackage::ParsePackage()
     {
         // TODO: Better exception handling
         throw IncompatibleTheme(minVersionMajor, minVersionRelease, 0);
+    }
+
+    // Check for required fields and their types
+    if (!themeInfo.HasMember("name"))
+    {
+        throw ArchiveError(ArchiveError::Type::Invalid);
+    }
+
+    themeName = themeInfo["name"];
+
+    // Check for required types and their types
+    if (!themeName.IsString())
+    {
+        throw ArchiveError(ArchiveError::Type::Invalid);
+    }
+
+    // Check if the name is empty
+    if (GetJsonString(themeName).empty())
+    {
+        throw ArchiveError(ArchiveError::Type::Invalid);
     }
 
     // TODO: handle other properties.
