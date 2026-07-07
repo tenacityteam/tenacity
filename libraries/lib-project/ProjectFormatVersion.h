@@ -24,7 +24,6 @@ struct PROJECT_API ProjectFormatVersion final
    uint8_t Minor { 0 };
    uint8_t Revision { 0 };
    uint8_t ModLevel { 0 };
-   bool    IsTenacity { false };
 
    // Create ProjectFormatVersion from the uint32_t value 
    static ProjectFormatVersion FromPacked(uint32_t) noexcept;
@@ -46,7 +45,8 @@ PROJECT_API extern const ProjectFormatVersion SupportedProjectFormatVersion;
 PROJECT_API extern const ProjectFormatVersion SupportedAudacityProjectFormatVersion;
 
 /// This is a helper constant for the "most compatible" project version created
-/// by Tenacity with the value (MAJ, MIN, 0, 0).
+/// by Tenacity with the value (MAJ, MIN, 0, 0). Modlevel is set to 0 for
+/// backwards compatibility with older 1.3.x releases.
 PROJECT_API extern const ProjectFormatVersion BaseProjectFormatVersion;
 
 /// This is a helper constant for the "most compatible" project version created

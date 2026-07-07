@@ -772,17 +772,37 @@ bool ProjectFileIO::CheckVersion()
    const ProjectFormatVersion version =
       ProjectFormatVersion::FromPacked(wxStrtoul<char**>(result, nullptr, 10));
 
-   // Project file version is higher than ours. We will refuse to
-   // process it since we can't trust anything about it.
-   // TODO: use the SupportedProjectFormatVersion instead and make a way to
-   // clearly distinguish projects created by either Audacity or Tenacity.
-   if (SupportedAudacityProjectFormatVersion < version)
+   // In Tenacity, we accept projects created with Audacity up to 3.7.x, and
+   // projects created with Tenacity up to the current version. Tenacity
+   // versions always set the modlevel to 1 to indicate that it's a Tenacity
+   // version and not an Audacity version. The only exception is older 1.3.x
+   // releases.
+
+   // If the current version is an Audacity version AND the version is less
+   // than the one we safely support, then refuse to process it. We can't trust
+   // anything about it.
+   if (version.ModeLevel != 1 && SupportedAudacityProjectFormatVersion < version)
    {
       SetError(
-         XO("This project was created with a version of Audacity that is not supported by Tenacity.\n\nYou will need to use that version to open it.")
+         XO("This project was created with a version of Audacity that is not supported by Tenacity.\n\nYou will"
+         "need to use that version of Audacity or a newer version of Tenacity to open it.")
       );
       return false;
    }
+
+   // Same as above, except the version given is a Tenacity version, so give a
+   // different error message.
+   else if (version.ModLevel == 1 && SupportedProjectFormatVersion < version)
+   {
+      SetError(
+         XO("This project was created with a newer version of Tenacity.\n\nYou will need to use that version to open it.");
+      );
+      return false;
+   }
+
+   // FIXME: Theoretically, there shouldn't be an AUP3 project that has a base
+   // version below either 3.0 or 1.3 (nothing in between). I think we should
+   // discuss what to do with this check and do something with it.
    else if (version < BaseProjectFormatVersion) {
       using namespace BasicUI;
       wxString currentVersionStr = wxString::Format("%u.%u", BaseProjectFormatVersion.Major, BaseProjectFormatVersion.Minor);
