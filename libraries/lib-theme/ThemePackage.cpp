@@ -201,8 +201,9 @@ void ThemePackage::OpenPackage(const std::string& path)
         minVersionRelease = minAppVersion[1].GetInt();
     } catch (...)
     {
-        // Something happened when parsing the version number. Assume '0.0.0' by default
-        minVersionMajor = minVersionRelease = 0;
+        // Something happened when parsing the version number. Throw an invalid
+        // archive error to indicate a parsing error.
+        throw ArchiveError(ArchiveError::Type::Invalid);
     }
 
     // Handle minimum version compatibility
