@@ -27,9 +27,9 @@
  * ThemeResources to see that functionality.
  * 
  * Themes can be constructed either from a theme package or in-memory. The
- * @ref ThemePackage class allows you to load a theme from a theme package or
- * create one in meomry. Regardless of how a theme is created, themes do not
- * know whether they originate from a theme package or not.
+ * @ref ThemePackage class allows you to load a theme from a theme package.
+ * Once a Theme is loaded, you can manipulate it in memory, but any changes
+ * cannot be saved.
  */
 class THEME_API Theme final
 {
@@ -63,22 +63,28 @@ class THEME_API Theme final
         Theme& operator=(Theme&& other);
 
         /// Returns the theme's resource map if available.
+
+        /** @brief Gets __all__ of the theme's resources.
+         *
+         * If you only need access to a specific resource, consider using @ref
+         * GetResource instead.
+         *
+         * @return A constant reference to a theme resource map.
+         */
         const ThemeResourceMap& GetResourceMap();
 
+        /// Sets the theme's name.
         void SetName(const std::string& name);
+
+        /// Returns the theme's name.
         std::string GetName();
 
         /** @brief Returns data associated with an individual resource.
-         * 
-         * If the resource doesn't exist in the map, it is automatically loaded
-         * from the backing theme package if available. After it is loaded, it
-         * is added to its resource map.
          * 
          * @param name The name of the resource to get.
          * 
          * @exception InvalidState Thrown if there is a valid backing theme
          * package but the package is invalid.
-         * 
          * @exception ArchiveError Thrown if the resource wasn't found.
          * 
          * @return Returns data with the associated resource.
