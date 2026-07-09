@@ -1,0 +1,145 @@
+name: tenacity
+base: core24
+adopt-info: tenacity
+summary: Free multi-track audio editor and recorder
+title: Tenacity Audio Editor
+description: Tenacity is an easy-to-use, privacy-friendly, FLOSS, cross-platform multi-track audio editor
+grade: stable
+confinement: strict
+source-code: https://codeberg.org/tenacityteam/tenacity
+contact: https://matrix.to/#/@emabrey:matrix.org
+issues: https://codeberg.org/tenacityteam/tenacity/issues
+website: https://tenacityaudio.org
+icon: ../../images/org.tenacityaudio.Tenacity.svg
+license: GPL-2.0+
+compression: lzo
+
+apps:
+  tenacity:
+    command: usr/local/bin/tenacity
+    environment:
+      LD_LIBRARY_PATH: $SNAP/usr/local/lib/tenacity:$LD_LIBRARY_PATH
+      ALSA_CONFIG_PATH: $SNAP/etc/asound.conf
+    extensions: [gnome]
+    common-id: org.tenacityaudio.Tenacity
+    plugs:
+      - home
+      - removable-media
+      - audio-playback
+      - audio-record
+      - alsa
+      - pulseaudio
+      - jack1
+      - network
+      - opengl
+      - desktop
+      - desktop-legacy
+      - unity7
+      - wayland
+      - x11
+
+parts:
+  tenacity:
+    plugin: cmake
+    source: ../..
+    source-type: local
+    override-pull: |
+      craftctl default
+      # snapcraft's local copy skips linux/ (its own project dir lives
+      # inside it), so pull in the one file cmake actually needs
+      install -D -m 644 $CRAFT_PROJECT_DIR/../../linux/findlib.c \
+         $CRAFT_PART_SRC/linux/findlib.c
+      if [ -z "$(craftctl get version 2>/dev/null)" ]; then
+          craftctl set version="$(git -C $CRAFT_PART_SRC describe --tags --always)"
+      fi
+    override-prime: |
+      craftctl default
+      install -D -m 644 $CRAFT_PROJECT_DIR/local/asound.conf $CRAFT_PRIME/etc/asound.conf
+    cmake-parameters:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_INSTALL_PREFIX=/usr/local
+    build-packages:
+      - build-essential
+      - cmake
+      - ninja-build
+      - libavcodec-dev
+      - libavformat-dev
+      - libavutil-dev
+      - libebml-dev
+      - libflac++-dev
+      - libid3tag0-dev
+      - libjack-jackd2-dev
+      - liblilv-dev
+      - libmatroska-dev
+      - libmpg123-dev
+      - libmp3lame-dev
+      - libopus-dev
+      - libopusfile-dev
+      - libportmidi-dev
+      - libserd-dev
+      - libsndfile1-dev
+      - libsord-dev
+      - libsoxr-dev
+      - libsuil-dev
+      - libswresample-dev
+      - libtwolame-dev
+      - libvorbis-dev
+      - libwavpack-dev
+      - libwxgtk3.2-dev
+      - lv2-dev
+      - rapidjson-dev
+      - libglib2.0-dev
+      - libgtk-3-dev
+      - libjpeg-dev
+      - liblzma-dev
+      - libogg-dev
+      - libpng-dev
+      - libportsmf-dev
+      - libsoundtouch-dev
+      - libsqlite3-dev
+      - libtiff-dev
+      - libzip-dev
+      - portaudio19-dev
+      - vamp-plugin-sdk
+      - zlib1g-dev
+    stage-packages:
+      - libasound2-plugins
+      - libavcodec60
+      - libavformat60
+      - libavutil58
+      - libebml5
+      - libflac++10
+      - libglib2.0-0
+      - libgtk-3-0
+      - libjpeg-turbo8
+      - liblilv-0-0
+      - libmatroska7
+      - libmp3lame0
+      - libmpg123-0
+      - libogg0
+      - libopus0
+      - libopusfile0
+      - libpng16-16
+      - libportaudio2
+      - libportmidi0
+      - libportsmf0t64
+      - libserd-0-0
+      - libsndfile1
+      - libsord-0-0
+      - libsoundtouch1
+      - libsoxr0
+      - libsqlite3-0
+      - libsuil-0-0
+      - libswresample4
+      - libid3tag0
+      - libtiff6
+      - libtwolame0
+      - libvorbisenc2
+      - libwavpack1
+      - libwxgtk3.2-1
+      - libzip4
+      - vamp-plugin-sdk
+      - zlib1g
+    prime:
+      - -usr/lib/*/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader_svg.so
+      - -usr/lib/*/gdk-pixbuf-2.0/2.10.0/loaders.cache
