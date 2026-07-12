@@ -147,6 +147,14 @@ void EQCurveReader::UpdateDefaultCurves(bool updateAll /* false */)
 
    EQCurveArray userCurves = mCurves;
    mCurves.clear();
+
+   // If we can't produce a usable default-curve list, put the user's
+   // curves back so they aren't silently wiped from the preset list.
+   auto restoreUserCurves = [&] {
+      mCurves = userCurves;
+      mCurves.push_back(userUnnamed);
+   };
+
    // We only wamt to look for the shipped EQDefaultCurves.xml
    wxFileName fn = wxFileName(FileNames::ResourcesDir(), wxT("EQDefaultCurves.xml"));
    wxLogDebug(wxT("Attempting to load EQDefaultCurves.xml from %s"),fn.GetFullPath());
@@ -154,6 +162,7 @@ void EQCurveReader::UpdateDefaultCurves(bool updateAll /* false */)
 
    if(!reader.Parse(this, fn.GetFullPath())) {
       wxLogError(wxT("EQDefaultCurves.xml could not be read."));
+      restoreUserCurves();
       return;
    }
    else {
@@ -162,6 +171,12 @@ void EQCurveReader::UpdateDefaultCurves(bool updateAll /* false */)
 
    EQCurveArray defaultCurves = mCurves;
    mCurves.clear(); // clear now so that we can sort then add back.
+
+   if (defaultCurves.empty()) {
+      wxLogError(wxT("EQDefaultCurves.xml contained no curves."));
+      restoreUserCurves();
+      return;
+   }
 
    // Remove "unnamed" if it exists.
    if (defaultCurves.back().Name == unnamed) {
