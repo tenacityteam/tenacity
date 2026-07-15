@@ -16,4 +16,4 @@ if ! command -v snapcraft >/dev/null 2>&1; then
    exit 1
 fi
 
-snapcraft "$@"
+sudo snapcraft pack "$@"
