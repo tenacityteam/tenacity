@@ -214,9 +214,45 @@ ModuleManager::~ModuleManager()
    builtinModuleList().clear();
 }
 
-// static
+// Remove stale prefs entries for anything that isn't a mod-* module.
+// Historically the module scanner picked up every DLL/SO in the modules
+// folder (wxWidgets runtime, zlib, files with empty basenames, ...) and
+// wrote entries under /Module/, /ModulePath/, and /ModuleDateTime/. Those
+// entries linger in audacity.cfg and show up as junk rows in the Modules
+// preferences dialog. Prune them once per launch.
+static void PruneStaleModulePrefs()
+{
+   static const wxString groups[] = {
+      wxT("/Module/"),
+      wxT("/ModulePath/"),
+      wxT("/ModuleDateTime/"),
+   };
+   for (const auto &group : groups) {
+      if (!gPrefs->HasGroup(group))
+         continue;
+      std::vector<wxString> stale;
+      {
+         const wxString savedPath = gPrefs->GetPath();
+         gPrefs->SetPath(group);
+         wxString key;
+         long index = 0;
+         for (bool cont = gPrefs->GetFirstEntry(key, index); cont;
+              cont = gPrefs->GetNextEntry(key, index)) {
+            if (key.empty() || !key.StartsWith(wxT("mod-")))
+               stale.push_back(key);
+         }
+         gPrefs->SetPath(savedPath);
+      }
+      for (const auto &key : stale)
+         gPrefs->DeleteEntry(group + key);
+   }
+   gPrefs->Flush();
+}
+
 void ModuleManager::FindModules(FilePaths &files)
 {
+   PruneStaleModulePrefs();
+
    const auto &tenacityPathList = FileNames::AudacityPathList();
    FilePaths pathList;
    wxString pathVar;
@@ -236,9 +272,9 @@ void ModuleManager::FindModules(FilePaths &files)
    }
 
    #if defined(__WXMSW__)
-   FileNames::FindFilesInPathList(wxT("*.dll"), pathList, files);
+   FileNames::FindFilesInPathList(wxT("mod-*.dll"), pathList, files);
    #else
-   FileNames::FindFilesInPathList(wxT("*.so"), pathList, files);
+   FileNames::FindFilesInPathList(wxT("mod-*.so"), pathList, files);
    #endif
 }
 
