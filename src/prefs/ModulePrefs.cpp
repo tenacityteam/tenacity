@@ -112,7 +112,7 @@ void ModulePrefs::PopulateOrExchange(ShuttleGui & S)
    S.SetBorder(2);
    S.StartScroller();
 
-   S.StartStatic( {} );
+   S.StartStatic( XO("Installed Modules") );
    {
       S.AddFixedText(XO(
 "These are experimental modules. Enable them only if you've read the Tenacity Manual\nand know what you are doing.") );

@@ -32,6 +32,7 @@ other settings.
 #include <wx/choice.h>
 #include <wx/intl.h>
 #include <wx/log.h>
+#include <wx/sizer.h>
 #include <wx/textctrl.h>
 
 #include "portaudio.h"
@@ -155,6 +156,24 @@ void DevicePrefs::PopulateOrExchange(ShuttleGui & S)
    }
    S.EndStatic();
 
+   // Pin the device dropdowns to a constant width so they don't jump around
+   // when the user switches hosts
+   constexpr int kDevicePadding = 50;
+   constexpr int kDeviceChoiceMinWidth = 350;
+   auto widestDeviceName = [this, kDevicePadding, kDeviceChoiceMinWidth](const std::vector<DeviceSourceMap> &maps) {
+      int textWidth = 0;
+      for (const auto &m : maps) {
+         int x = 0, y = 0;
+         GetTextExtent(MakeDeviceSourceString(&m), &x, &y);
+         if (x > textWidth) textWidth = x;
+      }
+      return std::max(textWidth + kDevicePadding, kDeviceChoiceMinWidth);
+   };
+   const int playWidth   = widestDeviceName(
+      DeviceManager::Instance()->GetOutputDeviceMaps());
+   const int recordWidth = widestDeviceName(
+      DeviceManager::Instance()->GetInputDeviceMaps());
+
    S.StartStatic(XO("Playback"));
    {
       S.StartMultiColumn(2);
@@ -162,6 +181,7 @@ void DevicePrefs::PopulateOrExchange(ShuttleGui & S)
          S.Id(PlayID);
          mPlay = S.AddChoice(XXO("&Device:"),
                              {} );
+         mPlay->SetMinSize({ playWidth, -1 });
       }
       S.EndMultiColumn();
    }
@@ -175,10 +195,19 @@ void DevicePrefs::PopulateOrExchange(ShuttleGui & S)
          S.Id(RecordID);
          mRecord = S.AddChoice(XXO("De&vice:"),
                                {} );
+         mRecord->SetMinSize({ recordWidth, -1 });
 
          S.Id(ChannelsID);
          mChannels = S.AddChoice(XXO("Cha&nnels:"),
                                  {} );
+         // Channels only holds short strings ("1 (Mono)", "2 (Stereo)"),
+         // but shares a column with the wide Device dropdown. Override
+         // AddChoice's 180px floor and strip its wxEXPAND flag so the
+         // sizer stops stretching it to Device's width.
+         mChannels->SetMinSize({ 100, -1 });
+         mChannels->SetMaxSize({ 350, -1 });
+         if (auto *item = mChannels->GetContainingSizer()->GetItem(mChannels))
+            item->SetFlag((item->GetFlag() & ~wxEXPAND) | wxALIGN_LEFT);
       }
       S.EndMultiColumn();
    }
@@ -316,8 +345,6 @@ void DevicePrefs::OnHost(wxCommandEvent & e)
       }
    }
 
-   ShuttleGui::SetMinSize(mPlay, mPlay->GetStrings());
-   ShuttleGui::SetMinSize(mRecord, mRecord->GetStrings());
    OnDevice(e);
 }
 
