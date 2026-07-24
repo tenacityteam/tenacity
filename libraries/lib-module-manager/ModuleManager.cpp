@@ -68,14 +68,14 @@ static BasicUI::MessageBoxResult DoMessageBox(const TranslatableString &msg)
       MessageBoxOptions{}.Caption(XO("Module Unsuitable")));
 }
 
-// Module's Major.Minor version should match the current Audacity build
+// Module's Major.Minor version should match the current Tenacity build
 static bool IsVersionCompatible(const wxString &moduleVersion)
 {
    wxArrayString parts1 = wxStringTokenize(TENACITY_VERSION_STRING, ".");
    wxArrayString parts2 = wxStringTokenize(moduleVersion, ".");
 
    if (parts1.size() < 2 || parts2.size() < 2) {
-      wxLogError("Invalid version format. Audacity version: %s, module version: %s", TENACITY_VERSION_STRING, moduleVersion);
+      wxLogError("Invalid version format. Tenacity version: %s, module version: %s", TENACITY_VERSION_STRING, moduleVersion);
       assert(false);
       return false;
    }
@@ -240,9 +240,40 @@ ModuleManager::~ModuleManager()
    builtinProviderList().clear();
 }
 
-// static
+// Remove stale prefs entries for anything that isn't a mod-* module.
+// Historically the module scanner picked up every DLL/SO in the modules
+// folder (wxWidgets runtime, zlib, files with empty basenames, ...) and
+// wrote entries under /Module/, /ModulePath/, and /ModuleDateTime/. Those
+// entries linger in audacity.cfg and show up as junk rows in the Modules
+// preferences dialog. Prune them once per launch.
+static void PruneStaleModulePrefs()
+{
+   static const wxString groups[] = {
+      wxT("/Module/"),
+      wxT("/ModulePath/"),
+      wxT("/ModuleDateTime/"),
+   };
+   for (const auto &group : groups) {
+      if (!gPrefs->HasGroup(group))
+         continue;
+      std::vector<wxString> stale;
+      {
+         auto scope = gPrefs->BeginGroup(group);
+         for (const auto &key : gPrefs->GetChildKeys()) {
+            if (key.empty() || !key.StartsWith(wxT("mod-")))
+               stale.push_back(key);
+         }
+      }
+      for (const auto &key : stale)
+         gPrefs->DeleteEntry(group + key);
+   }
+   gPrefs->Flush();
+}
+
 void ModuleManager::FindModules(FilePaths &files)
 {
+   PruneStaleModulePrefs();
+
    const auto &audacityPathList = FileNames::AudacityPathList();
    FilePaths pathList;
    wxString pathVar;
@@ -262,9 +293,9 @@ void ModuleManager::FindModules(FilePaths &files)
    }
 
    #if defined(__WXMSW__)
-   FileNames::FindFilesInPathList(wxT("*.dll"), pathList, files);
+   FileNames::FindFilesInPathList(wxT("mod-*.dll"), pathList, files);
    #else
-   FileNames::FindFilesInPathList(wxT("*.so"), pathList, files);
+   FileNames::FindFilesInPathList(wxT("mod-*.so"), pathList, files);
    #endif
 }
 
