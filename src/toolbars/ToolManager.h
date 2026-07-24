@@ -113,6 +113,7 @@ class TENACITY_DLL_API ToolManager final
    void OnIndicatorPaint( wxPaintEvent & event );
 
    void ReadConfig();
+   bool LayoutClipsContent() const;
    void WriteConfig();
    void Updated();
 

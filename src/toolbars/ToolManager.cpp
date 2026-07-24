@@ -960,6 +960,33 @@ void ToolManager::ReadConfig()
 
    if (!someFound)
       Reset();
+   else if (LayoutClipsContent())
+   {
+      // A persisted docked-bar width is too narrow to render its current
+      // children (e.g. SelectionBar's second time field falls off the
+      // right edge). This is the same broken state a user recovers from
+      // by running View > Toolbars > Reset Toolbars, so do it for them.
+      Reset();
+   }
+}
+
+// True when any docked toolbar's applied width is smaller than the
+// minimum its internal sizer needs to fit its current children. Used to
+// auto-trigger a Reset() when persisted geometry from an older build no
+// longer matches what the toolbar contents require.
+bool ToolManager::LayoutClipsContent() const
+{
+   for (const auto &bar : mBars) {
+      auto *b = bar.get();
+      if (!b || !b->IsDocked() || !b->IsShown())
+         continue;
+      wxSizer *sizer = b->wxWindow::GetSizer();
+      if (!sizer)
+         continue;
+      if (sizer->CalcMin().x > b->GetSize().x)
+         return true;
+   }
+   return false;
 }
 
 //
