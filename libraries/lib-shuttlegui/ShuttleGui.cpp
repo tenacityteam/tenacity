@@ -1033,6 +1033,13 @@ void ShuttleGuiBase::EndScroller()
 
    mpParent->SetMinSize( wxSize(xMin, yMin) );
 
+   // Tell the scrolled window its virtual size matches the sizer's real
+   // content size, so scrollbars appear reliably when content exceeds the
+   // 400px cap above. Without this, wxScrolledWindow only learns its
+   // virtual size after a resize, and small overflows can be clipped
+   // without a scrollbar on first paint.
+   mpParent->FitInside();
+
    PopSizer();
    mpParent = mpParent->GetParent();
 }

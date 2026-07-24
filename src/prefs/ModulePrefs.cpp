@@ -109,7 +109,7 @@ void ModulePrefs::PopulateOrExchange(ShuttleGui & S)
    S.SetBorder(2);
    S.StartScroller();
 
-   S.StartStatic( {} );
+   S.StartStatic( XO("Installed Modules") );
    {
       S.AddFixedText(XO(
 "Modules are optional components of Tenacity that enable some functionality, such as importing and exporting. \nIt is generally not necessary to change these settings.") );

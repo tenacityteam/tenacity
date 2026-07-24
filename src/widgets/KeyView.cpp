@@ -1266,8 +1266,10 @@ KeyView::OnDrawItem(wxDC & dc, const wxRect & rect, size_t line) const
             bx += KV_BITMAP_SIZE;
          }
 
+         // Draw the +/- expander box using the current text foreground so
+         // it stays visible under both light and dark themes.
          dc.SetBrush(*wxTRANSPARENT_BRUSH);
-         dc.SetPen(*wxBLACK_PEN);
+         dc.SetPen(dc.GetTextForeground());
          dc.DrawRectangle(bx + 3, by + 4, 9, 9);
          if (node->isopen)
          {
