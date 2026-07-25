@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-07-18 16:26-0700\n"
+"POT-Creation-Date: 2026-07-25 03:04-0400\n"
 "PO-Revision-Date: 2021-07-17 02:25+0000\n"
 "Last-Translator: brad freedom <brad.freedom@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/klyok/audacity/language/vi/)\n"
@@ -476,6 +476,21 @@ msgstr "Tối giản hóa"
 msgid "System"
 msgstr "Hệ thống"
 
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Generic Track"
+msgstr "chung"
+
+#. i18n-hint: The default name for an audio track.
+#: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
+msgid "Audio Track"
+msgstr "Dải âm"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Playable Track"
+msgstr "Phát lại"
+
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
 #, c-format
@@ -638,7 +653,7 @@ msgstr "Về %s"
 
 #. i18n-hint: In most languages OK is to be translated as OK.  It appears on a button.
 #: src/AboutDialog.cpp src/SplashDialog.cpp src/effects/nyquist/Nyquist.cpp
-#: src/export/ExportDialog.cpp src/widgets/MultiDialog.cpp
+#: src/widgets/MultiDialog.cpp
 msgid "OK"
 msgstr "OK"
 
@@ -672,6 +687,10 @@ msgid "%s Team Members"
 msgstr "%sThành viên nhóm"
 
 #: src/AboutDialog.cpp
+msgid "Contributors"
+msgstr "Những người đóng góp"
+
+#: src/AboutDialog.cpp
 #, fuzzy
 msgid "Emeritus"
 msgstr "Emeritus:"
@@ -696,10 +715,6 @@ msgid "Distinguished Audacity Team members, not currently active"
 msgstr ""
 
 #: src/AboutDialog.cpp
-msgid "Contributors"
-msgstr "Những người đóng góp"
-
-#: src/AboutDialog.cpp
 msgid "Website and Graphics"
 msgstr "Trang mạng và đồ họa"
 
@@ -713,8 +728,8 @@ msgstr "Thư viện"
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
-#, c-format
-msgid "%s includes code from the following projects:"
+#, fuzzy, c-format
+msgid "%s uses the following libraries:"
 msgstr "%s Bao gồm mã lệnh từ các dự án sau:"
 
 #: src/AboutDialog.cpp
@@ -736,17 +751,12 @@ msgstr "%s trang mạng:"
 #. name substitues the 2nd.
 #: src/AboutDialog.cpp
 #, c-format
-msgid "<center>Copyright %s 2021-2023 %s Team.</center>"
+msgid "Copyright %s 2021-2026 %s Team."
 msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "'Audacity' is a registered trademark of MuseCY SM Ltd"
 msgstr ""
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "</center>"
-msgstr "Giữa"
 
 #: src/AboutDialog.cpp
 msgid "Build Information"
@@ -767,10 +777,6 @@ msgstr "Đã Tắt"
 #, fuzzy
 msgid "This Build"
 msgstr "kiến trúc"
-
-#: src/AboutDialog.cpp
-msgid "Program build date:"
-msgstr "Ngày tạo phần mềm:"
 
 #: src/AboutDialog.cpp
 msgid "Commit Id:"
@@ -834,6 +840,11 @@ msgstr "Xuất và nhập Ogg Vorbis"
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
 msgstr "Thẻ hỗ trợ ID3"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Matroska import and export"
+msgstr "Xuất và nhập FLAC"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -4231,8 +4242,7 @@ msgstr ""
 "Nếu bạn click vào \"thoát Audacity. dự án của bạn sẽ được tạm thời lưu vào hệ thống, nó sẽ được khôi phục ở lần tiếp theo bạn mở Audacity."
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
-#: src/effects/Equalization.cpp src/export/Export.cpp
-#: src/export/ExportDialog.cpp src/menus/HelpMenus.cpp
+#: src/effects/Equalization.cpp src/export/Export.cpp src/menus/HelpMenus.cpp
 #: src/shuttle/ShuttleGui.cpp src/widgets/MultiDialog.cpp
 msgid "Help"
 msgstr "Trợ giúp"
@@ -4737,6 +4747,11 @@ msgstr "quá trinh đo đạt hoàn tất"
 #: src/WaveClip.cpp
 msgid "Resampling failed."
 msgstr "lấy mẫu thất bại."
+
+#: src/WaveTrack.cpp
+#, fuzzy
+msgid "Wave Track"
+msgstr "Di chuyển dải âm"
 
 #. i18n-hint Template for clip name generation on copy-paste
 #: src/WaveTrack.cpp
@@ -9670,11 +9685,6 @@ msgstr ""
 #, fuzzy
 msgid "Export Options"
 msgstr "Tùy chọn"
-
-#: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
-#, fuzzy
-msgid "Cancel"
-msgstr "&Hủy bỏ"
 
 #: src/export/ExportFFmpeg.cpp
 msgid ""
@@ -15190,6 +15200,10 @@ msgid "Preferences for Module"
 msgstr "Tuỳ chọn Chất Lượng"
 
 #: src/prefs/ModulePrefs.cpp
+msgid "Installed Modules"
+msgstr ""
+
+#: src/prefs/ModulePrefs.cpp
 #, fuzzy
 msgid ""
 "These are experimental modules. Enable them only if you've read the Tenacity Manual\n"
@@ -16161,11 +16175,6 @@ msgstr "mẫu"
 #, fuzzy
 msgid "Default audio track &name:"
 msgstr "Tạo dải âm mới"
-
-#. i18n-hint: The default name for an audio track.
-#: src/prefs/TracksPrefs.cpp
-msgid "Audio Track"
-msgstr "Dải âm"
 
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
 msgid "Zoom Toggle"
@@ -18394,6 +18403,11 @@ msgstr "đường thời gian:"
 
 #: src/widgets/ProgressDialog.cpp
 #, fuzzy
+msgid "Cancel"
+msgstr "&Hủy bỏ"
+
+#: src/widgets/ProgressDialog.cpp
+#, fuzzy
 msgid "Are you sure you wish to cancel?"
 msgstr "Bạn chắc mình muốn đóng không?"
 
@@ -20386,6 +20400,13 @@ msgstr "Tần số Radar Needles (Hz)"
 #, lisp-format
 msgid "Error.~%Stereo track required."
 msgstr "Lỗi. Bạn phải có dải âm ~%Stereo"
+
+#, fuzzy
+#~ msgid "</center>"
+#~ msgstr "Giữa"
+
+#~ msgid "Program build date:"
+#~ msgstr "Ngày tạo phần mềm:"
 
 #~ msgid "&Undo\tCtrl+Z"
 #~ msgstr "H&uỷ\tCtrl+Z"

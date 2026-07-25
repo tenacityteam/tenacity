@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-07-18 16:26-0700\n"
+"POT-Creation-Date: 2026-07-25 03:04-0400\n"
 "PO-Revision-Date: 2010-04-19 16:57+0300\n"
 "Last-Translator: FatCow <zhr@tut.by>\n"
 "Language-Team: Patricia Clausnitzer <by.marcis@gmail.com>\n"
@@ -488,6 +488,21 @@ msgstr "Спрошчаны інтэрфейс"
 msgid "System"
 msgstr "Дата пачала"
 
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Generic Track"
+msgstr "Созда&ніе"
+
+#. i18n-hint: The default name for an audio track.
+#: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
+msgid "Audio Track"
+msgstr "Гукавая дарожка"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Playable Track"
+msgstr "Прайграванне"
+
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
 #, c-format
@@ -652,7 +667,7 @@ msgstr ""
 
 #. i18n-hint: In most languages OK is to be translated as OK.  It appears on a button.
 #: src/AboutDialog.cpp src/SplashDialog.cpp src/effects/nyquist/Nyquist.cpp
-#: src/export/ExportDialog.cpp src/widgets/MultiDialog.cpp
+#: src/widgets/MultiDialog.cpp
 msgid "OK"
 msgstr "OK"
 
@@ -686,6 +701,11 @@ msgid "%s Team Members"
 msgstr "Іншыя якія адышлі ад спраў распрацоўнікі"
 
 #: src/AboutDialog.cpp
+#, fuzzy
+msgid "Contributors"
+msgstr "Іншыя ўдзельнікі праекта"
+
+#: src/AboutDialog.cpp
 msgid "Emeritus"
 msgstr ""
 
@@ -709,11 +729,6 @@ msgid "Distinguished Audacity Team members, not currently active"
 msgstr ""
 
 #: src/AboutDialog.cpp
-#, fuzzy
-msgid "Contributors"
-msgstr "Іншыя ўдзельнікі праекта"
-
-#: src/AboutDialog.cpp
 msgid "Website and Graphics"
 msgstr ""
 
@@ -729,7 +744,7 @@ msgstr "Бібліятэкі"
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
-msgid "%s includes code from the following projects:"
+msgid "%s uses the following libraries:"
 msgstr "Audacity выкарыстоўвае код наступных праектаў:"
 
 #: src/AboutDialog.cpp
@@ -751,17 +766,12 @@ msgstr "Першы запуск Audacity"
 #. name substitues the 2nd.
 #: src/AboutDialog.cpp
 #, c-format
-msgid "<center>Copyright %s 2021-2023 %s Team.</center>"
+msgid "Copyright %s 2021-2026 %s Team."
 msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "'Audacity' is a registered trademark of MuseCY SM Ltd"
 msgstr ""
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "</center>"
-msgstr "Цэнтр"
 
 #: src/AboutDialog.cpp
 msgid "Build Information"
@@ -782,11 +792,6 @@ msgstr "Адключана"
 #, fuzzy
 msgid "This Build"
 msgstr "Зборка з адладкавымі паведамленнямі"
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "Program build date:"
-msgstr "Дата зборкі праграмы: "
 
 #: src/AboutDialog.cpp
 #, fuzzy
@@ -854,6 +859,11 @@ msgstr "Імпарт і экспарт Ogg Vorbis"
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
 msgstr "Падтрымка тэгаў ID3"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Matroska import and export"
+msgstr "Імпарт і экспарт FLAC"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -4265,8 +4275,7 @@ msgid ""
 msgstr ""
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
-#: src/effects/Equalization.cpp src/export/Export.cpp
-#: src/export/ExportDialog.cpp src/menus/HelpMenus.cpp
+#: src/effects/Equalization.cpp src/export/Export.cpp src/menus/HelpMenus.cpp
 #: src/shuttle/ShuttleGui.cpp src/widgets/MultiDialog.cpp
 msgid "Help"
 msgstr "Даведка"
@@ -4789,6 +4798,11 @@ msgstr "Вынікі каліброўкі\n"
 #, fuzzy
 msgid "Resampling failed."
 msgstr "Змена чашчыні сэмпліравання адключана."
+
+#: src/WaveTrack.cpp
+#, fuzzy
+msgid "Wave Track"
+msgstr "Перамясціць дарожку"
 
 #. i18n-hint Template for clip name generation on copy-paste
 #: src/WaveTrack.cpp
@@ -10100,10 +10114,6 @@ msgstr "Немагчыма адкрыць/стварыць тэставы фай
 #, fuzzy
 msgid "Export Options"
 msgstr "Параметры эфекту"
-
-#: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
-msgid "Cancel"
-msgstr "Адмяніць"
 
 #: src/export/ExportFFmpeg.cpp
 msgid ""
@@ -15749,6 +15759,10 @@ msgid "Preferences for Module"
 msgstr "Параметры..."
 
 #: src/prefs/ModulePrefs.cpp
+msgid "Installed Modules"
+msgstr ""
+
+#: src/prefs/ModulePrefs.cpp
 msgid ""
 "These are experimental modules. Enable them only if you've read the Tenacity Manual\n"
 "and know what you are doing."
@@ -16770,11 +16784,6 @@ msgstr "сэмплы"
 #, fuzzy
 msgid "Default audio track &name:"
 msgstr "Створана новая гукавая дарожка"
-
-#. i18n-hint: The default name for an audio track.
-#: src/prefs/TracksPrefs.cpp
-msgid "Audio Track"
-msgstr "Гукавая дарожка"
 
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
 #, fuzzy
@@ -19077,6 +19086,10 @@ msgid "Remaining Time:"
 msgstr "Засталося:"
 
 #: src/widgets/ProgressDialog.cpp
+msgid "Cancel"
+msgstr "Адмяніць"
+
+#: src/widgets/ProgressDialog.cpp
 #, fuzzy
 msgid "Are you sure you wish to cancel?"
 msgstr "Вы ўпэўнены, што жадаеце выдаліць %s?"
@@ -21117,6 +21130,14 @@ msgstr "Чашчыня (Гц)"
 #, lisp-format
 msgid "Error.~%Stereo track required."
 msgstr ""
+
+#, fuzzy
+#~ msgid "</center>"
+#~ msgstr "Цэнтр"
+
+#, fuzzy
+#~ msgid "Program build date:"
+#~ msgstr "Дата зборкі праграмы: "
 
 #, fuzzy
 #~ msgid "&Nyquist Workbench..."

@@ -8,6 +8,7 @@ done | LANG=c sort | \
 sed -E 's/\.\.\///g' |\
 xargs xgettext \
 --no-wrap \
+--from-code=UTF-8 \
 --default-domain=tenacity \
 --directory=.. \
 --keyword=_ --keyword=XO --keyword=XC:1,2c --keyword=XXO --keyword=XXC:1,2c --keyword=XP:1,2 --keyword=XPC:1,2,4c \
@@ -17,12 +18,13 @@ xargs xgettext \
 --package-name="tenacity" \
 --package-version='1.3' \
 --msgid-bugs-address="~tenacity/tenacity-discuss@lists.sr.ht" \
---add-location=file -L C -o tenacity.pot 
+--add-location=file -L C++ -o tenacity.pot 
 echo ";; Adding nyquist files to tenacity.pot"
 for path in ../plug-ins ; do find $path -name \*.ny -not -name rms.ny; done | LANG=c sort | \
 sed -E 's/\.\.\///g' |\
 xargs xgettext \
 --no-wrap \
+--from-code=UTF-8 \
 --default-domain=tenacity \
 --directory=.. \
 --keyword=_ --keyword=_C:1,2c --keyword=ngettext:1,2 --keyword=ngettextc:1,2,4c \

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-07-18 16:26-0700\n"
+"POT-Creation-Date: 2026-07-25 03:04-0400\n"
 "PO-Revision-Date: 2021-07-20 03:20+0900\n"
 "Last-Translator: Phroneris <phroneris@gmail.com>\n"
 "Language-Team: Atsushi YOSHIDA, Phroneris\n"
@@ -474,6 +474,21 @@ msgstr "単純"
 msgid "System"
 msgstr "システムの言語"
 
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Generic Track"
+msgstr "Generic"
+
+#. i18n-hint: The default name for an audio track.
+#: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
+msgid "Audio Track"
+msgstr "音声トラック"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Playable Track"
+msgstr "再生"
+
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
 #, c-format
@@ -637,7 +652,7 @@ msgstr "%s について"
 
 #. i18n-hint: In most languages OK is to be translated as OK.  It appears on a button.
 #: src/AboutDialog.cpp src/SplashDialog.cpp src/effects/nyquist/Nyquist.cpp
-#: src/export/ExportDialog.cpp src/widgets/MultiDialog.cpp
+#: src/widgets/MultiDialog.cpp
 msgid "OK"
 msgstr "OK"
 
@@ -671,6 +686,10 @@ msgid "%s Team Members"
 msgstr "%s チームメンバー"
 
 #: src/AboutDialog.cpp
+msgid "Contributors"
+msgstr "支援者の方々"
+
+#: src/AboutDialog.cpp
 #, fuzzy
 msgid "Emeritus"
 msgstr "名誉メンバー:"
@@ -694,10 +713,6 @@ msgid "Distinguished Audacity Team members, not currently active"
 msgstr ""
 
 #: src/AboutDialog.cpp
-msgid "Contributors"
-msgstr "支援者の方々"
-
-#: src/AboutDialog.cpp
 msgid "Website and Graphics"
 msgstr "ウェブサイトとグラフィック"
 
@@ -711,8 +726,8 @@ msgstr "ライブラリ"
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
-#, c-format
-msgid "%s includes code from the following projects:"
+#, fuzzy, c-format
+msgid "%s uses the following libraries:"
 msgstr "%s は以下のプロジェクトのコードを含んでいます:"
 
 #: src/AboutDialog.cpp
@@ -734,17 +749,12 @@ msgstr "%s ウェブサイト: "
 #. name substitues the 2nd.
 #: src/AboutDialog.cpp
 #, c-format
-msgid "<center>Copyright %s 2021-2023 %s Team.</center>"
+msgid "Copyright %s 2021-2026 %s Team."
 msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "'Audacity' is a registered trademark of MuseCY SM Ltd"
 msgstr ""
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "</center>"
-msgstr "中央"
 
 #: src/AboutDialog.cpp
 msgid "Build Information"
@@ -766,10 +776,6 @@ msgstr "無効"
 #, fuzzy
 msgid "This Build"
 msgstr "ビルド"
-
-#: src/AboutDialog.cpp
-msgid "Program build date:"
-msgstr "プログラムのビルド日:"
 
 #: src/AboutDialog.cpp
 msgid "Commit Id:"
@@ -833,6 +839,11 @@ msgstr "Ogg Vorbis の取り込みと書き出し"
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
 msgstr "ID3 タグのサポート"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Matroska import and export"
+msgstr "FLAC の取り込みと書き出し"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -4261,8 +4272,7 @@ msgstr ""
 "次に開いた時に回復の対象となります。"
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
-#: src/effects/Equalization.cpp src/export/Export.cpp
-#: src/export/ExportDialog.cpp src/menus/HelpMenus.cpp
+#: src/effects/Equalization.cpp src/export/Export.cpp src/menus/HelpMenus.cpp
 #: src/shuttle/ShuttleGui.cpp src/widgets/MultiDialog.cpp
 msgid "Help"
 msgstr "ヘルプ"
@@ -4765,6 +4775,11 @@ msgstr "校正完了"
 #: src/WaveClip.cpp
 msgid "Resampling failed."
 msgstr "再サンプリングに失敗しました。"
+
+#: src/WaveTrack.cpp
+#, fuzzy
+msgid "Wave Track"
+msgstr "トラックの移動"
 
 #. i18n-hint Template for clip name generation on copy-paste
 #: src/WaveTrack.cpp
@@ -9794,10 +9809,6 @@ msgstr "「%s」をパスに配置できません。"
 #, fuzzy
 msgid "Export Options"
 msgstr "フォーマットオプション"
-
-#: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
-msgid "Cancel"
-msgstr "キャンセル"
 
 #: src/export/ExportFFmpeg.cpp
 msgid ""
@@ -15129,6 +15140,10 @@ msgid "Preferences for Module"
 msgstr "モジュールの環境設定"
 
 #: src/prefs/ModulePrefs.cpp
+msgid "Installed Modules"
+msgstr ""
+
+#: src/prefs/ModulePrefs.cpp
 #, fuzzy
 msgid ""
 "These are experimental modules. Enable them only if you've read the Tenacity Manual\n"
@@ -16071,11 +16086,6 @@ msgstr "サンプル単位表示(&S):"
 #: src/prefs/TracksPrefs.cpp
 msgid "Default audio track &name:"
 msgstr "デフォルト音声トラック名(&N):"
-
-#. i18n-hint: The default name for an audio track.
-#: src/prefs/TracksPrefs.cpp
-msgid "Audio Track"
-msgstr "音声トラック"
 
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
 msgid "Zoom Toggle"
@@ -18181,6 +18191,10 @@ msgid "Remaining Time:"
 msgstr "残り時間:"
 
 #: src/widgets/ProgressDialog.cpp
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: src/widgets/ProgressDialog.cpp
 msgid "Are you sure you wish to cancel?"
 msgstr "本当にキャンセルしますか？"
 
@@ -20122,6 +20136,13 @@ msgstr "くし歯の周波数 (Hz)"
 #, lisp-format
 msgid "Error.~%Stereo track required."
 msgstr "エラー。~%ステレオトラックが必要です。"
+
+#, fuzzy
+#~ msgid "</center>"
+#~ msgstr "中央"
+
+#~ msgid "Program build date:"
+#~ msgstr "プログラムのビルド日:"
 
 #~ msgid "&Nyquist Workbench..."
 #~ msgstr "Nyquist ワークベンチ(&N)..."

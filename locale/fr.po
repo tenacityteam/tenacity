@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-07-18 16:26-0700\n"
+"POT-Creation-Date: 2026-07-25 03:04-0400\n"
 "Last-Translator: Y0plait <antochkamoul@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tenacity/tenacity/fr/>\n"
 "Language: fr\n"
@@ -489,6 +489,21 @@ msgstr "Simplifié"
 msgid "System"
 msgstr "Système"
 
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Generic Track"
+msgstr "Générique"
+
+#. i18n-hint: The default name for an audio track.
+#: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
+msgid "Audio Track"
+msgstr "Piste audio"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Playable Track"
+msgstr "Lecture"
+
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
 #, c-format
@@ -650,7 +665,7 @@ msgstr "À propos d’%s"
 
 #. i18n-hint: In most languages OK is to be translated as OK.  It appears on a button.
 #: src/AboutDialog.cpp src/SplashDialog.cpp src/effects/nyquist/Nyquist.cpp
-#: src/export/ExportDialog.cpp src/widgets/MultiDialog.cpp
+#: src/widgets/MultiDialog.cpp
 msgid "OK"
 msgstr "Valider"
 
@@ -694,6 +709,10 @@ msgid "%s Team Members"
 msgstr "%s membres de l'équipe"
 
 #: src/AboutDialog.cpp
+msgid "Contributors"
+msgstr "Contributeurs d'Audacity"
+
+#: src/AboutDialog.cpp
 #, fuzzy
 msgid "Emeritus"
 msgstr "Émérite :"
@@ -718,10 +737,6 @@ msgid "Distinguished Audacity Team members, not currently active"
 msgstr ""
 
 #: src/AboutDialog.cpp
-msgid "Contributors"
-msgstr "Contributeurs d'Audacity"
-
-#: src/AboutDialog.cpp
 msgid "Website and Graphics"
 msgstr "Site web et graphismes d'Audacity"
 
@@ -735,8 +750,8 @@ msgstr "Bibliothèques"
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
-#, c-format
-msgid "%s includes code from the following projects:"
+#, fuzzy, c-format
+msgid "%s uses the following libraries:"
 msgstr "%s inclut du code des projets suivants:"
 
 #: src/AboutDialog.cpp
@@ -758,17 +773,12 @@ msgstr "Site web de %s: "
 #. name substitues the 2nd.
 #: src/AboutDialog.cpp
 #, c-format
-msgid "<center>Copyright %s 2021-2023 %s Team.</center>"
+msgid "Copyright %s 2021-2026 %s Team."
 msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "'Audacity' is a registered trademark of MuseCY SM Ltd"
 msgstr ""
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "</center>"
-msgstr "Centré"
 
 #: src/AboutDialog.cpp
 msgid "Build Information"
@@ -789,10 +799,6 @@ msgstr "Désactivé"
 #, fuzzy
 msgid "This Build"
 msgstr "La construction"
-
-#: src/AboutDialog.cpp
-msgid "Program build date:"
-msgstr "Date de construction du programme :"
 
 # trebmuh to check (vérifier dans un contexte graphique)
 #: src/AboutDialog.cpp
@@ -857,6 +863,11 @@ msgstr "Import et export Ogg Vorbis"
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
 msgstr "Prise en charge des tags ID3"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Matroska import and export"
+msgstr "Import et export FLAC"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -4305,8 +4316,7 @@ msgstr ""
 "Si vous choisissez de \"Quitter Audacity\", votre projet peut être laissé dans un état non sauvegardé qui sera récupéré la prochaine fois que vous l’ouvrirez."
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
-#: src/effects/Equalization.cpp src/export/Export.cpp
-#: src/export/ExportDialog.cpp src/menus/HelpMenus.cpp
+#: src/effects/Equalization.cpp src/export/Export.cpp src/menus/HelpMenus.cpp
 #: src/shuttle/ShuttleGui.cpp src/widgets/MultiDialog.cpp
 msgid "Help"
 msgstr "Aide"
@@ -4812,6 +4822,11 @@ msgstr "Calibration complétée"
 #: src/WaveClip.cpp
 msgid "Resampling failed."
 msgstr "Échec du ré-échantillonnage."
+
+#: src/WaveTrack.cpp
+#, fuzzy
+msgid "Wave Track"
+msgstr "Déplacer la piste"
 
 #. i18n-hint Template for clip name generation on copy-paste
 #: src/WaveTrack.cpp
@@ -9781,10 +9796,6 @@ msgstr "Impossible de trouver \"%s\" dans votre chemin."
 #, fuzzy
 msgid "Export Options"
 msgstr "Options de format"
-
-#: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
-msgid "Cancel"
-msgstr "Annuler"
 
 #: src/export/ExportFFmpeg.cpp
 msgid ""
@@ -15242,6 +15253,10 @@ msgid "Preferences for Module"
 msgstr "Préférences pour le module"
 
 #: src/prefs/ModulePrefs.cpp
+msgid "Installed Modules"
+msgstr ""
+
+#: src/prefs/ModulePrefs.cpp
 #, fuzzy
 msgid ""
 "These are experimental modules. Enable them only if you've read the Tenacity Manual\n"
@@ -16211,11 +16226,6 @@ msgstr "Afficher les échantillon&s :"
 #: src/prefs/TracksPrefs.cpp
 msgid "Default audio track &name:"
 msgstr "&Nom des pistes audio par défaut :"
-
-#. i18n-hint: The default name for an audio track.
-#: src/prefs/TracksPrefs.cpp
-msgid "Audio Track"
-msgstr "Piste audio"
 
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
 msgid "Zoom Toggle"
@@ -18378,6 +18388,10 @@ msgid "Remaining Time:"
 msgstr "Temps restant :"
 
 #: src/widgets/ProgressDialog.cpp
+msgid "Cancel"
+msgstr "Annuler"
+
+#: src/widgets/ProgressDialog.cpp
 msgid "Are you sure you wish to cancel?"
 msgstr "Voulez-vous vraiment annuler ?"
 
@@ -20297,6 +20311,13 @@ msgstr "Fréquence des aiguilles de radar (Hz)"
 #, lisp-format
 msgid "Error.~%Stereo track required."
 msgstr "Erreur.~%Piste stéréo nécessaire."
+
+#, fuzzy
+#~ msgid "</center>"
+#~ msgstr "Centré"
+
+#~ msgid "Program build date:"
+#~ msgstr "Date de construction du programme :"
 
 #~ msgid "Sound card mixer support"
 #~ msgstr "Prise en charge des cartes son de mixage"

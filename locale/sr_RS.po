@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-07-18 16:26-0700\n"
+"POT-Creation-Date: 2026-07-25 03:04-0400\n"
 "PO-Revision-Date: 2021-02-14 13:25+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: српски <gnome-sr@googlegroups.org>\n"
@@ -471,6 +471,21 @@ msgstr "Поједностављено"
 msgid "System"
 msgstr "Систем"
 
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Generic Track"
+msgstr "Опште"
+
+#. i18n-hint: The default name for an audio track.
+#: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
+msgid "Audio Track"
+msgstr "Звучна нумера"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Playable Track"
+msgstr "Пуштање"
+
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
 #, c-format
@@ -634,7 +649,7 @@ msgstr "О програму „%s“"
 
 #. i18n-hint: In most languages OK is to be translated as OK.  It appears on a button.
 #: src/AboutDialog.cpp src/SplashDialog.cpp src/effects/nyquist/Nyquist.cpp
-#: src/export/ExportDialog.cpp src/widgets/MultiDialog.cpp
+#: src/widgets/MultiDialog.cpp
 msgid "OK"
 msgstr "У реду"
 
@@ -670,6 +685,10 @@ msgid "%s Team Members"
 msgstr "Чланови тима %s-ја"
 
 #: src/AboutDialog.cpp
+msgid "Contributors"
+msgstr "Сарадници"
+
+#: src/AboutDialog.cpp
 #, fuzzy
 msgid "Emeritus"
 msgstr "Почасни:"
@@ -694,10 +713,6 @@ msgid "Distinguished Audacity Team members, not currently active"
 msgstr ""
 
 #: src/AboutDialog.cpp
-msgid "Contributors"
-msgstr "Сарадници"
-
-#: src/AboutDialog.cpp
 msgid "Website and Graphics"
 msgstr "Веб сајт и графика"
 
@@ -711,8 +726,8 @@ msgstr "Библиотеке"
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
-#, c-format
-msgid "%s includes code from the following projects:"
+#, fuzzy, c-format
+msgid "%s uses the following libraries:"
 msgstr "%s се заснива на коду из следећих пројеката:"
 
 #: src/AboutDialog.cpp
@@ -734,17 +749,12 @@ msgstr "%s веб сајт: "
 #. name substitues the 2nd.
 #: src/AboutDialog.cpp
 #, c-format
-msgid "<center>Copyright %s 2021-2023 %s Team.</center>"
+msgid "Copyright %s 2021-2026 %s Team."
 msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "'Audacity' is a registered trademark of MuseCY SM Ltd"
 msgstr ""
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "</center>"
-msgstr "На средини"
 
 #: src/AboutDialog.cpp
 msgid "Build Information"
@@ -765,10 +775,6 @@ msgstr "искључено"
 #, fuzzy
 msgid "This Build"
 msgstr "изградња за уклањање грешака"
-
-#: src/AboutDialog.cpp
-msgid "Program build date:"
-msgstr "Датум изградње програма:"
 
 #: src/AboutDialog.cpp
 msgid "Commit Id:"
@@ -832,6 +838,11 @@ msgstr "Огг Ворбис увоз и извоз"
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
 msgstr "подршка ид3 ознаке"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Matroska import and export"
+msgstr "ФЛАЦ увоз и извоз"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -4228,8 +4239,7 @@ msgstr ""
 "Ако изаберете да затворите програм, ваш пројекат може бити остављен у несачуваном стању које се може повратити када га следећи пут будете отворили."
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
-#: src/effects/Equalization.cpp src/export/Export.cpp
-#: src/export/ExportDialog.cpp src/menus/HelpMenus.cpp
+#: src/effects/Equalization.cpp src/export/Export.cpp src/menus/HelpMenus.cpp
 #: src/shuttle/ShuttleGui.cpp src/widgets/MultiDialog.cpp
 msgid "Help"
 msgstr "Помоћ"
@@ -4732,6 +4742,11 @@ msgstr "Калибрација је завршена"
 #: src/WaveClip.cpp
 msgid "Resampling failed."
 msgstr "Поново узорковање није успело."
+
+#: src/WaveTrack.cpp
+#, fuzzy
+msgid "Wave Track"
+msgstr "Премештена је нумера"
 
 #. i18n-hint Template for clip name generation on copy-paste
 #: src/WaveTrack.cpp
@@ -9596,10 +9611,6 @@ msgstr "Не могу да нађем „%s“ у вашој путањи."
 #, fuzzy
 msgid "Export Options"
 msgstr "Опште формата"
-
-#: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
-msgid "Cancel"
-msgstr "Откажи"
 
 #: src/export/ExportFFmpeg.cpp
 msgid ""
@@ -14914,6 +14925,10 @@ msgid "Preferences for Module"
 msgstr "Поставке за модул"
 
 #: src/prefs/ModulePrefs.cpp
+msgid "Installed Modules"
+msgstr ""
+
+#: src/prefs/ModulePrefs.cpp
 #, fuzzy
 msgid ""
 "These are experimental modules. Enable them only if you've read the Tenacity Manual\n"
@@ -15856,11 +15871,6 @@ msgstr "Прикажи &узорке као:"
 #: src/prefs/TracksPrefs.cpp
 msgid "Default audio track &name:"
 msgstr "Основни &назив звучне нумере:"
-
-#. i18n-hint: The default name for an audio track.
-#: src/prefs/TracksPrefs.cpp
-msgid "Audio Track"
-msgstr "Звучна нумера"
 
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
 msgid "Zoom Toggle"
@@ -17980,6 +17990,10 @@ msgid "Remaining Time:"
 msgstr "Преостало време:"
 
 #: src/widgets/ProgressDialog.cpp
+msgid "Cancel"
+msgstr "Откажи"
+
+#: src/widgets/ProgressDialog.cpp
 msgid "Are you sure you wish to cancel?"
 msgstr "Да ли сигурно желите да откажете?"
 
@@ -19875,6 +19889,13 @@ msgstr "Учесталост радарских игала (Hz)"
 #, lisp-format
 msgid "Error.~%Stereo track required."
 msgstr "Грешка.~%Потребна је стерео нумера."
+
+#, fuzzy
+#~ msgid "</center>"
+#~ msgstr "На средини"
+
+#~ msgid "Program build date:"
+#~ msgstr "Датум изградње програма:"
 
 #~ msgid "&Nyquist Workbench..."
 #~ msgstr "&Радни сто Никвиста..."

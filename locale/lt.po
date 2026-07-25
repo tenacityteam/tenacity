@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-07-18 16:26-0700\n"
+"POT-Creation-Date: 2026-07-25 03:04-0400\n"
 "PO-Revision-Date: 2023-01-10 17:47+0000\n"
 "Last-Translator: Kornelijus Tvarijanavičius <kornelijus@tvaria.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/tenacity/tenacity/lt/>\n"
@@ -482,6 +482,21 @@ msgstr "Stiprinama"
 msgid "System"
 msgstr ""
 
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Generic Track"
+msgstr "&Generuoti"
+
+#. i18n-hint: The default name for an audio track.
+#: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
+msgid "Audio Track"
+msgstr "Audio Takelis"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Playable Track"
+msgstr "Atkūrimas"
+
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
 #, c-format
@@ -646,7 +661,7 @@ msgstr "Apie"
 
 #. i18n-hint: In most languages OK is to be translated as OK.  It appears on a button.
 #: src/AboutDialog.cpp src/SplashDialog.cpp src/effects/nyquist/Nyquist.cpp
-#: src/export/ExportDialog.cpp src/widgets/MultiDialog.cpp
+#: src/widgets/MultiDialog.cpp
 msgid "OK"
 msgstr "OK"
 
@@ -684,6 +699,10 @@ msgid "%s Team Members"
 msgstr "Audacity komandos nariai"
 
 #: src/AboutDialog.cpp
+msgid "Contributors"
+msgstr "Bendrininkai"
+
+#: src/AboutDialog.cpp
 #, fuzzy
 msgid "Emeritus"
 msgstr "Emeritus:"
@@ -708,10 +727,6 @@ msgid "Distinguished Audacity Team members, not currently active"
 msgstr ""
 
 #: src/AboutDialog.cpp
-msgid "Contributors"
-msgstr "Bendrininkai"
-
-#: src/AboutDialog.cpp
 msgid "Website and Graphics"
 msgstr ""
 
@@ -730,7 +745,7 @@ msgstr "Bibliotekos"
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
 #, fuzzy, c-format
-msgid "%s includes code from the following projects:"
+msgid "%s uses the following libraries:"
 msgstr "Audacity naudoja kodus iš šių projektų:"
 
 #: src/AboutDialog.cpp
@@ -752,17 +767,12 @@ msgstr "Audacity svetainė: "
 #. name substitues the 2nd.
 #: src/AboutDialog.cpp
 #, c-format
-msgid "<center>Copyright %s 2021-2023 %s Team.</center>"
+msgid "Copyright %s 2021-2026 %s Team."
 msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "'Audacity' is a registered trademark of MuseCY SM Ltd"
 msgstr ""
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "</center>"
-msgstr "Centrinis"
 
 #: src/AboutDialog.cpp
 msgid "Build Information"
@@ -782,11 +792,6 @@ msgstr "Išjungtas"
 #: src/AboutDialog.cpp
 msgid "This Build"
 msgstr ""
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "Program build date:"
-msgstr "Programos sukūrimo data: "
 
 #: src/AboutDialog.cpp
 msgid "Commit Id:"
@@ -851,6 +856,11 @@ msgstr "Ogg Vorbis Importavimas ir Eksportavimas"
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
 msgstr "ID3 etikečių palaikymas"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Matroska import and export"
+msgstr "FLAC Importavimas ir Eksportavimas"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -4251,8 +4261,7 @@ msgid ""
 msgstr ""
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
-#: src/effects/Equalization.cpp src/export/Export.cpp
-#: src/export/ExportDialog.cpp src/menus/HelpMenus.cpp
+#: src/effects/Equalization.cpp src/export/Export.cpp src/menus/HelpMenus.cpp
 #: src/shuttle/ShuttleGui.cpp src/widgets/MultiDialog.cpp
 msgid "Help"
 msgstr "Pagalba"
@@ -4761,6 +4770,11 @@ msgstr "Kalibravimas Baigtas"
 #: src/WaveClip.cpp
 msgid "Resampling failed."
 msgstr "Ėminių perdarymas nepavyko."
+
+#: src/WaveTrack.cpp
+#, fuzzy
+msgid "Wave Track"
+msgstr "Perkelti Takelį"
 
 #. i18n-hint Template for clip name generation on copy-paste
 #: src/WaveTrack.cpp
@@ -9985,11 +9999,6 @@ msgstr "Nepavyksta pakrauti išankstinės nuostatos failo."
 #, fuzzy
 msgid "Export Options"
 msgstr "Efektų nustatymai"
-
-#: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
-#, fuzzy
-msgid "Cancel"
-msgstr "&Atšaukti"
 
 #: src/export/ExportFFmpeg.cpp
 msgid ""
@@ -15478,6 +15487,10 @@ msgid "Preferences for Module"
 msgstr "&Nuostatos..."
 
 #: src/prefs/ModulePrefs.cpp
+msgid "Installed Modules"
+msgstr ""
+
+#: src/prefs/ModulePrefs.cpp
 msgid ""
 "These are experimental modules. Enable them only if you've read the Tenacity Manual\n"
 "and know what you are doing."
@@ -16514,11 +16527,6 @@ msgstr "Perkeltas Modelis"
 #: src/prefs/TracksPrefs.cpp
 msgid "Default audio track &name:"
 msgstr "Automatiškai nustatytas garso takelio &pavadinimas:"
-
-#. i18n-hint: The default name for an audio track.
-#: src/prefs/TracksPrefs.cpp
-msgid "Audio Track"
-msgstr "Audio Takelis"
 
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
 #, fuzzy
@@ -18821,6 +18829,11 @@ msgid "Remaining Time:"
 msgstr "Atleidimo Laikas:"
 
 #: src/widgets/ProgressDialog.cpp
+#, fuzzy
+msgid "Cancel"
+msgstr "&Atšaukti"
+
+#: src/widgets/ProgressDialog.cpp
 msgid "Are you sure you wish to cancel?"
 msgstr "Ar tikrai norite atšaukti?"
 
@@ -20854,6 +20867,14 @@ msgstr "LFO Dažnis (Hz):"
 #, lisp-format
 msgid "Error.~%Stereo track required."
 msgstr ""
+
+#, fuzzy
+#~ msgid "</center>"
+#~ msgstr "Centrinis"
+
+#, fuzzy
+#~ msgid "Program build date:"
+#~ msgstr "Programos sukūrimo data: "
 
 #~ msgid "&Nyquist Workbench..."
 #~ msgstr "&Nyquist Darbastalis..."

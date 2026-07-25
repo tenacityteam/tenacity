@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-07-18 16:26-0700\n"
+"POT-Creation-Date: 2026-07-25 03:04-0400\n"
 "PO-Revision-Date: 2003-06-23 11:40+0200\n"
 "Last-Translator: Ilija Iliev <strumjan@mol.net.mk>\n"
 "Language-Team: macedonian <mk@li.org>\n"
@@ -476,6 +476,21 @@ msgstr "Засилување"
 msgid "System"
 msgstr ""
 
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Generic Track"
+msgstr "&Генерирај"
+
+#. i18n-hint: The default name for an audio track.
+#: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
+msgid "Audio Track"
+msgstr "Аудио нумера"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Playable Track"
+msgstr "Плејбек"
+
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
 #, c-format
@@ -640,7 +655,7 @@ msgstr ""
 
 #. i18n-hint: In most languages OK is to be translated as OK.  It appears on a button.
 #: src/AboutDialog.cpp src/SplashDialog.cpp src/effects/nyquist/Nyquist.cpp
-#: src/export/ExportDialog.cpp src/widgets/MultiDialog.cpp
+#: src/widgets/MultiDialog.cpp
 msgid "OK"
 msgstr "OK"
 
@@ -674,6 +689,10 @@ msgid "%s Team Members"
 msgstr "Аudacity поставки"
 
 #: src/AboutDialog.cpp
+msgid "Contributors"
+msgstr ""
+
+#: src/AboutDialog.cpp
 msgid "Emeritus"
 msgstr ""
 
@@ -697,10 +716,6 @@ msgid "Distinguished Audacity Team members, not currently active"
 msgstr ""
 
 #: src/AboutDialog.cpp
-msgid "Contributors"
-msgstr ""
-
-#: src/AboutDialog.cpp
 msgid "Website and Graphics"
 msgstr ""
 
@@ -716,7 +731,7 @@ msgstr "Именици"
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
 #, c-format
-msgid "%s includes code from the following projects:"
+msgid "%s uses the following libraries:"
 msgstr ""
 
 #: src/AboutDialog.cpp
@@ -738,17 +753,12 @@ msgstr "Аudacity прва употреба"
 #. name substitues the 2nd.
 #: src/AboutDialog.cpp
 #, c-format
-msgid "<center>Copyright %s 2021-2023 %s Team.</center>"
+msgid "Copyright %s 2021-2026 %s Team."
 msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "'Audacity' is a registered trademark of MuseCY SM Ltd"
 msgstr ""
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "</center>"
-msgstr "Центар"
 
 #: src/AboutDialog.cpp
 #, fuzzy
@@ -770,11 +780,6 @@ msgstr " (откажана)"
 #: src/AboutDialog.cpp
 msgid "This Build"
 msgstr ""
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "Program build date:"
-msgstr "Дата на програмата:"
 
 #: src/AboutDialog.cpp
 msgid "Commit Id:"
@@ -839,6 +844,10 @@ msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
+msgstr ""
+
+#: src/AboutDialog.cpp
+msgid "Matroska import and export"
 msgstr ""
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
@@ -4213,8 +4222,7 @@ msgid ""
 msgstr ""
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
-#: src/effects/Equalization.cpp src/export/Export.cpp
-#: src/export/ExportDialog.cpp src/menus/HelpMenus.cpp
+#: src/effects/Equalization.cpp src/export/Export.cpp src/menus/HelpMenus.cpp
 #: src/shuttle/ShuttleGui.cpp src/widgets/MultiDialog.cpp
 #, fuzzy
 msgid "Help"
@@ -4735,6 +4743,11 @@ msgstr ""
 #, fuzzy
 msgid "Resampling failed."
 msgstr "MP3 внес исклучен"
+
+#: src/WaveTrack.cpp
+#, fuzzy
+msgid "Wave Track"
+msgstr "Мрдни нумера угоре"
 
 #. i18n-hint Template for clip name generation on copy-paste
 #: src/WaveTrack.cpp
@@ -9961,10 +9974,6 @@ msgstr "Неможно да се пронајде"
 #, fuzzy
 msgid "Export Options"
 msgstr "Ladspa ефект поставки"
-
-#: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
-msgid "Cancel"
-msgstr ""
 
 #: src/export/ExportFFmpeg.cpp
 msgid ""
@@ -15558,6 +15567,10 @@ msgid "Preferences for Module"
 msgstr "Аudacity поставки"
 
 #: src/prefs/ModulePrefs.cpp
+msgid "Installed Modules"
+msgstr ""
+
+#: src/prefs/ModulePrefs.cpp
 msgid ""
 "These are experimental modules. Enable them only if you've read the Tenacity Manual\n"
 "and know what you are doing."
@@ -16583,11 +16596,6 @@ msgstr "Мрднат семпл"
 #, fuzzy
 msgid "Default audio track &name:"
 msgstr "Создадена нова аудио нумера"
-
-#. i18n-hint: The default name for an audio track.
-#: src/prefs/TracksPrefs.cpp
-msgid "Audio Track"
-msgstr "Аудио нумера"
 
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
 #, fuzzy
@@ -18871,6 +18879,10 @@ msgid "Remaining Time:"
 msgstr "Ударно време: %.1f сек"
 
 #: src/widgets/ProgressDialog.cpp
+msgid "Cancel"
+msgstr ""
+
+#: src/widgets/ProgressDialog.cpp
 msgid "Are you sure you wish to cancel?"
 msgstr ""
 
@@ -20872,6 +20884,14 @@ msgstr "LFO фрекфенција (Hz):"
 #, lisp-format
 msgid "Error.~%Stereo track required."
 msgstr ""
+
+#, fuzzy
+#~ msgid "</center>"
+#~ msgstr "Центар"
+
+#, fuzzy
+#~ msgid "Program build date:"
+#~ msgstr "Дата на програмата:"
 
 #, fuzzy
 #~ msgid "&Nyquist Workbench..."

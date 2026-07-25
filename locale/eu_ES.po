@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2023-07-18 16:26-0700\n"
+"POT-Creation-Date: 2026-07-25 03:04-0400\n"
 "PO-Revision-Date: 2023-06-17 23:50+0000\n"
 "Last-Translator: Aitor Salaberria <trslbrr@gmail.com>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/tenacity/tenacity/eu/>\n"
@@ -485,6 +485,21 @@ msgstr "Sinplifikatua"
 msgid "System"
 msgstr "Sistema"
 
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Generic Track"
+msgstr "Generikoa"
+
+#. i18n-hint: The default name for an audio track.
+#: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
+msgid "Audio Track"
+msgstr "Audio-pista"
+
+#: libraries/lib-track/Track.cpp
+#, fuzzy
+msgid "Playable Track"
+msgstr "Erreprodukzioa"
+
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
 #, c-format
@@ -646,7 +661,7 @@ msgstr "%s-ri buruz"
 
 #. i18n-hint: In most languages OK is to be translated as OK.  It appears on a button.
 #: src/AboutDialog.cpp src/SplashDialog.cpp src/effects/nyquist/Nyquist.cpp
-#: src/export/ExportDialog.cpp src/widgets/MultiDialog.cpp
+#: src/widgets/MultiDialog.cpp
 msgid "OK"
 msgstr "Ados"
 
@@ -695,6 +710,10 @@ msgid "%s Team Members"
 msgstr "%s taldeko kideak"
 
 #: src/AboutDialog.cpp
+msgid "Contributors"
+msgstr "Parte hartzaileak"
+
+#: src/AboutDialog.cpp
 #, fuzzy
 msgid "Emeritus"
 msgstr "Emerituak:"
@@ -719,10 +738,6 @@ msgid "Distinguished Audacity Team members, not currently active"
 msgstr ""
 
 #: src/AboutDialog.cpp
-msgid "Contributors"
-msgstr "Parte hartzaileak"
-
-#: src/AboutDialog.cpp
 msgid "Website and Graphics"
 msgstr "Webgunea eta grafikoak"
 
@@ -736,8 +751,8 @@ msgstr "Liburutegiak"
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
-#, c-format
-msgid "%s includes code from the following projects:"
+#, fuzzy, c-format
+msgid "%s uses the following libraries:"
 msgstr "%s-k hurrengo proiektuen kodea erabiltzen du:"
 
 #: src/AboutDialog.cpp
@@ -759,17 +774,12 @@ msgstr "%s -ren webgunea: "
 #. name substitues the 2nd.
 #: src/AboutDialog.cpp
 #, c-format
-msgid "<center>Copyright %s 2021-2023 %s Team.</center>"
+msgid "Copyright %s 2021-2026 %s Team."
 msgstr ""
 
 #: src/AboutDialog.cpp
 msgid "'Audacity' is a registered trademark of MuseCY SM Ltd"
 msgstr ""
-
-#: src/AboutDialog.cpp
-#, fuzzy
-msgid "</center>"
-msgstr "Erdia"
 
 #: src/AboutDialog.cpp
 msgid "Build Information"
@@ -790,10 +800,6 @@ msgstr "Desgaituta"
 #, fuzzy
 msgid "This Build"
 msgstr "Eraikitzea"
-
-#: src/AboutDialog.cpp
-msgid "Program build date:"
-msgstr "Programaren konpilazio data:"
 
 #: src/AboutDialog.cpp
 msgid "Commit Id:"
@@ -857,6 +863,11 @@ msgstr "Ogg Vorbis inportazioa eta esportazioa"
 #: src/AboutDialog.cpp
 msgid "ID3 tag support"
 msgstr "ID3 etiketentzako euskarria"
+
+#: src/AboutDialog.cpp
+#, fuzzy
+msgid "Matroska import and export"
+msgstr "FLAC inportazioa eta esportazioa"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -4251,8 +4262,7 @@ msgstr ""
 "\"Irten Audacity\" aukeratzen baduzu, zure proiektua gorde gabeko egoeran utzi ahal izango da, irekitzen duzun hurrengoan berreskuratuko dena."
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
-#: src/effects/Equalization.cpp src/export/Export.cpp
-#: src/export/ExportDialog.cpp src/menus/HelpMenus.cpp
+#: src/effects/Equalization.cpp src/export/Export.cpp src/menus/HelpMenus.cpp
 #: src/shuttle/ShuttleGui.cpp src/widgets/MultiDialog.cpp
 msgid "Help"
 msgstr "Laguntza"
@@ -4755,6 +4765,11 @@ msgstr "Kalibrazioa burututa"
 #: src/WaveClip.cpp
 msgid "Resampling failed."
 msgstr "Birlagintzeak huts egin du ."
+
+#: src/WaveTrack.cpp
+#, fuzzy
+msgid "Wave Track"
+msgstr "Aldatu pista lekuz"
 
 #. i18n-hint Template for clip name generation on copy-paste
 #: src/WaveTrack.cpp
@@ -9618,10 +9633,6 @@ msgstr "Ezin da aurkitu \"%s\" zure bidean."
 #, fuzzy
 msgid "Export Options"
 msgstr "Formatuaren aukerak"
-
-#: src/export/ExportDialog.cpp src/widgets/ProgressDialog.cpp
-msgid "Cancel"
-msgstr "Utzi"
 
 #: src/export/ExportFFmpeg.cpp
 msgid ""
@@ -14936,6 +14947,10 @@ msgid "Preferences for Module"
 msgstr "Moduluen hobespenak"
 
 #: src/prefs/ModulePrefs.cpp
+msgid "Installed Modules"
+msgstr ""
+
+#: src/prefs/ModulePrefs.cpp
 #, fuzzy
 msgid ""
 "These are experimental modules. Enable them only if you've read the Tenacity Manual\n"
@@ -15872,11 +15887,6 @@ msgstr "Erakutsi &laginak:"
 #: src/prefs/TracksPrefs.cpp
 msgid "Default audio track &name:"
 msgstr "Lehenetsitako audio pistaren ize&na:"
-
-#. i18n-hint: The default name for an audio track.
-#: src/prefs/TracksPrefs.cpp
-msgid "Audio Track"
-msgstr "Audio-pista"
 
 #: src/prefs/TracksPrefs.cpp src/toolbars/EditToolBar.cpp
 msgid "Zoom Toggle"
@@ -17995,6 +18005,10 @@ msgid "Remaining Time:"
 msgstr "Geratzen den denbora:"
 
 #: src/widgets/ProgressDialog.cpp
+msgid "Cancel"
+msgstr "Utzi"
+
+#: src/widgets/ProgressDialog.cpp
 msgid "Are you sure you wish to cancel?"
 msgstr "Ziur bertan behera utzi nahi duzula?"
 
@@ -19892,6 +19906,13 @@ msgstr "Radar orratzen maiztasuna (Hz)"
 #, lisp-format
 msgid "Error.~%Stereo track required."
 msgstr "Errorea.~%Pista estereoa behar da."
+
+#, fuzzy
+#~ msgid "</center>"
+#~ msgstr "Erdia"
+
+#~ msgid "Program build date:"
+#~ msgstr "Programaren konpilazio data:"
 
 #~ msgid "&Nyquist Workbench..."
 #~ msgstr "&Nyquist lan-mahaia..."
