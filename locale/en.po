@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
-"POT-Creation-Date: 2025-09-06 08:40-0700\n"
+"POT-Creation-Date: 2026-07-25 02:46-0400\n"
 "PO-Revision-Date: 2025-12-11 23:00+0000\n"
 "Last-Translator: Avery King <gperson@disroot.org>\n"
 "Language-Team: English <https://hosted.weblate.org/projects/tenacity/"
@@ -181,6 +181,7 @@ msgstr ""
 "\n"
 
 #: libraries/lib-audio-io/AudioIO.cpp libraries/lib-note-track/MIDIPlay.cpp
+#: src/prefs/ThemePrefs.cpp
 #, c-format
 msgid "Error: %s"
 msgstr "Error: %s"
@@ -650,6 +651,44 @@ msgid ""
 msgstr ""
 "DTMF sequence empty.\n"
 "Check ALL settings for this effect."
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Exponential-Fit"
+msgstr "Exponential-Fit"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Analog Model"
+msgstr "Analog Model"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "peak amplitude"
+msgstr "peak amplitude"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+#: src/effects/Loudness.cpp src/widgets/MeterPanel.cpp
+msgid "RMS"
+msgstr "RMS"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+#, fuzzy
+msgid "Dynamic Compressor"
+msgstr "Legacy Compressor"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Dynamic Reduction"
+msgstr "Dynamic Reduction"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Peak Reduction"
+msgstr "Peak Reduction"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Analog Limiter"
+msgstr "Analog Limiter"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Reduces the dynamic of one or more tracks"
+msgstr "Reduces the dynamic of one or more tracks"
 
 #: libraries/lib-builtin-effects/EchoBase.cpp
 msgid "Echo"
@@ -1331,6 +1370,7 @@ msgid "Compress Excess Silence"
 msgstr "Compress Excess Silence"
 
 #: libraries/lib-builtin-effects/TruncSilenceBase.cpp
+#: src/effects/TruncSilence.cpp
 msgid "Truncate Silence"
 msgstr "Truncate Silence"
 
@@ -2050,6 +2090,10 @@ msgid "WebVTT file"
 msgstr "WebVTT file"
 
 #: libraries/lib-label-track/LabelTrack.cpp
+msgid "Podcast Chapters"
+msgstr ""
+
+#: libraries/lib-label-track/LabelTrack.cpp
 msgid "Supported label file"
 msgstr "Supported label file"
 
@@ -2101,7 +2145,7 @@ msgstr "LADSPA Effects"
 #: libraries/lib-vst/VSTEffectsModule.cpp
 #: libraries/lib-vst3/VST3EffectsModule.cpp src/commands/LoadCommands.cpp
 #, fuzzy
-msgid "The Audacity Team"
+msgid "The Tenacity Team"
 msgstr "The Audacity Team"
 
 #: libraries/lib-ladspa/LadspaEffectsModule.cpp
@@ -2134,8 +2178,8 @@ msgstr "LV2 Effects"
 
 #: libraries/lib-lv2/LoadLV2.cpp
 #, fuzzy
-msgid "Provides LV2 Effects support to Audacity"
-msgstr "Provides LV2 Effects support to Audacity"
+msgid "Provides LV2 Effects support for Tenacity"
+msgstr "Provides Vamp Effects support to Tenacity"
 
 #: libraries/lib-math/Dither.cpp src/effects/EffectPresetDialog.cpp
 #: src/effects/EffectUI.cpp plug-ins/equalabel.ny
@@ -2947,7 +2991,7 @@ msgstr "Nyquist Effects"
 
 #: libraries/lib-nyquist-effects/LoadNyquist.cpp
 #, fuzzy
-msgid "Provides Nyquist Effects support to Audacity"
+msgid "Provides Nyquist Effects support for Tenacity"
 msgstr "Provides Nyquist Effects support to Audacity"
 
 #: libraries/lib-nyquist-effects/NyquistBase.cpp
@@ -3929,7 +3973,7 @@ msgstr "High Contrast"
 #. graphical user interface, including choices of colors, and similarity of images
 #. such as those on button controls.  Audacity can load and save alternative
 #. themes.
-#: libraries/lib-theme/Theme.cpp
+#: libraries/lib-theme/ThemeLegacy.cpp
 #, c-format
 msgid ""
 "Themes written to:\n"
@@ -3938,7 +3982,7 @@ msgstr ""
 "Themes written to:\n"
 "  %s/*/%s."
 
-#: libraries/lib-theme/Theme.cpp
+#: libraries/lib-theme/ThemeLegacy.cpp
 #, c-format
 msgid ""
 "Tenacity could not write file:\n"
@@ -3947,7 +3991,7 @@ msgstr ""
 "Tenacity could not write file:\n"
 "  %s."
 
-#: libraries/lib-theme/Theme.cpp
+#: libraries/lib-theme/ThemeLegacy.cpp
 #, c-format
 msgid ""
 "Tenacity could not open file:\n"
@@ -3958,7 +4002,7 @@ msgstr ""
 "  %s\n"
 "for writing."
 
-#: libraries/lib-theme/Theme.cpp
+#: libraries/lib-theme/ThemeLegacy.cpp
 #, c-format
 msgid ""
 "Tenacity could not write images to file:\n"
@@ -3967,7 +4011,7 @@ msgstr ""
 "Tenacity could not write images to file:\n"
 "  %s."
 
-#: libraries/lib-theme/Theme.cpp
+#: libraries/lib-theme/ThemeLegacy.cpp
 #, c-format
 msgid ""
 "Tenacity could not find file:\n"
@@ -3979,7 +4023,7 @@ msgstr ""
 "Theme not loaded."
 
 #. i18n-hint: Do not translate png.  It is the name of a file format.
-#: libraries/lib-theme/Theme.cpp
+#: libraries/lib-theme/ThemeLegacy.cpp
 #, c-format
 msgid ""
 "Tenacity could not load file:\n"
@@ -3990,7 +4034,7 @@ msgstr ""
 "  %s.\n"
 "Bad png format perhaps?"
 
-#: libraries/lib-theme/Theme.cpp
+#: libraries/lib-theme/ThemeLegacy.cpp
 msgid ""
 "Tenacity could not read its default theme.\n"
 "Please report the problem."
@@ -3998,12 +4042,12 @@ msgstr ""
 "Tenacity could not read its default theme.\n"
 "Please report the problem."
 
-#: libraries/lib-theme/Theme.cpp
+#: libraries/lib-theme/ThemeLegacy.cpp
 #, c-format
 msgid "Couldn't read from file: %s"
 msgstr "Couldn't read from file: %s"
 
-#: libraries/lib-theme/Theme.cpp
+#: libraries/lib-theme/ThemeLegacy.cpp
 #, c-format
 msgid ""
 "None of the expected theme component files\n"
@@ -4014,7 +4058,7 @@ msgstr ""
 " were found in:\n"
 "  %s."
 
-#: libraries/lib-theme/Theme.cpp
+#: libraries/lib-theme/ThemeLegacy.cpp
 #, c-format
 msgid ""
 "Themes written to:\n"
@@ -4023,7 +4067,7 @@ msgstr ""
 "Themes written to:\n"
 "  %s/*/Components/."
 
-#: libraries/lib-theme/Theme.cpp
+#: libraries/lib-theme/ThemeLegacy.cpp
 #, c-format
 msgid ""
 "Could not create directory:\n"
@@ -4032,7 +4076,7 @@ msgstr ""
 "Could not create directory:\n"
 "  %s"
 
-#: libraries/lib-theme/Theme.cpp
+#: libraries/lib-theme/ThemeLegacy.cpp
 #, c-format
 msgid ""
 "Some required files in:\n"
@@ -4043,7 +4087,7 @@ msgstr ""
 "  %s\n"
 "were already present. Overwrite?"
 
-#: libraries/lib-theme/Theme.cpp
+#: libraries/lib-theme/ThemeLegacy.cpp
 #, c-format
 msgid ""
 "Tenacity could not save file:\n"
@@ -4052,14 +4096,14 @@ msgstr ""
 "Tenacity could not save file:\n"
 "  %s"
 
-#: libraries/lib-theme/Theme.cpp src/FreqWindow.cpp src/LabelDialog.cpp
+#: libraries/lib-theme/ThemeLegacy.cpp src/FreqWindow.cpp src/LabelDialog.cpp
 #: src/effects/Contrast.cpp src/menus/FileMenus.cpp
 #, c-format
 msgid "Couldn't write to file: %s"
 msgstr "Couldn't write to file: %s"
 
 #. i18n-hint "Cee" means the C computer programming language
-#: libraries/lib-theme/Theme.cpp
+#: libraries/lib-theme/ThemeLegacy.cpp
 #, c-format
 msgid ""
 "Themes as Cee code written to:\n"
@@ -4069,7 +4113,7 @@ msgstr ""
 "  %s/*%s."
 
 #. i18n-hint: user defined
-#: libraries/lib-theme/Theme.cpp
+#: libraries/lib-theme/ThemeLegacy.cpp
 msgid "Custom"
 msgstr "Custom"
 
@@ -4239,6 +4283,10 @@ msgstr "Reassignment"
 #: libraries/lib-wave-track-settings/SpectrogramSettings.cpp
 msgid "Pitch (EAC)"
 msgstr "Pitch (EAC)"
+
+#: libraries/lib-wave-track-settings/SpectrogramSettings.cpp
+msgid "Wavelet (1/6 Octave Hann)"
+msgstr ""
 
 #: libraries/lib-wave-track-settings/SpectrogramSettings.cpp
 msgid "Maximum frequency must be 100 Hz or above"
@@ -4853,15 +4901,15 @@ msgstr "%s website: "
 
 #. i18n-hint A "copyright" symbol substitutes for the '%s'.
 #: src/AboutDialog.cpp
-#, c-format
-msgid "Copyright %s 1999-2025 Audacity Team"
+#, fuzzy, c-format
+msgid "Copyright %s 1999-2026 Audacity Team"
 msgstr "Copyright %s 1999-2025 Audacity Team"
 
 #. i18n-hint A "copyright" symbol substitutes for the first '%s' while
 #. the program name substitutes for the second '%s'.
 #: src/AboutDialog.cpp
-#, c-format
-msgid "Copyright %s 2021-2025 %s Team."
+#, fuzzy, c-format
+msgid "Copyright %s 2021-2026 %s Team."
 msgstr "Copyright %s 2021-2025 %s Team."
 
 #. i18n-hint Audacity's name substitutes for %s
@@ -4887,10 +4935,6 @@ msgstr "Disabled"
 #: src/AboutDialog.cpp
 msgid "The Build"
 msgstr "The Build"
-
-#: src/AboutDialog.cpp
-msgid "Program build date:"
-msgstr "Program build date:"
 
 #: src/AboutDialog.cpp
 msgid "Commit Id:"
@@ -5369,11 +5413,6 @@ msgstr "display Tenacity version"
 #: src/AudacityApp.cpp
 msgid "audio or project file name"
 msgstr "audio or project file name"
-
-#. i18n-hint: This option is used to handle custom URLs in Audacity
-#: src/AudacityApp.cpp
-msgid "Handle 'tenacity://' url"
-msgstr "Handle 'tenacity://' url"
 
 #: src/AudacityApp.cpp
 msgid ""
@@ -6388,7 +6427,8 @@ msgid "Log frequency"
 msgstr "Log frequency"
 
 #. i18n-hint: short form of 'decibels'.
-#: src/FreqWindow.cpp src/effects/AutoDuck.cpp src/effects/EqualizationUI.cpp
+#: src/FreqWindow.cpp src/effects/AutoDuck.cpp
+#: src/effects/DynamicCompressor.cpp src/effects/EqualizationUI.cpp
 #: src/effects/LegacyCompressor.cpp src/effects/Loudness.cpp
 #: src/effects/Normalize.cpp src/effects/ScienFilter.cpp
 #: src/effects/TruncSilence.cpp
@@ -6455,6 +6495,7 @@ msgstr "Not enough data selected."
 
 #. i18n-hint: short form of 'seconds'.
 #: src/FreqWindow.cpp src/effects/AutoDuck.cpp
+#: src/effects/DynamicCompressor.cpp
 msgid "s"
 msgstr "s"
 
@@ -7318,6 +7359,15 @@ msgstr ""
 "Project resides on FAT formatted drive.\n"
 "Copy it to another drive to open it."
 
+#: src/ProjectFileManager.cpp src/menus/FileMenus.cpp
+#, c-format
+msgid "Imported labels from '%s'"
+msgstr "Imported labels from '%s'"
+
+#: src/ProjectFileManager.cpp src/menus/FileMenus.cpp
+msgid "Import Labels"
+msgstr "Import Labels"
+
 #: src/ProjectFileManager.cpp
 msgid "A channel of a stereo track was missing."
 msgstr "A channel of a stereo track was missing."
@@ -7630,10 +7680,6 @@ msgstr "Realtime effects for %s"
 #: src/RealtimeEffectPanel.cpp
 msgid "Realtime Effects"
 msgstr "Realtime Effects"
-
-#: src/RealtimeEffectPanel.cpp
-msgid "Watch video"
-msgstr "Watch video"
 
 #: src/RealtimeEffectPanel.cpp
 msgid "Realtime effects are non-destructive and can be changed at any time."
@@ -8461,7 +8507,7 @@ msgstr "Invalid value for parameter '%s': should be %s"
 msgid "Compare Audio"
 msgstr "Compare Audio"
 
-#: src/commands/CompareAudioCommand.cpp
+#: src/commands/CompareAudioCommand.cpp src/effects/DynamicCompressor.cpp
 msgid "Threshold:"
 msgstr "Threshold:"
 
@@ -8687,7 +8733,8 @@ msgid "Builtin Commands"
 msgstr "Builtin Commands"
 
 #: src/commands/LoadCommands.cpp
-msgid "Provides builtin commands to Audacity"
+#, fuzzy
+msgid "Provides builtin commands to Tenacity"
 msgstr "Provides builtin commands to Audacity"
 
 #: src/commands/LoadCommands.cpp
@@ -8920,6 +8967,10 @@ msgstr "Color 2"
 msgid "Color 3"
 msgstr "Color 3"
 
+#: src/commands/SetClipCommand.cpp src/commands/SetTrackInfoCommand.cpp
+msgid "Unnamed"
+msgstr "Unnamed"
+
 #: src/commands/SetClipCommand.cpp
 msgid "At:"
 msgstr "At:"
@@ -9037,10 +9088,6 @@ msgstr "Sets various values for a project."
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Set Track Status"
 msgstr "Set Track Status"
-
-#: src/commands/SetTrackInfoCommand.cpp
-msgid "Unnamed"
-msgstr "Unnamed"
 
 #: src/commands/SetTrackInfoCommand.cpp
 msgid "Focused"
@@ -9460,7 +9507,8 @@ msgstr "Length in seconds from %s, to"
 msgid "&Threshold (lower is more sensitive):"
 msgstr "&Threshold (lower is more sensitive):"
 
-#: src/effects/ClickRemoval.cpp src/effects/LegacyCompressor.cpp
+#: src/effects/ClickRemoval.cpp src/effects/DynamicCompressor.cpp
+#: src/effects/LegacyCompressor.cpp
 msgid "Threshold"
 msgstr "Threshold"
 
@@ -9472,7 +9520,7 @@ msgstr "Max &Spike Width (higher is more sensitive):"
 msgid "Max Spike Width"
 msgstr "Max Spike Width"
 
-#: src/effects/Compressor.cpp
+#: src/effects/Compressor.cpp src/effects/DynamicCompressor.cpp
 msgid "Compressor"
 msgstr "Compressor"
 
@@ -9888,6 +9936,102 @@ msgstr "Silence duration:"
 #, c-format
 msgid "%0.f ms"
 msgstr "%0.f ms"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Envelope dependent gain"
+msgstr "Envelope dependent gain"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Compressor step response"
+msgstr "Compressor step response"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Compressor step response plot"
+msgstr "Compressor step response plot"
+
+#: src/effects/DynamicCompressor.cpp src/prefs/SpectrumPrefs.cpp
+msgid "Algorithm"
+msgstr "Algorithm"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Envelope Algorithm:"
+msgstr "Envelope Algorithm:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Compress based on:"
+msgstr "Compress based on:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Compress stereo channels independently"
+msgstr "Compress stereo channels independently"
+
+#: src/effects/DynamicCompressor.cpp
+#, fuzzy
+msgid "Ratio:"
+msgstr "&Ratio:"
+
+#: src/effects/DynamicCompressor.cpp src/effects/LegacyCompressor.cpp
+msgid "Ratio"
+msgstr "Ratio"
+
+#: src/effects/DynamicCompressor.cpp
+msgid ":1"
+msgstr ":1"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Knee Width:"
+msgstr "Knee Width:"
+
+#: src/effects/DynamicCompressor.cpp
+#, fuzzy
+msgid "Knee Width"
+msgstr "Knee Width:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Output Gain:"
+msgstr "Output Gain:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Output Gain"
+msgstr "Output Gain"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Attack:"
+msgstr "Attack:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Attack"
+msgstr "Attack"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Release:"
+msgstr "Release:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Release"
+msgstr "Release"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Lookahead Time:"
+msgstr "Lookahead Time:"
+
+#: src/effects/DynamicCompressor.cpp
+#, fuzzy
+msgid "Lookahead Time"
+msgstr "Lookahead Time:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Hold Time:"
+msgstr "Hold Time:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Hold Time"
+msgstr "Hold Time"
+
+#: src/effects/DynamicCompressor.cpp
+#, c-format
+msgid "Compressor gain reduction: %.1f dB"
+msgstr "Compressor gain reduction: %.1f dB"
 
 #: src/effects/DynamicRangeProcessorEditor.cpp
 msgid "I&nput"
@@ -10427,10 +10571,6 @@ msgstr "&Noise Floor:"
 msgid "&Ratio:"
 msgstr "&Ratio:"
 
-#: src/effects/LegacyCompressor.cpp
-msgid "Ratio"
-msgstr "Ratio"
-
 #. i18n-hint: Particularly in percussion, sounds can be regarded as having
 #. * an 'attack' phase where the sound builds up and a 'decay' where the
 #. * sound dies away.  So this means 'onset duration'.
@@ -10501,10 +10641,6 @@ msgstr "Augments loudness while minimizing distortion."
 #: src/effects/Loudness.cpp
 msgid "perceived loudness"
 msgstr "perceived loudness"
-
-#: src/effects/Loudness.cpp src/widgets/MeterPanel.cpp
-msgid "RMS"
-msgstr "RMS"
 
 #: src/effects/Loudness.cpp
 msgid "&Normalize"
@@ -11086,6 +11222,35 @@ msgstr "C&ompress to:"
 #: src/effects/TruncSilence.cpp
 msgid "Trunc&ate tracks independently"
 msgstr "Trunc&ate tracks independently"
+
+#: src/effects/TruncSilence.cpp
+#, fuzzy
+msgid "Truncate Location"
+msgstr "Tr&uncate to:"
+
+#: src/effects/TruncSilence.cpp
+msgid "Remove silence from &beginning"
+msgstr ""
+
+#: src/effects/TruncSilence.cpp
+#, fuzzy
+msgid "Remove silence from &middle"
+msgstr "Removed %s from %s"
+
+#: src/effects/TruncSilence.cpp
+#, fuzzy
+msgid "Remove silence from &end"
+msgstr "Removed %s from %s"
+
+#: src/effects/TruncSilence.cpp
+msgid ""
+"At least one location option must be selected.\n"
+"\n"
+"Please select at least one of:\n"
+"• Remove silence from beginning\n"
+"• Remove silence from middle\n"
+"• Remove silence from end"
+msgstr ""
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Save VST Preset As:"
@@ -11910,8 +12075,18 @@ msgid "Pre&vious Clip Boundary to Cursor"
 msgstr "Pre&vious Clip Boundary to Cursor"
 
 #: src/menus/ClipMenus.cpp
+#, fuzzy
+msgid "Select Previous Clip Boundary to Cursor"
+msgstr "Pre&vious Clip Boundary to Cursor"
+
+#: src/menus/ClipMenus.cpp
 msgid "Cursor to Ne&xt Clip Boundary"
 msgstr "Cursor to Ne&xt Clip Boundary"
+
+#: src/menus/ClipMenus.cpp
+#, fuzzy
+msgid "Select Cursor to Next Clip Boundary"
+msgstr "Cursor to Next Clip Boundary"
 
 #: src/menus/ClipMenus.cpp
 msgid "Previo&us Clip"
@@ -12200,15 +12375,6 @@ msgstr "labels.txt"
 #: src/menus/FileMenus.cpp
 msgid "There are no label tracks to export."
 msgstr "There are no label tracks to export."
-
-#: src/menus/FileMenus.cpp
-#, c-format
-msgid "Imported labels from '%s'"
-msgstr "Imported labels from '%s'"
-
-#: src/menus/FileMenus.cpp
-msgid "Import Labels"
-msgstr "Import Labels"
 
 #: src/menus/FileMenus.cpp
 msgid "&Dangerous Reset..."
@@ -14713,10 +14879,6 @@ msgid "High &boost (dB/dec):"
 msgstr "High &boost (dB/dec):"
 
 #: src/prefs/SpectrumPrefs.cpp
-msgid "Algorithm"
-msgstr "Algorithm"
-
-#: src/prefs/SpectrumPrefs.cpp
 msgid "A&lgorithm:"
 msgstr "A&lgorithm:"
 
@@ -14847,6 +15009,71 @@ msgstr "Save Files"
 #: src/prefs/ThemePrefs.cpp
 msgid "Load Files"
 msgstr "Load Files"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Experimental - Theme Packages"
+msgstr ""
+
+#: src/prefs/ThemePrefs.cpp
+#, fuzzy
+msgid "Load Theme Package"
+msgstr "Load Theme Cache"
+
+#: src/prefs/ThemePrefs.cpp
+#, fuzzy
+msgid "Load Theme"
+msgstr "Load Theme Cache"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Package OK!"
+msgstr ""
+
+#: src/prefs/ThemePrefs.cpp
+#, fuzzy
+msgid "Success!"
+msgstr "Success"
+
+#: src/prefs/ThemePrefs.cpp
+#, fuzzy
+msgid "Invalid theme"
+msgstr "Invalid Limits"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Cannot allocate memory"
+msgstr ""
+
+#: src/prefs/ThemePrefs.cpp
+#, fuzzy
+msgid "Memory error"
+msgstr "No error"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Theme package incompatible with this version of Tenacity"
+msgstr ""
+
+#: src/prefs/ThemePrefs.cpp
+#, fuzzy
+msgid "Incompatible theme"
+msgstr "Incompatible format and codec"
+
+#: src/prefs/ThemePrefs.cpp
+#, fuzzy
+msgid "Theme package invalid"
+msgstr "The entered value is invalid"
+
+#: src/prefs/ThemePrefs.cpp
+#, fuzzy
+msgid "Invalid archive"
+msgstr "Invalid sample rate"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Error while working on archive"
+msgstr ""
+
+#: src/prefs/ThemePrefs.cpp
+#, fuzzy
+msgid "Operational error"
+msgstr "Validation error"
 
 #. i18n-hint: i.e. the behaviors of tracks
 #: src/prefs/TracksBehaviorsPrefs.cpp src/prefs/TracksBehaviorsPrefs.h
@@ -18702,6 +18929,19 @@ msgstr "Frequency of Radar Needles (Hz)"
 msgid "Error.~%Stereo track required."
 msgstr "Error.~%Stereo track required."
 
+#, fuzzy
+#~ msgid "Provides LV2 Effects support to Audacity"
+#~ msgstr "Provides LV2 Effects support to Audacity"
+
+#~ msgid "Program build date:"
+#~ msgstr "Program build date:"
+
+#~ msgid "Handle 'tenacity://' url"
+#~ msgstr "Handle 'tenacity://' url"
+
+#~ msgid "Watch video"
+#~ msgstr "Watch video"
+
 #~ msgid "db"
 #~ msgstr "db"
 
@@ -19021,82 +19261,6 @@ msgstr "Error.~%Stereo track required."
 
 #~ msgid "Change Tempo without Changing Pitch"
 #~ msgstr "Change Tempo without Changing Pitch"
-
-#~ msgid "Exponential-Fit"
-#~ msgstr "Exponential-Fit"
-
-#~ msgid "Analog Model"
-#~ msgstr "Analog Model"
-
-#~ msgid "peak amplitude"
-#~ msgstr "peak amplitude"
-
-#~ msgid "Dynamic Reduction"
-#~ msgstr "Dynamic Reduction"
-
-#~ msgid "Peak Reduction"
-#~ msgstr "Peak Reduction"
-
-#~ msgid "Analog Limiter"
-#~ msgstr "Analog Limiter"
-
-#~ msgid "Reduces the dynamic of one or more tracks"
-#~ msgstr "Reduces the dynamic of one or more tracks"
-
-#~ msgid "Envelope dependent gain"
-#~ msgstr "Envelope dependent gain"
-
-#~ msgid "Compressor step response"
-#~ msgstr "Compressor step response"
-
-#~ msgid "Compressor step response plot"
-#~ msgstr "Compressor step response plot"
-
-#~ msgid "Envelope Algorithm:"
-#~ msgstr "Envelope Algorithm:"
-
-#~ msgid "Compress based on:"
-#~ msgstr "Compress based on:"
-
-#~ msgid "Compress stereo channels independently"
-#~ msgstr "Compress stereo channels independently"
-
-#~ msgid ":1"
-#~ msgstr ":1"
-
-#~ msgid "Knee Width:"
-#~ msgstr "Knee Width:"
-
-#~ msgid "Output Gain:"
-#~ msgstr "Output Gain:"
-
-#~ msgid "Output Gain"
-#~ msgstr "Output Gain"
-
-#~ msgid "Attack:"
-#~ msgstr "Attack:"
-
-#~ msgid "Attack"
-#~ msgstr "Attack"
-
-#~ msgid "Release:"
-#~ msgstr "Release:"
-
-#~ msgid "Release"
-#~ msgstr "Release"
-
-#~ msgid "Lookahead Time:"
-#~ msgstr "Lookahead Time:"
-
-#~ msgid "Hold Time:"
-#~ msgstr "Hold Time:"
-
-#~ msgid "Hold Time"
-#~ msgstr "Hold Time"
-
-#, c-format
-#~ msgid "Compressor gain reduction: %.1f dB"
-#~ msgstr "Compressor gain reduction: %.1f dB"
 
 #, c-format
 #~ msgid "Applied command: %s"
@@ -19547,9 +19711,6 @@ msgstr "Error.~%Stereo track required."
 #, c-format
 #~ msgid "Exporting the audio as %s"
 #~ msgstr "Exporting the audio as %s"
-
-#~ msgid "Invalid sample rate"
-#~ msgstr "Invalid sample rate"
 
 #, c-format
 #~ msgid ""
@@ -20034,9 +20195,6 @@ msgstr "Error.~%Stereo track required."
 #, c-format
 #~ msgid "Format %s is not compatible with codec %s."
 #~ msgstr "Format %s is not compatible with codec %s."
-
-#~ msgid "Incompatible format and codec"
-#~ msgstr "Incompatible format and codec"
 
 #~ msgid "Failed to guess format"
 #~ msgstr "Failed to guess format"
@@ -21204,9 +21362,6 @@ msgstr "Error.~%Stereo track required."
 #~ msgstr ""
 #~ "Tenacity has automatically detected valid FFmpeg libraries.\n"
 #~ "Do you still want to locate them manually?"
-
-#~ msgid "Success"
-#~ msgstr "Success"
 
 #~ msgid ""
 #~ "These are experimental modules. Enable them only if you've read the "
