@@ -7,6 +7,7 @@ name: Mirror submodule sources to GitHub
 # fine-grained token) with contents:write on:
 #   - github.com/tenacityteam/vcpkg
 #   - github.com/tenacityteam/libnyquist
+#   - github.com/tenacityteam/soundtouch
 # The default GITHUB_TOKEN only has access to this repo, which is why a
 # separate token is needed.
 
@@ -32,6 +33,9 @@ jobs:
           - name: libnyquist
             source: https://codeberg.org/tenacityteam/libnyquist.git
             target: tenacityteam/libnyquist
+          - name: soundtouch
+            source: https://codeberg.org/soundtouch/soundtouch.git
+            target: tenacityteam/soundtouch
     steps:
       - name: Mirror ${{ matrix.name }}
         env:
