@@ -22,7 +22,7 @@
 #include <lib-utility/MemoryX.h>
 
 #include <vector>
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 #include <wx/defs.h>
 #include <wx/control.h> // to inherit
 

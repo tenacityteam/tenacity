@@ -27,7 +27,7 @@
 // Tenacity libraries
 #include <lib-utility/MemoryX.h> // for safenew
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 
 #include <wx/event.h>
 #include <wx/string.h>

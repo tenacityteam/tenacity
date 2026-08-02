@@ -18,7 +18,7 @@
 #include "widgets/AudacityMessageBox.h"
 #include "widgets/ProgressDialog.h"
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 #include <wx/defs.h>
 #include <wx/dir.h>
 #include <wx/dynlib.h>

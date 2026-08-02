@@ -16,7 +16,7 @@
 #ifndef __AUDACITY_METER_PANEL__
 #define __AUDACITY_METER_PANEL__
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 #include <wx/brush.h> // member variable
 #include <wx/defs.h>
 #include <wx/timer.h> // member variable

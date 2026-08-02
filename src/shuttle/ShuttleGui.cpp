@@ -97,7 +97,7 @@ for registering for changes.
 #include "ShuttlePrefs.h"
 #include "theme/Theme.h"
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 #include <wx/wx.h>
 #include <wx/wxprec.h>
 #include <wx/grid.h>

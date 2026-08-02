@@ -59,7 +59,7 @@
 #include <cmath>
 #include <vector>
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 
 #include <wx/bitmap.h>
 #include <wx/button.h>

@@ -26,7 +26,7 @@
 
 #include "../AColor.h"
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 
 #include <wx/app.h>
 #include <wx/dcbuffer.h>

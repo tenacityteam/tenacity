@@ -22,7 +22,7 @@
 
 #include "HtmlWindow.h"
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 #include <wx/defs.h>
 
 #if wxUSE_ACCESSIBILITY

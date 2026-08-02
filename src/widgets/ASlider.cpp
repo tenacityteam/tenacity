@@ -34,7 +34,7 @@ value of an LWSlider or ASlider.
 
 #include <cmath>
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 #include <wx/defs.h>
 #include <wx/dcbuffer.h>
 #include <wx/frame.h>

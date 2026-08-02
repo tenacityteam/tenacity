@@ -1186,9 +1186,11 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
 
    list( APPEND LIBRARIES
       PRIVATE
-         "-framework Foundation"
-         "-framework Cocoa"
+         "-framework AppKit"
          "-framework Carbon"
+         "-framework Cocoa"
+         "-framework CoreServices"
+         "-framework Foundation"
    )
    if(USE_AUDIO_UNITS)
       list(APPEND LIBRARIES
@@ -1223,6 +1225,17 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
    set_target_property_all( "Wrapper" RUNTIME_OUTPUT_DIRECTORY "${_EXEDIR}" )
    organize_source( "${WRAPPER_ROOT}" "mac" "${WRAPPER_SOURCES}" )
 
+   # macOS refuses to launch unsigned binaries on Apple Silicon, so ad-hoc
+   # sign the bundle after all dylibs and the main executable have been
+   # copied in. Xcode 14+ auto-signs but re-signing is still needed because
+   # the wrapper is copied into the bundle after Xcode's own signing pass.
+   add_custom_command(
+      TARGET
+         ${TARGET}
+      COMMAND
+         codesign --force --timestamp --deep --sign - "${_DESTDIR}/Tenacity.app"
+      POST_BUILD
+   )
 elseif( CMAKE_SYSTEM_NAME MATCHES "Haiku" )
    set_target_property_all( ${TARGET} RUNTIME_OUTPUT_DIRECTORY "${_DEST}" )
 else()

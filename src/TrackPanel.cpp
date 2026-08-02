@@ -48,7 +48,7 @@ is time to refresh some aspect of the screen.
 #include "TrackPanelConstants.h"
 
 #include <wx/app.h>
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 
 // Tenacity libraries
 #include <lib-math/float_cast.h>

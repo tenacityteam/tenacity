@@ -22,7 +22,7 @@
 
 #include "HelpSystem.h"
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 #include <wx/button.h>
 #include <wx/frame.h>
 #include <wx/icon.h>

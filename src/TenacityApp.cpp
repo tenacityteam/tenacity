@@ -18,7 +18,7 @@ It handles initialization and termination by subclassing wxApp.
 
 #include "TenacityApp.h"
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 #include <wx/wxcrtvararg.h>
 #include <wx/defs.h>
 #include <wx/evtloop.h>

@@ -31,7 +31,7 @@
 #include "CellularPanel.h"
 
 #include <wx/eventfilter.h>
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 #include "KeyboardCapture.h"
 #include "UIHandle.h"
 #include "TrackPanelMouseEvent.h"
