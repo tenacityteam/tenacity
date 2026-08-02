@@ -18,7 +18,7 @@
 #include <thread>
 
 #include <wx/app.h>
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 #include <wx/defs.h>
 #include <wx/font.h>
 #include <wx/gdicmn.h>

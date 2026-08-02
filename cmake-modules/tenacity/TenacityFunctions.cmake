@@ -235,6 +235,7 @@ function( tenacity_module_fn NAME SOURCES IMPORT_TARGETS
 	       -D SRC="${_MODDIR}/${TARGET}.so"
                -D WXWIN="${_SHARED_PROXY_BASE_PATH}/$<CONFIG>"
                -P ${TENACITY_MODULE_PATH}/CopyLibs.cmake
+            COMMAND codesign --force --sign - "${_MODDIR}/${TARGET}.so"
             POST_BUILD )
       endif()
    else()
@@ -243,7 +244,7 @@ function( tenacity_module_fn NAME SOURCES IMPORT_TARGETS
          PROPERTIES
             PREFIX ""
             FOLDER "libraries" # for IDE organization
-            INSTALL_NAME_DIR ""
+            INSTALL_NAME_DIR "@rpath"
             BUILD_WITH_INSTALL_NAME_DIR YES
       )
    endif()
@@ -308,10 +309,17 @@ function( tenacity_module_fn NAME SOURCES IMPORT_TARGETS
       endif()
 
       add_custom_command(TARGET ${TARGET} POST_BUILD
-         COMMAND ${CMAKE_COMMAND} -E copy 
-            "$<TARGET_FILE:${TARGET}>" 
+         COMMAND ${CMAKE_COMMAND} -E make_directory "${REQUIRED_LOCATION}"
+         COMMAND ${CMAKE_COMMAND} -E copy
+            "$<TARGET_FILE:${TARGET}>"
             "${REQUIRED_LOCATION}/$<TARGET_FILE_NAME:${TARGET}>"
       )
+      if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
+         add_custom_command(TARGET ${TARGET} POST_BUILD
+            COMMAND codesign --force --sign -
+               "${REQUIRED_LOCATION}/$<TARGET_FILE_NAME:${TARGET}>"
+         )
+      endif()
    endif()
 
    # define an additional interface library target

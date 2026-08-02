@@ -17,7 +17,7 @@
 #include <cfloat>
 #include <math.h>
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 
 #include <wx/app.h>
 #include <wx/bmpbuttn.h>

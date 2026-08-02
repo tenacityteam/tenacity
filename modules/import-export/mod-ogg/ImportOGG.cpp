@@ -39,7 +39,7 @@ static const auto exts = {
 };
 
 #include <wx/log.h>
-#include <wx/setup.h> // see next comment
+#include <wx/defs.h> // see next comment
 /* ffile.h must be included AFTER at least one other wx header that includes
  * wx/setup.h, otherwise #ifdefs erroneously collapse it to nothing. This is
  * a bug in wxWidgets (ffile.h should itself include wx/setup.h), and it

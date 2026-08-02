@@ -13,7 +13,7 @@ Vaughan Johnson (Preview)
 #ifndef __AUDACITY_EFFECT_SCIENFILTER__
 #define __AUDACITY_EFFECT_SCIENFILTER__
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 
 #include "ScienFilterBase.h"
 #include "StatefulEffectUIServices.h"

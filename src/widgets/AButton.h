@@ -16,7 +16,7 @@
 #include <array>
 #include <memory>
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 #include <wx/window.h> // to inherit
 #include <wx/image.h>
 

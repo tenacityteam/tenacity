@@ -25,7 +25,7 @@
 // For compilers that support precompilation, includes "wx.h".
 #include <wx/wxprec.h>
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 
 #include "AudacityMessageBox.h"
 #include "Internat.h"

@@ -29,7 +29,7 @@
 #include "ThemeLegacy.h"
 #include "TrackArt.h"
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 
 #include <wx/dcbuffer.h>
 #include <wx/eventfilter.h>

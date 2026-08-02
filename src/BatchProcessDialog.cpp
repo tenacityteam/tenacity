@@ -16,7 +16,7 @@
 #include "BatchProcessDialog.h"
 #include "DoEffect.h"
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 
 #ifdef __WXMSW__
     #include  <wx/ownerdrw.h>

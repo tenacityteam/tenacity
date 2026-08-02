@@ -135,8 +135,15 @@ cmake_policy( SET CMP0127 NEW )
 
 # Definitions that must happen before the project() command
 if( APPLE )
-    if (CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "arm64")
-        set(MIN_MACOS_VERSION 11)
+    # CMAKE_HOST_SYSTEM_PROCESSOR isn't populated until after project(), so
+    # detect the host arch directly here.
+    execute_process(
+        COMMAND uname -m
+        OUTPUT_VARIABLE _HOST_ARCH
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    if (_HOST_ARCH STREQUAL "arm64")
+        set( MIN_MACOS_VERSION 11 )
     else()
         set( MIN_MACOS_VERSION 10.15 )
     endif()
@@ -369,7 +376,7 @@ if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
     set( _MODDIR "${_DEST}/modules" )
     set( _PKGLIB "${_DEST}/Frameworks" )
 
-    set( CMAKE_MACOSX_RPATH OFF )
+    set( CMAKE_MACOSX_RPATH ON )
 endif()
 
 # Add the math library (if found) to the list of required libraries

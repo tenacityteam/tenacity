@@ -11,7 +11,7 @@
 #ifndef __AUDACITY_WINDOW_ACCESSIBLE__
 #define __AUDACITY_WINDOW_ACCESSIBLE__
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 
 #if wxUSE_ACCESSIBILITY
 

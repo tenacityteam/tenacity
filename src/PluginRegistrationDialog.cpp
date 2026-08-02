@@ -23,7 +23,7 @@
 #include "ShuttleGui.h"
 
 #include <set>
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 #include <wx/app.h>
 #include <wx/defs.h>
 #include <wx/dynlib.h>

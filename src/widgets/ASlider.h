@@ -13,7 +13,7 @@
 #ifndef __AUDACITY_SLIDER__
 #define __AUDACITY_SLIDER__
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 #include <wx/defs.h>
 #include <wx/timer.h> // member variable
 #include "wxPanelWrapper.h" // to inherit

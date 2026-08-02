@@ -41,7 +41,7 @@
 #include "MeterPanel.h"
 
 #include <algorithm>
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 #include <wx/wxcrtvararg.h>
 #include <wx/defs.h>
 #include <wx/dcbuffer.h>

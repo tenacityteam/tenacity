@@ -24,7 +24,7 @@ a graph for EffectScienFilter.
 #include "EffectEditor.h"
 #include "LoadEffects.h"
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 
 #include <wx/brush.h>
 #include <wx/choice.h>

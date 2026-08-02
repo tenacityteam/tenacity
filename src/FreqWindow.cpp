@@ -35,7 +35,7 @@ the mouse around.
 
 #include <algorithm>
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 
 #include <wx/brush.h>
 #include <wx/button.h>

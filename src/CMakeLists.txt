@@ -1095,25 +1095,25 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
     # Add our required frameworks
     list( APPEND LIBRARIES
         PRIVATE
+            "-framework AppKit"
+            "-framework Carbon"
             "-framework CoreAudio"
             "-framework CoreAudioKit"
+            "-framework CoreServices"
+            "-framework Foundation"
     )
 
-    # Because the wrapper is copied into the bundle, we need to
-    # re-sing the bundle as the last post build step.
-    # This is only required when using the Xcode generator with
-    # the  Xcode >= 14.
-    if (XCODE_VERSION VERSION_GREATER_EQUAL 14)
-        add_custom_command(
-            TARGET
-                ${TARGET}
-            COMMAND
-                ${CMAKE_COMMAND} -E echo "Fixing Xcode 14 code signing issues"
-            COMMAND
-                codesign --force --timestamp --deep --sign - "${_DESTDIR}/Tenacity.app"
-            POST_BUILD
-        )
-    endif()
+    # macOS refuses to launch unsigned binaries on Apple Silicon, so ad-hoc
+    # sign the bundle after all dylibs and the main executable have been
+    # copied in. Xcode 14+ auto-signs but re-signing is still needed because
+    # the wrapper is copied into the bundle after Xcode's own signing pass.
+    add_custom_command(
+        TARGET
+            ${TARGET}
+        COMMAND
+            codesign --force --timestamp --deep --sign - "${_DESTDIR}/Tenacity.app"
+        POST_BUILD
+    )
 else()
     set_target_properties(
         ${TARGET}

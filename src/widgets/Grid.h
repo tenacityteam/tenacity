@@ -12,7 +12,7 @@
 #define __AUDACITY_WIDGETS_GRID__
 
 #include <vector>
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 #include <wx/defs.h>
 #include <wx/grid.h> // to inherit wxGridCellEditor
 #include "NumericTextCtrl.h" // for NumericConverter::Type

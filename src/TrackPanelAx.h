@@ -14,7 +14,7 @@
 
 #include <functional>
 
-#include <wx/setup.h> // for wxUSE_* macros
+#include <wx/defs.h> // for wxUSE_* macros
 #include <wx/weakref.h>
 
 #if wxUSE_ACCESSIBILITY
