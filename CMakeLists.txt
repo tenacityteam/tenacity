@@ -43,7 +43,14 @@ if(VCPKG)
     # Tenacity will use that instead.
     if(NOT DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
         if(APPLE)
-            if(CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "arm64") # Apple Silicon
+            # CMAKE_HOST_SYSTEM_PROCESSOR isn't populated until after project(),
+            # so shell out to uname to figure out the host arch here.
+            execute_process(
+                COMMAND uname -m
+                OUTPUT_VARIABLE _VCPKG_HOST_ARCH
+                OUTPUT_STRIP_TRAILING_WHITESPACE
+            )
+            if(_VCPKG_HOST_ARCH STREQUAL "arm64") # Apple Silicon
                 set(VCPKG_TARGET_TRIPLET "arm64-osx-dynamic")
             else() # Intel
                 set(VCPKG_TARGET_TRIPLET "x64-osx-dynamic")
