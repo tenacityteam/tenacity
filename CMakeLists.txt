@@ -161,7 +161,7 @@ if( APPLE )
     # Define the OSX compatibility parameters
     set( CMAKE_OSX_DEPLOYMENT_TARGET ${MIN_MACOS_VERSION} CACHE INTERNAL "" )
     set( CMAKE_OSX_SYSROOT macosx CACHE INTERNAL "" )
-    set( CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "" CACHE INTERNAL "" )
+    set( CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "-" CACHE INTERNAL "" )
 
     # Shouldn't cmake do this???
     string( APPEND CMAKE_CXX_FLAGS " -stdlib=libc++" )
