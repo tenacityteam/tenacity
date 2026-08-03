@@ -1007,7 +1007,7 @@ void MeterPanel::OnMeterUpdate(wxTimerEvent & WXUNUSED(event))
 
 void MeterPanel::OnTipTimeout(wxTimerEvent& evt)
 {
-   if(mSlider)
+   if(mSlider && GetScreenRect().Contains(wxGetMousePosition()))
       mSlider->ShowTip(true);
 }
 

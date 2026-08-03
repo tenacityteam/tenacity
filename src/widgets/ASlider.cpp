@@ -623,7 +623,12 @@ void LWSlider::Init(wxWindow * parent,
 
    Move(pos);
 
+#ifndef __WXMAC__
+   // On macOS 26 with wx 3.3.3, eagerly-created TipWindows show as stuck
+   // black rectangles at launch because Hide() doesn't hide them there.
+   // Everywhere else, create them up front as before.
    CreatePopWin();
+#endif
 }
 
 LWSlider::~LWSlider()
@@ -648,7 +653,9 @@ void LWSlider::SetName(const TranslatableString& name)
       mTipPanel->Destroy();
       mTipPanel = nullptr;
    }
+#ifndef __WXMAC__
    CreatePopWin();
+#endif
 }
 
 void LWSlider::SetDefaultValue(float value)
@@ -953,6 +960,24 @@ void LWSlider::SetToolTipTemplate(const TranslatableString & tip)
 
 void LWSlider::ShowTip(bool show)
 {
+#ifdef __WXMAC__
+   // On macOS 26 with wx 3.3.3, TipWindow toplevels don't respond to
+   // Hide(), so create-on-show and destroy-on-hide instead.
+   if(show)
+   {
+      CreatePopWin();
+      if(!mTipPanel)
+         return;
+      mTipPanel->SetLabel(GetTip(mCurrentValue));
+      SetPopWinPosition();
+      mTipPanel->Show();
+   }
+   else if(mTipPanel)
+   {
+      mTipPanel->Destroy();
+      mTipPanel = nullptr;
+   }
+#else
    if(!mTipPanel)
       return;
 
@@ -964,6 +989,7 @@ void LWSlider::ShowTip(bool show)
    }
    else
       mTipPanel->Hide();
+#endif
 }
 
 void LWSlider::CreatePopWin()
