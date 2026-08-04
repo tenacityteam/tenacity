@@ -384,6 +384,21 @@ if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
     set( _PKGLIB "${_DEST}/Frameworks" )
 
     set( CMAKE_MACOSX_RPATH ON )
+
+    # Pre-create the bundle subdirectories that tenacity_library POST_BUILD
+    # copies into. Under Xcode's parallel build driver, many targets racing
+    # to `cmake -E make_directory` the same path can spuriously fail.
+    # Multi-config generators embed $<CONFIG> in the path, so make the dir
+    # for every configured build type; single-config generators just need
+    # the current build type.
+    if( CMAKE_CONFIGURATION_TYPES )
+        foreach( _cfg IN LISTS CMAKE_CONFIGURATION_TYPES )
+            file( MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/${_cfg}/${_APPDIR}/Frameworks" )
+            file( MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/${_cfg}/${_APPDIR}/modules" )
+        endforeach()
+    else()
+        file( MAKE_DIRECTORY "${_PKGLIB}" "${_MODDIR}" )
+    endif()
 endif()
 
 # Add the math library (if found) to the list of required libraries
