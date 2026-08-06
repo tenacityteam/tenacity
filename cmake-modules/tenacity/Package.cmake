@@ -50,7 +50,30 @@ elseif( CMAKE_SYSTEM_NAME STREQUAL "Darwin" )
    set( CPACK_COMMAND_HDIUTIL "${CMAKE_SOURCE_DIR}/scripts/build/macOS/hdiutil_wrapper.sh" )
 
    set( CPACK_DMG_BACKGROUND_IMAGE "${CMAKE_SOURCE_DIR}/mac/Resources/Tenacity-DMG-background.tiff")
-   set( CPACK_DMG_DS_STORE_SETUP_SCRIPT "${CMAKE_SOURCE_DIR}/scripts/build/macOS/DMGSetup.scpt")
+
+   # Generate the .DS_Store at configure time via make_ds_store.py (uses the
+   # ds_store + mac_alias pip packages). CI runners can't grant osascript the
+   # Automation-to-Finder TCC entitlement, so the old AppleScript path failed
+   # with -10006. Regenerated every configure so layout tweaks land without a
+   # separate step.
+   set( _tenacity_ds_store "${CMAKE_BINARY_DIR}/Tenacity.DS_Store" )
+   find_package( Python3 COMPONENTS Interpreter REQUIRED )
+   execute_process(
+      COMMAND
+         "${Python3_EXECUTABLE}"
+         "${CMAKE_SOURCE_DIR}/scripts/build/macOS/make_ds_store.py"
+         "${_tenacity_ds_store}"
+      RESULT_VARIABLE _ds_store_rc
+      OUTPUT_VARIABLE _ds_store_out
+      ERROR_VARIABLE  _ds_store_err
+   )
+   if( _ds_store_rc EQUAL 0 )
+      set( CPACK_DMG_DS_STORE "${_tenacity_ds_store}" )
+   else()
+      message( WARNING
+         "Could not generate ${_tenacity_ds_store}: ${_ds_store_err}\n"
+         "DMG will ship unstyled. Install: pip3 install ds_store mac_alias" )
+   endif()
 
    if( perform_codesign )
       set( CPACK_APPLE_CODESIGN_IDENTITY ${APPLE_CODESIGN_IDENTITY} )

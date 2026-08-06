@@ -16,6 +16,10 @@ if [[ "${OSTYPE}" == darwin* ]]; then # macOS
     )
     brew install "${brew_packages[@]}"
 
+    # Used by scripts/build/macOS/make_ds_store.py to generate the DMG's
+    # .DS_Store headlessly (no Finder scripting, so no TCC dependency on CI).
+    pip3 install --break-system-packages --user ds_store mac_alias
+
 else # Linux & others
 
     if ! which sudo; then
