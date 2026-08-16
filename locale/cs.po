@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2026-08-16 20:16+0000\n"
+"PO-Revision-Date: 2026-08-16 20:33+0000\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/tenacity/tenacity/"
 "cs/>\n"
@@ -1681,10 +1681,10 @@ msgid ""
 "manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd| audio "
 "CDs]]."
 msgstr ""
-"Můžete také přečíst naši nápovědu k importu [[http://manual.audacityteam.org/"
-"man/faq_opening_and_saving_files.html#midi|MIDI souborů]] a stop z [[https://"
-"manual.audacityteam.org/man/faq_opening_and_saving_files.html#fromcd| audio "
-"CD]]."
+"Můžete také přečíst naši nápovědu k importu [[https://"
+"manual.audacityteam.org/man/playing_and_recording.html#midi|MIDI files]] a "
+"stop z [[https://manual.audacityteam.org/man/"
+"faq_opening_and_saving_files.html#fromcd| audio CDs]]."
 
 #: src/HistoryWindow.cpp
 msgid "History"
@@ -3934,7 +3934,7 @@ msgstr "Pro poznámky v makru."
 
 #: src/commands/ImportExportCommands.cpp
 msgid "Import2"
-msgstr "Nahrání 2"
+msgstr "Importovat2"
 
 #: src/commands/ImportExportCommands.cpp src/commands/OpenSaveCommands.cpp
 msgid "File Name:"
@@ -3942,7 +3942,7 @@ msgstr "Název souboru:"
 
 #: src/commands/ImportExportCommands.cpp
 msgid "Export2"
-msgstr "Uložení v jiném formátu 2"
+msgstr "Exportovat2"
 
 #: src/commands/ImportExportCommands.cpp
 msgid "Number of Channels:"
@@ -7376,7 +7376,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Přednastavení „%s“ se nepodařilo exportovat \"%s\n"
+"Přednastavení „%s“ se nepodařilo exportovat\n"
 "\n"
 "%s"
 
@@ -10233,7 +10233,7 @@ msgstr "Import / export"
 
 #: src/prefs/ImportExportPrefs.cpp
 msgid "Preferences for ImportExport"
-msgstr "Nastavení nahrávání a ukládání souborů"
+msgstr "Nastavení importu a exportu"
 
 #: src/prefs/ImportExportPrefs.cpp
 msgid "S&tandard"
@@ -10345,7 +10345,7 @@ msgid ""
 "   *   \"%s\"  (because the shortcut '%s' is used by \"%s\")\n"
 msgstr ""
 "\n"
-"   *   \"%s\"  (protože zkratku „%s“ používá „%s“)\n"
+"   *   „%s“  (protože zkratku „%s“ používá „%s“)\n"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Select an XML file containing Tenacity keyboard shortcuts..."
@@ -10362,8 +10362,8 @@ msgid ""
 "and \"%s\".\n"
 "Nothing is imported."
 msgstr ""
-"Soubor s klávesovými zkratkami obsahuje neplatné kopie zkratek pro \"%s\" a "
-"\"%s\".\n"
+"Soubor s klávesovými zkratkami obsahuje neplatné kopie zkratek pro „%s“ a „%s"
+"“.\n"
 "Nebude nic importováno."
 
 #: src/prefs/KeyConfigPrefs.cpp
@@ -12736,7 +12736,7 @@ msgstr "kHz"
 #. * to '>' if your language uses a '.'.
 #: src/widgets/NumericTextCtrl.cpp
 msgid "01000>01000 kHz|0.001"
-msgstr "01000>01000 kHz|0.001"
+msgstr "01000<01000 kHz|0.001"
 
 #: src/widgets/NumericTextCtrl.cpp
 msgid "hertz"
@@ -14323,7 +14323,7 @@ msgstr "<b>Špičková amplituda:</b> &nbsp;&nbsp;~a (lineární) &nbsp;&nbsp;~a
 #: plug-ins/sample-data-export.ny
 #, lisp-format
 msgid "<b>RMS</b> (unweighted): &nbsp;&nbsp;~a dB."
-msgstr "<b>Nevážená efektivní hodnota (RMS):</b> &nbsp;&nbsp;~a dB."
+msgstr "<b>Nevážená efektivní hodnota (RMS)</b>: &nbsp;&nbsp;~a dB."
 
 #. i18n-hint: DC derives from "direct current" in electronics, really means the zero frequency component of a signal
 #: plug-ins/sample-data-export.ny
@@ -14477,7 +14477,7 @@ msgid ""
 "              '~a' is not a numeric value."
 msgstr ""
 "Chyba~%~\n"
-"              Data muí být čísla v prostém textu ASCII.~%~\n"
+"              Data musí být čísla v prostém textu ASCII.~%~\n"
 "              „~a“ není číselná hodnota."
 
 #: plug-ins/sample-data-import.ny
