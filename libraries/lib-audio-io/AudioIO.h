@@ -495,19 +495,6 @@ public:
                  float playbackVolume);
    void GetMixer(int *inputSource, float *inputVolume,
                  float *playbackVolume);
-   /** @brief Find out if the input hardware level control is available
-    *
-    * Checks the mInputMixerWorks variable, which is set up in
-    * AudioIOBase::HandleDeviceChange(). External people care, because we want to
-    * disable the UI if it doesn't work.
-    */
-   bool InputMixerWorks();
-
-   /** \brief Get the list of inputs to the current mixer device
-    *
-    * Returns an array of strings giving the names of the inputs to the
-    * soundcard mixer (driven by PortMixer) */
-   wxArrayString GetInputSourceNames();
 
    sampleFormat GetCaptureFormat() { return mCaptureFormat; }
    size_t GetNumPlaybackChannels() const { return mNumPlaybackChannels; }

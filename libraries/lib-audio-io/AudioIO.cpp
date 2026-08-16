@@ -277,8 +277,6 @@ AudioIO::AudioIO()
       // but any attempt to play or record will simply fail.
    }
 
-   mInputMixerWorks = false;
-
    SetMixerOutputVol(AudioIOPlaybackVolume.Read());
 
    mLastPlaybackTimeMillis = 0;
@@ -356,17 +354,6 @@ void AudioIO::GetMixer(int *recordDevice, float *recordVolume,
    *playbackVolume = GetMixerOutputVol();
    *recordDevice = 0;
    *recordVolume = 1.0f;
-}
-
-bool AudioIO::InputMixerWorks()
-{
-   return mInputMixerWorks;
-}
-
-wxArrayString AudioIO::GetInputSourceNames()
-{
-   wxArrayString blank;
-   return blank;
 }
 
 static PaSampleFormat AudacityToPortAudioSampleFormat(sampleFormat format)
