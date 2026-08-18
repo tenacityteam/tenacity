@@ -86,7 +86,7 @@ found on Alpine's `community` repository. On Alpine Linux 3.17 or later, install
 the dependencies with this command:
 
 ```
-sudo apk add alpine-sdk cmake samurai lame-dev libsndfile-dev soxr-dev sqlite-dev portaudio-dev portmidi-dev libid3tag-dev soundtouch-dev libmad-dev ffmpeg-dev wxwidgets-dev rapidjson-dev libzip-dev libmatroska-dev
+sudo apk add alpine-sdk cmake samurai lame-dev libsndfile-dev soxr-dev sqlite-dev portaudio-dev portmidi-dev libid3tag-dev soundtouch-dev libmad-dev ffmpeg-dev wxwidgets-dev rapidjson-dev libzip-dev libmatroska-dev portsmf-dev libsbsms-dev
 ```
 
 For older versions of Alpine (i.e., 3.16 and below), please refer to the
@@ -100,9 +100,6 @@ wxWidgets' dependencies:
 ```
 sudo apk add gtk+3.0-dev zlib-dev libpng-dev tiff-dev libjpeg-turbo-dev expat-dev
 ```
-
-TODO: add portsmf and libsbsms to this package list when aports are accepted.
-
 
 #### FreeBSD
 
