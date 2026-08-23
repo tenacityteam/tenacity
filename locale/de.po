@@ -26,7 +26,7 @@
 # Grzegorz Pruchniakowski <gootector@o2.pl>, 2022, 2023.
 # Avery King <avery98@pm.me>, 2022, 2023.
 # Jörn Weigend <das.jott@gmail.com>, 2023.
-# Wuzzy <Wuzzy@disroot.org>, 2023, 2024, 2025.
+# Wuzzy <Wuzzy@disroot.org>, 2023, 2024, 2025, 2026.
 # "Joshua F." <joshua.frommholz1@gmail.com>, 2023.
 # SIRSteiner <github@beisteiners.de>, 2024, 2025.
 # Kachelkaiser <kachelkaiser@htpst.de>, 2025.
@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-12-17 15:00+0000\n"
+"PO-Revision-Date: 2026-08-23 09:51+0000\n"
 "Last-Translator: Wuzzy <Wuzzy@disroot.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/tenacity/tenacity/"
 "de/>\n"
@@ -45,7 +45,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.1-dev\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -18850,3 +18850,208 @@ msgstr ""
 "   Wenn Sie „Ja“ wählen, wird das Projekt\n"
 "„%s“\n"
 "   unwiderruflich überschrieben."
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Analog Model"
+msgstr "Analoges Modell"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "peak amplitude"
+msgstr "Spitzenamplitude"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Dynamic Compressor"
+msgstr "Veralteter Kompressor"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Dynamic Reduction"
+msgstr "Dynamikreduktion"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Peak Reduction"
+msgstr "Spitzenreduktion"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Analog Limiter"
+msgstr "Analogbegrenzer"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Reduces the dynamic of one or more tracks"
+msgstr "Reduziert die Dynamik von einer oder mehrerer Spuren"
+
+#: libraries/lib-ladspa/LadspaEffectsModule.cpp libraries/lib-lv2/LoadLV2.cpp
+#: libraries/lib-nyquist-effects/LoadNyquist.cpp
+#: libraries/lib-vst/VSTEffectsModule.cpp
+#: libraries/lib-vst3/VST3EffectsModule.cpp src/commands/LoadCommands.cpp
+msgid "The Tenacity Team"
+msgstr "Das Audacity-Team"
+
+#: libraries/lib-lv2/LoadLV2.cpp
+msgid "Provides LV2 Effects support for Tenacity"
+msgstr "Bietet Vamp-Effekte für Tenacity"
+
+#. i18n-hint A "copyright" symbol substitutes for the '%s'.
+#: src/AboutDialog.cpp
+#, c-format
+msgid "Copyright %s 1999-2026 Audacity Team"
+msgstr "Copyright %s 1999-2025 Audacity-Team"
+
+#. i18n-hint A "copyright" symbol substitutes for the first '%s' while
+#. the program name substitutes for the second '%s'.
+#: src/AboutDialog.cpp
+#, c-format
+msgid "Copyright %s 2021-2026 %s Team."
+msgstr "Copyright %s 2021-2025 %s-Team."
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Envelope dependent gain"
+msgstr "Hüllkurvenabhängige Verstärkung"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Compressor step response"
+msgstr "Kompressorschrittantwort"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Compressor step response plot"
+msgstr "Kompressorschrittantwortplot"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Envelope Algorithm:"
+msgstr "Hüllkurvenalgorithmus:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Compress based on:"
+msgstr "Komprimieren basierend auf:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Compress stereo channels independently"
+msgstr "Stereokanäle unabhängig komprimieren"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Ratio:"
+msgstr "&Verhältnis:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid ":1"
+msgstr ":1"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Output Gain:"
+msgstr "Ausgangsverstärkung:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Output Gain"
+msgstr "Ausgangsverstärkung"
+
+#: src/effects/DynamicCompressor.cpp
+#, c-format
+msgid "Compressor gain reduction: %.1f dB"
+msgstr "Kompressorverstärkungsreduktion: %.1f dB"
+
+#: src/effects/TruncSilence.cpp
+msgid "Truncate Location"
+msgstr "Abschneiden z&u:"
+
+#: src/effects/TruncSilence.cpp
+msgid "Remove silence from &middle"
+msgstr "%s von %s entfernt"
+
+#: src/effects/TruncSilence.cpp
+msgid "Remove silence from &end"
+msgstr "%s von %s entfernt"
+
+#: src/menus/ClipMenus.cpp
+msgid "Select Previous Clip Boundary to Cursor"
+msgstr "&Vorherige Clipgrenze zu Cursor"
+
+#: src/menus/ClipMenus.cpp
+msgid "Select Cursor to Next Clip Boundary"
+msgstr "Cursor zur nächsten Clipgrenze"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Load Theme Package"
+msgstr "Themen-Cache laden"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Load Theme"
+msgstr "Themen-Cache laden"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Success!"
+msgstr "Erfolg"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Invalid theme"
+msgstr "Ungültige Grenzen"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Memory error"
+msgstr "Kein Fehler"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Incompatible theme"
+msgstr "Inkompatibles Format und inkompatibler Codec"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Theme package invalid"
+msgstr "Der eingegebene Wert ist ungültig"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Invalid archive"
+msgstr "Ungültige Abtastfrequenz"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Operational error"
+msgstr "Validierungsfehler"
+
+#: libraries/lib-nyquist-effects/LoadNyquist.cpp
+msgid "Provides Nyquist Effects support for Tenacity"
+msgstr "Bietet Nyquist-Effekt-Unterstützung für Audacity"
+
+#: src/commands/LoadCommands.cpp
+msgid "Provides builtin commands to Tenacity"
+msgstr "Bietet eingebaute Befehle für Audacity"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Knee Width:"
+msgstr "Knee-Breite:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Knee Width"
+msgstr "Knee-Breite:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Hold Time:"
+msgstr "Haltezeit:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Hold Time"
+msgstr "Haltezeit"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Lookahead Time:"
+msgstr "Lookahead-Zeit:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Lookahead Time"
+msgstr "Lookahead-Zeit:"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Exponential-Fit"
+msgstr "Exponentieller Fit"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Attack:"
+msgstr "Attack:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Attack"
+msgstr "Attack"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Release:"
+msgstr "Release:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Release"
+msgstr "Release"
