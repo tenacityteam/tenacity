@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2026-08-16 20:33+0000\n"
+"PO-Revision-Date: 2026-08-24 18:51+0000\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/tenacity/tenacity/"
 "cs/>\n"
@@ -8040,9 +8040,9 @@ msgstr "Nesprávná velikost dat. Zvuk se nepodařilo importovat"
 #, c-format
 msgid "%s %s, %d of %d clip %s"
 msgid_plural "%s %s, %d of %d clips %s"
-msgstr[0] "%s klipu %s, pozice %d z %d, stopa %s"
-msgstr[1] "%s klipu %s, pozice %d z %d, stopa %s"
-msgstr[2] "%s klipu %s, pozice %d z %d, stopa %s"
+msgstr[0] "%s klipu %s, pozice %d z %d klipu, %s"
+msgstr[1] "%s klipu %s, pozice %d ze %d klipů, %s"
+msgstr[2] "%s klipu %s, pozice %d z %d klipů, %s"
 
 #: src/menus/ClipMenus.cpp
 msgid "start"
@@ -8062,9 +8062,9 @@ msgstr "Konec"
 #, c-format
 msgid "%s, %d of %d clip %s"
 msgid_plural "%s, %d of %d clips %s"
-msgstr[0] "%s, pozice %d z %d, stopa %s"
-msgstr[1] "%s, pozice %d z %d, stopa %s"
-msgstr[2] "%s, pozice %d z %d, stopa %s"
+msgstr[0] "%s, pozice %d z %d klipu, %s"
+msgstr[1] "%s, pozice %d ze %d klipů, %s"
+msgstr[2] "%s, pozice %d z %d klipů, %s"
 
 #: src/menus/ClipMenus.cpp
 msgid "clip not moved"
@@ -12033,8 +12033,8 @@ msgstr "Ztlumit/zrušit ztlumení stopy"
 #, c-format
 msgid "%s, %d of %d clip"
 msgid_plural "%s, %d of %d clips"
-msgstr[0] "%s, pozice %d z %d klipů"
-msgstr[1] "%s, pozice %d z %d klipů"
+msgstr[0] "%s, pozice %d z %d klipu"
+msgstr[1] "%s, pozice %d ze %d klipů"
 msgstr[2] "%s, pozice %d z %d klipů"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
@@ -19092,9 +19092,9 @@ msgstr ""
 #, c-format
 msgid "%s %s and %s %s, %d and %d of %d clip %s"
 msgid_plural "%s %s and %s %s, %d and %d of %d clips %s"
-msgstr[0] "%s klipu %s a %s klipu %s, pozice %d a %d z %d, stopa %s"
-msgstr[1] "%s klipu %s a %s klipu %s, pozice %d a %d z %d, stopa %s"
-msgstr[2] "%s klipu %s a %s klipu %s, pozice %d a %d z %d, stopa %s"
+msgstr[0] "%s klipu %s a %s klipu %s, pozice %d a %d z %d klipu, %s"
+msgstr[1] "%s klipu %s a %s klipu %s, pozice %d a %d ze %d klipů, %s"
+msgstr[2] "%s klipu %s a %s klipu %s, pozice %d a %d z %d klipů, %s"
 
 #: src/prefs/DirectoriesPrefs.cpp
 msgid ""
@@ -22643,3 +22643,208 @@ msgstr "Editor &metadat"
 #: src/WelcomeDialog.cpp
 msgid "View online manual"
 msgstr "Zobrazit online příručku"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Exponential-Fit"
+msgstr "Exponenciální aproximace"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Analog Model"
+msgstr "Analogový model"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "peak amplitude"
+msgstr "špičková amplituda"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Dynamic Reduction"
+msgstr "Omezení dynamiky"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Peak Reduction"
+msgstr "Omezení špiček"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Analog Limiter"
+msgstr "Analogový limiter"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Reduces the dynamic of one or more tracks"
+msgstr "Snižuje dynamiku jedné nebo více stop"
+
+#. i18n-hint A "copyright" symbol substitutes for the '%s'.
+#: src/AboutDialog.cpp
+#, c-format
+msgid "Copyright %s 1999-2026 Audacity Team"
+msgstr "Copyright %s 1999–2025 tým Audacity"
+
+#. i18n-hint A "copyright" symbol substitutes for the first '%s' while
+#. the program name substitutes for the second '%s'.
+#: src/AboutDialog.cpp
+#, c-format
+msgid "Copyright %s 2021-2026 %s Team."
+msgstr "Copyright %s 2021–2025 tým %s."
+
+#: src/commands/LoadCommands.cpp
+msgid "Provides builtin commands to Tenacity"
+msgstr "Poskytuje vestavěné příkazy pro Audacity"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Envelope dependent gain"
+msgstr "Zesílení závislé na obálce"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Compressor step response"
+msgstr "Přechodová charakteristika kompresoru"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Compressor step response plot"
+msgstr "Graf přechodové charakteristiky kompresoru"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Envelope Algorithm:"
+msgstr "Algoritmus obálky:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Compress based on:"
+msgstr "Komprimovat podle:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Compress stereo channels independently"
+msgstr "Komprimovat stereofonní kanály nezávisle"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Ratio:"
+msgstr "&Poměr:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid ":1"
+msgstr ":1"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Knee Width:"
+msgstr "Šířka kolena:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Knee Width"
+msgstr "Šířka kolena:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Output Gain:"
+msgstr "Výstupní zesílení:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Output Gain"
+msgstr "Výstupní zesílení"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Attack:"
+msgstr "Náběh:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Attack"
+msgstr "Náběh"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Release:"
+msgstr "Uvolnění:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Release"
+msgstr "Uvolnění"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Lookahead Time:"
+msgstr "Čas předstihu:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Lookahead Time"
+msgstr "Čas předstihu:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Hold Time:"
+msgstr "Doba podržení:"
+
+#: src/effects/DynamicCompressor.cpp
+msgid "Hold Time"
+msgstr "Doba podržení"
+
+#: src/effects/DynamicCompressor.cpp
+#, c-format
+msgid "Compressor gain reduction: %.1f dB"
+msgstr "Snížení zesílení kompresorem: %.1f dB"
+
+#: libraries/lib-ladspa/LadspaEffectsModule.cpp libraries/lib-lv2/LoadLV2.cpp
+#: libraries/lib-nyquist-effects/LoadNyquist.cpp
+#: libraries/lib-vst/VSTEffectsModule.cpp
+#: libraries/lib-vst3/VST3EffectsModule.cpp src/commands/LoadCommands.cpp
+msgid "The Tenacity Team"
+msgstr "Tým Audacity"
+
+#: libraries/lib-lv2/LoadLV2.cpp
+msgid "Provides LV2 Effects support for Tenacity"
+msgstr "Poskytuje podporu efektů Vamp pro Tenacity"
+
+#: libraries/lib-nyquist-effects/LoadNyquist.cpp
+msgid "Provides Nyquist Effects support for Tenacity"
+msgstr "Poskytuje podporu efektů Nyquist pro Audacity"
+
+#: src/effects/TruncSilence.cpp
+msgid "Truncate Location"
+msgstr "Z&krátit na:"
+
+#: src/effects/TruncSilence.cpp
+msgid "Remove silence from &middle"
+msgstr "Odstraněno % z %"
+
+#: src/effects/TruncSilence.cpp
+msgid "Remove silence from &end"
+msgstr "Odstraněno % z %"
+
+#: src/menus/ClipMenus.cpp
+msgid "Select Previous Clip Boundary to Cursor"
+msgstr "Pře&dchozí hranice klipu po ukazatel"
+
+#: src/menus/ClipMenus.cpp
+msgid "Select Cursor to Next Clip Boundary"
+msgstr "Ukazatel po další hranici klipu"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Load Theme Package"
+msgstr "Načíst mezipaměť motivu"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Load Theme"
+msgstr "Načíst mezipaměť motivu"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Success!"
+msgstr "Úspěch"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Invalid theme"
+msgstr "Neplatné limity"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Memory error"
+msgstr "Bez chyby"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Incompatible theme"
+msgstr "Nekompatibilní formát nebo kodek"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Theme package invalid"
+msgstr "Zadaná hodnota je neplatná"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Invalid archive"
+msgstr "Neplatná vzorkovací frekvence"
+
+#: src/prefs/ThemePrefs.cpp
+msgid "Operational error"
+msgstr "Validační chyba"
+
+#: libraries/lib-builtin-effects/DynamicCompressorBase.cpp
+msgid "Dynamic Compressor"
+msgstr "Starší kompresor"
