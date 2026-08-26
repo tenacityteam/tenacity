@@ -16,13 +16,15 @@
 # Alex Chen <sunwind155@126.com>, 2024.
 # Kananosa <xx9106397@gmail.com>, 2026.
 # WinTP <1789016472@qq.com>, 2026.
+# Hosted Weblate user 54392 <hamburger2048@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2026-03-09 16:09+0000\n"
-"Last-Translator: WinTP <1789016472@qq.com>\n"
+"PO-Revision-Date: 2026-08-26 07:51+0000\n"
+"Last-Translator: Hosted Weblate user 54392 "
+"<hamburger2048@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/tenacity/tenacity/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -30,7 +32,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp
 msgid "Stream is active ... unable to gather information.\n"
@@ -66,16 +68,14 @@ msgid "Internal Error"
 msgstr "内部错误"
 
 #: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-#| msgid "Audacity failed to write to a file in %s."
+#, c-format
 msgid "Tenacity failed to open a file in %s."
-msgstr "Audacity 无法写入文件： %s。"
+msgstr "Tenacity 无法写入 %s 中的文件。"
 
 #: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
-#| msgid "Audacity failed to write to a file in %s."
+#, c-format
 msgid "Tenacity failed to read from a file in %s."
-msgstr "Audacity 无法写入文件： %s。"
+msgstr "Tenacity 无法读取 %s 中的文件。"
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -324,10 +324,8 @@ msgid "System"
 msgstr "系统"
 
 #: libraries/lib-track/Track.cpp
-#, fuzzy
-#| msgid "Generate track"
 msgid "Generic Track"
-msgstr "生成轨道"
+msgstr "一般音轨"
 
 #. i18n-hint: The default name for an audio track.
 #: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
@@ -335,10 +333,8 @@ msgid "Audio Track"
 msgstr "音轨"
 
 #: libraries/lib-track/Track.cpp
-#, fuzzy
-#| msgid "Playback"
 msgid "Playable Track"
-msgstr "播放"
+msgstr "可播放音轨"
 
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
@@ -452,10 +448,9 @@ msgstr "%s，图形"
 
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
-#, fuzzy, c-format
-#| msgid "%s, Tenacity developer"
+#, c-format
 msgid "%s, Tenacity contributor"
-msgstr "%s，Tenacity 开发者"
+msgstr "%s，Tenacity 贡献者"
 
 #: src/AboutDialog.cpp
 #, c-format
@@ -505,10 +500,8 @@ msgstr "贡献者"
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
-#, fuzzy
-#| msgid "%s Team Members"
 msgid "Audacity Team Members"
-msgstr "%s 团队成员"
+msgstr "Audacity 团队成员"
 
 #: src/AboutDialog.cpp
 msgid "Emeritus:"
@@ -579,16 +572,12 @@ msgstr "设置文件夹:"
 
 #. i18n-hint: Libraries that are essential to audacity
 #: src/AboutDialog.cpp
-#, fuzzy
-#| msgid "Libraries"
 msgid "Core Libraries"
-msgstr "库"
+msgstr "核心库"
 
 #: src/AboutDialog.cpp
-#, fuzzy
-#| msgid "Sample Rate Conver&ter:"
 msgid "Sample rate conversion"
-msgstr "采样率转换器(&T)："
+msgstr "采样率转换"
 
 #: src/AboutDialog.cpp
 msgid "File Format Support"
@@ -605,10 +594,8 @@ msgid "ID3 tag support"
 msgstr "ID3 标签支持"
 
 #: src/AboutDialog.cpp
-#, fuzzy
-#| msgid "FLAC import and export"
 msgid "Matroska import and export"
-msgstr "FLAC 导入／导出"
+msgstr "Matroska 导入和导出"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -750,10 +737,8 @@ msgstr ""
 "\n"
 
 #: src/AudioIO.cpp
-#, fuzzy
-#| msgid "Trim Audio"
 msgid "Tenacity Audio"
-msgstr "修剪音频"
+msgstr "Tenacity 音频"
 
 #: src/AudioIO.cpp src/ProjectAudioManager.cpp
 #, c-format
@@ -785,10 +770,8 @@ msgid "Name"
 msgstr "名称"
 
 #: src/AutoRecoveryDialog.cpp src/TenacityFileConfig.cpp
-#, fuzzy
-#| msgid "&About Tenacity..."
 msgid "&Quit Tenacity"
-msgstr "关于 Tenacity(&A)…"
+msgstr "退出 Tenacity(&Q)"
 
 #: src/AutoRecoveryDialog.cpp
 msgid "&Discard Selected"
@@ -1314,10 +1297,8 @@ msgid "Release build (debug level %d)"
 msgstr "发布版本 (调试级别 %d)"
 
 #: src/BuildInfo.h
-#, fuzzy
-#| msgid "24 bit"
 msgid ", 64 bits"
-msgstr "24 位"
+msgstr ", 64 bits"
 
 #. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
 #: src/CommonCommandFlags.cpp
@@ -1699,23 +1680,17 @@ msgid "No Local Help"
 msgstr "没有本地帮助"
 
 #: src/HelpText.cpp src/SplashDialog.cpp
-#, fuzzy
-#| msgid "Welcome to Audacity "
 msgid "Welcome to Tenacity!"
-msgstr "欢迎使用Audacity"
+msgstr "欢迎使用 Tenacity！"
 
 #. i18n-hint: Preserve '[[help:Main_Page|' as it's the name of a link.
 #: src/HelpText.cpp
-#, fuzzy
-#| msgid ""
-#| "[[help:Quick_Help|Quick Help]] - if not installed locally, [[https://"
-#| "manual.audacityteam.org/quick_help.html|view online]]"
 msgid ""
 " [[help:Main_Page|Tenacity Manual]] - if not installed locally, [[https://"
 "tenacityaudio.org/docs/index.html|view online]]"
 msgstr ""
-"[[help:Quick_Help|快速帮助]] - 如果没有被安装到本地，请参阅[[https://manual."
-"audacityteam.org/quick_help.html|在线版]]"
+" [[help:Main_Page|Tenacity 手册]] - 如果未在本地安装, [[https://"
+"tenacityaudio.org/docs/index.html|view online]]"
 
 #: src/HelpText.cpp
 msgid ""
@@ -1780,10 +1755,8 @@ msgid "Compacting actually freed %s of disk space."
 msgstr "压缩实际释放了 %s 的磁盘空间。"
 
 #: src/JournalEvents.cpp
-#, fuzzy
-#| msgid "Recording Saved:"
 msgid "Journal recording failed"
-msgstr "录音已保存："
+msgstr "日志记录失败"
 
 #: src/LabelDialog.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Edit Labels"
@@ -1869,10 +1842,8 @@ msgstr "一个或更多的标签无法读取。"
 #. i18n-hint: Title on a dialog indicating that this is the first
 #. * time Audacity has been run.
 #: src/LangChoice.cpp
-#, fuzzy
-#| msgid "Tenacity is starting up..."
 msgid "Tenacity First Run"
-msgstr "Tenacity 正在启动..."
+msgstr "Tenacity 首次运行"
 
 #. i18n-hint: The %s's are replaced by translated and untranslated
 #. * versions of language names.
@@ -2060,12 +2031,15 @@ msgstr ""
 "它将不会被加载。"
 
 #: src/ModuleManager.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The module \"%s\" is matched with Tenacity version \"%s\".\n"
 "\n"
 "It will not be loaded."
-msgstr "模块 %s 匹配 Audacity 版本 %s，将不会被加载。"
+msgstr ""
+"模块 %s 匹配 Tenacity 版本 %s。\n"
+"\n"
+"将不会被加载。"
 
 #: src/ModuleManager.cpp
 #, c-format
@@ -2104,10 +2078,8 @@ msgid "No"
 msgstr "否"
 
 #: src/ModuleManager.cpp
-#, fuzzy
-#| msgid "%s, Tenacity developer"
 msgid "Tenacity Module Loader"
-msgstr "%s，Tenacity 开发者"
+msgstr "Tenacity 模块加载器"
 
 #: src/ModuleManager.cpp
 msgid "Try and load this module?"
@@ -2352,10 +2324,9 @@ msgid "<untitled>"
 msgstr "<无标题项目>"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-#| msgid "[Project %02i] Audacity \"%s\""
+#, c-format
 msgid "[Project %02i] "
-msgstr "[项目 %02i] Tenacity “%s”"
+msgstr "[项目 %02i] "
 
 #: src/ProjectFileIO.cpp
 #, c-format
@@ -2775,11 +2746,10 @@ msgstr "恢复"
 
 #. i18n-hint Name default name assigned to a clip on track import
 #: src/ProjectFileManager.cpp
-#, fuzzy, c-format
-#| msgid "%s %d of %d"
+#, c-format
 msgctxt "clip name template"
 msgid "%s %d"
-msgstr "%s 第 %d 个，共 %d 个"
+msgstr "%s %d"
 
 #: src/ProjectFileManager.cpp
 #, c-format
@@ -2845,10 +2815,9 @@ msgid "Automatic database backup failed."
 msgstr "自动备份数据库失败。"
 
 #: src/ProjectManager.cpp
-#, fuzzy, c-format
-#| msgid "Welcome to Audacity "
+#, c-format
 msgid "Welcome to Tenacity version %s"
-msgstr "欢迎使用Audacity"
+msgstr "欢迎使用 Tenacity %s 版"
 
 #. i18n-hint: The first %s numbers the project, the second %s is the project name.
 #: src/ProjectManager.cpp
@@ -3091,20 +3060,16 @@ msgid "&File"
 msgstr "文件(&F)"
 
 #: src/TenacityApp.cpp
-#, fuzzy
-#| msgid "Do you want to save the changes?"
 msgid "Do you still want to start Tenacity?"
-msgstr "是否要保存更改？"
+msgstr "还想启动 Tenacity 吗？"
 
 #: src/TenacityApp.cpp
 msgid "Error Locking Temporary Folder"
 msgstr "锁定临时目录失败"
 
 #: src/TenacityApp.cpp
-#, fuzzy
-#| msgid "Tenacity is starting up..."
 msgid "Tenacity is already running"
-msgstr "Tenacity 正在启动..."
+msgstr "Tenacity 已在运行"
 
 #: src/TenacityApp.cpp
 msgid ""
@@ -3119,10 +3084,8 @@ msgstr ""
 "请尝试重新启动系统。"
 
 #: src/TenacityApp.cpp
-#, fuzzy
-#| msgid "Tenacity is starting up..."
 msgid "Tenacity Startup Failure"
-msgstr "Tenacity 正在启动..."
+msgstr "Tenacity 启动失败"
 
 #: src/TenacityApp.cpp
 msgid ""
@@ -3161,22 +3124,16 @@ msgstr ""
 "请尝试重新启动系统。"
 
 #: src/TenacityApp.cpp
-#, fuzzy
-#| msgid ""
-#| "Unable to acquire server semaphore.\n"
-#| "\n"
-#| "This is likely due to a resource shortage\n"
-#| "and a reboot may be required."
 msgid ""
 "The Tenacity IPC server failed to initialize.\n"
 "\n"
 "This is likely due to a resource shortage\n"
 "and a reboot may be required."
 msgstr ""
-"无法获取服务器信号量（server semaphore）。\n"
+"Tenacity IPC 服务器初始化失败。\n"
 "\n"
 "这可能是系统资源短缺导致的，\n"
-"请尝试重新启动系统。"
+"可能需要重新启动系统。"
 
 #: src/TenacityApp.cpp
 msgid "An unrecoverable error has occurred during startup"
@@ -3200,10 +3157,8 @@ msgstr "运行自检"
 
 #. i18n-hint: This displays the Audacity version
 #: src/TenacityApp.cpp
-#, fuzzy
-#| msgid "%s, lead Tenacity developer"
 msgid "display Tenacity version"
-msgstr "%s，Tenacity 主导开发者"
+msgstr "展示 Tenacity 版本"
 
 #. i18n-hint: This is a list of one or more files that Audacity
 #. *           should open upon startup
@@ -3216,10 +3171,8 @@ msgid "Audacity Project Files"
 msgstr "Tenacity 项目文件"
 
 #: src/TenacityFileConfig.cpp
-#, fuzzy
-#| msgid "Reset &Configuration"
 msgid "Tenacity Configuration Error"
-msgstr "重置配置"
+msgstr "Tenacity 配置错误"
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
 #: src/effects/Equalization.cpp src/export/Export.cpp
@@ -3254,10 +3207,8 @@ msgid "Time Track"
 msgstr "时间轨"
 
 #: src/TimerRecordDialog.cpp
-#, fuzzy
-#| msgid "Timer Recording"
 msgid "Tenacity Timer Record"
-msgstr "定时录音"
+msgstr "Tenacity 定时录制"
 
 #: src/TimerRecordDialog.cpp
 msgid "Save Timer Recording As"
@@ -3353,10 +3304,8 @@ msgid "Action after Timer Recording:"
 msgstr "定时录音完成后动作："
 
 #: src/TimerRecordDialog.cpp
-#, fuzzy
-#| msgid "Error Saving Timer Recording Project"
 msgid "Tenacity Timer Record Progress"
-msgstr "保存定时录音项目错误"
+msgstr "Tenacity 定时录制进度"
 
 #: src/TimerRecordDialog.cpp
 msgid "Timer Recording stopped."
@@ -3552,10 +3501,8 @@ msgid "Recording Exported:"
 msgstr "录音已导出："
 
 #: src/TimerRecordDialog.cpp
-#, fuzzy
-#| msgid "Timer Recording"
 msgid "Tenacity Timer Record - Waiting"
-msgstr "定时录音"
+msgstr "Tenacity 定时录音 - 等待中"
 
 #: src/TrackPanel.cpp
 msgid "Track Panel"
@@ -3719,10 +3666,8 @@ msgid "Resampling failed."
 msgstr "重采样失败。"
 
 #: src/WaveTrack.cpp
-#, fuzzy
-#| msgid "Move Track"
 msgid "Wave Track"
-msgstr "移动轨道"
+msgstr "波形音轨"
 
 #: src/WaveTrack.cpp
 msgid "There is not enough room available to paste the selection"
@@ -3734,8 +3679,6 @@ msgstr "没有足够的空间来扩展剪切线"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #: src/effects/nyquist/Nyquist.cpp src/prefs/PrefsPanel.cpp plug-ins/beat.ny
-#, fuzzy
-#| msgid "Audacity"
 msgid "Tenacity"
 msgstr "Tenacity"
 
@@ -7227,10 +7170,8 @@ msgid "Standard VST program file"
 msgstr "标准 VST 程序文件"
 
 #: src/effects/VST/VSTEffect.cpp
-#, fuzzy
-#| msgid "VST preset files"
 msgid "Tenacity VST preset file"
-msgstr "VST 预设文件"
+msgstr "Tenacity VST 预设文件"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Unrecognized file extension."
@@ -7316,10 +7257,8 @@ msgid "Audio Unit Effects"
 msgstr "Audio Unit 效果"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-#| msgid "Audio Unit Effect Options"
 msgid "Provides Audio Unit Effects support to Tenacity"
-msgstr "Audio Unit 效果器选项"
+msgstr "给 Tenacity 提供 Audio Unit 效果器支持"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Could not find component"
@@ -8048,10 +7987,8 @@ msgstr "采样率："
 
 #. i18n-hint: Guess format of raw file
 #: src/import/ImportRaw.cpp
-#, fuzzy
-#| msgid "Detect Silence"
 msgid "Detect"
-msgstr "检测静音"
+msgstr "检测"
 
 #: src/import/ImportRaw.cpp src/menus/FileMenus.cpp
 msgid "&Import"
@@ -8072,11 +8009,10 @@ msgstr "数据大小无效。无法导入音频"
 #. clips.
 #.
 #: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-#| msgid "%s %d of %d"
+#, c-format
 msgid "%s %s, %d of %d clip %s"
 msgid_plural "%s %s, %d of %d clips %s"
-msgstr[0] "%s 第 %d 个，共 %d 个"
+msgstr[0] "%s %s，第 %d 个片段，共 %d 个，片段 %s"
 
 #: src/menus/ClipMenus.cpp
 msgid "start"
@@ -8093,11 +8029,10 @@ msgstr "终点"
 #. last number counts all clips,
 #. last string names a track
 #: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
-#| msgid "%s %d of %d"
+#, c-format
 msgid "%s, %d of %d clip %s"
 msgid_plural "%s, %d of %d clips %s"
-msgstr[0] "%s 第 %d 个，共 %d 个"
+msgstr[0] "%s，第 %d 个片段，共 %d 个，片段 %s"
 
 #: src/menus/ClipMenus.cpp
 msgid "clip not moved"
@@ -9923,8 +9858,6 @@ msgstr "设备(&D)："
 #. i18n-hint: modifier as in "Recording preferences", not progressive verb
 #: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
 #: src/prefs/RecordingPrefs.h
-#, fuzzy
-#| msgid "Recording"
 msgctxt "preference"
 msgid "Recording"
 msgstr "录音"
@@ -10378,10 +10311,8 @@ msgstr ""
 "   *   \"%s\"  (因为快捷键 '%s' 已被 \"%s\" 使用)\n"
 
 #: src/prefs/KeyConfigPrefs.cpp
-#, fuzzy
-#| msgid "Select a text file containing labels"
 msgid "Select an XML file containing Tenacity keyboard shortcuts..."
-msgstr "选择一个包含标签的文本文件"
+msgstr "选择一个包含 Tenacity 键盘快捷键的 XML 文件…"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Error Importing Keyboard Shortcuts"
@@ -10592,10 +10523,8 @@ msgid "Always scrub un&pinned"
 msgstr "总是不固定跟随播放(&P)"
 
 #: src/prefs/PrefsDialog.cpp
-#, fuzzy
-#| msgid "Get Preference"
 msgid "Tenacity Preferences"
-msgstr "获取偏好设置"
+msgstr "Tenacity 偏好设置"
 
 #: src/prefs/PrefsDialog.cpp
 msgid "Category"
@@ -11176,29 +11105,33 @@ msgid "High Contrast"
 msgstr "高对比度"
 
 #: src/theme/Theme.cpp
-#, fuzzy, c-format
-#| msgid "Couldn't write to file: %s"
+#, c-format
 msgid ""
 "Tenacity could not write file:\n"
 "  %s."
-msgstr "无法写入文件：%s"
+msgstr ""
+"Tenacity 无法写入文件：\n"
+"  %s."
 
 #: src/theme/Theme.cpp
-#, fuzzy, c-format
-#| msgid "Unable to open target file for writing"
+#, c-format
 msgid ""
 "Tenacity could not open file:\n"
 "  %s\n"
 "for writing."
-msgstr "不能打开目标文件写入"
+msgstr ""
+"Tenacity 无法打开文件：\n"
+"  %s\n"
+"进行写入。"
 
 #: src/theme/Theme.cpp
-#, fuzzy, c-format
-#| msgid "Couldn't write to file: %s"
+#, c-format
 msgid ""
 "Tenacity could not write images to file:\n"
 "  %s."
-msgstr "无法写入文件：%s"
+msgstr ""
+"Tenacity 无法将图片写入文件：\n"
+"  %s."
 
 #: src/theme/Theme.cpp
 #, c-format
@@ -11232,12 +11165,13 @@ msgstr ""
 "覆盖吗？"
 
 #: src/theme/Theme.cpp
-#, fuzzy, c-format
-#| msgid "Could not open file: %s"
+#, c-format
 msgid ""
 "Tenacity could not save file:\n"
 "  %s"
-msgstr "无法打开文件： %s"
+msgstr ""
+"Tenacity 无法保存文件：\n"
+"  %s"
 
 #. i18n-hint: user defined
 #: src/theme/Theme.cpp
@@ -11547,10 +11481,9 @@ msgstr "时间工具栏(&T)"
 
 #. i18n-hint: %s will be replaced by the name of the kind of toolbar.
 #: src/toolbars/ToolBar.cpp
-#, fuzzy, c-format
-#| msgid "Tra&nscription Toolbar"
+#, c-format
 msgid "Tenacity %s Toolbar"
-msgstr "转录工具栏(&N)"
+msgstr "Tenacity %s 工具栏"
 
 #: src/toolbars/ToolBar.cpp
 msgid "Click and drag to resize toolbar"
@@ -11820,34 +11753,24 @@ msgid "S&pectrogram Settings..."
 msgstr "频谱图设置(&P)..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
-#, fuzzy
-#| msgid "Click and drag to move a track in time"
 msgid "Click and drag to move clip boundary in time"
-msgstr "单击并拖动在时间范围内的轨道"
+msgstr "单击并拖动来及时移动片段边界"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-#| msgid "Set Track Name"
 msgid "Set Wave Clip Name"
-msgstr "设置轨道名"
+msgstr "设置波形片段名"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-#| msgid "Click and drag to select audio"
 msgid "Click and drag to select text"
-msgstr "单击并拖动选择音频"
+msgstr "单击并拖动来选择文本"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-#| msgid "Modified Label"
 msgid "Modified Clip Name"
-msgstr "已修改的标签"
+msgstr "已修改片段名"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-#| msgid "Sample Edit"
 msgid "Clip Name Edit"
-msgstr "采样编辑"
+msgstr "编辑片段名"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
 msgid "Rename Clip..."
@@ -12049,27 +11972,22 @@ msgid "Close sub-view"
 msgstr "关闭子视图"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-#| msgid "Set Clip"
 msgid "Split Clip"
-msgstr "设置片段"
+msgstr "分割片段"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-#| msgid "M&ute/Unmute Focused Track"
 msgid "Mute/Unmute Track"
-msgstr "静音/取消 选中音轨(&U)"
+msgstr "音轨静音/取消音轨静音"
 
 #. i18n-hint:
 #. string is the name of a clip
 #. first number is the position of that clip in a sequence of clips,
 #. second number counts the clips
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy, c-format
-#| msgid "%s %d of %d"
+#, c-format
 msgid "%s, %d of %d clip"
 msgid_plural "%s, %d of %d clips"
-msgstr[0] "%s 第 %d 个，共 %d 个"
+msgstr[0] "%s，第 %d 个片段，共 %d 个"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Half Wave"
@@ -12143,28 +12061,20 @@ msgid "Logarithmic &Interpolation"
 msgstr "对数插值(&I)"
 
 #: src/tracks/ui/BackgroundCell.cpp
-#, fuzzy
-#| msgid "&Mono Track"
 msgid "Add Mono Track"
-msgstr "单声道轨(&M)"
+msgstr "添加单声道音轨"
 
 #: src/tracks/ui/BackgroundCell.cpp
-#, fuzzy
-#| msgid "&Stereo Track"
 msgid "Add Stereo Track"
-msgstr "立体声轨(&S)"
+msgstr "添加立体声轨道"
 
 #: src/tracks/ui/BackgroundCell.cpp
-#, fuzzy
-#| msgid "Label Track"
 msgid "Add Label Track"
-msgstr "标签轨"
+msgstr "添加标签音轨"
 
 #: src/tracks/ui/BackgroundCell.cpp
-#, fuzzy
-#| msgid "&Export Audio..."
 msgid "Export Audio..."
-msgstr "导出音频(&E)..."
+msgstr "导出音频..."
 
 #: src/tracks/ui/CommonTrackControls.cpp
 msgid "Move Track &Up"
