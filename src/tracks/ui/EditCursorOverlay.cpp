@@ -76,7 +76,7 @@ std::pair<wxRect, bool> EditCursorOverlay::DoGetRectangle(wxSize size)
    );
 }
 
-
+#include <wx/log.h>
 void EditCursorOverlay::Draw(OverlayPanel &panel, wxDC &dc)
 {
    if (mIsMaster && !mPartner) {
@@ -125,11 +125,4 @@ void EditCursorOverlay::Draw(OverlayPanel &panel, wxDC &dc)
    }
    else
       wxASSERT(false);
-   if (auto ruler = dynamic_cast<AdornedRulerPanel*>(&panel)) {
-       wxASSERT(!mIsMaster);
-       AColor::CursorColor(&dc);
-       // AColor::Line includes both endpoints so use GetBottom()
-       auto rect = ruler->GetInnerRect();
-       AColor::Line(dc, mLastCursorX, rect.GetTop(), mLastCursorX, rect.GetBottom());
-   }
 }
