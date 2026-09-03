@@ -101,26 +101,12 @@ void EditCursorOverlay::Draw(OverlayPanel &panel, wxDC &dc)
 
    auto &trackPanel = TrackPanel::Get( *mProject );
    if (auto tp = dynamic_cast<TrackPanel*>(&panel)) {
-      wxASSERT(mIsMaster);
-      AColor::CursorColor(&dc);
-
-      // Draw cursor in all selected tracks
-      tp->VisitCells( [&]( const wxRect &rect, TrackPanelCell &cell ) {
-         const auto pChannelView = dynamic_cast<ChannelView*>(&cell);
-         if (!pChannelView)
-            return;
-         const auto pChannel = pChannelView->FindChannel();
-         const auto pTrack =
-            dynamic_cast<Track *>(&pChannel->GetChannelGroup());
-         auto r = tp->GetRect();
-         // AColor::Line includes both endpoints so use GetBottom()
-         // GP: For some reason, there's a bug where if we use r.GetTop(), the
-         // cursor won't start all the way from the top. Since we're drawing
-         // over the entire track panel, we can start with a first y coordinate
-         // point as 0 irrespective of whatever the track panel's rectangle is.
-         AColor::Line(dc, mLastCursorX, 0, mLastCursorX, r.GetBottom());
-         // ^^^ The whole point of this routine.
-      } );
+      if (!TrackList::Get(*mProject).empty())
+      {
+         wxASSERT(mIsMaster);
+         AColor::CursorColor(&dc);
+         AColor::Line(dc, mLastCursorX, 0, mLastCursorX, tp->GetRect().GetBottom());
+      }
    }
    else if (auto ruler = dynamic_cast<AdornedRulerPanel*>(&panel)) {
       wxASSERT(!mIsMaster);
