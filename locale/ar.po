@@ -8,13 +8,14 @@
 # Avery King <avery98@pm.me>, 2022, 2023.
 # Lpo Plo <plop99g@gmail.com>, 2023.
 # عمّار عبدالله <ammar-dmour19@proton.me>, 2025.
+# Ameen Al-izzi <kjj57302@proton.me>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-07-20 14:02+0000\n"
-"Last-Translator: عمّار عبدالله <ammar-dmour19@proton.me>\n"
+"PO-Revision-Date: 2026-09-05 13:51+0000\n"
+"Last-Translator: Ameen Al-izzi <kjj57302@proton.me>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/tenacity/tenacity/"
 "ar/>\n"
 "Language: ar\n"
@@ -23,7 +24,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 2026.9.1.dev0\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
 #: src/prefs/MidiIOPrefs.cpp
@@ -14024,10 +14025,6 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Show alternative &styling (Mac vs PC)"
 #~ msgstr "أظهر شكلا بديلا (MAC مقابل PC)"
 
-#, fuzzy
-#~ msgid "No devices found\n"
-#~ msgstr "لم يعثر على أجهزة"
-
 #~ msgid "&Nyquist Workbench..."
 #~ msgstr "نضد عمل Nyquist..."
 
@@ -14239,36 +14236,8 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgid "Sound card mixer support"
 #~ msgstr "دعم مازج بطاقة الصوت"
 
-#~ msgid "Error Initializing Audio"
-#~ msgstr "خطأ في بدء الصوت"
-
 #~ msgid "Error Initializing Midi"
 #~ msgstr "خطأ في بدء MIDI"
-
-#~ msgid "Out of memory!"
-#~ msgstr "نفذت الذاكرة!"
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too high."
-#~ msgstr ""
-#~ "توقف تعديل مستوى الصوت المؤتمت. لم بكن ممكنا تحسينه أكثر. لا يزال أعلى "
-#~ "مما ينبغي."
-
-#, c-format
-#~ msgid "Automated Recording Level Adjustment decreased the volume to %f."
-#~ msgstr "أنقص تعديل مستوى الصوت المؤتمت الحجم إلى %.2f."
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too low."
-#~ msgstr ""
-#~ "توقف تعديل مستوى الصوت المؤتمت. لم بكن ممكنا تحسينه أكثر. لا يزال أخفض "
-#~ "مما ينبغي."
-
-#, c-format
-#~ msgid "Automated Recording Level Adjustment increased the volume to %.2f."
-#~ msgstr "زاد تعديل مستوى الصوت المؤتمت الحجم إلى %.2f."
 
 #~ msgid ""
 #~ "Automated Recording Level Adjustment stopped. The total number of "
@@ -14285,12 +14254,6 @@ msgstr "تردد إبر الرادار (هرتز)"
 #~ msgstr ""
 #~ "توقف تعديل مستوى الصوت المؤتمت. تخطي العدد الإجمالي للتحليلات بدون إيجاد "
 #~ "حجم مقبول. لا يزال أخفض مما ينبغي."
-
-#, c-format
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
-#~ "volume."
-#~ msgstr "توقف تعديل مستوى الصوت المؤتمت. يبدو %.2f حجما مقبولا."
 
 #, fuzzy
 #~ msgid "Unable to open Portmixer\n"
@@ -17279,3 +17242,182 @@ msgstr "معدلات أخذ العينات غير المتطابقة"
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
 msgid "Too Few Compatible Tracks Selected"
 msgstr "تم تحديد عدد قليل جداً من المسارات المتوافقة"
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: src/RealtimeEffectPanel.cpp
+msgid ""
+"This plugin could not be loaded.\n"
+"It may have been deleted."
+msgstr ""
+"لا يمكن استخدام هذا الملحق.\n"
+"من الممكن ان تم حذفه."
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: src/RealtimeEffectPanel.cpp
+msgid "Plugin Error"
+msgstr "خطأ في الملحق"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Default recording device number: %d\n"
+msgstr "رقم جهاز التسجيل الأفتراضي: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Default playback device number: %d\n"
+msgstr "رقم جهاز التشغيل الأفتراضي: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+msgid "No devices found\n"
+msgstr "لم يتم العثور على اجهزة.\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device info unavailable for: %d\n"
+msgstr "معلومات الجهاز غير متاحة ل: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device ID: %d\n"
+msgstr "معرف الجهاز: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device name: %s\n"
+msgstr "اسم الجهاز: %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Host name: %s\n"
+msgstr "اسم المضيف: %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Recording channels: %d\n"
+msgstr "قنوات التسجيل: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Playback channels: %d\n"
+msgstr "قنوات التشغيل: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Low Recording Latency: %g\n"
+msgstr "تأخر التسجيل الواطئ: %g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Low Playback Latency: %g\n"
+msgstr "تأخر التشغيل الواطئ: %g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "High Recording Latency: %g\n"
+msgstr "تأخر التسجيل العالي: %g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "High Playback Latency: %g\n"
+msgstr "تأخر التشغيل العالي: %g\n"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Playback Rates:\n"
+msgstr "سرع التشغيل المدعومة:\n"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Capture Rates:\n"
+msgstr "سرع التسجيل المدعومة:\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Selected recording device: %d - %s\n"
+msgstr "جهاز التسجيل المحدد: %d - %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No recording device found for '%s'.\n"
+msgstr "لم يتم العثور على جهاز تسجيل ل: '%s'.\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Selected playback device: %d - %s\n"
+msgstr "سرعة التشغيل المحددة: %d - %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No playback device found for '%s'.\n"
+msgstr "لم يتم العثور على جهاز تشغيل ل '%s'.\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Rates:\n"
+msgstr "السرع المدعومة:\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr "لا يمكن معرفة سرعة الصوت المشتركة دون كلا الجهازين.\n"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid "Error Initializing Audio"
+msgstr "خطأ في تشغيل الصوت"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid "Out of memory!"
+msgstr "قد نفذت مساحة الذاكرة!"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. It was not possible to "
+"optimize it more. Still too high."
+msgstr ""
+"تم ايقاف تعديل مستوى التسجيل التلقائي. ليس من الممكن تحسينه اكثر. لا زال "
+"عالياً جداً."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid "Automated Recording Level Adjustment decreased the volume to %f."
+msgstr "قام تعديل مستوى التسجيل التلقائي بتقليل مستوى الصوت الى: %f."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. It was not possible to "
+"optimize it more. Still too low."
+msgstr ""
+"تم ايقاف تعديل مستوى التسجيل التلقائي. ليس من الممكن تحسينه اكثر. لا زال "
+"واطئاً جداً."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid "Automated Recording Level Adjustment increased the volume to %.2f."
+msgstr "قام تعديل مستوى التسجيل التلقائي برفع مستوى الصوت الى: %.2f."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid ""
+"Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
+"volume."
+msgstr "تم ايقاف تعديل مستوى التسجيل التلقائي. %.2f يبدو بأنه مستوى مقبول."
+
+#: libraries/lib-audio-unit/AudioUnitEffectsModule.cpp
+#: libraries/lib-effects/LoadEffects.cpp src/effects/vamp/LoadVamp.cpp
+msgid "The Tenacity Team and contributors"
+msgstr "فريق تيناسيتي والمساعدين"
+
+#: libraries/lib-audio-unit/AudioUnitWrapper.cpp
+#, c-format
+msgid "Failed to decode \"%s\" preset"
+msgstr "فشل في تفسير الإعداد المسبق \"%s\""
+
+#: libraries/lib-audio-unit/AudioUnitWrapper.cpp
+#, c-format
+msgid "Failed to convert \"%s\" preset to internal format"
+msgstr "فشل في تحويل الإعداد المسبق \"%s\" الى صيغة داخلية"
