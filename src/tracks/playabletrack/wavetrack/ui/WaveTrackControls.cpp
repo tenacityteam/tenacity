@@ -41,8 +41,10 @@ Paul Licameli split from TrackPanel.cpp
 #include "ProgressDialog.h"
 #include "UserException.h"
 #include "Identifier.h"
+#include "AllThemeResources.h"
 
 #include <wx/app.h>
+#include <wx/colordlg.h>
 #include <wx/combobox.h>
 #include <wx/frame.h>
 #include <wx/sizer.h>
@@ -127,6 +129,8 @@ enum {
    OnChannelLeftID,
    OnChannelRightID,
    OnChannelMonoID,
+
+   OnWaveformColorID,
 
    OnMergeStereoID,
 
@@ -514,6 +518,8 @@ struct WaveTrackMenuTable : WaveTrackPopupMenuTable
    void OnMultiView(wxCommandEvent & event);
    void OnSetDisplay(wxCommandEvent & event);
 
+   void OnWaveformColorManager(wxCommandEvent& event);
+
    void OnMergeStereo(wxCommandEvent & event);
 
    // TODO: more-than-two-channels
@@ -636,6 +642,13 @@ BEGIN_POPUP_MENU(WaveTrackMenuTable)
       EndSection();
    EndSection();
 
+   BeginSection("WaveformColor");
+      AppendItem(
+         "WaveColor", OnWaveformColorID, XXO("&Wave Color..."),
+         POPUP_MENU_FN(OnWaveformColorManager)
+      );
+   EndSection();
+
    BeginSection( "Channels" );
       AppendItem( "MakeStereo", OnMergeStereoID, XXO("Ma&ke Stereo Track"),
          POPUP_MENU_FN( OnMergeStereo ),
@@ -740,6 +753,21 @@ void WaveTrackMenuTable::OnSetDisplay(wxCommandEvent & event)
          using namespace RefreshCode;
          mpData->result = RefreshAll | UpdateVRuler;
       }
+   }
+}
+
+void WaveTrackMenuTable::OnWaveformColorManager(wxCommandEvent&)
+{
+   // Popup a color picker dialog, starting with the current theme's waveform
+   // color.
+   wxColourData colorData;
+   colorData.SetColour(theTheme.Colour(clrSample));
+   wxColourDialog colorDialog(nullptr, &colorData);
+
+   if (colorDialog.ShowModal() == wxID_OK)
+   {
+      // TODO: set color data
+      wxColour newWaveformColor = colorData.GetColour();
    }
 }
 

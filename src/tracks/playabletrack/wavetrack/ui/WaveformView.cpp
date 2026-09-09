@@ -1170,31 +1170,6 @@ void WaveColorMenuTable::OnWaveColorChange(wxCommandEvent & event)
    mpData->result = RefreshAll | FixScrollbars;
 }
 
-namespace {
-PopupMenuTable::AttachedItem sAttachment{
-   GetWaveTrackMenuTable(),
-   { "SubViews/Extra" },
-   std::make_unique<PopupMenuSection>( "WaveColor",
-      // Conditionally add sub-menu for wave color, if showing waveform
-      PopupMenuTable::Adapt<WaveTrackPopupMenuTable>(
-         [](WaveTrackPopupMenuTable &table) {
-            const auto pTrack = &table.FindWaveTrack();
-            const auto &view = WaveChannelView::GetFirst(*pTrack);
-            const auto displays = view.GetDisplays();
-            bool hasWaveform = (displays.end() != std::find(
-               displays.begin(), displays.end(),
-               WaveChannelSubView::Type{
-                  WaveChannelViewConstants::Waveform, {} }
-            ) );
-            return hasWaveform
-               ? Registry::Indirect(WaveColorMenuTable::Instance()
-                  .Get(table.mpData))
-               : nullptr;
-         } ) )
-};
-
-}
-
 static WaveClip::Attachments::RegisteredFactory sKeyW{ [](WaveClip&) {
    return std::make_unique<WaveformPainter>();
 } };
