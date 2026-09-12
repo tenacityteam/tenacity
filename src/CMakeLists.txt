@@ -1131,15 +1131,6 @@ if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
                           -P ${TENACITY_MODULE_PATH}/CopyLibs.cmake
       POST_BUILD
    )
-
-   # Copy the VC runtime libraries as well
-   add_custom_command(
-      TARGET
-         ${TARGET}
-      COMMAND
-         ${CMAKE_COMMAND} -E copy ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} ${_DEST}
-      POST_BUILD
-   )
 elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
    # Bug 2400 workaround
    #
