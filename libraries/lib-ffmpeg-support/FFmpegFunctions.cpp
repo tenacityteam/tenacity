@@ -246,7 +246,7 @@ struct FFmpegFunctions::Private final
       wxLogSysError("Failed to load %s", libraryName.c_str());
 #else
       const char* errorString = dlerror();
-      wxLogError("Failed to load %s (%s)", libraryName.c_str(), errorString);
+      wxLogError("Failed to load %s (%s)", libraryName.c_str(), errorString ?: "unknown error");
 #endif
       return {};
    }
