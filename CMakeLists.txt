@@ -672,7 +672,13 @@ if(NOT TARGET wxWidgets::wxWidgets)
   target_compile_definitions(wxWidgets::wxWidgets INTERFACE ${wxWidgets_DEFINITIONS} ${wxWidgets_DEFINITIONS_DEBUG})
 endif()
 
+# Force libnyquist to be built as a static library by temporarily setting
+# BUILD_SHARED_LIBS to OFF and restoring its value afterwards. Fixes bug
+# 781.
+set(SAVED_VALUE ${BUILD_SHARED_LIBS})
+set(BUILD_SHARED_LIBS OFF)
 add_subdirectory(lib-src/libnyquist EXCLUDE_FROM_ALL)
+set(BUILD_SHARED_LIBS ${SAVED_VALUE})
 set(USE_NYQUIST ON)
 
 # Manual Packaging
