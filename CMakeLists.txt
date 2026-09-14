@@ -786,7 +786,14 @@ if (NYQUIST)
         message(FATAL_ERROR "libnyquist submodule directory is still empty after 'git submodule update --init'. Check your Git configuration and network access.")
     endif()
 
+    # Force libnyquist to be built as a static library by temporarily setting
+    # BUILD_SHARED_LIBS to OFF and restoring its value afterwards. Fixes bug
+    # 781.
+    set(SAVED_VALUE ${BUILD_SHARED_LIBS})
+    set(BUILD_SHARED_LIBS OFF)
     add_subdirectory("lib-src/libnyquist")
+    set(BUILD_SHARED_LIBS ${SAVED_VALUE})
+
     set_target_properties(nyquist PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
     add_subdirectory("nyquist")
