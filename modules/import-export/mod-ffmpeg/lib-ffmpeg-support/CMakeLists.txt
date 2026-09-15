@@ -47,27 +47,6 @@ if ( USE_FFMPEG )
 
       impl/FFmpegLog.h
 
-      impl/ffmpeg-2.3.6-single-header.h
-      impl/avutil/52/avconfig.h
-      impl/avcodec/55/AVCodecIDLookup.cpp
-      impl/avcodec/55/AVCodecImpl.cpp
-      impl/avformat/55/AVFormatImpl.cpp
-      impl/avutil/52/AVUtilImpl.cpp
-
-      impl/ffmpeg-3.4.8-single-header.h
-      impl/avutil/55/avconfig.h
-      impl/avcodec/57/AVCodecIDLookup.cpp
-      impl/avcodec/57/AVCodecImpl.cpp
-      impl/avformat/57/AVFormatImpl.cpp
-      impl/avutil/55/AVUtilImpl.cpp
-
-      impl/ffmpeg-4.2.4-single-header.h
-      impl/avutil/56/avconfig.h
-      impl/avcodec/58/AVCodecIDLookup.cpp
-      impl/avcodec/58/AVCodecImpl.cpp
-      impl/avformat/58/AVFormatImpl.cpp
-      impl/avutil/56/AVUtilImpl.cpp
-
       impl/ffmpeg-5.0.1-single-header.h
       impl/avutil/57/avconfig.h
       impl/avcodec/59/AVCodecIDLookup.cpp
