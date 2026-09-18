@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2026-09-18 13:06+0000\n"
+"PO-Revision-Date: 2026-09-18 13:08+0000\n"
 "Last-Translator: Daniel Nylander <yeagersthlm@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/sv/>\n"
@@ -14988,9 +14988,6 @@ msgstr "Fel.~%Stereospår krävs."
 #~ msgid "Audacity &Manual"
 #~ msgstr "Audacitys &manual"
 
-#~ msgid "A&utomated Recording Level Adjustment (on/off)"
-#~ msgstr "A&utomatisk justering av inspelningsnivå (på/av)"
-
 #~ msgid "Import complete. Calculating waveform"
 #~ msgstr "Import har slutförts. Beräknar vågform"
 
@@ -15011,15 +15008,6 @@ msgstr "Fel.~%Stereospår krävs."
 
 #~ msgid "MP3 Library Version:"
 #~ msgstr "MP3-biblioteksversion:"
-
-#~ msgid "Automated Recording Level Adjustment"
-#~ msgstr "Automatisk justering av inspelningsnivå"
-
-#~ msgid "Enable Automated Recording Level Adjustment."
-#~ msgstr "Aktivera automatisk justering av inspelningsnivå."
-
-#~ msgid "Target Peak:"
-#~ msgstr "Målets maxpunkt:"
 
 #~ msgid "Within:"
 #~ msgstr "Inom:"
@@ -21578,3 +21566,241 @@ msgstr "Hör &andra spår under inspelning"
 #: src/menus/TransportMenus.cpp
 msgid "Enable audible input &monitoring"
 msgstr "Aktivera hörbar indatamonitorering"
+
+#: src/menus/TransportMenus.cpp
+msgid "A&utomated Recording Level Adjustment (on/off)"
+msgstr "A&utomatisk justering av inspelningsnivå (på/av)"
+
+#. i18n-hint: (verb) Start playing audio
+#: src/menus/TransportMenus.cpp
+msgid "Pl&ay Once"
+msgstr "Spela &en gång"
+
+#: src/menus/ViewMenus.cpp
+msgid "E&xtra Menus"
+msgstr "E&xtra menyer"
+
+#: src/menus/ViewMenus.cpp
+msgid "&Show Clipping in Waveform"
+msgstr "&Visa klippning i vågform"
+
+#: src/menus/ViewMenus.cpp
+msgid "Sho&w RMS in Waveform"
+msgstr "Visa &RMS i vågform"
+
+#: src/prefs/DevicePrefs.cpp
+msgid "Audio Settings"
+msgstr "Ljudinställningar"
+
+#: src/prefs/DevicePrefs.cpp
+msgid "&Project Sample Rate:"
+msgstr "Projektets samplings&frekvens:"
+
+#: src/prefs/DevicePrefs.cpp
+msgid ""
+"Sample Rate used when recording new tracks, mixing down tracks and for "
+"playback in this project."
+msgstr ""
+"Samplingsfrekvens som används vid inspelning av nya spår, mixning av spår "
+"och uppspelning i projektet."
+
+#: src/prefs/DevicePrefs.cpp
+msgid "D&efault Sample Rate:"
+msgstr "Standardfrekvens för s&ampling:"
+
+#: src/prefs/DirectoriesPrefs.cpp
+msgid "Cannot set the preference."
+msgstr "Det går inte att ange inställningen."
+
+#: src/prefs/DirectoriesPrefs.cpp
+#, c-format
+msgid ""
+"\n"
+"Directory %s does not exist. Create it?"
+msgstr ""
+"\n"
+"Katalogen %s finns inte. Skapa den?"
+
+#: src/prefs/DirectoriesPrefs.cpp
+msgid "Directory creation failed."
+msgstr "Det gick inte att skapa katalogen."
+
+#: src/prefs/DirectoriesPrefs.cpp
+#, c-format
+msgid ""
+"\n"
+"%s"
+msgstr ""
+"\n"
+"%s"
+
+#: src/prefs/DirectoriesPrefs.cpp
+msgid "'Temporary Directory' cannot be set."
+msgstr "”Temporär katalog” kan inte anges."
+
+#: src/prefs/DirectoriesPrefs.cpp
+msgid "'Temporary files' directory cannot be set."
+msgstr "Katalogen ”Temporära filer” kan inte anges."
+
+#: src/prefs/DirectoriesPrefs.cpp
+msgid "'Open' directory cannot be set."
+msgstr "Katalogen ”Öppna” kan inte anges."
+
+#: src/prefs/DirectoriesPrefs.cpp
+msgid "'Save' directory cannot be set."
+msgstr "Katalogen ”Spara” kan inte anges."
+
+#: src/prefs/DirectoriesPrefs.cpp
+msgid "'Import' directory cannot be set."
+msgstr "Katalogen ”Importera” kan inte anges."
+
+#: src/prefs/DirectoriesPrefs.cpp
+msgid "'Export' directory cannot be set."
+msgstr "Katalogen ”Exportera” kan inte anges."
+
+#: src/prefs/DirectoriesPrefs.cpp
+msgid "'Macro Output' directory cannot be set."
+msgstr "Katalogen ”Makroutdata” kan inte anges."
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Add new location"
+msgstr "Lägg till ny plats"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Sort by effect name"
+msgstr "Sortera efter effektnamn"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Sort by publisher and effect name"
+msgstr "Sortera efter utgivare och effektnamn"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Sort by type and effect name"
+msgstr "Sortera efter typ och effektnamn"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Group by publisher"
+msgstr "Gruppera efter utgivare"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Group by type"
+msgstr "Gruppera efter typ"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Group by category"
+msgstr "Gruppera efter kategori"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Group by type and publisher"
+msgstr "Gruppera efter typ och utgivare"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Effect menu &organization:"
+msgstr "Organisering av effektmeny:"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Realtime effect o&rganization:"
+msgstr "Organisering av realtidseffekter:"
+
+#. i18n-hint: Title of the panel containing user-defined paths where plugins could be found
+#. * First argument is replaced with plugin type (e.g. "LV2 plugin locations")
+#.
+#: src/prefs/EffectsPrefs.cpp
+#, c-format
+msgid "%s plugin locations"
+msgstr "Platser för %s-insticksmoduler"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "&Skip effects scanning at startup"
+msgstr "Hoppa över skanning av effekter vid start"
+
+#: src/prefs/EffectsPrefs.cpp
+msgid "Open Plugin &Manager"
+msgstr "Öppna insticksmodul&hanteraren"
+
+#: src/prefs/ExtImportPrefs.cpp
+msgid ""
+"There are space characters (spaces, newlines, tabs or linefeeds) in one of "
+"the items. They are likely to break the pattern matching. Unless you know "
+"what you are doing, it is recommended to trim spaces. Do you want Tenacity "
+"to trim spaces for you?"
+msgstr ""
+"Ett av objekten innehåller blanktecken (mellanslag, nyrader, tabbtecken "
+"eller radmatningar). De kommer sannolikt att störa mönstermatchningen. Om du "
+"inte vet vad du gör rekommenderas att blanktecken tas bort i början och "
+"slutet. Vill du att Tenacity gör det åt dig?"
+
+#: src/prefs/ImportExportPrefs.cpp
+msgid "S&witch view to Beats and Measures and align with musical grid"
+msgstr ""
+"Växla till vyn taktslag och takter och justera mot det musikaliska rutnätet"
+
+#: src/prefs/ImportExportPrefs.cpp
+msgid "&Ask me each time"
+msgstr "&Fråga mig varje gång"
+
+#: src/prefs/ImportExportPrefs.cpp
+msgid "Do &nothing"
+msgstr "Gör &ingenting"
+
+#: src/prefs/ImportExportPrefs.cpp
+msgid "Music Imports"
+msgstr "Musikimporter"
+
+#: src/prefs/ImportExportPrefs.cpp
+msgid "When Tenacity detects music in file imported on empty project"
+msgstr ""
+"När Tenacity upptäcker musik i en fil som importeras till ett tomt projekt"
+
+#: src/prefs/KeyConfigPrefs.cpp
+msgid "Shortcuts"
+msgstr "Kortkommandon"
+
+#: src/prefs/ModulePrefs.cpp
+msgid ""
+"Modules are optional components of Tenacity that enable some functionality, "
+"such as importing and exporting. \n"
+"It is generally not necessary to change these settings."
+msgstr ""
+"Moduler är valfria delar av Tenacity som aktiverar funktioner, till exempel "
+"import och export. \n"
+"Det är normalt inte nödvändigt att ändra dessa inställningar."
+
+#: src/prefs/ModulePrefs.cpp
+msgid "Changes to these settings only take effect when restarting Tenacity.\n"
+msgstr ""
+"Ändringar av de här inställningarna börjar inte gälla förrän Tenacity "
+"startas om.\n"
+
+#: src/prefs/ModulePrefs.cpp
+msgid "Always ask"
+msgstr "Fråga alltid"
+
+#: src/prefs/ModulePrefs.cpp
+msgid "No choice made"
+msgstr "Inget val gjort"
+
+#: src/prefs/ModulePrefs.cpp
+msgid "Error: No modules were found. This may indicate a faulty installation."
+msgstr "Fel: inga moduler hittades. Det kan tyda på en felaktig installation."
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Hear &other tracks while recording (overdub)"
+msgstr "Hör &andra spår under inspelning (pålägg)"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Audible input &monitoring"
+msgstr "Hörbar indatamonitorering"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Automated Recording Level Adjustment"
+msgstr "Automatisk justering av inspelningsnivå"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Enable Automated Recording Level Adjustment."
+msgstr "Aktivera automatisk justering av inspelningsnivå."
+
+#. i18n-hint: Desired maximum (peak) volume for sound
+#: src/prefs/RecordingPrefs.cpp
+msgid "Target Peak:"
+msgstr "Måltopp:"
