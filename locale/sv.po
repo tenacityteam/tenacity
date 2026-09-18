@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2026-09-18 12:52+0000\n"
+"PO-Revision-Date: 2026-09-18 12:54+0000\n"
 "Last-Translator: Daniel Nylander <yeagersthlm@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/sv/>\n"
@@ -14808,9 +14808,6 @@ msgstr "Fel.~%Stereospår krävs."
 #~ msgid "Sound card mixer support"
 #~ msgstr "Stöd för ljudkortsmixer"
 
-#~ msgid "Error Initializing Midi"
-#~ msgstr "Fel uppstod när MIDI initialiserades"
-
 #, fuzzy
 #~ msgid "Unable to open Portmixer\n"
 #~ msgstr "Kunde inte öppna genrefil."
@@ -19824,3 +19821,132 @@ msgstr ""
 "Internt fel vid %s, rad %d.\n"
 "Informera Tenacity-teamet på https://codeberg.org/tenacityteam/tenacity/"
 "issues"
+
+#: libraries/lib-files/FileException.cpp
+#, c-format
+msgid ""
+"Tenacity failed to write to a file.\n"
+"Perhaps %s is not writable or the disk is full."
+msgstr ""
+"Tenacity kunde inte skriva till en fil.\n"
+"Kanske saknar %s skrivrättighet eller så är disken full."
+
+#: libraries/lib-files/FileNames.cpp
+#, c-format
+msgid ""
+"\n"
+"%s does not have write permissions."
+msgstr ""
+"\n"
+"%s saknar skrivrättighet."
+
+#: libraries/lib-import-export/ExportProgressUI.cpp
+#: libraries/lib-import-export/ExportProgressUI.h
+msgid "Export error"
+msgstr "Exportfel"
+
+#: libraries/lib-import-export/ExportProgressUI.cpp
+msgid "Export completed with error."
+msgstr "Exporten slutfördes med fel."
+
+#: libraries/lib-import-export/Import.cpp
+msgid "Importing files"
+msgstr "Importerar filer"
+
+#: libraries/lib-import-export/Import.cpp
+#, c-format
+msgid "Importing %s..."
+msgstr "Importerar %s …"
+
+#: libraries/lib-import-export/Import.cpp
+msgid "Operation was canceled by user"
+msgstr "Åtgärden avbröts av användaren"
+
+#: libraries/lib-label-track/LabelTrack.cpp
+msgid "SubRip text file"
+msgstr "SubRip-textfil"
+
+#: libraries/lib-label-track/LabelTrack.cpp
+msgid "WebVTT file"
+msgstr "WebVTT-fil"
+
+#: libraries/lib-label-track/LabelTrack.cpp
+msgid "Supported label file"
+msgstr "Etikettfil som stöds"
+
+#: libraries/lib-label-track/LabelTrack.cpp
+msgid "Importing WebVTT files is not currently supported."
+msgstr "Import av WebVTT-filer stöds för närvarande inte."
+
+#: libraries/lib-math/Dither.cpp
+msgctxt "dither"
+msgid "Triangle"
+msgstr "Triangel"
+
+#: libraries/lib-note-track/MIDIPlay.cpp
+msgid "Error Initializing Midi"
+msgstr "Fel vid initiering av MIDI"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Supports output: %d\n"
+msgstr "Stöder utdata: %d\n"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Supports input: %d\n"
+msgstr "Stöder indata: %d\n"
+
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Opened: %d\n"
+msgstr "Öppnad: %d\n"
+
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Selected MIDI recording device: %d - %s\n"
+msgstr "Vald MIDI-inspelningsenhet: %d – %s\n"
+
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "No MIDI recording device found for '%s'.\n"
+msgstr "Ingen MIDI-inspelningsenhet hittades för ”%s”.\n"
+
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Selected MIDI playback device: %d - %s\n"
+msgstr "Vald MIDI-uppspelningsenhet: %d – %s\n"
+
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "No MIDI playback device found for '%s'.\n"
+msgstr "Ingen MIDI-uppspelningsenhet hittades för ”%s”.\n"
+
+#. i18n-hint: The music theory "bar"
+#: libraries/lib-numeric-formats/formatters/BeatsNumericConverterFormatter.cpp
+msgid "bar"
+msgstr "takt"
+
+#. i18n-hint: The music theory "beat"
+#: libraries/lib-numeric-formats/formatters/BeatsNumericConverterFormatter.cpp
+msgid "beat"
+msgstr "slag"
+
+#. i18n-hint: "bar" and "beat" are musical notation elements.
+#: libraries/lib-numeric-formats/formatters/BeatsNumericConverterFormatter.cpp
+msgid "bar:beat"
+msgstr "takt:slag"
+
+#. i18n-hint: "bar" and "beat" are musical notation elements. "tick"
+#. corresponds to a 16th note.
+#: libraries/lib-numeric-formats/formatters/BeatsNumericConverterFormatter.cpp
+msgid "bar:beat:tick"
+msgstr "takt:slag:tick"
+
+#. i18n-hint: Name of time display format that shows time in seconds
+#. * and milliseconds (1/1000 second)
+#: libraries/lib-numeric-formats/formatters/ParsedNumericConverterFormatter.cpp
+msgid "seconds + milliseconds"
+msgstr "sekunder + millisekunder"
