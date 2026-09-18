@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2026-09-18 13:24+0000\n"
+"PO-Revision-Date: 2026-09-18 13:26+0000\n"
 "Last-Translator: Daniel Nylander <yeagersthlm@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/sv/>\n"
@@ -7410,9 +7410,8 @@ msgid "Resample"
 msgstr "Återsampla"
 
 #: src/export/ExportFFmpegDialogs.cpp
-#, fuzzy
 msgid "Audio"
-msgstr "&Ljud..."
+msgstr "Ljud"
 
 #: src/export/ExportMP3.cpp src/prefs/KeyConfigPrefs.cpp
 #: plug-ins/sample-data-export.ny
@@ -7487,9 +7486,8 @@ msgstr ""
 "Någonting gick riktigt fel efter att följande %lld fil(er) exporterades."
 
 #: src/export/ExportMultiple.cpp
-#, fuzzy
 msgid "Continue to export remaining files?"
-msgstr "Kunde inte läsa in förinställningsfil."
+msgstr "Fortsätt exportera återstående filer?"
 
 #: src/export/ExportPCM.cpp src/import/ImportRaw.cpp
 msgid "Encoding:"
@@ -7500,18 +7498,17 @@ msgid "No format specific options"
 msgstr "Inget formatspecifika alternativ"
 
 #: src/import/Import.cpp
-#, fuzzy
 msgid "All supported files"
-msgstr "Alla filer|*|Alla filer som stöds|"
+msgstr "Alla filer som stöds"
 
 #: src/import/Import.cpp
 msgid "Select stream(s) to import"
 msgstr "Välj ström(mar) att importera"
 
 #: src/import/Import.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "File \"%s\" not found."
-msgstr "Modulen \"%s\" hittades."
+msgstr "Filen ”%s” hittades inte."
 
 #: src/import/Import.cpp src/menus/ClipMenus.cpp
 #, c-format
@@ -7519,9 +7516,8 @@ msgid "%s, %s"
 msgstr "%s, %s"
 
 #: src/import/ImportAUP.cpp
-#, fuzzy
 msgid "Import Project"
-msgstr "Importera förinställningar"
+msgstr "Importera projekt"
 
 #: src/import/ImportPlugin.cpp src/import/ImportRaw.cpp
 #, c-format
@@ -7694,14 +7690,12 @@ msgid "Cursor to Next Clip Boundary"
 msgstr "Från markören till nästa klippgräns"
 
 #: src/menus/ClipMenus.cpp
-#, fuzzy
 msgid "Time Shift &Left"
-msgstr "Tidsförskjutningsverktyg"
+msgstr "Tidsförskjutning åt &vänster"
 
 #: src/menus/ClipMenus.cpp
-#, fuzzy
 msgid "Time Shift &Right"
-msgstr "Tidsförskjutningsverktyg"
+msgstr "Tidsförskjutning åt &höger"
 
 #: src/menus/EditMenus.cpp
 msgid "Pasted text from the clipboard"
@@ -7762,7 +7756,6 @@ msgstr "Tystade valda spår i %.2f sekunder vid %.2f"
 
 #. i18n-hint: verb
 #: src/menus/EditMenus.cpp
-#, fuzzy
 msgctxt "command"
 msgid "Silence"
 msgstr "Tystnad"
@@ -7904,13 +7897,13 @@ msgid "Change Recording Cha&nnels..."
 msgstr "Byt inspelnings&kanaler..."
 
 #: src/menus/FileMenus.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Cannot create directory '%s'. \n"
 "File already exists that is not a directory"
 msgstr ""
-"Kan inte skapa katalogen \"cleaned\". \n"
-"Filen finns redan File already exists that is not a directory"
+"Det gick inte att skapa katalogen ”%s”. \n"
+"Det finns redan en fil som inte är en katalog"
 
 #. i18n-hint: filename containing exported text from label tracks
 #: src/menus/FileMenus.cpp
@@ -7953,9 +7946,8 @@ msgid "Save Project &As..."
 msgstr "Spara projekt s&om..."
 
 #: src/menus/FileMenus.cpp
-#, fuzzy
 msgid "&Backup Project..."
-msgstr "Öppna projekt..."
+msgstr "Säkerhetskopiera &projekt …"
 
 #: src/menus/FileMenus.cpp
 msgid "&Export"
@@ -8002,14 +7994,14 @@ msgid "Export as FLAC"
 msgstr "Exportera som FLAC"
 
 #: src/menus/HelpMenus.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Save %s"
-msgstr "Sparade %s"
+msgstr "Spara %s"
 
 #: src/menus/HelpMenus.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to save %s"
-msgstr "Kan inte ta bort \"%s\"."
+msgstr "Det gick inte att spara %s"
 
 #: src/menus/HelpMenus.cpp
 msgid "Do you have these problems?"
@@ -8282,27 +8274,25 @@ msgid "Uncategorized"
 msgstr "Okategoriserat"
 
 #: src/menus/PluginMenus.cpp
-#, fuzzy
 msgid "..."
-msgstr "Ny..."
+msgstr "…"
 
 #: src/menus/PluginMenus.cpp
 msgid "Unknown"
 msgstr "Okänd"
 
 #: src/menus/PluginMenus.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "&Repeat %s"
-msgstr "Upprepa %s"
+msgstr "Upprepa &%s"
 
 #: src/menus/PluginMenus.cpp
 msgid "&Generate"
 msgstr "&Generera"
 
 #: src/menus/PluginMenus.cpp
-#, fuzzy
 msgid "Repeat Last Generator"
-msgstr "Använd senaste effekten"
+msgstr "Upprepa senaste generator"
 
 #: src/menus/PluginMenus.cpp
 msgid "Effe&ct"
@@ -8317,18 +8307,16 @@ msgid "&Analyze"
 msgstr "A&nalysera"
 
 #: src/menus/PluginMenus.cpp
-#, fuzzy
 msgid "Repeat Last Analyzer"
-msgstr "Använd senaste effekten"
+msgstr "Upprepa senaste analysverktyg"
 
 #: src/menus/PluginMenus.cpp src/toolbars/ToolsToolBar.cpp
 msgid "T&ools"
 msgstr "&Verktyg"
 
 #: src/menus/PluginMenus.cpp
-#, fuzzy
 msgid "Repeat Last Tool"
-msgstr "Använd senaste effekten"
+msgstr "Upprepa senaste verktyg"
 
 #: src/menus/PluginMenus.cpp
 msgid "&Apply Macro"
@@ -8339,9 +8327,8 @@ msgid "Palette..."
 msgstr "Palett..."
 
 #: src/menus/PluginMenus.cpp
-#, fuzzy
 msgid "Reset &Configuration"
-msgstr "Bekräfta att regel ska raderas"
+msgstr "Återställ &konfiguration"
 
 #: src/menus/PluginMenus.cpp
 msgid "&Run Benchmark..."
@@ -9048,14 +9035,12 @@ msgid "&Unmute All Tracks"
 msgstr "Slå &på ljud för alla spår"
 
 #: src/menus/TrackMenus.cpp
-#, fuzzy
 msgid "Mut&e Tracks"
-msgstr "Slå &av ljud för alla spår"
+msgstr "Tysta s&pår"
 
 #: src/menus/TrackMenus.cpp
-#, fuzzy
 msgid "U&nmute Tracks"
-msgstr "Slå &på ljud för alla spår"
+msgstr "Slå på &ljud för spår"
 
 #: src/menus/TrackMenus.cpp
 msgid "&Pan"
@@ -9199,9 +9184,9 @@ msgstr "inget etikettspår på eller under aktuellt spår"
 #. and the last number is the total number of labels in the sequence.
 #.
 #: src/menus/TransportMenus.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s %d of %d"
-msgstr "%s %d av %d klipp %s"
+msgstr "%s %d av %d"
 
 #: src/menus/TransportMenus.cpp
 msgid "no labels in label track"
@@ -9232,9 +9217,8 @@ msgid "Please select in a mono track."
 msgstr "Var god välj i ett monospår."
 
 #: src/menus/TransportMenus.cpp
-#, fuzzy
 msgid "Please select in a stereo track or two mono tracks."
-msgstr "Var god välj i ett stereospår."
+msgstr "Välj i ett stereospår eller två monospår."
 
 #: src/menus/TransportMenus.cpp
 #, c-format
@@ -9367,14 +9351,12 @@ msgid "&Decrease Playback Speed"
 msgstr "&Minska uppspelningshastighet"
 
 #: src/menus/TransportMenus.cpp
-#, fuzzy
 msgid "Move to Pre&vious Label"
 msgstr "Flytta till &föregående etikett"
 
 #: src/menus/TransportMenus.cpp
-#, fuzzy
 msgid "Move to Ne&xt Label"
-msgstr "Flytta till &nästa etikett"
+msgstr "Flytta till n&ästa etikett"
 
 #: src/menus/ViewMenus.cpp
 msgid "&View"
@@ -9447,9 +9429,8 @@ msgid "Batch"
 msgstr "Batch"
 
 #: src/prefs/BatchPrefs.cpp
-#, fuzzy
 msgid "Preferences for Batch"
-msgstr "Inställningar: "
+msgstr "Inställningar för batchbearbetning"
 
 #: src/prefs/BatchPrefs.cpp src/prefs/TracksBehaviorsPrefs.cpp
 msgid "Behaviors"
@@ -9461,7 +9442,6 @@ msgstr "&Använd inte effekter i batchläge"
 
 #. i18n-hint Software interface to audio devices
 #: src/prefs/DevicePrefs.cpp
-#, fuzzy
 msgctxt "device"
 msgid "Interface"
 msgstr "Gränssnitt"
@@ -9536,49 +9516,40 @@ msgid "Directories"
 msgstr "Kataloger"
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "Preferences for Directories"
-msgstr "Inställningar: "
+msgstr "Inställningar för kataloger"
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "Default directories"
-msgstr "Kataloger"
+msgstr "Standardkataloger"
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "&Browse..."
-msgstr "Bläddra..."
+msgstr "&Bläddra …"
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "B&rowse..."
-msgstr "Bläddra..."
+msgstr "Bl&äddra …"
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "&Import:"
-msgstr "&Importera"
+msgstr "&Importera:"
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "Br&owse..."
-msgstr "Bläddra..."
+msgstr "Bl&äddra …"
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "&Export:"
-msgstr "&Exportera"
+msgstr "&Exportera:"
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "Bro&wse..."
-msgstr "Bläddra..."
+msgstr "Blä&ddra …"
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "&Macro output:"
-msgstr "Visa utmatning"
+msgstr "&Makroutdata:"
 
 #: src/prefs/DirectoriesPrefs.cpp
 msgid "Temporary files directory"
@@ -9589,19 +9560,16 @@ msgid "&Location:"
 msgstr "&Plats:"
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "Temporary files directory cannot be on a FAT drive."
-msgstr "Katalog för temporära filer"
+msgstr "Katalogen för temporära filer kan inte finnas på en FAT-enhet."
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "Brow&se..."
-msgstr "Bläddra..."
+msgstr "Blädd&ra …"
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "&Free Space:"
-msgstr "Ledigt utrymme:"
+msgstr "&Ledigt utrymme:"
 
 #: src/prefs/DirectoriesPrefs.cpp
 msgid "Choose a location to place the temporary directory"
@@ -9612,9 +9580,8 @@ msgid "unavailable - above location doesn't exist"
 msgstr "otillgänglig - platsen ovan finns inte"
 
 #: src/prefs/DirectoriesPrefs.cpp
-#, fuzzy
 msgid "Choose a location"
-msgstr "Välj plats att spara filer"
+msgstr "Välj en plats"
 
 #: src/prefs/DirectoriesPrefs.cpp
 #, c-format
@@ -9635,9 +9602,8 @@ msgid "Effects"
 msgstr "Effekter"
 
 #: src/prefs/EffectsPrefs.cpp
-#, fuzzy
 msgid "Preferences for Effects"
-msgstr "Inställningar: "
+msgstr "Inställningar för effekter"
 
 #: src/prefs/EffectsPrefs.cpp
 msgid "Effect Options"
