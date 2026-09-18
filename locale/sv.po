@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2026-09-18 13:27+0000\n"
+"PO-Revision-Date: 2026-09-18 13:29+0000\n"
 "Last-Translator: Daniel Nylander <yeagersthlm@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/sv/>\n"
@@ -268,9 +268,9 @@ msgid "Could not open file: \"%s\""
 msgstr "Kunde inte öppna fil: \"%s\""
 
 #: libraries/lib-xml/XMLFileReader.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Error: %s at line %lu"
-msgstr "Fel: %hs vid rad %lu"
+msgstr "Fel: %s på rad %lu"
 
 #: libraries/lib-xml/XMLFileReader.cpp
 #, c-format
@@ -278,9 +278,8 @@ msgid "Could not load file: \"%s\""
 msgstr "Kunde inte läsa in fil: \"%s\""
 
 #: libraries/lib-xml/XMLFileReader.cpp
-#, fuzzy
 msgid "Could not parse XML"
-msgstr "Kunde inte öppna filen"
+msgstr "Det gick inte att tolka XML"
 
 #. i18n-hint: For "About Audacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
@@ -11041,7 +11040,6 @@ msgid "Draw Tool"
 msgstr "Ritverktyg"
 
 #: src/toolbars/ToolsToolBar.cpp
-#, fuzzy
 msgid "Multi-Tool"
 msgstr "Multiverktyg"
 
@@ -11135,23 +11133,20 @@ msgid "Face size"
 msgstr "Stilstorlek"
 
 #: src/tracks/labeltrack/ui/LabelTrackView.cpp
-#, fuzzy
 msgid "Cu&t Label text"
-msgstr "Etikettext"
+msgstr "Klipp ut etiketttext"
 
 #: src/tracks/labeltrack/ui/LabelTrackView.cpp
-#, fuzzy
 msgid "&Copy Label text"
-msgstr "Etikettext"
+msgstr "Kopiera etiketttext"
 
 #: src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "&Delete Label"
 msgstr "&Radera etikett"
 
 #: src/tracks/labeltrack/ui/LabelTrackView.cpp
-#, fuzzy
 msgid "&Edit Label..."
-msgstr "&Redigera etiketter..."
+msgstr "&Redigera etikett …"
 
 #: src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Deleted Label"
@@ -11199,16 +11194,14 @@ msgstr "Återställ zoom"
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
 #: src/tracks/playabletrack/wavetrack/ui/SpectrumVZoomHandle.cpp
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-#, fuzzy
 msgid "Shift-Right-Click"
-msgstr "Shift-vänsterklick"
+msgstr "Skift-högerklick"
 
 #: src/tracks/playabletrack/notetrack/ui/NoteTrackVZoomHandle.cpp
 #: src/tracks/playabletrack/wavetrack/ui/SpectrumVZoomHandle.cpp
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
-#, fuzzy
 msgid "Left-Click/Left-Drag"
-msgstr "Zooma in\tVänsterklick/Vänsterdra"
+msgstr "Vänsterklick/vänsterdra"
 
 #: src/tracks/playabletrack/notetrack/ui/StretchHandle.cpp
 msgid "Click and drag to stretch selected region."
@@ -11264,22 +11257,20 @@ msgid "Sample Edit"
 msgstr "Redigera sampling"
 
 #: src/tracks/playabletrack/wavetrack/ui/SpectrumVZoomHandle.cpp
-#, fuzzy
 msgid "Zoom to Fit"
-msgstr "Zooma in på punkt"
+msgstr "Zooma för att passa"
 
 #: src/tracks/playabletrack/wavetrack/ui/SpectrumView.cpp
 msgid "&Spectrogram"
 msgstr "&Spektrogram"
 
 #: src/tracks/playabletrack/wavetrack/ui/SpectrumView.cpp
-#, fuzzy
 msgid ""
 "To change Spectrogram Settings, stop any\n"
 " playing or recording first."
 msgstr ""
-"För att ändra spektrograminställningarna,\n"
-"stoppa alla uppspelningar eller inspelningar först."
+"Stoppa uppspelning eller inspelning först för att ändra\n"
+"spektrograminställningarna."
 
 #: src/tracks/playabletrack/wavetrack/ui/SpectrumView.cpp
 msgid "Stop the Audio First"
@@ -11330,19 +11321,18 @@ msgid "&Format"
 msgstr "&Format"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy
 msgid "Changing sample format"
-msgstr "Ändrar tempo"
+msgstr "Ändrar samplingsformat"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Processing...   0%%"
-msgstr "Bearbetar: %s"
+msgstr "Bearbetar …   0%%"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Processing...   %i%%"
-msgstr "Bearbetar: %s"
+msgstr "Bearbetar …   %i%%"
 
 #. i18n-hint: The strings name a track and a format
 #. i18n-hint: The strings name a track and a channel choice (mono, left, or right)
@@ -11428,9 +11418,8 @@ msgstr "Ändra frekvens"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackViewConstants.cpp
-#, fuzzy
 msgid "&Multi-view"
-msgstr "Flera"
+msgstr "&Flervy"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "Ma&ke Stereo Track"
@@ -11487,9 +11476,9 @@ msgstr "Dela till mo&no"
 #. i18n-hint dB abbreviates decibels
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
 #: src/widgets/ASlider.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%+.1f dB"
-msgstr "%.2f dB"
+msgstr "%+.1f dB"
 
 #. i18n-hint: Stereo pan setting
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackSliderHandles.cpp
@@ -11506,25 +11495,23 @@ msgid "%.0f%% Right"
 msgstr "%.0f%% höger"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
 msgid ""
 "Click and drag to adjust sizes of sub-views, double-click to split evenly"
-msgstr "Klicka och dra för att justera, dubbelklicka för att återställa"
+msgstr ""
+"Klicka och dra för att justera storleken på undervyer, dubbelklicka för att "
+"dela jämnt"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
 msgid "Click and drag to rearrange sub-views"
-msgstr "Klicka och dra för att flytta ett spår i tid"
+msgstr "Klicka och dra för att ordna om undervyer"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
 msgid "Rearrange sub-views"
-msgstr "Klicka och dra för att flytta ett spår i tid"
+msgstr "Ordna om undervyer"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
 msgid "Close sub-view"
-msgstr "Klicka och dra för att flytta ett spår i tid"
+msgstr "Stäng undervy"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
 #, fuzzy
@@ -11723,14 +11710,12 @@ msgid "Scru&bbing"
 msgstr "Scru&bbing"
 
 #: src/tracks/ui/Scrubbing.cpp
-#, fuzzy
 msgid "Scrub Bac&kwards"
-msgstr "Bakåt"
+msgstr "Spola till&baka"
 
 #: src/tracks/ui/Scrubbing.cpp
-#, fuzzy
 msgid "Scrub For&wards"
-msgstr "Framåt"
+msgstr "Spola &framåt"
 
 #: src/tracks/ui/SelectHandle.cpp
 msgid "Click and drag to move left selection boundary."
@@ -11791,9 +11776,8 @@ msgid "Click and drag to move a track in time"
 msgstr "Klicka och dra för att flytta ett spår i tid"
 
 #: src/tracks/ui/TimeShiftHandle.cpp
-#, fuzzy
 msgid "Could not shift between tracks"
-msgstr "Flytta klipp upp/ned eller mellan spår"
+msgstr "Det gick inte att flytta mellan spår"
 
 #: src/tracks/ui/TimeShiftHandle.cpp
 msgid "Moved clips to another track"
@@ -11819,15 +11803,13 @@ msgstr "Öppna meny..."
 
 #. i18n-hint: Command names a modifier key on Macintosh keyboards
 #: src/tracks/ui/TrackSelectHandle.cpp
-#, fuzzy
 msgid "Command+Click"
-msgstr "Command-klick"
+msgstr "Kommando+klick"
 
 #. i18n-hint: Ctrl names a modifier key on Windows or Linux keyboards
 #: src/tracks/ui/TrackSelectHandle.cpp
-#, fuzzy
 msgid "Ctrl+Click"
-msgstr "Ctrl-klick"
+msgstr "Ctrl+klick"
 
 #. i18n-hint: %s is replaced by (translation of) 'Ctrl+Click' on windows, 'Command+Click' on Mac
 #: src/tracks/ui/TrackSelectHandle.cpp
@@ -11871,9 +11853,8 @@ msgid "Left=Zoom In, Right=Zoom Out, Middle=Normal"
 msgstr "Vänster=Zooma in, Höger=Zooma ut, Mitten=Återställ"
 
 #: src/widgets/AButton.cpp
-#, fuzzy
 msgid "(disabled)"
-msgstr " (inaktiverad)"
+msgstr "(inaktiverad)"
 
 #: src/widgets/AButton.cpp src/widgets/MeterPanel.cpp
 msgid "Press"
@@ -12241,9 +12222,8 @@ msgstr "01000,01000 bildrutor|75"
 #. * The decimal separator is specified using '<' if your language uses a ',' or
 #. * to '>' if your language uses a '.'.
 #: src/widgets/NumericTextCtrl.cpp
-#, fuzzy
 msgid "010,01000>0100 Hz"
-msgstr "0100000>0100 Hz"
+msgstr "010,01000>0100 Hz"
 
 #. i18n-hint: Name of display format that shows frequency in kilohertz
 #: src/widgets/NumericTextCtrl.cpp
@@ -12274,9 +12254,8 @@ msgstr "100>01000 oktaver|1.442695041"
 
 #. i18n-hint: an octave is a doubling of frequency
 #: src/widgets/NumericTextCtrl.cpp
-#, fuzzy
 msgid "thousandths of octaves"
-msgstr "tusentals "
+msgstr "tusendelar av oktaver"
 
 #. i18n-hint: Name of display format that shows log of frequency
 #. * in semitones and cents
@@ -12295,9 +12274,8 @@ msgstr "1000 halvtoner >0100 cent|17.312340491"
 
 #. i18n-hint: a cent is a hundredth of a semitone (which is 1/12 octave)
 #: src/widgets/NumericTextCtrl.cpp
-#, fuzzy
 msgid "hundredths of cents"
-msgstr "hundratals "
+msgstr "hundradelar av cent"
 
 #. i18n-hint: Name of display format that shows log of frequency
 #. * in decades
@@ -12313,9 +12291,8 @@ msgstr "10>01000 årtionden|0.434294482"
 
 #. i18n-hint: a decade is a tenfold increase of frequency
 #: src/widgets/NumericTextCtrl.cpp
-#, fuzzy
 msgid "thousandths of decades"
-msgstr "tusentals "
+msgstr "tusendelar av dekader"
 
 #: src/widgets/NumericTextCtrl.cpp
 msgid "(Use context menu to change format.)"
@@ -12359,23 +12336,20 @@ msgstr "Bekräfta nedstängning"
 
 #. i18n-hint: %s is replaced with a directory path.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to write files to directory: %s."
-msgstr "Kunde inte läsa förinställningsfil."
+msgstr "Det gick inte att skriva filer till katalogen: %s."
 
 #. i18n-hint: %s is replaced with 'Preferences > Directories'.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "You can change the directory in %s."
-msgstr ""
-"Kunde inte skapa katalog:\n"
-"  %s"
+msgstr "Du kan ändra katalogen i %s."
 
 #. i18n-hint: Hyperlink title that opens Preferences dialog on Directories page.
 #: src/widgets/UnwritableLocationErrorDialog.cpp
-#, fuzzy
 msgid "Preferences > Directories"
-msgstr "Inställningar: "
+msgstr "Inställningar > Kataloger"
 
 #: src/widgets/Warning.cpp
 msgid "Don't show this warning again"
@@ -12429,9 +12403,9 @@ msgid "Value must not be less than %s"
 msgstr "Värdet får inte vara mindre än %s"
 
 #: src/widgets/valnum.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Value must not be greater than %s"
-msgstr "Värdet får inte vara högre än %s"
+msgstr "Värdet får inte vara större än %s"
 
 #: src/widgets/wxPanelWrapper.h
 msgid "Dialog"
@@ -12699,15 +12673,15 @@ msgid "~aPercentage values cannot be more than 1000 %."
 msgstr "~aProcentvärden kan inte vara större än 1000 %."
 
 #: plug-ins/adjustable-fade.ny
-#, fuzzy, lisp-format
+#, lisp-format
 msgid ""
 "~adB values cannot be more than +100 dB.~%~%~\n"
 "                                 Hint: 6 dB doubles the amplitude~%~\n"
 "                                 -6 dB halves the amplitude."
 msgstr ""
-"~adB-värden kan inte vara mer än +100 dB.~%~%~\n"
+"~adB-värden får inte vara högre än +100 dB.~%~%~\n"
 "                                 Tips: 6 dB fördubblar amplituden~%~\n"
-"                                 \t-6 dB halverar amplituden."
+"                                 -6 dB halverar amplituden."
 
 #: plug-ins/beat.ny
 msgid "Beat Finder"
@@ -12874,34 +12848,29 @@ msgid "Allow duration to change"
 msgstr "Tillåt längden att ändras"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
-#, fuzzy
 msgid "Select target EQ effect"
-msgstr "Använd senaste effekten"
+msgstr "Välj mål-EQ-effekt"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
-#, fuzzy
 msgid "Equalization XML file"
-msgstr "Equalization"
+msgstr "XML-fil för equalizer"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
-#, fuzzy
 msgid "XML file"
-msgstr "MP3-filer"
+msgstr "XML-fil"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
-#, fuzzy
 msgid "Append number"
-msgstr "Lägg till i inspelning"
+msgstr "Lägg till nummer"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
-#, fuzzy
 msgid "Overwrite"
-msgstr "Bekräfta överskrivning"
+msgstr "Skriv över"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
-#, fuzzy, lisp-format
+#, lisp-format
 msgid "Error.~%Unable to open file~%~s"
-msgstr "Fel.~%Kan inte öppna fil"
+msgstr "Fel.~%Det gick inte att öppna filen~%~s"
 
 #. i18n-hint: Do not translate "~a".txt
 #: plug-ins/eq-xml-to-txt-converter.ny
