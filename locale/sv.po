@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2026-09-18 13:29+0000\n"
+"PO-Revision-Date: 2026-09-18 13:30+0000\n"
 "Last-Translator: Daniel Nylander <yeagersthlm@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/sv/>\n"
@@ -12874,14 +12874,14 @@ msgstr "Fel.~%Det gick inte att öppna filen~%~s"
 
 #. i18n-hint: Do not translate "~a".txt
 #: plug-ins/eq-xml-to-txt-converter.ny
-#, fuzzy, lisp-format
+#, lisp-format
 msgid "Error.~%File overwrite disallowed:~%\"~a.txt\""
-msgstr "Fel.~%\"~a\" kan inte skrivas."
+msgstr "Fel.~%Överskrivning av fil tillåts inte:~%”~a.txt”"
 
 #: plug-ins/eq-xml-to-txt-converter.ny
-#, fuzzy, lisp-format
+#, lisp-format
 msgid "Error.~%File cannot be written:~%\"~a.txt\""
-msgstr "Fel.~%\"~a\" kan inte skrivas."
+msgstr "Fel.~%Det går inte att skriva filen:~%”~a.txt”"
 
 #: plug-ins/equalabel.ny
 msgid "Regular Interval Labels"
@@ -13060,94 +13060,79 @@ msgstr ""
 
 #. i18n-hint: Name of effect that labels sounds
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "Label Sounds"
-msgstr "Etikettsammanfogning"
+msgstr "Etikettera ljud"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "Threshold level (dB)"
-msgstr "Tröskel %d dB"
+msgstr "Tröskelnivå (dB)"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "Threshold measurement"
-msgstr "Tröskelprocent"
+msgstr "Tröskelmätning"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "Peak level"
-msgstr "Wet-nivå"
+msgstr "Toppnivå"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "Average level"
-msgstr "Medelvärde"
+msgstr "Medelnivå"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "RMS level"
-msgstr "Wet-nivå"
+msgstr "RMS-nivå"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "Minimum silence duration"
-msgstr "Min tystnad varaktighet:"
+msgstr "Minsta tystnadsvaraktighet"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "Minimum label interval"
-msgstr "Etikettintervall"
+msgstr "Minsta etikettintervall"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "Label type"
-msgstr "Etikettext"
+msgstr "Etikettyp"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "Point before sound"
-msgstr "Joint Stereo"
+msgstr "Punkt före ljud"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "Point after sound"
-msgstr "Joint Stereo"
+msgstr "Punkt efter ljud"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "Region around sounds"
-msgstr "~aOmrådeslängd = ~a sekunder."
+msgstr "Område runt ljud"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "Region between sounds"
-msgstr "~aOmrådeslängd = ~a sekunder."
+msgstr "Område mellan ljud"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "Maximum leading silence"
-msgstr "Hittar tystnad..."
+msgstr "Maximal inledande tystnad"
 
 #: plug-ins/label-sounds.ny
-#, fuzzy
 msgid "Maximum trailing silence"
-msgstr "Hittar tystnad..."
+msgstr "Maximal avslutande tystnad"
 
 #. i18n-hint: '~a' will be replaced by a time duration
 #: plug-ins/label-sounds.ny
-#, fuzzy, lisp-format
+#, lisp-format
 msgid "Error.~%Selection must be less than ~a."
-msgstr "Markeringen måste vara större än %d samplingar."
+msgstr "Fel.~%Markeringen måste vara mindre än ~a."
 
 #: plug-ins/label-sounds.ny
-#, fuzzy, lisp-format
+#, lisp-format
 msgid ""
 "No sounds found.~%Try lowering the 'Threshold' or reduce 'Minimum sound "
 "duration'."
 msgstr ""
-"Inget ljud hittades. Försök att reducera ~%tystnadsnivån och den minimala "
-"tystnadslängden."
+"Inga ljud hittades.~%Prova att sänka ”Tröskel” eller minska ”Minsta "
+"ljudvaraktighet”."
 
 #: plug-ins/limiter.ny
 msgid "Limiter"
@@ -13215,71 +13200,63 @@ msgid "Performing Low-Pass Filter..."
 msgstr "Utför lågpassfilter..."
 
 #: plug-ins/noisegate.ny
-#, fuzzy
 msgid "Noise Gate"
-msgstr "Brus typ:"
+msgstr "Brusgrind"
 
 #: plug-ins/noisegate.ny
-#, fuzzy
 msgid "Select Function"
-msgstr "Markering"
+msgstr "Välj funktion"
 
 #: plug-ins/noisegate.ny
 msgid "Gate"
 msgstr "Gate"
 
 #: plug-ins/noisegate.ny
-#, fuzzy
 msgid "Analyze Noise Level"
-msgstr "Analystid:"
+msgstr "Analysera brusnivå"
 
 #: plug-ins/noisegate.ny
-#, fuzzy
 msgid "Stereo Linking"
-msgstr "Söker"
+msgstr "Stereolänkning"
 
 #: plug-ins/noisegate.ny
-#, fuzzy
 msgid "Link Stereo Tracks"
-msgstr "Skapa stereosp&år"
+msgstr "Länka stereospår"
 
 #: plug-ins/noisegate.ny
-#, fuzzy
 msgid "Don't Link Stereo"
-msgstr "Joint Stereo"
+msgstr "Länka inte stereo"
 
 #: plug-ins/noisegate.ny
-#, fuzzy
 msgid "Gate threshold (dB)"
-msgstr "Tröskel %d dB"
+msgstr "Grindtröskel (dB)"
 
 #: plug-ins/noisegate.ny
-#, fuzzy
 msgid "Gate frequencies above (kHz)"
-msgstr "~aCenterfrekvensen måste vara över 0 Hz."
+msgstr "Grindfrekvenser över (kHz)"
 
 #: plug-ins/noisegate.ny
-#, fuzzy
 msgid "Level reduction (dB)"
-msgstr "&Brusreducering (dB):"
+msgstr "Nivåreducering (dB)"
 
 #: plug-ins/noisegate.ny
-#, fuzzy
 msgid "Attack (ms)"
-msgstr "Attack/decay tid"
+msgstr "Attack (ms)"
 
 #: plug-ins/noisegate.ny
-#, fuzzy
 msgid "Decay (ms)"
-msgstr "Attack/decay tid"
+msgstr "Avtoning (ms)"
 
 #: plug-ins/noisegate.ny
-#, fuzzy, lisp-format
+#, lisp-format
 msgid ""
 "Error.\n"
 "Selection too long.\n"
 "Maximum length is ~a."
-msgstr "Markeringen måste vara större än %d samplingar."
+msgstr ""
+"Fel.\n"
+"Markeringen är för lång.\n"
+"Maxlängden är ~a."
 
 #: plug-ins/notch.ny
 msgid "Notch Filter"
@@ -13309,51 +13286,42 @@ msgstr ""
 "                 Frekvensen måste vara mindre än ~a Hz."
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy
 msgid "Nyquist Plug-in Installer"
-msgstr "Nyquist-insticksmoduler"
+msgstr "Installerare för Nyquist-insticksmoduler"
 
 #. i18n-hint: "Browse..." is text on a button that launches a file browser.
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy
 msgid "Select file(s) to install"
-msgstr "Välj ström(mar) att importera"
+msgstr "Välj filer att installera"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy
 msgid "Plug-in"
-msgstr "insticksmodul"
+msgstr "Insticksmodul"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy
 msgid "Lisp file"
-msgstr "MP3-filer"
+msgstr "Lisp-fil"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy
 msgid "HTML file"
-msgstr "MP3-filer"
+msgstr "HTML-fil"
 
 #: plug-ins/nyquist-plug-in-installer.ny plug-ins/sample-data-export.ny
 #: plug-ins/sample-data-import.ny
-#, fuzzy
 msgid "Text file"
-msgstr "Namnge filer:"
+msgstr "Textfil"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy
 msgid "All supported"
-msgstr "Alla filer|*|Alla filer som stöds|"
+msgstr "Alla format som stöds"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy
 msgid "Allow overwriting"
-msgstr "Tillåt klippning"
+msgstr "Tillåt överskrivning"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy
 msgid "Disallow"
-msgstr "Nekad"
+msgstr "Tillåt inte"
 
 #: plug-ins/nyquist-plug-in-installer.ny
 #, fuzzy
