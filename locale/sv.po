@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2026-09-18 13:30+0000\n"
+"PO-Revision-Date: 2026-09-18 13:33+0000\n"
 "Last-Translator: Daniel Nylander <yeagersthlm@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/sv/>\n"
@@ -54,9 +54,9 @@ msgid "Internal Error"
 msgstr "Internt fel"
 
 #: libraries/lib-files/FileException.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "Tenacity failed to open a file in %s."
-msgstr "Misslyckades att ta bort %s"
+msgstr "Tenacity kunde inte öppna en fil i %s."
 
 #: libraries/lib-files/FileException.h
 msgid "File Error"
@@ -245,10 +245,8 @@ msgid "System"
 msgstr "System"
 
 #: libraries/lib-track/Track.cpp
-#, fuzzy
-#| msgid "Generic"
 msgid "Generic Track"
-msgstr "Allmän"
+msgstr "Allmänt spår"
 
 #. i18n-hint: The default name for an audio track.
 #: libraries/lib-track/Track.cpp src/prefs/TracksPrefs.cpp
@@ -256,10 +254,8 @@ msgid "Audio Track"
 msgstr "Ljudspår"
 
 #: libraries/lib-track/Track.cpp
-#, fuzzy
-#| msgid "Playback"
 msgid "Playable Track"
-msgstr "Uppspelning"
+msgstr "Uppspelningsbart spår"
 
 #: libraries/lib-xml/XMLFileReader.cpp src/effects/Effect.cpp
 #: src/effects/VST/VSTEffect.cpp
@@ -373,9 +369,9 @@ msgstr "%s, grafik"
 
 #. i18n-hint: For "About Tenacity..." credits, substituting a person's proper name
 #: src/AboutDialog.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s, Tenacity contributor"
-msgstr "webbutvecklare"
+msgstr "%s, Tenacity-bidragsgivare"
 
 #. i18n-hint: information about the program
 #: src/AboutDialog.cpp
@@ -416,9 +412,8 @@ msgstr "Bidragsgivare"
 
 #. i18n-hint: The program's name substitutes for %s
 #: src/AboutDialog.cpp
-#, fuzzy
 msgid "Audacity Team Members"
-msgstr "Äldre teammedlemmar"
+msgstr "Medlemmar i Audacity-teamet"
 
 #: src/AboutDialog.cpp
 msgid "Emeritus:"
@@ -489,16 +484,12 @@ msgstr "Inställningsmapp:"
 
 #. i18n-hint: Libraries that are essential to audacity
 #: src/AboutDialog.cpp
-#, fuzzy
-#| msgid "Libraries"
 msgid "Core Libraries"
-msgstr "Bibliotek"
+msgstr "Kärnbibliotek"
 
 #: src/AboutDialog.cpp
-#, fuzzy
-#| msgid "Sample Rate Conver&ter:"
 msgid "Sample rate conversion"
-msgstr "Konverterin&g av samplingsfrekvens:"
+msgstr "Konvertering av samplingsfrekvens"
 
 #: src/AboutDialog.cpp
 msgid "File Format Support"
@@ -515,10 +506,8 @@ msgid "ID3 tag support"
 msgstr "Stöd för ID3-tagg"
 
 #: src/AboutDialog.cpp
-#, fuzzy
-#| msgid "FLAC import and export"
 msgid "Matroska import and export"
-msgstr "Import och export av FLAC"
+msgstr "Import och export av Matroska"
 
 #. i18n-hint: FLAC stands for Free Lossless Audio Codec, but is effectively
 #. * a proper noun and so shouldn't be translated
@@ -661,10 +650,8 @@ msgstr ""
 "\n"
 
 #: src/AudioIO.cpp
-#, fuzzy
-#| msgid "Trim Audio"
 msgid "Tenacity Audio"
-msgstr "Beskär ljud"
+msgstr "Tenacity-ljud"
 
 #: src/AudioIO.cpp src/ProjectAudioManager.cpp
 #, c-format
@@ -696,9 +683,8 @@ msgid "Name"
 msgstr "Namn"
 
 #: src/AutoRecoveryDialog.cpp src/TenacityFileConfig.cpp
-#, fuzzy
 msgid "&Quit Tenacity"
-msgstr "Om Audacity"
+msgstr "Avsluta Tenacity"
 
 #: src/AutoRecoveryDialog.cpp
 msgid "&Discard Selected"
@@ -1220,10 +1206,8 @@ msgid "Release build (debug level %d)"
 msgstr "Utgivningsversion (felsökningsnivå %d)"
 
 #: src/BuildInfo.h
-#, fuzzy
-#| msgid "24 bit"
 msgid ", 64 bits"
-msgstr "24 bitar"
+msgstr ", 64 bitar"
 
 #. i18n-hint: %s will be replaced by the name of an action, such as Normalize, Cut, Fade.
 #: src/CommonCommandFlags.cpp
@@ -1641,10 +1625,8 @@ msgid "&Compact"
 msgstr "&Komprimera"
 
 #: src/JournalEvents.cpp
-#, fuzzy
-#| msgid "Recording Saved:"
 msgid "Journal recording failed"
-msgstr "Inspelning sparades:"
+msgstr "Journalinspelning misslyckades"
 
 #: src/LabelDialog.cpp src/tracks/labeltrack/ui/LabelTrackView.cpp
 msgid "Edit Labels"
@@ -1914,14 +1896,15 @@ msgstr ""
 "Den läses inte in."
 
 #: src/ModuleManager.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The module \"%s\" is matched with Tenacity version \"%s\".\n"
 "\n"
 "It will not be loaded."
 msgstr ""
-"Modulen %s har ingen versionsinformation.\n"
-"Den kommer inte att läsas in."
+"Modulen ”%s” matchar Tenacity-versionen ”%s”.\n"
+"\n"
+"Den läses inte in."
 
 #: src/ModuleManager.cpp
 #, c-format
@@ -1960,9 +1943,8 @@ msgid "No"
 msgstr "Nej"
 
 #: src/ModuleManager.cpp
-#, fuzzy
 msgid "Tenacity Module Loader"
-msgstr "webbutvecklare"
+msgstr "Tenacity-modulläsare"
 
 #: src/ModuleManager.cpp
 msgid "Try and load this module?"
@@ -2202,10 +2184,9 @@ msgid "<untitled>"
 msgstr "<namnlös>"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
-#| msgid "Project"
+#, c-format
 msgid "[Project %02i] "
-msgstr "Projekt"
+msgstr "[Projekt %02i] "
 
 #: src/ProjectFileIO.cpp
 #, c-format
@@ -2545,10 +2526,10 @@ msgstr "Återskapa"
 
 #. i18n-hint Name default name assigned to a clip on track import
 #: src/ProjectFileManager.cpp
-#, fuzzy, c-format
+#, c-format
 msgctxt "clip name template"
 msgid "%s %d"
-msgstr "%s %d av %d klipp %s"
+msgstr "%s %d"
 
 #: src/ProjectFileManager.cpp
 #, c-format
@@ -2829,10 +2810,8 @@ msgid "&File"
 msgstr "&Arkiv"
 
 #: src/TenacityApp.cpp
-#, fuzzy
-#| msgid "Do you want to save the changes?"
 msgid "Do you still want to start Tenacity?"
-msgstr "Vill du spara ändringarna?"
+msgstr "Vill du fortfarande starta Tenacity?"
 
 #: src/TenacityApp.cpp
 msgid "Error Locking Temporary Folder"
@@ -2856,9 +2835,8 @@ msgstr "kör självdiagnostik"
 
 #. i18n-hint: This displays the Audacity version
 #: src/TenacityApp.cpp
-#, fuzzy
 msgid "display Tenacity version"
-msgstr "webbutvecklare"
+msgstr "visa Tenacity-version"
 
 #. i18n-hint: This is a list of one or more files that Audacity
 #. *           should open upon startup
@@ -2871,9 +2849,8 @@ msgid "Audacity Project Files"
 msgstr "Audacity-projektfiler"
 
 #: src/TenacityFileConfig.cpp
-#, fuzzy
 msgid "Tenacity Configuration Error"
-msgstr "Bekräfta att regel ska raderas"
+msgstr "Konfigurationsfel i Tenacity"
 
 #: src/TenacityFileConfig.cpp src/commands/HelpCommand.cpp
 #: src/effects/Equalization.cpp src/export/Export.cpp
@@ -2904,10 +2881,8 @@ msgid "Time Track"
 msgstr "Tidspår"
 
 #: src/TimerRecordDialog.cpp
-#, fuzzy
-#| msgid "Timer Recording"
 msgid "Tenacity Timer Record"
-msgstr "Timerinspelning"
+msgstr "Tidsstyrd inspelning i Tenacity"
 
 #: src/TimerRecordDialog.cpp
 msgid "Save Timer Recording As"
@@ -3004,10 +2979,8 @@ msgid "Action after Timer Recording:"
 msgstr "Handling efter timerinspelning:"
 
 #: src/TimerRecordDialog.cpp
-#, fuzzy
-#| msgid "Error Saving Timer Recording Project"
 msgid "Tenacity Timer Record Progress"
-msgstr "Fel uppstod när timerinspelningsprojektet sparades"
+msgstr "Förlopp för tidsstyrd inspelning i Tenacity"
 
 #: src/TimerRecordDialog.cpp
 msgid "Timer Recording stopped."
@@ -3203,10 +3176,8 @@ msgid "Recording Exported:"
 msgstr "Inspelning exporterades:"
 
 #: src/TimerRecordDialog.cpp
-#, fuzzy
-#| msgid "Timer Recording"
 msgid "Tenacity Timer Record - Waiting"
-msgstr "Timerinspelning"
+msgstr "Tidsstyrd inspelning i Tenacity – väntar"
 
 #: src/TrackPanel.cpp
 msgid "Track Panel"
@@ -3368,10 +3339,8 @@ msgid "Resampling failed."
 msgstr "Återsampling misslyckades."
 
 #: src/WaveTrack.cpp
-#, fuzzy
-#| msgid "Move Track"
 msgid "Wave Track"
-msgstr "Flytta spår"
+msgstr "Vågspår"
 
 #: src/WaveTrack.cpp
 msgid "There is not enough room available to paste the selection"
@@ -3383,9 +3352,8 @@ msgstr "Det finns inte tillräcklig plats för att expandera klipplinjen"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #: src/effects/nyquist/Nyquist.cpp src/prefs/PrefsPanel.cpp plug-ins/beat.ny
-#, fuzzy
 msgid "Tenacity"
-msgstr "Audacity-logg"
+msgstr "Tenacity"
 
 #: src/commands/AudacityCommand.cpp src/effects/Effect.cpp
 #, c-format
@@ -6786,9 +6754,8 @@ msgid "Standard VST program file"
 msgstr "Standard-VST-programfil"
 
 #: src/effects/VST/VSTEffect.cpp
-#, fuzzy
 msgid "Tenacity VST preset file"
-msgstr "Välj fil"
+msgstr "Tenacity VST-förinställningsfil"
 
 #: src/effects/VST/VSTEffect.cpp
 msgid "Unrecognized file extension."
@@ -6877,10 +6844,8 @@ msgid "Audio Unit Effects"
 msgstr "Ljudenhetseffekter"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
-#, fuzzy
-#| msgid "Audio Unit Effect Options"
 msgid "Provides Audio Unit Effects support to Tenacity"
-msgstr "Alternativ för ljudenhetseffekter"
+msgstr "Ger Tenacity stöd för Audio Unit-effekter"
 
 #: src/effects/audiounits/AudioUnitEffect.cpp
 msgid "Could not find component"
@@ -7597,10 +7562,8 @@ msgstr "Samplingsfrekvens:"
 
 #. i18n-hint: Guess format of raw file
 #: src/import/ImportRaw.cpp
-#, fuzzy
-#| msgid "Detect Silence"
 msgid "Detect"
-msgstr "Upptäck tystnad"
+msgstr "Identifiera"
 
 #: src/import/ImportRaw.cpp src/menus/FileMenus.cpp
 msgid "&Import"
@@ -7617,11 +7580,11 @@ msgstr "&Importera"
 #. clips.
 #.
 #: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s %s, %d of %d clip %s"
 msgid_plural "%s %s, %d of %d clips %s"
-msgstr[0] "%s %d av %d klipp %s"
-msgstr[1] "%s %d av %d klipp %s"
+msgstr[0] "%s %s, %d av %d klipp %s"
+msgstr[1] "%s %s, %d av %d klipp %s"
 
 #: src/menus/ClipMenus.cpp
 msgid "start"
@@ -7638,11 +7601,11 @@ msgstr "slutet"
 #. last number counts all clips,
 #. last string names a track
 #: src/menus/ClipMenus.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s, %d of %d clip %s"
 msgid_plural "%s, %d of %d clips %s"
-msgstr[0] "%s %d av %d klipp %s"
-msgstr[1] "%s %d av %d klipp %s"
+msgstr[0] "%s, %d av %d klipp %s"
+msgstr[1] "%s, %d av %d klipp %s"
 
 #: src/menus/ClipMenus.cpp
 msgid "clip not moved"
@@ -9466,8 +9429,6 @@ msgstr "&Enhet:"
 #. i18n-hint: modifier as in "Recording preferences", not progressive verb
 #: src/prefs/DevicePrefs.cpp src/prefs/RecordingPrefs.cpp
 #: src/prefs/RecordingPrefs.h
-#, fuzzy
-#| msgid "Recording"
 msgctxt "preference"
 msgid "Recording"
 msgstr "Inspelning"
@@ -9886,10 +9847,8 @@ msgid "&Defaults"
 msgstr "&Standardvärden"
 
 #: src/prefs/KeyConfigPrefs.cpp
-#, fuzzy
-#| msgid "Select a text file containing labels"
 msgid "Select an XML file containing Tenacity keyboard shortcuts..."
-msgstr "Välj en textfil som innehåller etiketter"
+msgstr "Välj en XML-fil som innehåller Tenacity-kortkommandon …"
 
 #: src/prefs/KeyConfigPrefs.cpp
 msgid "Error Importing Keyboard Shortcuts"
@@ -10062,10 +10021,8 @@ msgid "Always scrub un&pinned"
 msgstr "Utför alltid scrubbing på o&fästade"
 
 #: src/prefs/PrefsDialog.cpp
-#, fuzzy
-#| msgid "Get Preference"
 msgid "Tenacity Preferences"
-msgstr "Hämta inställning"
+msgstr "Inställningar för Tenacity"
 
 #: src/prefs/PrefsDialog.cpp
 msgid "Category"
@@ -10638,29 +10595,33 @@ msgid "High Contrast"
 msgstr "Hög kontrast"
 
 #: src/theme/Theme.cpp
-#, fuzzy, c-format
-#| msgid "Couldn't write to file: %s"
+#, c-format
 msgid ""
 "Tenacity could not write file:\n"
 "  %s."
-msgstr "Kunde inte skriva till fil: %s"
+msgstr ""
+"Tenacity kunde inte skriva filen:\n"
+"  %s."
 
 #: src/theme/Theme.cpp
-#, fuzzy, c-format
-#| msgid "Unable to open target file for writing"
+#, c-format
 msgid ""
 "Tenacity could not open file:\n"
 "  %s\n"
 "for writing."
-msgstr "Kunde inte öppna målfil att skriva till"
+msgstr ""
+"Tenacity kunde inte öppna filen:\n"
+"  %s\n"
+"för skrivning."
 
 #: src/theme/Theme.cpp
-#, fuzzy, c-format
-#| msgid "Couldn't write to file: %s"
+#, c-format
 msgid ""
 "Tenacity could not write images to file:\n"
 "  %s."
-msgstr "Kunde inte skriva till fil: %s"
+msgstr ""
+"Tenacity kunde inte skriva bilder till filen:\n"
+"  %s."
 
 #: src/theme/Theme.cpp
 #, c-format
@@ -10694,12 +10655,13 @@ msgstr ""
 "finns redan. Vill du skriva över?"
 
 #: src/theme/Theme.cpp
-#, fuzzy, c-format
-#| msgid "Could not open file: %s"
+#, c-format
 msgid ""
 "Tenacity could not save file:\n"
 "  %s"
-msgstr "Kunde inte öppna fil: %s"
+msgstr ""
+"Tenacity kunde inte spara filen:\n"
+"  %s"
 
 #. i18n-hint: user defined
 #: src/theme/Theme.cpp
@@ -11009,10 +10971,9 @@ msgstr "Verktygsrad för &tid"
 
 #. i18n-hint: %s will be replaced by the name of the kind of toolbar.
 #: src/toolbars/ToolBar.cpp
-#, fuzzy, c-format
-#| msgid "&Edit Toolbar"
+#, c-format
 msgid "Tenacity %s Toolbar"
-msgstr "Verktygsfält för &redigering"
+msgstr "Verktygsrad för Tenacity %s"
 
 #: src/toolbars/ToolBar.cpp
 msgid "Click and drag to resize toolbar"
@@ -11281,40 +11242,28 @@ msgid "S&pectrogram Settings..."
 msgstr "Spektrogram&inställningar..."
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveClipTrimHandle.cpp
-#, fuzzy
-#| msgid "Click and drag to move a track in time"
 msgid "Click and drag to move clip boundary in time"
-msgstr "Klicka och dra för att flytta ett spår i tid"
+msgstr "Klicka och dra för att flytta klippgränsen i tid"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-#| msgid "Set Track Name"
 msgid "Set Wave Clip Name"
-msgstr "Ändra spårnamn"
+msgstr "Ange namn på vågklipp"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-#| msgid "Click and drag to select audio"
 msgid "Click and drag to select text"
-msgstr "Klicka och dra för att välja ljud"
+msgstr "Klicka och dra för att markera text"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-#| msgid "Modified Label"
 msgid "Modified Clip Name"
-msgstr "Ändrade etikett"
+msgstr "Ändrade klippnamn"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-#| msgid "Sample Edit"
 msgid "Clip Name Edit"
-msgstr "Redigera sampling"
+msgstr "Redigera klippnamn"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
-#, fuzzy
-#| msgid "Rename..."
 msgid "Rename Clip..."
-msgstr "&Byt namn..."
+msgstr "Byt namn på klipp …"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackControls.cpp
 msgid "&Format"
@@ -11514,27 +11463,23 @@ msgid "Close sub-view"
 msgstr "Stäng undervy"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-#| msgid "Set Clip"
 msgid "Split Clip"
-msgstr "Ändra klipp"
+msgstr "Dela klipp"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy
-#| msgid "M&ute/Unmute Focused Track"
 msgid "Mute/Unmute Track"
-msgstr "Slå av/på &ljudet för aktuellt spår"
+msgstr "Tysta/slå på ljud för spår"
 
 #. i18n-hint:
 #. string is the name of a clip
 #. first number is the position of that clip in a sequence of clips,
 #. second number counts the clips
 #: src/tracks/playabletrack/wavetrack/ui/WaveTrackView.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s, %d of %d clip"
 msgid_plural "%s, %d of %d clips"
-msgstr[0] "%s %d av %d klipp %s"
-msgstr[1] "%s %d av %d klipp %s"
+msgstr[0] "%s, %d av %d klipp"
+msgstr[1] "%s, %d av %d klipp"
 
 #: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
 msgid "Half Wave"
@@ -11608,28 +11553,20 @@ msgid "Logarithmic &Interpolation"
 msgstr "Logaritmisk &interpolering"
 
 #: src/tracks/ui/BackgroundCell.cpp
-#, fuzzy
-#| msgid "&Mono Track"
 msgid "Add Mono Track"
-msgstr "&Monospår"
+msgstr "Lägg till monospår"
 
 #: src/tracks/ui/BackgroundCell.cpp
-#, fuzzy
-#| msgid "&Stereo Track"
 msgid "Add Stereo Track"
-msgstr "&Stereospår"
+msgstr "Lägg till stereospår"
 
 #: src/tracks/ui/BackgroundCell.cpp
-#, fuzzy
-#| msgid "Label Track"
 msgid "Add Label Track"
-msgstr "Etikettspår"
+msgstr "Lägg till etikettspår"
 
 #: src/tracks/ui/BackgroundCell.cpp
-#, fuzzy
-#| msgid "&Export Audio..."
 msgid "Export Audio..."
-msgstr "Exportera &ljud..."
+msgstr "Exportera ljud …"
 
 #: src/tracks/ui/CommonTrackControls.cpp
 msgid "Move Track &Up"
@@ -13324,39 +13261,33 @@ msgid "Disallow"
 msgstr "Tillåt inte"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy
 msgid "Allow"
-msgstr "Nekad"
+msgstr "Tillåt"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy, lisp-format
+#, lisp-format
 msgid "Warning.~%Failed to copy some files:~%"
-msgstr "Misslyckades att ta bort %s"
+msgstr "Varning.~%Det gick inte att kopiera vissa filer:~%"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy
 msgid "Plug-ins updated:"
-msgstr "Stöd för insticksmoduler"
+msgstr "Insticksmoduler uppdaterade:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy
 msgid "Files copied to plug-ins folder:"
-msgstr "Välj en fil"
+msgstr "Filer kopierade till insticksmodulkatalogen:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy
 msgid "Not found or cannot be read:"
-msgstr "Fel.~%\"~a\" kan inte skrivas."
+msgstr "Hittades inte eller kan inte läsas:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy
 msgid "Unsupported file type:"
-msgstr "Oanvända filter:"
+msgstr "Filtypen stöds inte:"
 
 #: plug-ins/nyquist-plug-in-installer.ny
-#, fuzzy
 msgid "Cannot be written to plug-ins folder:"
-msgstr "Välj en fil"
+msgstr "Det går inte att skriva till insticksmodulkatalogen:"
 
 #: plug-ins/pluck.ny
 msgid "Pluck"
@@ -13564,14 +13495,12 @@ msgid "Export data to"
 msgstr "Exportera data till"
 
 #: plug-ins/sample-data-export.ny
-#, fuzzy
 msgid "CSV files"
-msgstr "FLAC-filer"
+msgstr "CSV-filer"
 
 #: plug-ins/sample-data-export.ny
-#, fuzzy
 msgid "HTML files"
-msgstr "MP3-filer"
+msgstr "HTML-filer"
 
 #: plug-ins/sample-data-export.ny
 msgid "Index (text files only)"
@@ -13886,9 +13815,8 @@ msgid "Error.~%Unable to open file"
 msgstr "Fel.~%Kan inte öppna fil"
 
 #: plug-ins/spectral-delete.ny
-#, fuzzy
 msgid "Spectral Delete"
-msgstr "Spektrumsmarkering"
+msgstr "Spektral borttagning"
 
 #: plug-ins/tremolo.ny
 msgid "Tremolo"
@@ -13927,9 +13855,8 @@ msgid "Robert Haenggi"
 msgstr "Robert Haenggi"
 
 #: plug-ins/vocalrediso.ny
-#, fuzzy
 msgid "Remove Vocals: to mono"
-msgstr "Ta bort sång"
+msgstr "Ta bort sång: till mono"
 
 #: plug-ins/vocalrediso.ny
 msgid "Remove Vocals"
@@ -13944,9 +13871,8 @@ msgid "Isolate Vocals and Invert"
 msgstr "Isolera sång och invertera"
 
 #: plug-ins/vocalrediso.ny
-#, fuzzy
 msgid "Remove Center: to mono"
-msgstr "Radera mitten"
+msgstr "Ta bort mitten: till mono"
 
 #: plug-ins/vocalrediso.ny
 msgid "Remove Center"
@@ -13977,7 +13903,7 @@ msgid "High Cut for Vocals (Hz)"
 msgstr "Högt klipp för sång (Hz)"
 
 #: plug-ins/vocalrediso.ny
-#, fuzzy, lisp-format
+#, lisp-format
 msgid ""
 "Average x: ~a, y: ~a\n"
 "                    Covariance x y: ~a\n"
@@ -13988,14 +13914,14 @@ msgid ""
 "                    Variation of residuals: ~a\n"
 "                    y equals ~a plus ~a times x~%"
 msgstr ""
-"Medelvärde för x: ~a, y: ~a\n"
-"Kovarians för x y: ~a\n"
-"Medelvarians för x: ~a, y: ~a\n"
-"Standardavvikelse för x: ~a, y: ~a\n"
-"Korrelationskoefficient: ~a\n"
-"Bestämningskoefficient: ~a \n"
-"Slumpfel: ~a\n"
-"y motsvarar ~a plus ~a gånger x~%"
+"Medelvärde x: ~a, y: ~a\n"
+"                    Kovarians x y: ~a\n"
+"                    Medelvarians x: ~a, y: ~a\n"
+"                    Standardavvikelse x: ~a, y: ~a\n"
+"                    Korrelationskoefficient: ~a\n"
+"                    Bestämningskoefficient: ~a\n"
+"                    Residualvariation: ~a\n"
+"                    y är lika med ~a plus ~a gånger x~%"
 
 #: plug-ins/vocalrediso.ny
 #, lisp-format
@@ -14007,26 +13933,24 @@ msgstr ""
 "omkring ~a %. Detta betyder:~%~a~%"
 
 #: plug-ins/vocalrediso.ny
-#, fuzzy
 msgid ""
 " - The two channels are identical, i.e. dual mono.\n"
 "                The center can't be removed.\n"
 "                Any remaining difference may be caused by lossy encoding."
 msgstr ""
-" - De två kanalerna är identiska, d.v.s. dual mono.\n"
-"   Mitten kan inte tas bort.\n"
-"      Alla återstående skillnader kan orsakas av avkodningsförluster."
+" - De två kanalerna är identiska, det vill säga dubbel mono.\n"
+"                Mitten kan inte tas bort.\n"
+"                Återstående skillnader kan bero på förstörande kodning."
 
 #: plug-ins/vocalrediso.ny
-#, fuzzy
 msgid ""
 " - The two Channels are strongly related, i.e. nearly mono or extremely "
 "panned.\n"
 "                Most likely, the center extraction will be poor."
 msgstr ""
-" - De två kanalerna är riktigt relaterade, d.v.s. nästan mono eller extremt "
-"panorerade.\n"
-"   Centerextraheringen kommer förmodligen bli dålig."
+" - De två kanalerna är starkt relaterade, det vill säga nästan mono eller "
+"extremt panorerade.\n"
+"                Centerextraheringen blir troligen dålig."
 
 #: plug-ins/vocalrediso.ny
 msgid ""
@@ -14036,17 +13960,16 @@ msgstr ""
 "utspritt."
 
 #: plug-ins/vocalrediso.ny
-#, fuzzy
 msgid ""
 " - An ideal value for Stereo.\n"
 "                However, the center extraction depends also on the used "
 "reverb."
 msgstr ""
-" - Ett ideellt värde för stereo.\n"
-"  Men centerextraheringen beror på efterklangen som användes."
+" - Ett idealvärde för stereo.\n"
+"                Centerextraheringen beror dock även på den använda "
+"efterklangen."
 
 #: plug-ins/vocalrediso.ny
-#, fuzzy
 msgid ""
 " - The two channels are almost not related.\n"
 "                Either you have only noise or the piece is mastered in a "
@@ -14054,23 +13977,21 @@ msgid ""
 "                The center extraction can still be good though."
 msgstr ""
 " - De två kanalerna är nästan inte relaterade.\n"
-"   Antingen har du endast brus eller så har delen bearbetats på ett "
-"obalanserat sätt.\n"
-"   Centerextraheringen kan dock fortfarande vara bra."
+"                Antingen har du bara brus eller så är stycket mastrat "
+"obalanserat.\n"
+"                Centerextraheringen kan dock ändå bli bra."
 
 #: plug-ins/vocalrediso.ny
-#, fuzzy
 msgid ""
 " - Although the Track is stereo, the field is obviously extra wide.\n"
 "                This can cause strange effects.\n"
 "                Especially when played by only one speaker."
 msgstr ""
-" - Fastän spåret är i stereo är fältet uppenbarligen extra brett.\n"
-"   Detta kan orsaka konstiga effekter.\n"
-"   Speciellt när detta spelas upp med en högtalare."
+" - Även om spåret är stereo är fältet uppenbarligen extra brett.\n"
+"                Det kan orsaka märkliga effekter.\n"
+"                Särskilt vid uppspelning med bara en högtalare."
 
 #: plug-ins/vocalrediso.ny
-#, fuzzy
 msgid ""
 " - The two channels are nearly identical.\n"
 "                  Obviously, a pseudo stereo effect has been used\n"
@@ -14079,9 +14000,10 @@ msgid ""
 "                  Don't expect good results from a center removal."
 msgstr ""
 " - De två kanalerna är nästan identiska.\n"
-"   Uppenbarligen har en pseudo-stereoeffekt använts\n"
-"   för att sprida ut signalen över det fysiska avståndet mellan högtalarna.\n"
-" Förvänta dig inte ett bra resultat genom att ta bort mitten."
+"                  Uppenbarligen har en pseudostereoeffekt använts\n"
+"                  för att sprida signalen över det fysiska avståndet mellan "
+"högtalarna.\n"
+"                  Förvänta dig inte bra resultat av en centerborttagning."
 
 #: plug-ins/vocalrediso.ny
 msgid "This plug-in works only with stereo tracks."
