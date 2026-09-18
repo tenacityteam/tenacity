@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2026-09-18 13:08+0000\n"
+"PO-Revision-Date: 2026-09-18 13:10+0000\n"
 "Last-Translator: Daniel Nylander <yeagersthlm@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/sv/>\n"
@@ -14958,27 +14958,6 @@ msgstr "Fel.~%Stereospår krävs."
 #~ msgid "(Built-in)"
 #~ msgstr "Inbyggd"
 
-#~ msgid "Mi&xer"
-#~ msgstr "Mi&xer"
-
-#~ msgid "Ad&just Playback Volume..."
-#~ msgstr "Justera uppspelnings&volym..."
-
-#~ msgid "&Increase Playback Volume"
-#~ msgstr "&Öka uppspelningsvolym"
-
-#~ msgid "&Decrease Playback Volume"
-#~ msgstr "&Minska uppspelningsvolym"
-
-#~ msgid "Adj&ust Recording Volume..."
-#~ msgstr "J&ustera inspelningsvolym..."
-
-#~ msgid "I&ncrease Recording Volume"
-#~ msgstr "Ö&ka inspelningsvolym"
-
-#~ msgid "D&ecrease Recording Volume"
-#~ msgstr "M&inska inspelningsvolym"
-
 #~ msgid "&Quick Fix..."
 #~ msgstr "&Snabbåtgärd..."
 
@@ -15008,21 +14987,6 @@ msgstr "Fel.~%Stereospår krävs."
 
 #~ msgid "MP3 Library Version:"
 #~ msgstr "MP3-biblioteksversion:"
-
-#~ msgid "Within:"
-#~ msgstr "Inom:"
-
-#~ msgid "Analysis Time:"
-#~ msgstr "Analystid:"
-
-#~ msgid "milliseconds (time of one analysis)"
-#~ msgstr "millisekunder (tid från en analys)"
-
-#~ msgid "Number of consecutive analysis:"
-#~ msgstr "Antal analyser i följd:"
-
-#~ msgid "0 means endless"
-#~ msgstr "0 betyder oändligt"
 
 #~ msgid "Recording Volume"
 #~ msgstr "Inspelningsvolym"
@@ -21804,3 +21768,353 @@ msgstr "Aktivera automatisk justering av inspelningsnivå."
 #: src/prefs/RecordingPrefs.cpp
 msgid "Target Peak:"
 msgstr "Måltopp:"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Within:"
+msgstr "Inom:"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Analysis Time:"
+msgstr "Analystid:"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "milliseconds (time of one analysis)"
+msgstr "millisekunder (tid för en analys)"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "Number of consecutive analysis:"
+msgstr "Antal analyser i följd:"
+
+#: src/prefs/RecordingPrefs.cpp
+msgid "0 means endless"
+msgstr "0 betyder oändligt"
+
+#: src/prefs/ThemePrefs.cpp
+msgid ""
+"Themability is an experimental feature.\n"
+"\n"
+"To try it out, click \"Save Theme Cache\" then find and modify the images "
+"and colors in\n"
+"ImageCacheVxx.png using an image editor such as the Gimp.\n"
+"\n"
+"Click \"Load Theme Cache\" to load the changed images and colors back into "
+"Tenacity."
+msgstr ""
+"Temaanpassning är en experimentell funktion.\n"
+"\n"
+"Klicka på ”Spara temacache” för att prova den. Hitta sedan och ändra "
+"bilderna och färgerna i\n"
+"ImageCacheVxx.png med en bildredigerare, till exempel Gimp.\n"
+"\n"
+"Klicka på ”Läs in temacache” för att läsa in de ändrade bilderna och "
+"färgerna i Tenacity igen."
+
+#: src/prefs/TracksBehaviorsPrefs.cpp
+msgid ""
+"Ask me each time.\n"
+"Show dialog each time audio is pasted."
+msgstr ""
+"Fråga mig varje gång.\n"
+"Visa dialogrutan varje gång ljud klistras in."
+
+#: src/prefs/TracksBehaviorsPrefs.cpp
+msgid "&Always paste audio as new clips"
+msgstr "Klistra alltid in ljud som nya klipp"
+
+#: src/prefs/TracksBehaviorsPrefs.cpp
+msgid "Pasted audio"
+msgstr "Inklistrat ljud"
+
+#: src/prefs/TracksBehaviorsPrefs.cpp
+msgid "Paste audio from another Tenacity project as"
+msgstr "Klistra in ljud från ett annat Tenacity-projekt som"
+
+#. i18n-hint: Audio setup button text, keep as short as possible
+#: src/toolbars/AudioSetupToolBar.cpp
+msgid "Audio Setup"
+msgstr "Ljudkonfiguration"
+
+#. i18n-hint: Audio setup menu
+#: src/toolbars/AudioSetupToolBar.cpp
+msgid "&Host"
+msgstr "&Värd"
+
+#: src/toolbars/AudioSetupToolBar.cpp
+msgid "&Playback Device"
+msgstr "&Uppspelningsenhet"
+
+#: src/toolbars/AudioSetupToolBar.cpp
+msgid "&Recording Device"
+msgstr "&Inspelningsenhet"
+
+#: src/toolbars/AudioSetupToolBar.cpp
+msgid "Recording &Channels"
+msgstr "Inspelnings&kanaler"
+
+#: src/toolbars/AudioSetupToolBar.cpp
+msgid "&Audio Settings..."
+msgstr "&Ljudinställningar …"
+
+#. i18n-hint: Clicking this menu item shows the toolbar
+#. that manages the audio devices
+#: src/toolbars/AudioSetupToolBar.cpp
+msgid "&Audio Setup Toolbar"
+msgstr "Verktygsrad för &ljudkonfiguration"
+
+#: src/toolbars/ControlToolBar.cpp
+msgid "Play Once"
+msgstr "Spela en gång"
+
+#: src/toolbars/MeterToolBar.cpp
+msgid "Mi&xer"
+msgstr "Mi&xer"
+
+#: src/toolbars/MeterToolBar.cpp
+msgid "Ad&just Playback Volume..."
+msgstr "Justera uppspelnings&volym …"
+
+#: src/toolbars/MeterToolBar.cpp
+msgid "&Increase Playback Volume"
+msgstr "&Höj uppspelningsvolymen"
+
+#: src/toolbars/MeterToolBar.cpp
+msgid "&Decrease Playback Volume"
+msgstr "&Sänk uppspelningsvolymen"
+
+#: src/toolbars/MeterToolBar.cpp
+msgid "Adj&ust Recording Volume..."
+msgstr "Justera inspelnings&volym …"
+
+#: src/toolbars/MeterToolBar.cpp
+msgid "I&ncrease Recording Volume"
+msgstr "Höj inspelnings&volymen"
+
+#: src/toolbars/MeterToolBar.cpp
+msgid "D&ecrease Recording Volume"
+msgstr "Sänk inspelnings&volymen"
+
+#: src/toolbars/SelectionBar.cpp
+msgid "Selection Toolbar Setup"
+msgstr "Inställning av markeringsverktygsrad"
+
+#: src/toolbars/SnappingToolBar.cpp
+msgid "Snap"
+msgstr "Fäst"
+
+#: src/toolbars/SnappingToolBar.cpp
+msgid "Snapping"
+msgstr "Fästning"
+
+#. i18n-hint: combo box is the type of the control/widget
+#: src/toolbars/SnappingToolBar.cpp
+msgid "Snap to combo box"
+msgstr "Fäst vid kombinationsruta"
+
+#. i18n-hint: Clicking this menu item shows the toolbar
+#. for selecting a time range of audio
+#: src/toolbars/SnappingToolBar.cpp
+msgid "&Snapping Toolbar"
+msgstr "Verktygsrad för &fästning"
+
+#: src/toolbars/TimeSignatureToolBar.cpp
+msgid "Time Signature"
+msgstr "Taktart"
+
+#: src/toolbars/TimeSignatureToolBar.cpp
+msgid "Tempo"
+msgstr "Tempo"
+
+#: src/toolbars/TimeSignatureToolBar.cpp
+msgid "Upper Time Signature"
+msgstr "Övre taktartssiffra"
+
+#: src/toolbars/TimeSignatureToolBar.cpp
+msgid "Lower Time Signature"
+msgstr "Undre taktartssiffra"
+
+#: src/toolbars/TimeSignatureToolBar.cpp
+msgid "Tempo Changed"
+msgstr "Tempot ändrades"
+
+#: src/toolbars/TimeSignatureToolBar.cpp
+msgid "Upper Time Signature Changed"
+msgstr "Övre taktartssiffran ändrades"
+
+#: src/toolbars/TimeSignatureToolBar.cpp
+msgid "Lower Time Signature Changed"
+msgstr "Undre taktartssiffran ändrades"
+
+#. i18n-hint: Clicking this menu item shows the toolbar
+#. for selecting a time range of audio
+#: src/toolbars/TimeSignatureToolBar.cpp
+msgid "Time Signature Toolbar"
+msgstr "Verktygsrad för taktart"
+
+#: src/toolbars/TranscriptionToolBar.cpp
+msgid "Play-at-Speed Once"
+msgstr "Spela med hastighet en gång"
+
+#: src/toolbars/TranscriptionToolBar.cpp
+msgid "Play-at-Speed &Once"
+msgstr "Spela med hastighet &en gång"
+
+#: src/tracks/playabletrack/wavetrack/ui/ClipOverflowButtonHandle.cpp
+msgid "Click to open clip context menu."
+msgstr "Klicka för att öppna klippets snabbmeny."
+
+#: src/tracks/playabletrack/wavetrack/ui/ClipPitchAndSpeedButtonHandle.cpp
+msgid "Reset Clip Pitch"
+msgstr "Återställ klippets tonhöjd"
+
+#: src/tracks/playabletrack/wavetrack/ui/ClipPitchAndSpeedButtonHandle.cpp
+msgid "Not enough space"
+msgstr "Inte tillräckligt med utrymme"
+
+#: src/tracks/playabletrack/wavetrack/ui/ClipPitchAndSpeedButtonHandle.cpp
+msgid "There is not enough space to expand the clip to its original speed."
+msgstr ""
+"Det finns inte tillräckligt med utrymme för att utöka klippet till "
+"ursprunglig hastighet."
+
+#: src/tracks/playabletrack/wavetrack/ui/ClipPitchAndSpeedButtonHandle.cpp
+msgid "Reset Clip Speed"
+msgstr "Återställ klippets hastighet"
+
+#: src/tracks/playabletrack/wavetrack/ui/ClipPitchAndSpeedButtonHandle.cpp
+msgid "Click to reset clip pitch."
+msgstr "Klicka för att återställa klippets tonhöjd."
+
+#: src/tracks/playabletrack/wavetrack/ui/ClipPitchAndSpeedButtonHandle.cpp
+msgid "Click to change clip pitch, Cmd + click to reset."
+msgstr "Klicka för att ändra klippets tonhöjd, Cmd + klicka för att återställa."
+
+#: src/tracks/playabletrack/wavetrack/ui/ClipPitchAndSpeedButtonHandle.cpp
+msgid "Click to change clip pitch, Ctrl + click to reset."
+msgstr ""
+"Klicka för att ändra klippets tonhöjd, Ctrl + klicka för att återställa."
+
+#: src/tracks/playabletrack/wavetrack/ui/ClipPitchAndSpeedButtonHandle.cpp
+msgid "Click to reset clip speed."
+msgstr "Klicka för att återställa klippets hastighet."
+
+#: src/tracks/playabletrack/wavetrack/ui/ClipPitchAndSpeedButtonHandle.cpp
+msgid "Click to change clip speed, Cmd + click to reset."
+msgstr ""
+"Klicka för att ändra klippets hastighet, Cmd + klicka för att återställa."
+
+#: src/tracks/playabletrack/wavetrack/ui/ClipPitchAndSpeedButtonHandle.cpp
+msgid "Click to change clip speed, Ctrl + click to reset."
+msgstr ""
+"Klicka för att ändra klippets hastighet, Ctrl + klicka för att återställa."
+
+#: src/tracks/playabletrack/wavetrack/ui/PitchAndSpeedDialog.cpp
+msgid "Pitch and Speed"
+msgstr "Tonhöjd och hastighet"
+
+#: src/tracks/playabletrack/wavetrack/ui/PitchAndSpeedDialog.cpp
+msgid "Clip Pitch"
+msgstr "Klippets tonhöjd"
+
+#: src/tracks/playabletrack/wavetrack/ui/PitchAndSpeedDialog.cpp
+msgid "se&mitones:"
+msgstr "halvton&er:"
+
+#: src/tracks/playabletrack/wavetrack/ui/PitchAndSpeedDialog.cpp
+msgid "&cents:"
+msgstr "&cent:"
+
+#: src/tracks/playabletrack/wavetrack/ui/PitchAndSpeedDialog.cpp
+msgid "Clip Speed"
+msgstr "Klippets hastighet"
+
+#: src/tracks/playabletrack/wavetrack/ui/PitchAndSpeedDialog.cpp
+msgid "&speed %: "
+msgstr "&hastighet %: "
+
+#: src/tracks/playabletrack/wavetrack/ui/PitchAndSpeedDialog.cpp
+msgid "General"
+msgstr "Allmänt"
+
+#: src/tracks/playabletrack/wavetrack/ui/PitchAndSpeedDialog.cpp
+msgid "&Optimize for Voice"
+msgstr "&Optimera för röst"
+
+#: src/tracks/playabletrack/wavetrack/ui/PitchAndSpeedDialog.cpp
+msgid "Changed Speed"
+msgstr "Ändrade hastigheten"
+
+#: src/tracks/playabletrack/wavetrack/ui/PitchAndSpeedDialog.cpp
+msgid "Changed Pitch"
+msgstr "Ändrade tonhöjden"
+
+#: src/tracks/playabletrack/wavetrack/ui/SpectrumVZoomHandle.cpp
+#: src/tracks/playabletrack/wavetrack/ui/WaveformVZoomHandle.cpp
+msgid "Reset Zoom"
+msgstr "Återställ zoom"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveChannelVZoomHandle.cpp
+msgid ""
+"Drag to specify a zoom region. Right-click for menu. Ctrl+scroll to zoom."
+msgstr ""
+"Dra för att ange ett zoomområde. Högerklicka för meny. Ctrl + rulla för att "
+"zooma."
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveChannelVZoomHandle.cpp
+msgid "Right-click for menu. Ctrl+scroll to zoom."
+msgstr "Högerklicka för meny. Ctrl + rulla för att zooma."
+
+#. i18n-hint: This is about trimming a clip, a length in seconds like "2.4 seconds" is shown
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipAdjustBorderHandle.cpp
+#, c-format
+msgid "Adjust left trim by %.02f seconds"
+msgstr "Justera vänster beskärning med %.02f sekunder"
+
+#. i18n-hint: This is about trimming a clip, a length in seconds like "2.4s" is shown
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipAdjustBorderHandle.cpp
+#, c-format
+msgid "Trim by %.02fs"
+msgstr "Beskär med %.02f s"
+
+#. i18n-hint: This is about trimming a clip, a length in seconds like "2.4 seconds" is shown
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipAdjustBorderHandle.cpp
+#, c-format
+msgid "Adjust right trim by %.02f seconds"
+msgstr "Justera höger beskärning med %.02f sekunder"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipAdjustBorderHandle.cpp
+msgid "Click and drag to stretch clip"
+msgstr "Klicka och dra för att sträcka ut klippet"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipUIUtilities.cpp
+msgid "Join Clips"
+msgstr "Sammanfoga klipp"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipUIUtilities.cpp
+msgid "Pitch and Speed..."
+msgstr "Tonhöjd och hastighet …"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipUIUtilities.cpp
+msgid "Render Pitch and Speed"
+msgstr "Rendera tonhöjd och hastighet"
+
+#. i18n-hint: This is about changing the clip playback speed, speed is in
+#. percent
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipUIUtilities.cpp
+#, c-format
+msgid "Changed Clip Speed to %.01f%%"
+msgstr "Ändrade klippets hastighet till %.01f %%"
+
+#. i18n-hint: This is about changing the clip playback speed, speed is in
+#. percent
+#: src/tracks/playabletrack/wavetrack/ui/WaveClipUIUtilities.cpp
+#, c-format
+msgid "Changed Speed to %.01f%%"
+msgstr "Ändrade hastigheten till %.01f %%"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+msgid "Rendered time-stretched audio"
+msgstr "Renderade tidsutsträckt ljud"
+
+#: src/tracks/playabletrack/wavetrack/ui/WaveTrackAffordanceControls.cpp
+msgid "Pitch Shift"
+msgstr "Tonhöjdsförskjutning"
