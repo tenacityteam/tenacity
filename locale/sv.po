@@ -6,13 +6,14 @@
 # tygyh <jonis9898@hotmail.com>, 2022, 2023.
 # Kristoffer Grundström <swedishsailfishosuser@tutanota.com>, 2023.
 # Keddis <keddis@protonmail.com>, 2023.
+# Daniel Nylander <yeagersthlm@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2025-02-16 00:20+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2026-09-18 12:46+0000\n"
+"Last-Translator: Daniel Nylander <yeagersthlm@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/sv/>\n"
 "Language: sv\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: libraries/lib-audio-devices/AudioIOBase.cpp src/prefs/DevicePrefs.cpp
@@ -18268,3 +18269,622 @@ msgstr "Fel.~%Stereospår krävs."
 
 #~ msgid "mod-&track-panel"
 #~ msgstr "mod-&track-panel"
+
+#: src/AboutDialog.cpp
+#, c-format
+msgid "%s (incorporating %s, %s, %s, %s and %s)"
+msgstr "%s (inklusive %s, %s, %s, %s och %s)"
+
+#: src/AudacityApp.cpp
+msgid "Tenacity is starting up..."
+msgstr "Tenacity startar …"
+
+#: src/AudacityApp.cpp
+msgid ""
+"Unable to acquire semaphores.\n"
+"\n"
+"This is likely due to a resource shortage\n"
+"and a reboot may be required."
+msgstr ""
+"Det gick inte att hämta semaforer.\n"
+"\n"
+"Det beror troligen på resursbrist\n"
+"och kan kräva en omstart."
+
+#: src/AudacityApp.cpp
+msgid ""
+"Unable to create semaphores.\n"
+"\n"
+"This is likely due to a resource shortage\n"
+"and a reboot may be required."
+msgstr ""
+"Det gick inte att skapa semaforer.\n"
+"\n"
+"Det beror troligen på resursbrist\n"
+"och kan kräva en omstart."
+
+#: src/AudacityApp.cpp
+msgid ""
+"Unable to acquire lock semaphore.\n"
+"\n"
+"This is likely due to a resource shortage\n"
+"and a reboot may be required."
+msgstr ""
+"Det gick inte att hämta låssemaforen.\n"
+"\n"
+"Det beror troligen på resursbrist\n"
+"och kan kräva en omstart."
+
+#: src/AudacityApp.cpp
+msgid ""
+"Unable to acquire server semaphore.\n"
+"\n"
+"This is likely due to a resource shortage\n"
+"and a reboot may be required."
+msgstr ""
+"Det gick inte att hämta serversemaforen.\n"
+"\n"
+"Det beror troligen på resursbrist\n"
+"och kan kräva en omstart."
+
+#: src/AudacityApp.cpp
+msgid "An unrecoverable error has occurred during startup"
+msgstr "Ett fel som inte kan återställas har inträffat vid start"
+
+#: src/AudacityFileConfig.cpp
+msgid "&Retry"
+msgstr "&Försök igen"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+msgid "Stream is active ... unable to gather information.\n"
+msgstr "Strömmen är aktiv … det går inte att hämta information.\n"
+
+#: src/AutoRecoveryDialog.cpp src/PluginStartupRegistration.cpp
+msgid "&Skip"
+msgstr "&Hoppa över"
+
+#: libraries/lib-files/FileNames.cpp src/BatchCommands.cpp
+#: src/effects/lv2/LV2Editor.cpp
+#, c-format
+msgid "(%s)"
+msgstr "(%s)"
+
+#. i18n-hint: %s will be replaced by the name of an effect, usually 'Noise Reduction'.
+#: src/CommonCommandFlags.cpp
+#, c-format
+msgid ""
+"Select the audio for %s to use.\n"
+"\n"
+"1. Select audio that represents noise and use %s to get your 'noise "
+"profile'.\n"
+"\n"
+"2. When you have got your noise profile, select the audio you want to "
+"change\n"
+"and use %s to change that audio."
+msgstr ""
+"Välj ljudet som %s ska använda.\n"
+"\n"
+"1. Välj ljud som representerar brus och använd %s för att hämta din ”"
+"brusprofil”.\n"
+"\n"
+"2. När du har hämtat brusprofilen väljer du ljudet som ska ändras\n"
+"och använder %s för att ändra det."
+
+#: libraries/lib-project-file-io/DBConnection.cpp
+#: libraries/lib-project-file-io/ProjectFileIO.cpp
+msgid "This may take several seconds"
+msgstr "Detta kan ta flera sekunder"
+
+#: libraries/lib-transactions/TransactionScope.cpp
+msgid "Database error.  Sorry, but we don't have more details."
+msgstr "Databasfel. Det finns tyvärr inga ytterligare uppgifter."
+
+#. i18n-hint a proper name
+#: libraries/lib-fft/FFT.cpp
+msgid "Bartlett"
+msgstr "Bartlett"
+
+#. i18n-hint a proper name
+#: libraries/lib-fft/FFT.cpp
+msgid "Hann"
+msgstr "Hann"
+
+#. i18n-hint a proper name
+#: libraries/lib-fft/FFT.cpp
+msgid "Blackman"
+msgstr "Blackman"
+
+#. i18n-hint two proper names
+#: libraries/lib-fft/FFT.cpp
+msgid "Blackman-Harris"
+msgstr "Blackman-Harris"
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-fft/FFT.cpp
+msgid "Gaussian(a=2.5)"
+msgstr "Gaussisk(a=2,5)"
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-fft/FFT.cpp
+msgid "Gaussian(a=3.5)"
+msgstr "Gaussisk(a=3,5)"
+
+#. i18n-hint a mathematical function named for C. F. Gauss
+#: libraries/lib-fft/FFT.cpp
+msgid "Gaussian(a=4.5)"
+msgstr "Gaussisk(a=4,5)"
+
+#: libraries/lib-files/FileNames.cpp
+msgid ", "
+msgstr ", "
+
+#: src/HistoryWindow.cpp src/ProjectFileManager.cpp
+#, c-format
+msgid "Compacting actually freed %s of disk space."
+msgstr "Komprimeringen frigjorde faktiskt %s diskutrymme."
+
+#: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
+#: src/menus/TransportMenus.cpp
+msgid "Mismatched Sampling Rates"
+msgstr "Samplingfrekvenserna stämmer inte överens"
+
+#: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
+msgid "Too Few Compatible Tracks Selected"
+msgstr "För få kompatibla spår har valts"
+
+#. i18n-hint: An error message.  Don't translate inset or blockids.
+#: libraries/lib-project-file-io/ProjectFileIO.cpp
+msgid "Unable to add 'inset' function (can't verify blockids)"
+msgstr ""
+"Det gick inte att lägga till funktionen ”inset” (block-ID:n kan inte "
+"verifieras)"
+
+#: libraries/lib-project-file-io/ProjectFileIO.cpp
+msgid "Failed to rollback transaction during import"
+msgstr "Det gick inte att återställa transaktionen under importen"
+
+#: libraries/lib-project-file-io/ProjectFileIO.cpp
+msgid "Unable to switch to fast journaling mode"
+msgstr "Det gick inte att växla till snabbt journalföringsläge"
+
+#: libraries/lib-project-file-io/ProjectFileIO.cpp
+msgid "Destination project could not be detached"
+msgstr "Målprojektet kunde inte kopplas från"
+
+#: libraries/lib-project-file-io/ProjectFileIO.cpp
+msgid "Failed to remove the autosave information from the project file."
+msgstr "Det gick inte att ta bort autosparinformationen från projektfilen."
+
+#: libraries/lib-project-file-io/ProjectFileIO.cpp
+msgid ""
+"The project's database failed to reopen, possibly because of limited space "
+"on the storage device."
+msgstr ""
+"Projektets databas kunde inte öppnas igen, möjligen på grund av begränsat "
+"utrymme på lagringsenheten."
+
+#: libraries/lib-project-file-io/ProjectFileIO.cpp
+msgid "Syncing"
+msgstr "Synkroniserar"
+
+#: libraries/lib-project-file-io/ProjectFileIO.cpp
+#, c-format
+msgid ""
+"The project failed to open, possibly due to limited space\n"
+"on the storage device.\n"
+"\n"
+"%s"
+msgstr ""
+"Projektet kunde inte öppnas, möjligen på grund av begränsat utrymme\n"
+"på lagringsenheten.\n"
+"\n"
+"%s"
+
+#: libraries/lib-project-file-io/ProjectFileIO.cpp
+#, c-format
+msgid ""
+"Unable to remove autosave information, possibly due to limited space\n"
+"on the storage device.\n"
+"\n"
+"%s"
+msgstr ""
+"Det gick inte att ta bort autosparinformationen, möjligen på grund av "
+"begränsat utrymme\n"
+"på lagringsenheten.\n"
+"\n"
+"%s"
+
+#: src/ProjectFileManager.cpp
+msgid ""
+"The project size exceeds the available free space on the target disk.\n"
+"\n"
+"Please select a different disk with more free space."
+msgstr ""
+"Projektets storlek överskrider det lediga utrymmet på måldisken.\n"
+"\n"
+"Välj en annan disk med mer ledigt utrymme."
+
+#: src/ProjectFileManager.cpp
+msgid ""
+"The project exceeds the maximum size of 4GB when writing to a FAT32 "
+"formatted filesystem."
+msgstr ""
+"Projektet överskrider maxstorleken på 4 GB vid skrivning till ett filsystem "
+"formaterat med FAT32."
+
+#: src/ProjectFileManager.cpp
+msgid ""
+"Project resides on FAT formatted drive.\n"
+"Copy it to another drive to open it."
+msgstr ""
+"Projektet finns på en enhet formaterad med FAT.\n"
+"Kopiera det till en annan enhet för att öppna det."
+
+#: src/ProjectFileManager.cpp
+msgid "Cannot import AUP3 format.  Use File > Open instead"
+msgstr "Det går inte att importera AUP3-format. Använd Arkiv > Öppna i stället"
+
+#: src/ProjectFileManager.cpp
+#, c-format
+msgid ""
+"Compacting this project will free up disk space by removing unused bytes "
+"within the file.\n"
+"\n"
+"There is %s of free disk space and this project is currently using %s.\n"
+"\n"
+"If you proceed, the current Undo/Redo History and clipboard contents will be "
+"discarded and you will recover approximately %s of disk space.\n"
+"\n"
+"Do you want to continue?"
+msgstr ""
+"När projektet komprimeras frigörs diskutrymme genom att oanvända byte i "
+"filen tas bort.\n"
+"\n"
+"Det finns %s ledigt diskutrymme och projektet använder för närvarande %s.\n"
+"\n"
+"Om du fortsätter tas aktuell historik för Ångra/Gör om och Urklippsinnehåll "
+"bort, och du frigör ungefär %s diskutrymme.\n"
+"\n"
+"Vill du fortsätta?"
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in group at %s was merged with a previously defined group"
+msgstr ""
+"Insticksmodulgruppen på %s sammanfogades med en tidigare definierad grupp"
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid ""
+"Plug-in item at %s conflicts with a previously defined item and was discarded"
+msgstr ""
+"Insticksmodulobjektet på %s står i konflikt med ett tidigare definierat "
+"objekt och ignorerades"
+
+#: libraries/lib-registries/Registry.cpp
+#, c-format
+msgid "Plug-in items at %s specify conflicting placements"
+msgstr ""
+"Insticksmodulobjekten på %s anger placeringar som står i konflikt med "
+"varandra"
+
+#: libraries/lib-project-file-io/SqliteSampleBlock.cpp
+msgid "Discarding undo/redo history"
+msgstr "Kastar bort historik för Ångra/Gör om"
+
+#: src/commands/AudacityCommand.h
+msgid "FAIL"
+msgstr "MISSLYCKADES"
+
+#: libraries/lib-menus/CommandManager.cpp
+#, c-format
+msgid ""
+"\n"
+"* %s, because you have assigned the shortcut %s to %s"
+msgstr ""
+"\n"
+"* %s, eftersom du har tilldelat kortkommandot %s till %s"
+
+#: src/MenuCreator.cpp
+msgid ""
+"The following commands have had their shortcuts removed, because their "
+"default shortcut is new or changed, and is the same shortcut that you have "
+"assigned to another command."
+msgstr ""
+"Följande kommandon har fått sina kortkommandon borttagna, eftersom deras "
+"standardkortkommando är nytt eller ändrat och är samma kortkommando som du "
+"har tilldelat ett annat kommando."
+
+#: src/MenuCreator.cpp
+msgid "Shortcuts have been removed"
+msgstr "Kortkommandon har tagits bort"
+
+#: src/commands/HelpCommand.cpp
+msgid "_"
+msgstr "_"
+
+#: src/commands/HelpCommand.h
+msgid "For comments in a macro."
+msgstr "För kommentarer i ett makro."
+
+#: src/commands/OpenSaveCommands.h
+msgid "Saves the log contents."
+msgstr "Sparar loggens innehåll."
+
+#: src/commands/OpenSaveCommands.h
+msgid "Clears the log contents."
+msgstr "Rensar loggens innehåll."
+
+#: src/effects/ChangePitch.cpp
+msgid "f&rom"
+msgstr "f&rån"
+
+#: src/effects/ChangeSpeed.cpp
+msgid "33⅓"
+msgstr "33⅓"
+
+#. i18n-hint: day of month, month, year, hour, minute, second
+#: src/effects/Contrast.cpp
+#, c-format
+msgid "%d %s %02d %02dh %02dm %02ds"
+msgstr "%d %s %02d %02dt %02dm %02ds"
+
+#: libraries/lib-builtin-effects/DtmfBase.cpp
+msgid ""
+"DTMF sequence empty.\n"
+"Check ALL settings for this effect."
+msgstr ""
+"DTMF-sekvensen är tom.\n"
+"Kontrollera ALLA inställningar för denna effekt."
+
+#: libraries/lib-builtin-effects/EqualizationBase.cpp
+msgid "100Hz Rumble"
+msgstr "Brus vid 100 Hz"
+
+#: libraries/lib-builtin-effects/EqualizationBase.cpp
+msgid "AM Radio"
+msgstr "AM-radio"
+
+#: libraries/lib-builtin-effects/EqualizationBase.cpp
+msgid "Low rolloff for speech"
+msgstr "Låg avrullning för tal"
+
+#: libraries/lib-builtin-effects/EqualizationBase.cpp
+msgid "RIAA"
+msgstr "RIAA"
+
+#: libraries/lib-builtin-effects/EqualizationBase.cpp
+msgid "Telephone"
+msgstr "Telefon"
+
+#: libraries/lib-builtin-effects/LoudnessBase.cpp
+msgid "Loudness Normalization"
+msgstr "Ljudstyrkenormalisering"
+
+#: src/effects/Loudness.cpp
+msgid "RMS dB"
+msgstr "RMS dB"
+
+#: src/effects/Loudness.cpp
+msgid "&Treat mono as dual-mono (recommended)"
+msgstr "&Behandla mono som dubbel-mono (rekommenderas)"
+
+#: libraries/lib-builtin-effects/NoiseReductionBase.cpp
+msgid "Old"
+msgstr "Gammal"
+
+#: src/effects/VST/VSTEffectOptionsDialog.cpp
+#: src/effects/VST3/VST3OptionsDialog.cpp
+#: src/effects/lv2/LV2PreferencesDialog.cpp
+msgid ""
+"The buffer size controls the number of samples sent to the effect on each "
+"iteration. Smaller values will cause slower processing and some effects "
+"require 8192 samples or less to work properly. However most effects can "
+"accept large buffers and using them will greatly reduce processing time."
+msgstr ""
+"Buffertstorleken styr antalet samplingar som skickas till effekten vid varje "
+"iteration. Mindre värden ger långsammare bearbetning och vissa effekter "
+"kräver högst 8 192 samplingar för att fungera korrekt. De flesta effekter "
+"kan dock ta emot stora buffertar och med dem minskar bearbetningstiden "
+"avsevärt."
+
+#: src/effects/audiounits/AudioUnitEffectOptionsDialog.cpp
+msgid ""
+"Select \"Full\" to use the graphical interface if supplied by the Audio "
+"Unit. Select \"Generic\" to use the system supplied generic interface. "
+"Select \"Basic\" for a basic text-only interface. Reopen the effect for this "
+"to take effect."
+msgstr ""
+"Välj ”Fullständig” för att använda det grafiska gränssnittet som "
+"tillhandahålls av Audio Unit, om ett sådant finns. Välj ”Allmänt” för att "
+"använda systemets allmänna gränssnitt. Välj ”Grundläggande” för ett enkelt "
+"textbaserat gränssnitt. Öppna effekten på nytt för att ändringen ska börja "
+"gälla."
+
+#: libraries/lib-nyquist-effects/NyquistBase.cpp
+msgid ""
+"Enable track spectrogram view before\n"
+"applying 'Spectral' effects."
+msgstr ""
+"Aktivera spårets spektrogramvy innan\n"
+"”spektrala” effekter används."
+
+#: src/import/RawAudioGuess.cpp
+msgid "Bad data size. Could not import audio"
+msgstr "Felaktig datastorlek. Det gick inte att importera ljudet"
+
+#: src/menus/NavigationMenus.cpp
+msgid "Foc&us"
+msgstr "Fok&us"
+
+#: src/prefs/DirectoriesPrefs.cpp
+msgid ""
+"Leave a field empty to go to the last directory used for that operation.\n"
+"Fill in a field to always go to that directory for that operation."
+msgstr ""
+"Lämna ett fält tomt för att gå till den senaste katalogen som användes för "
+"den åtgärden.\n"
+"Fyll i ett fält för att alltid gå till den katalogen för den åtgärden."
+
+#: src/prefs/DirectoriesPrefs.cpp
+msgid "O&pen:"
+msgstr "&Öppna:"
+
+#: src/prefs/DirectoriesPrefs.cpp
+msgid "S&ave:"
+msgstr "&Spara:"
+
+#: src/prefs/GUIPrefs.cpp
+msgid "Never use comma as decimal point"
+msgstr "Använd aldrig komma som decimaltecken"
+
+#: src/prefs/GUIPrefs.h
+msgid "GUI"
+msgstr "GUI"
+
+#: src/prefs/ImportExportPrefs.h
+msgid "IMPORT EXPORT"
+msgstr "IMPORT OCH EXPORT"
+
+#: src/prefs/KeyConfigPrefs.cpp
+#, c-format
+msgid ""
+"\n"
+"   *   \"%s\"  (because the shortcut '%s' is used by \"%s\")\n"
+msgstr ""
+"\n"
+"   *   ”%s” (eftersom kortkommandot ”%s” används av ”%s”)\n"
+
+#: src/prefs/KeyConfigPrefs.cpp
+#, c-format
+msgid ""
+"The file with the shortcuts contains illegal shortcut duplicates for \"%s\" "
+"and \"%s\".\n"
+"Nothing is imported."
+msgstr ""
+"Filen med kortkommandon innehåller otillåtna dubbletter av kortkommandon för "
+"”%s” och ”%s”.\n"
+"Inget importeras."
+
+#: src/prefs/KeyConfigPrefs.cpp
+msgid ""
+"\n"
+"The following commands are not mentioned in the imported file, but have "
+"their shortcuts removed because of the conflict with other new shortcuts:\n"
+msgstr ""
+"\n"
+"Följande kommandon nämns inte i den importerade filen, men deras "
+"kortkommandon tas bort på grund av konflikt med andra nya kortkommandon:\n"
+
+#: src/prefs/KeyConfigPrefs.cpp
+msgid ""
+"\n"
+"\n"
+"\t and\n"
+"\n"
+"\t"
+msgstr ""
+"\n"
+"\n"
+"\t och\n"
+"\n"
+"\t"
+
+#: src/prefs/MidiIOPrefs.h
+msgid "Midi IO"
+msgstr "MIDI-I/O"
+
+#: src/prefs/DevicePrefs.cpp
+#, c-format
+msgid "%i Hz"
+msgstr "%i Hz"
+
+#: src/prefs/SpectrumPrefs.cpp
+msgid "2048"
+msgstr "2048"
+
+#. i18n-hint k abbreviating kilo meaning thousands
+#: src/tracks/playabletrack/wavetrack/ui/SpectrumVRulerControls.cpp
+msgid "k"
+msgstr "k"
+
+#: libraries/lib-numeric-formats/formatters/ParsedNumericConverterFormatter.cpp
+msgid "centihertz"
+msgstr "centihertz"
+
+#: libraries/lib-numeric-formats/formatters/ParsedNumericConverterFormatter.cpp
+msgid "hertz"
+msgstr "hertz"
+
+#: src/widgets/PopupMenuTable.h
+#, c-format
+msgid "%s (%s)"
+msgstr "%s (%s)"
+
+#. i18n-hint: This message describes the error in the Error dialog.
+#: src/widgets/UnwritableLocationErrorDialog.cpp
+msgid ""
+"Please check that the directory exists, has the necessary permissions, and "
+"the drive isn't full."
+msgstr ""
+"Kontrollera att katalogen finns, har nödvändiga behörigheter och att enheten "
+"inte är full."
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "EQ XML to TXT Converter"
+msgstr "Konverterare för EQ-XML till TXT"
+
+#: plug-ins/eq-xml-to-txt-converter.ny
+msgid "If output text file exists"
+msgstr "Om utdata-textfilen finns"
+
+#: plug-ins/label-sounds.ny
+msgid "Sound ##1"
+msgstr "Ljud ##1"
+
+#. i18n-hint: hours minutes and seconds. Do not translate "~a".
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "~ah ~am ~as"
+msgstr "~ah ~am ~as"
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid "Too many silences detected.~%Only the first 10000 labels added."
+msgstr ""
+"För många tystnader upptäcktes.~%Endast de första 10 000 etiketterna lades "
+"till."
+
+#: plug-ins/label-sounds.ny
+#, lisp-format
+msgid ""
+"Labelling regions between sounds requires~%at least two sounds.~%Only one "
+"sound detected."
+msgstr ""
+"För att etikettera områden mellan ljud krävs~%minst två ljud.~%Endast ett "
+"ljud upptäcktes."
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"\"Gate frequencies above: ~s kHz\"\n"
+"is too high for selected track.\n"
+"Set the control below ~a kHz."
+msgstr ""
+"Fel.\n"
+"”Gate-frekvenser över: ~s kHz”\n"
+"är för hög för det valda spåret.\n"
+"Ställ in reglaget under ~a kHz."
+
+#: plug-ins/noisegate.ny
+#, lisp-format
+msgid ""
+"Error.\n"
+"Insufficient audio selected.\n"
+"Make the selection longer than ~a ms."
+msgstr ""
+"Fel.\n"
+"För lite ljud är markerat.\n"
+"Gör markeringen längre än ~a ms."
