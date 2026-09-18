@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2026-09-18 12:59+0000\n"
+"PO-Revision-Date: 2026-09-18 13:01+0000\n"
 "Last-Translator: Daniel Nylander <yeagersthlm@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/sv/>\n"
@@ -14889,68 +14889,6 @@ msgstr "Fel.~%Stereospår krävs."
 #~ " [[http://forum.audacityteam.org/|Forum]] - ställ din fråga direkt på "
 #~ "Internet."
 
-#~ msgid "Regenerate alias summary files (safe and recommended)"
-#~ msgstr "Återskapa aliassammanfattningsfiler (är säkert och rekommenderas)"
-
-#~ msgid "Fill in silence for missing display data (this session only)"
-#~ msgstr ""
-#~ "Fyll i tystnad som ersättning för saknad data [endast denna session]"
-
-#~ msgid "Close project immediately with no further changes"
-#~ msgstr "Stäng projektet omedelbart utan ytterligare ändringar"
-
-#~ msgid "Warning - Missing Alias Summary File(s)"
-#~ msgstr "Varning - Saknar aliassammanfattningsfil(er)"
-
-#, c-format
-#~ msgid ""
-#~ "Project check of \"%s\" folder \n"
-#~ "detected %lld missing audio data (.au) blockfile(s), \n"
-#~ "probably due to a bug, system crash, or accidental \n"
-#~ "deletion. There is no way for Audacity to recover \n"
-#~ "these missing files automatically. \n"
-#~ "\n"
-#~ "If you choose the first or second option below, \n"
-#~ "you can try to find and restore the missing files \n"
-#~ "to their previous location. \n"
-#~ "\n"
-#~ "Note that for the second option, the waveform \n"
-#~ "may not show silence."
-#~ msgstr ""
-#~ "Projektkontrollen av mappen \"%s\" \n"
-#~ "hittade %lld ljuddatablockfil(er) (.au) som saknas, \n"
-#~ "förmodligen orsakade av en bugg, systemkrasch \n"
-#~ "eller felaktig radering. Det finns inget sätt för Audacity att \n"
-#~ "återskapa dessa saknade filer automatiskt. \n"
-#~ "\n"
-#~ "Om du väljer det första eller andra alternativet nedan \n"
-#~ "kan du försöka att hitta och återskapa de förlorade filerna \n"
-#~ "till deras tidigare placering. \n"
-#~ "\n"
-#~ "Observera att det andra alternativet, vågformen \n"
-#~ "kanske inte visar tystnad."
-
-#~ msgid "Replace missing audio with silence (permanent immediately)"
-#~ msgstr "Ersätt försvunnet ljud med tystnad (genast och permanent)"
-
-#~ msgid "Warning - Missing Audio Data Block File(s)"
-#~ msgstr "Varning - Saknar ljuddatablockfil(er)"
-
-#~ msgid "Continue without deleting; ignore the extra files this session"
-#~ msgstr "Fortsätt utan att radera; ignorera de extra filerna denna session"
-
-#~ msgid "Delete orphan files (permanent immediately)"
-#~ msgstr "Radera föräldralösa filer (genast och permanent)"
-
-#~ msgid "Warning - Orphan Block File(s)"
-#~ msgstr "Varning - Föräldralösa blockfil(er)"
-
-#~ msgid "Cleaning up unused directories in project data"
-#~ msgstr "Städar upp oanvända mappar i projekt data"
-
-#~ msgid "Warning: Problems in Automatic Recovery"
-#~ msgstr "Varning: Problem med automatisk återställning"
-
 #, fuzzy
 #~ msgid "Unable to decode project document"
 #~ msgstr "Kunde inte lägga till avkodare till pipeline"
@@ -20751,3 +20689,167 @@ msgstr ""
 "hittade %lld saknade aliasblockfiler (.auf). \n"
 "Audacity kan återskapa dessa filer helt \n"
 "från det aktuella ljudet i projektet."
+
+#: src/ProjectFSCK.cpp
+msgid "Regenerate alias summary files (safe and recommended)"
+msgstr "Återskapa alias-sammanfattningsfiler (säkert och rekommenderas)"
+
+#: src/ProjectFSCK.cpp
+msgid "Fill in silence for missing display data (this session only)"
+msgstr "Fyll i tystnad för saknade visningsdata (endast denna session)"
+
+#: src/ProjectFSCK.cpp
+msgid "Close project immediately with no further changes"
+msgstr "Stäng projektet omedelbart utan ytterligare ändringar"
+
+#: src/ProjectFSCK.cpp
+msgid "Warning - Missing Alias Summary File(s)"
+msgstr "Varning – saknade alias-sammanfattningsfiler"
+
+#: src/ProjectFSCK.cpp
+#, c-format
+msgid ""
+"Project check of \"%s\" folder \n"
+"detected %lld missing audio data (.au) blockfile(s), \n"
+"probably due to a bug, system crash, or accidental \n"
+"deletion. There is no way for Audacity to recover \n"
+"these missing files automatically. \n"
+"\n"
+"If you choose the first or second option below, \n"
+"you can try to find and restore the missing files \n"
+"to their previous location. \n"
+"\n"
+"Note that for the second option, the waveform \n"
+"may not show silence."
+msgstr ""
+"Projektkontrollen av katalogen ”%s” \n"
+"hittade %lld saknade blockfiler med ljuddata (.au), \n"
+"troligen på grund av ett fel, systemkrasch eller oavsiktlig \n"
+"borttagning. Audacity kan inte återställa \n"
+"dessa saknade filer automatiskt. \n"
+"\n"
+"Om du väljer första eller andra alternativet nedan \n"
+"kan du försöka hitta och återställa de saknade filerna \n"
+"till deras tidigare plats. \n"
+"\n"
+"Observera att vågformen kanske inte visar tystnad \n"
+"med det andra alternativet."
+
+#: src/ProjectFSCK.cpp
+msgid "Replace missing audio with silence (permanent immediately)"
+msgstr "Ersätt saknat ljud med tystnad (permanent direkt)"
+
+#: src/ProjectFSCK.cpp
+msgid "Warning - Missing Audio Data Block File(s)"
+msgstr "Varning – saknade blockfiler med ljuddata"
+
+#: src/ProjectFSCK.cpp
+#, c-format
+msgid ""
+"Project check of \"%s\" folder \n"
+"found %d orphan block file(s). These files are \n"
+"unused by this project, but might belong to other projects. \n"
+"They are doing no harm and are small."
+msgstr ""
+"Projektkontrollen av katalogen ”%s” \n"
+"hittade %d övergivna blockfiler. Filerna \n"
+"används inte av det här projektet men kan tillhöra andra projekt. \n"
+"De orsakar ingen skada och är små."
+
+#: src/ProjectFSCK.cpp
+msgid "Continue without deleting; ignore the extra files this session"
+msgstr "Fortsätt utan att ta bort; ignorera extrafilerna denna session"
+
+#: src/ProjectFSCK.cpp
+msgid "Delete orphan files (permanent immediately)"
+msgstr "Ta bort övergivna filer (permanent direkt)"
+
+#: src/ProjectFSCK.cpp
+msgid "Warning - Orphan Block File(s)"
+msgstr "Varning – övergivna blockfiler"
+
+#: src/ProjectFSCK.cpp
+msgid "Cleaning up unused directories in project data"
+msgstr "Rensar oanvända kataloger i projektdata"
+
+#: src/ProjectFSCK.cpp
+msgid ""
+"Project check found file inconsistencies during automatic recovery.\n"
+"\n"
+"Select 'Help > Diagnostics > Show Log...' to see details."
+msgstr ""
+"Projektkontrollen hittade filinkonsekvenser vid automatisk återställning.\n"
+"\n"
+"Välj ”Hjälp > Diagnostik > Visa logg …” för att se detaljer."
+
+#: src/ProjectFSCK.cpp
+msgid "Warning: Problems in Automatic Recovery"
+msgstr "Varning: problem vid automatisk återställning"
+
+#. i18n-hint: Text of the message dialog that may appear on attempt
+#. to open a project created by Audacity version prior to 3.4.
+#. %s will be replaced with an explanation of the actual reason of
+#. project modification.
+#: src/ProjectFileManager.cpp
+#, c-format
+msgid ""
+"%s\n"
+"This feature is not supported in Audacity versions past 3.3.3.\n"
+"These stereo tracks have been split into mono tracks.\n"
+"As a result, some realtime effects may be missing.\n"
+"Please verify that everything works as intended before saving."
+msgstr ""
+"%s\n"
+"Den här funktionen stöds inte i Audacity-versioner efter 3.3.3.\n"
+"Stereospåren har delats upp i monospår.\n"
+"Därför kan vissa realtidseffekter saknas.\n"
+"Kontrollera att allt fungerar som avsett innan du sparar."
+
+#: src/ProjectFileManager.cpp
+msgid "A channel of a stereo track was missing."
+msgstr "En kanal i ett stereospår saknades."
+
+#. i18n-hint: explains why opened project was auto-modified
+#: src/ProjectFileManager.cpp
+msgid ""
+"This project contained stereo tracks with different sample rates per channel."
+msgstr "Projektet innehöll stereospår med olika samplingsfrekvenser per kanal."
+
+#. i18n-hint: explains why opened project was auto-modified
+#: src/ProjectFileManager.cpp
+msgid ""
+"This project contained stereo tracks with different sample formats in "
+"channels."
+msgstr "Projektet innehöll stereospår med olika samplingsformat i kanalerna."
+
+#. i18n-hint: explains why opened project was auto-modified
+#: src/ProjectFileManager.cpp
+msgid "This project contained stereo tracks with non-aligned content."
+msgstr "Projektet innehöll stereospår med innehåll som inte är tidsjusterat."
+
+#: src/ProjectFileManager.cpp
+msgid "Music Information Retrieval"
+msgstr "Hämtning av musikinformation"
+
+#: src/ProjectFileManager.cpp
+msgid "Analyzing imported audio"
+msgstr "Analyserar importerat ljud"
+
+#: src/RealtimeEffectPanel.cpp
+msgid "No Effect"
+msgstr "Ingen effekt"
+
+#: src/RealtimeEffectPanel.cpp
+msgid "Get more effects..."
+msgstr "Hämta fler effekter …"
+
+#: src/RealtimeEffectPanel.cpp
+#, c-format
+msgid "%s (missing)"
+msgstr "%s (saknas)"
+
+#. i18n-hint: argument - position of the effect in the effect stack
+#: src/RealtimeEffectPanel.cpp
+#, c-format
+msgid "Effect %d"
+msgstr "Effekt %d"
