@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2026-09-18 13:15+0000\n"
+"PO-Revision-Date: 2026-09-18 13:17+0000\n"
 "Last-Translator: Daniel Nylander <yeagersthlm@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/sv/>\n"
@@ -65,43 +65,37 @@ msgstr "Filfel"
 #: libraries/lib-files/FileNames.cpp plug-ins/eq-xml-to-txt-converter.ny
 #: plug-ins/nyquist-plug-in-installer.ny plug-ins/sample-data-export.ny
 #: plug-ins/sample-data-import.ny
-#, fuzzy
 msgid "All files"
-msgstr "Alla filer|*"
+msgstr "Alla filer"
 
 #. i18n-hint an Audacity project is the state of the program, stored as
 #. files that can be reopened to resume the session later
 #: libraries/lib-files/FileNames.cpp
-#, fuzzy
 msgid "AUP3 project files"
-msgstr "Spara projektdatafiler"
+msgstr "AUP3-projektfiler"
 
 #: libraries/lib-files/FileNames.cpp
-#, fuzzy
 msgid "Dynamically Linked Libraries"
-msgstr "Bibliotek"
+msgstr "Dynamiskt länkade bibliotek"
 
 #: libraries/lib-files/FileNames.cpp
-#, fuzzy
 msgid "Dynamic Libraries"
-msgstr "Bibliotek"
+msgstr "Dynamiska bibliotek"
 
 #: libraries/lib-files/FileNames.cpp
-#, fuzzy
 msgid "Text files"
-msgstr "Namnge filer:"
+msgstr "Textfiler"
 
 #: libraries/lib-files/FileNames.cpp
-#, fuzzy
 msgid "XML files"
-msgstr "MP3-filer"
+msgstr "XML-filer"
 
 #. i18n-hint a type or types such as "txt" or "txt, xml" will be
 #. substituted for %s
 #: libraries/lib-files/FileNames.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s files"
-msgstr "MP3-filer"
+msgstr "%s-filer"
 
 #: libraries/lib-files/FileNames.cpp src/AdornedRulerPanel.cpp src/AudioIO.cpp
 #: src/ProjectAudioManager.cpp src/TimerRecordDialog.cpp
@@ -162,15 +156,13 @@ msgstr "Rekangulär"
 
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
-#, fuzzy
 msgid "Hamming"
-msgstr "4 (standard)"
+msgstr "Hamming"
 
 #. i18n-hint a proper name
 #: libraries/lib-math/FFT.cpp
-#, fuzzy
 msgid "Welch"
-msgstr "Välkommen!"
+msgstr "Welch"
 
 #: libraries/lib-math/Resample.cpp
 msgid "Low Quality (Fastest)"
@@ -1379,9 +1371,9 @@ msgstr "Cepstrum"
 #. * such as Hann or Rectangular, used in the
 #. * Frequency analyze dialog box.
 #: src/FreqWindow.cpp
-#, fuzzy, c-format
+#, c-format
 msgid "%s window"
-msgstr "fönster"
+msgstr "%s-fönster"
 
 #: src/FreqWindow.cpp
 msgid "Linear frequency"
@@ -1421,14 +1413,12 @@ msgid "Hz"
 msgstr "Hz"
 
 #: src/FreqWindow.cpp
-#, fuzzy
 msgid "Scroll Horizontal"
-msgstr "Horisontell"
+msgstr "Rulla horisontellt"
 
 #: src/FreqWindow.cpp
-#, fuzzy
 msgid "Zoom Horizontal"
-msgstr "Horisontell"
+msgstr "Zooma horisontellt"
 
 #: src/FreqWindow.cpp
 msgid "Cursor:"
@@ -1619,23 +1609,20 @@ msgid "Action"
 msgstr "Handling"
 
 #: src/HistoryWindow.cpp
-#, fuzzy
 msgid "Used Space"
-msgstr "Diskutrymme"
+msgstr "Använt utrymme"
 
 #: src/HistoryWindow.cpp
 msgid "&Total space used"
 msgstr "&Totalt använt utrymme"
 
 #: src/HistoryWindow.cpp
-#, fuzzy
 msgid "&Undo levels available"
-msgstr "Tillgängliga nivåer att &ångra"
+msgstr "Tillgängliga &ångernivåer"
 
 #: src/HistoryWindow.cpp
-#, fuzzy
 msgid "&Levels to discard"
-msgstr "&Nivåer att slänga"
+msgstr "&Nivåer att kasta"
 
 #. i18n-hint: (verb)
 #: src/HistoryWindow.cpp
@@ -1643,19 +1630,16 @@ msgid "&Discard"
 msgstr "&Släng"
 
 #: src/HistoryWindow.cpp
-#, fuzzy
 msgid "Clip&board space used"
-msgstr "Använt utrymme i urklipp"
+msgstr "Använt urklippsutrymme"
 
 #: src/HistoryWindow.cpp
-#, fuzzy
 msgid "D&iscard"
-msgstr "Släng"
+msgstr "K&asta"
 
 #: src/HistoryWindow.cpp
-#, fuzzy
 msgid "&Compact"
-msgstr "&Kommando"
+msgstr "&Komprimera"
 
 #: src/JournalEvents.cpp
 #, fuzzy
@@ -1905,26 +1889,30 @@ msgid "Moved pan slider"
 msgstr "Flyttade panoreringsreglaget"
 
 #: src/ModuleManager.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Unable to load the \"%s\" module.\n"
 "\n"
 "Error: %s"
-msgstr "Kunde inte läsa in förinställningsfil."
+msgstr ""
+"Det gick inte att läsa in modulen ”%s”.\n"
+"\n"
+"Fel: %s"
 
 #: src/ModuleManager.cpp
 msgid "Module Unsuitable"
 msgstr "Opassande modul"
 
 #: src/ModuleManager.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The module \"%s\" does not provide a version string.\n"
 "\n"
 "It will not be loaded."
 msgstr ""
-"Modulen %s har ingen versionsinformation.\n"
-"Den kommer inte att läsas in."
+"Modulen ”%s” tillhandahåller ingen versionssträng.\n"
+"\n"
+"Den läses inte in."
 
 #: src/ModuleManager.cpp
 #, fuzzy, c-format
@@ -1937,14 +1925,15 @@ msgstr ""
 "Den kommer inte att läsas in."
 
 #: src/ModuleManager.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The module \"%s\" failed to initialize.\n"
 "\n"
 "It will not be loaded."
 msgstr ""
-"Modulen %s har ingen versionsinformation.\n"
-"Den kommer inte att läsas in."
+"Modulen ”%s” kunde inte initieras.\n"
+"\n"
+"Den läses inte in."
 
 #: src/ModuleManager.cpp
 #, c-format
@@ -1952,12 +1941,14 @@ msgid "Module \"%s\" found."
 msgstr "Modulen \"%s\" hittades."
 
 #: src/ModuleManager.cpp
-#, fuzzy
 msgid ""
 "\n"
 "\n"
 "Only use modules from trusted sources"
-msgstr "Använd endast moduler från pålitliga källor"
+msgstr ""
+"\n"
+"\n"
+"Använd endast moduler från betrodda källor"
 
 #: src/ModuleManager.cpp src/TimerRecordDialog.cpp plug-ins/delay.ny
 #: plug-ins/equalabel.ny plug-ins/limiter.ny plug-ins/sample-data-export.ny
@@ -1979,14 +1970,15 @@ msgid "Try and load this module?"
 msgstr "Prova och läs in denna modul?"
 
 #: src/ModuleManager.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The module \"%s\" does not provide any of the required functions.\n"
 "\n"
 "It will not be loaded."
 msgstr ""
-"Modulen %s har ingen versionsinformation.\n"
-"Den kommer inte att läsas in."
+"Modulen ”%s” tillhandahåller inte någon av de obligatoriska funktionerna.\n"
+"\n"
+"Den läses inte in."
 
 #. i18n-hint: This is for screen reader software and indicates that
 #. this is a Note track.
@@ -2129,12 +2121,11 @@ msgstr ""
 #. i18n-hint A plug-in is an optional added program for a sound
 #. effect, or generator, or analyzer
 #: src/PluginManager.cpp
-#, fuzzy
 msgctxt "plug-ins"
 msgid "Enable this plug-in?\n"
 msgid_plural "Enable these plug-ins?\n"
-msgstr[0] "Aktivera denna insticksmodul?"
-msgstr[1] "Aktivera dessa insticksmoduler?"
+msgstr[0] "Aktivera den här insticksmodulen?\n"
+msgstr[1] "Aktivera de här insticksmodulerna?\n"
 
 #: src/PluginManager.cpp
 msgid "Enable new plug-ins"
@@ -2182,11 +2173,9 @@ msgstr ""
 "samplingsfrekvens."
 
 #: src/ProjectAudioManager.cpp src/menus/TransportMenus.cpp
-#, fuzzy
 msgid "The tracks selected for recording must all have the same sampling rate"
 msgstr ""
-"För att tillämpa ett filter måste alla markerade spår ha samma "
-"samplingsfrekvens."
+"Spåren som är valda för inspelning måste alla ha samma samplingsfrekvens"
 
 #: src/ProjectAudioManager.cpp
 msgid "Recorded Audio"
@@ -2220,105 +2209,111 @@ msgid "[Project %02i] "
 msgstr "Projekt"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "There is very little free disk space left on %s\n"
 "Please select a bigger temporary directory location in\n"
 "Directories Preferences."
 msgstr ""
-"Det är riktigt lite utrymme som är ledigt på denna lagringsenhet.\n"
-"Var god välj en annan temporär filkatalog i inställningarna."
+"Det finns mycket lite ledigt diskutrymme kvar på %s\n"
+"Välj en större plats för den temporära katalogen i\n"
+"inställningarna för kataloger."
 
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid "Failed to open the project's database"
-msgstr "Kunde inte läsa förinställningsfil."
+msgstr "Det gick inte att öppna projektets databas"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to open database file:\n"
 "\n"
 "%s"
-msgstr "Misslyckades att ta bort %s"
+msgstr ""
+"Det gick inte att öppna databasfilen:\n"
+"\n"
+"%s"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid "Failed to discard connection"
-msgstr "Misslyckades att hitta kodek"
+msgstr "Det gick inte att koppla bort anslutningen"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid "Failed to restore connection"
-msgstr "Kunde inte hämta strömbeskrivning"
+msgstr "Det gick inte att återställa anslutningen"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to execute a project file command:\n"
 "\n"
 "%s"
 msgstr ""
-"Misslyckades att registrera:\n"
+"Det gick inte att köra ett kommando för projektfilen:\n"
+"\n"
 "%s"
 
 #. i18n-hint: An error message.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is in a read only directory\n"
 "(Unable to create the required temporary files)"
-msgstr "Kunde inte initialisera MP3-strömmen"
+msgstr ""
+"Projektet finns i en skrivskyddad katalog\n"
+"(det går inte att skapa de nödvändiga temporära filerna)"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid "This is not an Audacity project file"
-msgstr "Spara ett Audacity projekt"
+msgstr "Det här är inte en Audacity-projektfil"
 
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid "Unable to initialize the project file"
-msgstr "Kunde inte initialisera MP3-strömmen"
+msgstr "Det gick inte att initiera projektfilen"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is read only\n"
 "(Unable to work with the blockfiles)"
-msgstr "Kunde inte initialisera MP3-strömmen"
+msgstr ""
+"Projektet är skrivskyddat\n"
+"(det går inte att arbeta med blockfilerna)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is locked\n"
 "(Unable to work with the blockfiles)"
-msgstr "Kunde inte initialisera MP3-strömmen"
+msgstr ""
+"Projektet är låst\n"
+"(det går inte att arbeta med blockfilerna)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is busy\n"
 "(Unable to work with the blockfiles)"
-msgstr "Kunde inte initialisera MP3-strömmen"
+msgstr ""
+"Projektet är upptaget\n"
+"(det går inte att arbeta med blockfilerna)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Project is corrupt\n"
 "(Unable to work with the blockfiles)"
-msgstr "Kunde inte initialisera MP3-strömmen"
+msgstr ""
+"Projektet är skadat\n"
+"(det går inte att arbeta med blockfilerna)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
-#, fuzzy
 msgid ""
 "Some permissions issue\n"
 "(Unable to work with the blockfiles)"
-msgstr "Kunde inte initialisera MP3-strömmen"
+msgstr ""
+"Problem med behörigheter\n"
+"(det går inte att arbeta med blockfilerna)"
 
 #. i18n-hint: An error message.  Don't translate blockfiles.
 #: src/ProjectFileIO.cpp
@@ -2353,12 +2348,15 @@ msgid "Unable to attach destination database"
 msgstr "Kunde inte ändra strömmens tillstånd till pausad."
 
 #: src/ProjectFileIO.cpp
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Unable to prepare project file command:\n"
 "\n"
 "%s"
-msgstr "Kunde inte läsa förinställningsfil."
+msgstr ""
+"Det gick inte att förbereda ett kommando för projektfilen:\n"
+"\n"
+"%s"
 
 #. i18n-hint: This title appears on a dialog that indicates the progress
 #. in doing something.
