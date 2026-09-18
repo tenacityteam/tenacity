@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: tenacity 1.3\n"
 "Report-Msgid-Bugs-To: ~tenacity/tenacity-discuss@lists.sr.ht\n"
 "POT-Creation-Date: 2023-11-05 09:26-0800\n"
-"PO-Revision-Date: 2026-09-18 12:49+0000\n"
+"PO-Revision-Date: 2026-09-18 12:52+0000\n"
 "Last-Translator: Daniel Nylander <yeagersthlm@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/tenacity/"
 "tenacity/sv/>\n"
@@ -14595,10 +14595,6 @@ msgstr "Fel.~%Stereospår krävs."
 #~ msgid "Show alternative &styling (Mac vs PC)"
 #~ msgstr "Visa alternativa &stilar (Mac vs PC)"
 
-#, fuzzy
-#~ msgid "No devices found\n"
-#~ msgstr "Inga enheter hittades"
-
 #~ msgid "&Nyquist Workbench..."
 #~ msgstr "Instrumentpanel för &Nyquist..."
 
@@ -14812,60 +14808,8 @@ msgstr "Fel.~%Stereospår krävs."
 #~ msgid "Sound card mixer support"
 #~ msgstr "Stöd för ljudkortsmixer"
 
-#~ msgid "Error Initializing Audio"
-#~ msgstr "Fel uppstod när ljud initialiserades"
-
 #~ msgid "Error Initializing Midi"
 #~ msgstr "Fel uppstod när MIDI initialiserades"
-
-#~ msgid "Out of memory!"
-#~ msgstr "Slut på minne!"
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too high."
-#~ msgstr ""
-#~ "Automatisk justering av inspelningsnivån stoppades. Det var inte möjligt "
-#~ "att optimera det mer. Fortfarande för hög."
-
-#, c-format
-#~ msgid "Automated Recording Level Adjustment decreased the volume to %f."
-#~ msgstr "Automatisk justering av inspelningsnivån minskade volymen till %f."
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. It was not possible to "
-#~ "optimize it more. Still too low."
-#~ msgstr ""
-#~ "Automatisk justering av inspelningsnivån stoppades. Det var inte möjligt "
-#~ "att optimera det mer. Fortfarande för låg."
-
-#, c-format
-#~ msgid "Automated Recording Level Adjustment increased the volume to %.2f."
-#~ msgstr "Automatisk justering av inspelningsnivån ökade volymen till %2f."
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. The total number of "
-#~ "analyses has been exceeded without finding an acceptable volume. Still "
-#~ "too high."
-#~ msgstr ""
-#~ "Automatisk justering av inspelningsnivån stoppades. Antalet analyser "
-#~ "överskreds utan att finna en acceptabel volym. Fortfarande för hög."
-
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. The total number of "
-#~ "analyses has been exceeded without finding an acceptable volume. Still "
-#~ "too low."
-#~ msgstr ""
-#~ "Automatisk justering av inspelningsnivån stoppades. Antalet analyser "
-#~ "överskreds utan att finna en acceptabel volym. Fortfarande för låg."
-
-#, c-format
-#~ msgid ""
-#~ "Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
-#~ "volume."
-#~ msgstr ""
-#~ "Automatisk justering av inspelningsnivån stoppades. %2f verkar vara en "
-#~ "acceptabel volym."
 
 #, fuzzy
 #~ msgid "Unable to open Portmixer\n"
@@ -19245,3 +19189,638 @@ msgstr ""
 "och försöker importera den igen. Annars måste du konvertera den till ett "
 "ljudformat som stöds,\n"
 "till exempel WAV eller AIFF."
+
+#. i18n-hint: %s will be the filename
+#: libraries/lib-import-export/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" is a Wavpack audio file. \n"
+"Tenacity cannot open this type of file. \n"
+"You need to convert it to a supported audio format, such as WAV or AIFF."
+msgstr ""
+"”%s” är en WavPack-ljudfil. \n"
+"Tenacity kan inte öppna den här filtypen. \n"
+"Du måste konvertera den till ett ljudformat som stöds, till exempel WAV "
+"eller AIFF."
+
+#. i18n-hint: %s will be the filename
+#: libraries/lib-import-export/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" is a Dolby Digital audio file. \n"
+"Tenacity cannot currently open this type of file. \n"
+"You need to convert it to a supported audio format, such as WAV or AIFF."
+msgstr ""
+"”%s” är en Dolby Digital-ljudfil. \n"
+"Tenacity kan för närvarande inte öppna den här filtypen. \n"
+"Du måste konvertera den till ett ljudformat som stöds, till exempel WAV "
+"eller AIFF."
+
+#. i18n-hint: %s will be the filename
+#: libraries/lib-import-export/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" is an Ogg Speex audio file. \n"
+"Tenacity cannot currently open this type of file. \n"
+"You need to convert it to a supported audio format, such as WAV or AIFF."
+msgstr ""
+"”%s” är en Ogg Speex-ljudfil. \n"
+"Tenacity kan för närvarande inte öppna den här filtypen. \n"
+"Du måste konvertera den till ett ljudformat som stöds, till exempel WAV "
+"eller AIFF."
+
+#. i18n-hint: %s will be the filename
+#: libraries/lib-import-export/Import.cpp
+#, c-format
+msgid ""
+"\"%s\" is a video file. \n"
+"Tenacity cannot currently open this type of file. \n"
+"You need to extract the audio to a supported format, such as WAV or AIFF."
+msgstr ""
+"”%s” är en videofil. \n"
+"Tenacity kan för närvarande inte öppna den här filtypen. \n"
+"Du måste extrahera ljudet till ett format som stöds, till exempel WAV eller "
+"AIFF."
+
+#. i18n-hint: %s will be the filename
+#: libraries/lib-import-export/Import.cpp
+#, c-format
+msgid ""
+"Tenacity did not recognize the type of the file '%s'.\n"
+"\n"
+"%sFor uncompressed files, also try File > Import > Raw Data."
+msgstr ""
+"Tenacity kunde inte identifiera filtypen för ”%s”.\n"
+"\n"
+"%sFör okomprimerade filer kan du även prova Arkiv > Importera > Rådata."
+
+#. i18n-hint: %s will be the filename
+#: libraries/lib-import-export/Import.cpp
+#, c-format
+msgid ""
+"Tenacity recognized the type of the file '%s'.\n"
+"Importers supposedly supporting such files are:\n"
+"%s,\n"
+"but none of them understood this file format."
+msgstr ""
+"Tenacity identifierade filtypen för ”%s”.\n"
+"Importörer som påstås ha stöd för sådana filer är:\n"
+"%s,\n"
+"men ingen av dem förstod detta filformat."
+
+#: src/prefs/DirectoriesPrefs.cpp
+msgid ""
+"Changes to temporary directory will not take effect until Tenacity is "
+"restarted"
+msgstr ""
+"Ändringar av den temporära katalogen börjar inte gälla förrän Tenacity har "
+"startats om"
+
+#: src/prefs/GUIPrefs.cpp
+msgid "B&lend system and Tenacity theme"
+msgstr "B&landa systemets och Tenacitys tema"
+
+#: libraries/lib-theme/ThemeLegacy.cpp
+#, c-format
+msgid ""
+"Tenacity could not find file:\n"
+"  %s.\n"
+"Theme not loaded."
+msgstr ""
+"Tenacity kunde inte hitta filen:\n"
+"  %s.\n"
+"Temat lästes inte in."
+
+#. i18n-hint: Do not translate png.  It is the name of a file format.
+#: libraries/lib-theme/ThemeLegacy.cpp
+#, c-format
+msgid ""
+"Tenacity could not load file:\n"
+"  %s.\n"
+"Bad png format perhaps?"
+msgstr ""
+"Tenacity kunde inte läsa in filen:\n"
+"  %s.\n"
+"Kanske felaktigt PNG-format?"
+
+#: src/tracks/labeltrack/ui/LabelGlyphHandle.cpp
+msgid "Drag label. Hold shift and drag to move all labels on the same track."
+msgstr ""
+"Dra etiketten. Håll ned Skift och dra för att flytta alla etiketter på samma "
+"spår."
+
+#: plug-ins/StudioFadeOut.ny plug-ins/adjustable-fade.ny
+#: plug-ins/crossfadeclips.ny plug-ins/crossfadetracks.ny
+#: plug-ins/eq-xml-to-txt-converter.ny plug-ins/label-sounds.ny
+#: plug-ins/limiter.ny plug-ins/noisegate.ny plug-ins/sample-data-export.ny
+#: plug-ins/sample-data-import.ny plug-ins/spectral-delete.ny
+msgid "GNU General Public License v2.0 or later"
+msgstr "GNU General Public License v2.0 eller senare"
+
+#: plug-ins/sample-data-export.ny
+#, lisp-format
+msgid ""
+"Produced with <span>Sample Data Export</span> for\n"
+"<a href=\"~a\">Tenacity</a> by Steve\n"
+"Daulton"
+msgstr ""
+"Skapad med <span>Sample Data Export</span> för\n"
+"<a href=\"~a\">Tenacity</a> av Steve\n"
+"Daulton"
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: src/RealtimeEffectPanel.cpp
+msgid ""
+"This plugin could not be loaded.\n"
+"It may have been deleted."
+msgstr ""
+"Insticksmodulen kunde inte läsas in.\n"
+"Den kan ha tagits bort."
+
+#: libraries/lib-audacity-application-logic/AudacityApplicationLogic.cpp
+#: src/RealtimeEffectPanel.cpp
+msgid "Plugin Error"
+msgstr "Fel i insticksmodul"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Default recording device number: %d\n"
+msgstr "Standardinmatningsenhetens nummer: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Default playback device number: %d\n"
+msgstr "Standarduppspelningsenhetens nummer: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+msgid "No devices found\n"
+msgstr "Inga enheter hittades\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device info unavailable for: %d\n"
+msgstr "Enhetsinformation saknas för: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device ID: %d\n"
+msgstr "Enhets-ID: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Device name: %s\n"
+msgstr "Enhetsnamn: %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#: libraries/lib-note-track/NoteTrack.cpp
+#, c-format
+msgid "Host name: %s\n"
+msgstr "Värdnamn: %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Recording channels: %d\n"
+msgstr "Inspelningskanaler: %d\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Playback channels: %d\n"
+msgstr "Uppspelningskanaler: %d\n"
+
+#. i18n-hint:
+#. First and third %s are each replaced with the noun "start"
+#. or with "end", identifying and end of a clip,
+#. second and fourth strings are the names of those clips,
+#. first and second numbers give the position of those clips in
+#. a sequence of clips,
+#. last number counts all clips,
+#. and the last string is the name of the track containing the
+#. clips.
+#.
+#: src/menus/ClipMenus.cpp
+#, c-format
+msgid "%s %s and %s %s, %d and %d of %d clip %s"
+msgid_plural "%s %s and %s %s, %d and %d of %d clips %s"
+msgstr[0] "%s %s och %s %s, %d och %d av %d klipp %s"
+msgstr[1] "%s %s och %s %s, %d och %d av %d klipp %s"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Low Recording Latency: %g\n"
+msgstr "Låg inspelningslatens: %g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Low Playback Latency: %g\n"
+msgstr "Låg uppspelningslatens: %g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "High Recording Latency: %g\n"
+msgstr "Hög inspelningslatens: %g\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "High Playback Latency: %g\n"
+msgstr "Hög uppspelningslatens: %g\n"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Playback Rates:\n"
+msgstr "Uppspelningsfrekvenser som stöds:\n"
+
+#. i18n-hint: Supported, meaning made available by the system
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Capture Rates:\n"
+msgstr "Inspelningsfrekvenser som stöds:\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Selected recording device: %d - %s\n"
+msgstr "Vald inspelningsenhet: %d – %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No recording device found for '%s'.\n"
+msgstr "Ingen inspelningsenhet hittades för ”%s”.\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "Selected playback device: %d - %s\n"
+msgstr "Vald uppspelningsenhet: %d – %s\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+#, c-format
+msgid "No playback device found for '%s'.\n"
+msgstr "Ingen uppspelningsenhet hittades för ”%s”.\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Supported Rates:\n"
+msgstr "Frekvenser som stöds:\n"
+
+#: libraries/lib-audio-devices/AudioIOBase.cpp
+msgid "Cannot check mutual sample rates without both devices.\n"
+msgstr ""
+"Det går inte att kontrollera gemensamma samplingsfrekvenser utan båda "
+"enheterna.\n"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid "Error Initializing Audio"
+msgstr "Fel vid initiering av ljud"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid "Out of memory!"
+msgstr "Slut på minne!"
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. It was not possible to "
+"optimize it more. Still too high."
+msgstr ""
+"Automatisk justering av inspelningsnivå stoppades. Det gick inte att "
+"optimera den mer. Nivån är fortfarande för hög."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid "Automated Recording Level Adjustment decreased the volume to %f."
+msgstr "Automatisk justering av inspelningsnivå minskade volymen till %f."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. It was not possible to "
+"optimize it more. Still too low."
+msgstr ""
+"Automatisk justering av inspelningsnivå stoppades. Det gick inte att "
+"optimera den mer. Nivån är fortfarande för låg."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid "Automated Recording Level Adjustment increased the volume to %.2f."
+msgstr "Automatisk justering av inspelningsnivå ökade volymen till %.2f."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. The total number of analyses "
+"has been exceeded without finding an acceptable volume. Still too high."
+msgstr ""
+"Automatisk justering av inspelningsnivå stoppades. Det totala antalet "
+"analyser har överskridits utan att en godtagbar volym hittades. Nivån är "
+"fortfarande för hög."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+msgid ""
+"Automated Recording Level Adjustment stopped. The total number of analyses "
+"has been exceeded without finding an acceptable volume. Still too low."
+msgstr ""
+"Automatisk justering av inspelningsnivå stoppades. Det totala antalet "
+"analyser har överskridits utan att en godtagbar volym hittades. Nivån är "
+"fortfarande för låg."
+
+#: libraries/lib-audio-io/AudioIO.cpp
+#, c-format
+msgid ""
+"Automated Recording Level Adjustment stopped. %.2f seems an acceptable "
+"volume."
+msgstr ""
+"Automatisk justering av inspelningsnivå stoppades. %.2f verkar vara en "
+"godtagbar volym."
+
+#: libraries/lib-audio-unit/AudioUnitWrapper.cpp
+#, c-format
+msgid "Failed to decode \"%s\" preset"
+msgstr "Det gick inte att avkoda förinställningen ”%s”"
+
+#: libraries/lib-audio-unit/AudioUnitWrapper.cpp
+#, c-format
+msgid "Failed to convert \"%s\" preset to internal format"
+msgstr "Det gick inte att konvertera förinställningen ”%s” till internt format"
+
+#: libraries/lib-audio-unit/AudioUnitWrapper.cpp
+#, c-format
+msgid "Failed to create property list for \"%s\" preset"
+msgstr "Det gick inte att skapa egenskapslista för förinställningen ”%s”"
+
+#: libraries/lib-builtin-effects/AutoDuckBase.cpp
+msgid "Rendering Control-Track Time-Stretched Audio"
+msgstr "Renderar tidsutsträckt ljud i kontrollspåret"
+
+#: libraries/lib-builtin-effects/ChangeSpeedBase.cpp
+msgid "Change Speed and Pitch"
+msgstr "Ändra hastighet och tonhöjd"
+
+#. i18n-hint: Two numbers are substituted; the second is the
+#. size of a set, the first is the size of a subset, and not
+#. understood as an ordinal (i.e., not meaning "first", or
+#. "second", etc.)
+#.
+#: libraries/lib-builtin-effects/FindClippingBase.cpp
+#, c-format
+msgctxt "find clipping"
+msgid "%lld of %lld"
+msgstr "%lld av %lld"
+
+#: libraries/lib-builtin-effects/LegacyCompressorBase.cpp
+msgid "Legacy Compressor"
+msgstr "Äldre kompressor"
+
+#: libraries/lib-builtin-effects/PlotSpectrumBase.cpp
+msgid ""
+"To plot the spectrum, all selected tracks must have the same sample rate."
+msgstr ""
+"För att rita upp spektrumet måste alla valda spår ha samma samplingsfrekvens."
+
+#: libraries/lib-builtin-effects/PlotSpectrumBase.cpp
+msgid ""
+"Audio could not be analyzed. This may be due to a stretched or pitch-shifted "
+"clip.\n"
+"Try resetting any stretched clips, or mixing and rendering the tracks before "
+"analyzing"
+msgstr ""
+"Ljudet kunde inte analyseras. Det kan bero på ett utsträckt eller "
+"tonhöjdsförskjutet klipp.\n"
+"Försök återställa utsträckta klipp eller mixa och rendera spåren före "
+"analysen"
+
+#: libraries/lib-builtin-effects/Repair.cpp
+msgid "The Repair effect cannot be applied within stretched or shrunk clips"
+msgstr "Effekten Reparera kan inte användas i utsträckta eller krympta klipp"
+
+#. i18n-hint: This is the name of an effect preset
+#: libraries/lib-builtin-effects/ReverbBase.cpp
+msgid "Acoustic"
+msgstr "Akustisk"
+
+#. i18n-hint: This is the name of an effect preset
+#: libraries/lib-builtin-effects/ReverbBase.cpp
+msgid "Ambience"
+msgstr "Atmosfär"
+
+#. i18n-hint: This is the name of an effect preset
+#: libraries/lib-builtin-effects/ReverbBase.cpp
+msgid "Artificial"
+msgstr "Artificiell"
+
+#. i18n-hint: This is the name of an effect preset
+#: libraries/lib-builtin-effects/ReverbBase.cpp
+msgid "Clean"
+msgstr "Ren"
+
+#. i18n-hint: This is the name of an effect preset
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-builtin-effects/ReverbBase.cpp
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Modern"
+msgstr "Modern"
+
+#. i18n-hint: This is the name of an effect preset
+#: libraries/lib-builtin-effects/ReverbBase.cpp
+msgid "Dance Vocal"
+msgstr "Sång för dansmusik"
+
+#. i18n-hint: This is the name of an effect preset
+#: libraries/lib-builtin-effects/ReverbBase.cpp
+msgid "Modern Vocal"
+msgstr "Modern sång"
+
+#. i18n-hint: This is the name of an effect preset
+#: libraries/lib-builtin-effects/ReverbBase.cpp
+msgid "Voice Tail"
+msgstr "Röstsvans"
+
+#. i18n-hint: This is the name of an effect preset
+#: libraries/lib-builtin-effects/ReverbBase.cpp
+msgid "Big Cave"
+msgstr "Stor grotta"
+
+#: libraries/lib-builtin-effects/ToneGenBase.cpp
+msgctxt "waveform"
+msgid "Triangle"
+msgstr "Triangel"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Glue Compressor"
+msgstr "Limkompressor"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Gentle"
+msgstr "Mild"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Beat Booster"
+msgstr "Slagförstärkare"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Deep Dive Master"
+msgstr "Djupdykningsmaster"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Beefy Master"
+msgstr "Kraftfull master"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Make It Right Master"
+msgstr "Rättningsmaster"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Brick Wall Master"
+msgstr "Tegelväggsmaster"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Lead Vocals"
+msgstr "Huvudsång"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Fat Vocals"
+msgstr "Fyllig sång"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Power Vocals"
+msgstr "Kraftfull sång"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Vocal Control"
+msgstr "Sångkontroll"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Vocal Touch-Up"
+msgstr "Sångretuschering"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Voice Memos Balancer"
+msgstr "Balansering av röstmemon"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Podcast/Radio"
+msgstr "Poddsändning/radio"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Piano"
+msgstr "Piano"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Acoustic Guitar"
+msgstr "Akustisk gitarr"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Bass Guitar"
+msgstr "Basgitarr"
+
+#. i18n-hint: This is the name of an effect preset. Strings is violins, etc
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Strings"
+msgstr "Stråkar"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Kick Drums"
+msgstr "Bastrummor"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Drums Control"
+msgstr "Trumkontroll"
+
+#. i18n-hint: This is the name of an effect preset. SFX means sound effects.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Climax Impulser SFX"
+msgstr "Klimaximpuls – ljudeffekt"
+
+#. i18n-hint: This is the name of an effect preset. SFX means sound effects.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Engine Breathing SFX"
+msgstr "Motorandning – ljudeffekt"
+
+#. i18n-hint: This is the name of an effect preset. SFX means sound effects.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Great Impact SFX"
+msgstr "Stor påverkan – ljudeffekt"
+
+#. i18n-hint: This is the name of an effect preset. SFX means sound effects.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Great Body SFX"
+msgstr "Stor kropp – ljudeffekt"
+
+#. i18n-hint: This is the name of an effect preset. SFX means sound effects.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Great Tail SFX"
+msgstr "Stor svans – ljudeffekt"
+
+#. i18n-hint: This is the name of an effect preset. SFX means sound effects.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Smack Explosion SFX"
+msgstr "Smällexplosion – ljudeffekt"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Master Limiter"
+msgstr "Masterbegränsare"
+
+#. i18n-hint: This is the name of an effect preset. SFX means sound effects.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "SFX Limiter"
+msgstr "Begränsare för ljudeffekter"
+
+#. i18n-hint: This is the name of an effect preset. VO means Voiceover.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "VO Limiter"
+msgstr "Begränsare för berättarröst"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Modern Punch"
+msgstr "Modern kraft"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Modern Punch 2"
+msgstr "Modern kraft 2"
+
+#. i18n-hint: This is the name of an effect preset.
+#: libraries/lib-dynamic-range-processor/DynamicRangeProcessorUtils.h
+msgid "Play it Loud"
+msgstr "Spela högt"
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error in %s at %s line %d.\n"
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/"
+"tenacity/issues"
+msgstr ""
+"Internt fel i %s vid %s, rad %d.\n"
+"Informera Tenacity-teamet på https://codeberg.org/tenacityteam/tenacity/"
+"issues"
+
+#: libraries/lib-exceptions/InconsistencyException.cpp
+#, c-format
+msgid ""
+"Internal error at %s line %d.\n"
+"Please inform the Tenacity team at https://codeberg.org/tenacityteam/"
+"tenacity/issues"
+msgstr ""
+"Internt fel vid %s, rad %d.\n"
+"Informera Tenacity-teamet på https://codeberg.org/tenacityteam/tenacity/"
+"issues"
