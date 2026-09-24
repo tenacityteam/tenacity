@@ -44,7 +44,7 @@
 #include "MemoryX.h"
 #include "ThemeLegacy.h"
 
-class App final : public wxAppConsole {
+class App final : public wxApp {
    bool OnInit() override;
 };
 
