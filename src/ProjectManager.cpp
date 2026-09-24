@@ -49,7 +49,7 @@ Paul Licameli split from AudacityProject.cpp
 #include <wx/sizer.h>
 #include <wx/splitter.h>
 
-#ifdef __WXGTK__
+#if !defined(__WXOSX__) && !defined(__WXMSW__)
 #include "../images/TenacityLogoAlpha.xpm"
 #endif
 

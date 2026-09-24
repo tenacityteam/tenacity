@@ -481,7 +481,7 @@ int main(int argc, char *argv[])
    return wxEntry(argc, argv);
 }
 
-#elif defined(__WXGTK__) && defined(NDEBUG)
+#elif defined(__UNIX__) && defined(NDEBUG)
 
 // Specially define main() for Linux debug
 
@@ -506,7 +506,7 @@ int main(int argc, char *argv[])
    return wxEntry(argc, argv);
 }
 
-#elif defined(__WXGTK__)
+#elif defined(__UNIX__)
 
 // Linux release build
 
@@ -1468,7 +1468,7 @@ bool AudacityApp::InitTempDir()
 
    wxString temp;
 
-   #ifdef __WXGTK__
+   #ifdef __linux__
    if (tempFromPrefs.length() > 0 && tempFromPrefs[0] != wxT('/'))
       tempFromPrefs = wxT("");
    #endif

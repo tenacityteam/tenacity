@@ -63,7 +63,7 @@ void Internat::Init()
    // Hey!  The default wxPATH_NATIVE does not do as it should.
 #if defined(__WXMAC__)
    wxPathFormat format = wxPATH_MAC;
-#elif defined(__WXGTK__)
+#elif defined(__UNIX__)
    wxPathFormat format = wxPATH_UNIX;
 #elif defined(__WXMSW__)
    wxPathFormat format = wxPATH_WIN;
