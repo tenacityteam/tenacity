@@ -79,7 +79,7 @@ void Internat::Init()
          continue;
       }
 #endif
-      exclude.push_back(wxString{ cc });
+      exclude.push_back(wxString(cc));
    }
 
    // The path separators may not be forbidden, so add them
