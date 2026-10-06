@@ -540,7 +540,7 @@ bool GetInfoCommand::SendClips(const CommandContext &context)
             // Assuming same colors, look at only left channel
             const auto &colors =
                WaveColorAttachment::Get(**pInterval->Channels().begin());
-            context.AddItem(colors.GetColorIndex(), "color");
+            context.AddItem(colors.GetColorValue(), "color");
             context.AddItem(pInterval->GetName(), "name");
             context.EndStruct();
          }

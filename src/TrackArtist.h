@@ -58,7 +58,7 @@ public:
    ~TrackArtist();
    static TrackArtist *Get( TrackPanelDrawingContext & );
 
-   void SetColours(int iColorIndex);
+   void SetColours(int newWaveformColor);
 
    void UpdatePrefs() override;
 

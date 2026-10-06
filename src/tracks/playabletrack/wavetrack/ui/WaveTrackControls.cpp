@@ -17,6 +17,7 @@ Paul Licameli split from TrackPanel.cpp
 
 #include "WaveChannelView.h"
 #include "WaveChannelViewConstants.h"
+#include "WaveformAppearance.h"
 #include "AudioIOBase.h"
 #include "../../../../CellularPanel.h"
 #include "Project.h"
@@ -767,7 +768,14 @@ void WaveTrackMenuTable::OnWaveformColorManager(wxCommandEvent&)
    if (colorDialog.ShowModal() == wxID_OK)
    {
       // TODO: set color data
-      wxColour newWaveformColor = colorData.GetColour();
+      int newWaveformColor = colorDialog.GetColourData().GetColour().GetRGB();
+      auto& track = FindWaveTrack();
+
+      WaveformAppearance::Get(track).SetColorValue(newWaveformColor);
+      ProjectHistory::Get( mpData->project )
+         .PushState(XO("Changed '%s' color to value %d")
+            .Format(track.GetName(), newWaveformColor),
+         XO("WaveColor Change"));
    }
 }
 

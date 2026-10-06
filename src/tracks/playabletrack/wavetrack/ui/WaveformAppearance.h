@@ -34,15 +34,15 @@ public:
       const std::string_view& attr, const XMLAttributeValueView& valueView)
    override;
 
-   int GetColorIndex() const { return mColorIndex; }
-   void SetColorIndex(int colorIndex);
+   int GetColorValue() const { return mColorValue; }
+   void SetColorValue(int newColorValue);
 
 private:
    void Subscribe(const std::shared_ptr<WaveTrack> &pTrack);
 
    std::weak_ptr<WaveTrack> mwTrack;
    Observer::Subscription mSubscription;
-   int mColorIndex{ 0 };
+   int mColorValue{ -1 };
 };
 
 struct WaveColorAttachment final : WaveClipListener
@@ -67,11 +67,11 @@ struct WaveColorAttachment final : WaveClipListener
    bool HandleXMLAttribute(const std::string_view &attr,
       const XMLAttributeValueView &valueView) override;
 
-   int GetColorIndex() const { return mColorIndex; }
-   void SetColorIndex(int colorIndex) { mColorIndex = colorIndex; }
+   int GetColorValue() const { return mColorValue; }
+   void SetColorValue(int colorIndex) { mColorValue = colorIndex; }
 
 private:
-   int mColorIndex{};
+   int mColorValue{-1};
 };
 
 #endif

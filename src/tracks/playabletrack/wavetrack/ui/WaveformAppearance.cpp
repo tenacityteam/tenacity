@@ -59,7 +59,7 @@ void WaveformAppearance::Subscribe(const std::shared_ptr<WaveTrack> &pTrack)
          switch (message.type) {
          case WaveTrackMessage::New:
          case WaveTrackMessage::Deserialized:
-            WaveColorAttachment::Get(*message.pClip).SetColorIndex(mColorIndex);
+            WaveColorAttachment::Get(*message.pClip).SetColorValue(mColorValue);
          default:
             break;
          }
@@ -72,7 +72,7 @@ void WaveformAppearance::CopyTo(Track &track) const
 {
    if (const auto pTrack = dynamic_cast<WaveTrack *>(&track)) {
       auto &other = Get(*pTrack);
-      other.mColorIndex = mColorIndex;
+      other.mColorValue = mColorValue;
    }
 }
 
@@ -82,32 +82,32 @@ void WaveformAppearance::Reparent(const std::shared_ptr<Track> &parent)
    Subscribe(mwTrack.lock());
 }
 
-static constexpr auto ColorIndex_attr = "colorindex";
+static constexpr auto ColorValue_attr = "color";
 
 void WaveformAppearance::WriteXMLAttributes(XMLWriter &writer) const
 {
-   writer.WriteAttr(ColorIndex_attr, mColorIndex);
+   writer.WriteAttr(ColorValue_attr, mColorValue);
 }
 
 bool WaveformAppearance::HandleXMLAttribute(
    const std::string_view& attr, const XMLAttributeValueView& valueView)
 {
    long nValue;
-   if (attr == ColorIndex_attr && valueView.TryGet(nValue))
-      mColorIndex = nValue;
+   if (attr == ColorValue_attr && valueView.TryGet(nValue))
+      mColorValue = nValue;
    return false;
 }
 
-void WaveformAppearance::SetColorIndex(int colorIndex)
+void WaveformAppearance::SetColorValue(int colorIndex)
 {
-   mColorIndex = colorIndex;
+   mColorValue = colorIndex;
    const auto pTrack = mwTrack.lock();
    if (!pTrack)
       return;
    for (const auto &pInterval : pTrack->Intervals())
       for (const auto &pChannel : pInterval->Channels())
          WaveColorAttachment::Get(*pChannel)
-            .SetColorIndex(colorIndex);
+            .SetColorValue(colorIndex);
 }
 
 WaveColorAttachment::WaveColorAttachment()
@@ -155,17 +155,17 @@ void WaveColorAttachment::Invalidate() {}
 
 void WaveColorAttachment::WriteXMLAttributes(XMLWriter &writer) const
 {
-   writer.WriteAttr(ColorIndex_attr, mColorIndex);
+   writer.WriteAttr(ColorValue_attr, mColorValue);
 }
 
 bool WaveColorAttachment::HandleXMLAttribute(const std::string_view &attr,
    const XMLAttributeValueView &valueView)
 {
    long longValue;
-   if (attr == ColorIndex_attr) {
+   if (attr == ColorValue_attr) {
       if (!valueView.TryGet(longValue))
          return false;
-      SetColorIndex(longValue);
+      SetColorValue(longValue);
       return true;
    }
    return false;
