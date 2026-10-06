@@ -314,7 +314,7 @@ bool SetTrackVisualsCommand::ApplyInner(
    static const double ZOOMLIMIT = 0.001f;
 
    if (bHasColour)
-      WaveformAppearance::Get(*wt).SetColorIndex(mColour);
+      WaveformAppearance::Get(*wt).SetColorValue(mColour);
 
    if (bHasHeight)
       for (auto pChannel : t.Channels<WaveChannel>())

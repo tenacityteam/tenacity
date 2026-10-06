@@ -816,8 +816,8 @@ void DrawClipWaveform(TrackPanelDrawingContext &context,
    const float dBRange = settings.dBRange;
 
    dc.SetPen(*wxTRANSPARENT_PEN);
-   int iColorIndex = WaveColorAttachment::Get(clip).GetColorIndex();
-   artist->SetColours( iColorIndex );
+   int colorValue = WaveColorAttachment::Get(clip).GetColorValue();
+   artist->SetColours( colorValue );
 
    // The bounds (controlled by vertical zooming; -1.0...1.0
    // by default)
@@ -1119,7 +1119,7 @@ BEGIN_POPUP_MENU(WaveColorMenuTable)
       bool unsafe = ProjectAudioIO::Get( project ).IsAudioActive();
 
       menu.Check(id, id == me.IdOfWaveColor(
-         WaveformAppearance::Get(track).GetColorIndex()));
+         WaveformAppearance::Get(track).GetColorValue()));
       menu.Enable( id, !unsafe );
    };
 
@@ -1159,7 +1159,7 @@ void WaveColorMenuTable::OnWaveColorChange(wxCommandEvent & event)
 
    AudacityProject *const project = &mpData->project;
 
-   WaveformAppearance::Get(track).SetColorIndex(newWaveColor);
+   WaveformAppearance::Get(track).SetColorValue(newWaveColor);
 
    ProjectHistory::Get( *project )
       .PushState(XO("Changed '%s' to %s")

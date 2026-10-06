@@ -69,7 +69,7 @@ TrackArtist::TrackArtist( TrackPanel *parent_ )
    mdBrange = DecibelScaleCutoff.GetDefault();
    mSampleDisplay = 1;// Stem plots by default.
 
-   SetColours(0);
+   SetColours(-1);
 
    UpdatePrefs();
 }
@@ -83,7 +83,7 @@ TrackArtist * TrackArtist::Get( TrackPanelDrawingContext &context )
    return static_cast< TrackArtist* >( context.pUserData );
 }
 
-void TrackArtist::SetColours( int iColorIndex)
+void TrackArtist::SetColours(int newWaveformColor)
 {
    theTheme.SetBrushColour( blankBrush,      clrBlank );
    theTheme.SetBrushColour( unselectedBrush, clrUnselected);
@@ -131,26 +131,16 @@ void TrackArtist::SetColours( int iColorIndex)
    ChangeLightness(clipAffordanceBackgroundBrush, 90 );
    ChangeLightness(clipAffordanceBackgroundSelBrush, 90);
 
-   switch( iColorIndex %4 )
+   if (newWaveformColor == -1)
    {
-      default:
-      case 0:
-         theTheme.SetPenColour(   samplePen,       clrSample);
-         theTheme.SetPenColour(   rmsPen,          clrRms);
-         break;
-      case 1: // RED
-         theTheme.SetPenColour(   samplePen,       clrSample2);
-         theTheme.SetPenColour(   rmsPen,          clrRms2);
-         break;
-      case 2: // GREEN
-         theTheme.SetPenColour(   samplePen,       clrSample3);
-         theTheme.SetPenColour(   rmsPen,          clrRms3);
-         break;
-      case 3: //BLACK
-         theTheme.SetPenColour(   samplePen,       clrSample4);
-         theTheme.SetPenColour(   rmsPen,          clrRms4);
-         break;
-
+      // Reset the sample and RMS pens to their default theme colors
+      theTheme.SetPenColour(samplePen, clrSample);
+      theTheme.SetPenColour(rmsPen, clrRms);
+   } else
+   {
+      wxColour customColor(newWaveformColor);
+      samplePen.SetColour(customColor);
+      rmsPen.SetColour(customColor.ChangeLightness(145));
    }
 }
 
@@ -159,5 +149,5 @@ void TrackArtist::UpdatePrefs()
    mdBrange = DecibelScaleCutoff.Read();
    mSampleDisplay = TracksPrefs::SampleViewChoice();
 
-   SetColours(0);
+   SetColours(-1);
 }

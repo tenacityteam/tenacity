@@ -85,7 +85,7 @@ bool SetClipCommand::Apply(const CommandContext& context)
                // Inside this IF is where we actually apply the command
                if (bHasColour) {
                   for (const auto channel : interval->Channels())
-                     WaveColorAttachment::Get(*channel).SetColorIndex(mColour);
+                     WaveColorAttachment::Get(*channel).SetColorValue(mColour);
                }
                // No validation of overlap yet.  We assume the user is sensible!
                if( bHasT0 )
