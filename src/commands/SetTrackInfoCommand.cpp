@@ -190,24 +190,6 @@ const ComponentInterfaceSymbol SetTrackVisualsCommand::Symbol
 
 namespace{ BuiltinCommandsModule::Registration< SetTrackVisualsCommand > reg3; }
 
-enum kColours
-{
-   kColour0,
-   kColour1,
-   kColour2,
-   kColour3,
-   nColours
-};
-
-static const EnumValueSymbol kColourStrings[nColours] =
-{
-   { wxT("Color0"), XO("Color 0") },
-   { wxT("Color1"), XO("Color 1") },
-   { wxT("Color2"), XO("Color 2") },
-   { wxT("Color3"), XO("Color 3") },
-};
-
-
 enum kScaleTypes
 {
    kLinearAmp,
@@ -260,7 +242,7 @@ bool SetTrackVisualsCommand::VisitSettings( SettingsVisitorBase<Const> & S ){
    }
 
    S.OptionalN( bHasScaleType      ).DefineEnum( mScaleType,      wxT("Scale"),      kLinearAmp,   kScaleTypeStrings, nScaleTypes );
-   S.OptionalN( bHasColour         ).DefineEnum( mColour,         wxT("Color"),      kColour0,  kColourStrings, nColours );
+   S.OptionalN( bHasColour         ).Define(         mColour,         wxT("Color"),      -1,  0, std::numeric_limits<int>::max() );
    S.OptionalN( bHasVZoom          ).DefineEnum( mVZoom,          wxT("VZoom"),      kReset,    kZoomTypeStrings, nZoomTypes );
    S.OptionalN( bHasVZoomTop       ).Define(     mVZoomTop,       wxT("VZoomHigh"),  1.0,  -2.0,  2.0 );
    S.OptionalN( bHasVZoomBottom    ).Define(     mVZoomBottom,    wxT("VZoomLow"),   -1.0, -2.0,  2.0 );
@@ -286,9 +268,7 @@ void SetTrackVisualsCommand::PopulateOrExchange(ShuttleGui & S)
    {
       S.SetStretchyCol( 2 );
       S.Optional( bHasHeight      ).TieNumericTextBox(  XXO("Height:"),        mHeight );
-      S.Optional( bHasColour      ).TieChoice(          XXO("Color:"),         mColour,
-         Msgids(  kColourStrings, nColours ) );
-
+      S.Optional( bHasColour      ).TieNumericTextBox(  XXO("Color:"),         mColour);
       {
          auto symbols = DiscoverSubViewTypes();
          auto typeNames = transform_container<TranslatableStrings>(

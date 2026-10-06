@@ -38,28 +38,10 @@ SetClipCommand::SetClipCommand()
 {
 }
 
-enum kColours
-{
-   kColour0,
-   kColour1,
-   kColour2,
-   kColour3,
-   nColours
-};
-
-static const EnumValueSymbol kColourStrings[nColours] =
-{
-   { wxT("Color0"), XO("Color 0") },
-   { wxT("Color1"), XO("Color 1") },
-   { wxT("Color2"), XO("Color 2") },
-   { wxT("Color3"), XO("Color 3") },
-};
-
-
 template<bool Const>
 bool SetClipCommand::VisitSettings( SettingsVisitorBase<Const> & S ){
    S.OptionalY( bHasContainsTime   ).Define(     mContainsTime,   wxT("At"),         0.0, 0.0, 100000.0 );
-   S.OptionalN( bHasColour         ).DefineEnum( mColour,         wxT("Color"),      kColour0, kColourStrings, nColours );
+   S.OptionalN( bHasColour         ).Define(     mColour,         wxT("Color"),      -1, 0, std::numeric_limits<int>::max() );
    // Allowing a negative start time is not a mistake.
    // It will be used in demonstrating time before zero.
    S.OptionalN( bHasT0             ).Define(     mT0,             wxT("Start"),      0.0, -5.0, 1000000.0);
@@ -79,8 +61,7 @@ void SetClipCommand::PopulateOrExchange(ShuttleGui & S)
    S.StartMultiColumn(3, wxALIGN_CENTER);
    {
       S.Optional( bHasContainsTime).TieNumericTextBox(  XXO("At:"),            mContainsTime );
-      S.Optional( bHasColour      ).TieChoice(          XXO("Color:"),         mColour,
-         Msgids( kColourStrings, nColours ) );
+      S.Optional( bHasColour      ).TieNumericTextBox(  XXO("Color:"),         mColour);
       S.Optional( bHasT0          ).TieNumericTextBox(  XXO("Start:"),         mT0 );
       S.Optional( bHasName        ).TieTextBox(         XXO("Name:"),          mName );
    }
