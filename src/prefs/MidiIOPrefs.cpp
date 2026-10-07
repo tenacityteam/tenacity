@@ -273,7 +273,7 @@ bool MidiIOPrefs::Commit()
 #ifdef EXPERIMENTAL_MIDI_IN
    info = (const PmDeviceInfo *) mRecord->GetClientData(mRecord->GetSelection());
    if (info) {
-      MidiRecordingDevice.Write(
+      MIDIRecordingDevice.Write(
          wxString::Format(wxT("%s: %s"),
             wxString(wxSafeConvertMB2WX(info->interf)),
             wxString(wxSafeConvertMB2WX(info->name))));
