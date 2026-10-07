@@ -771,11 +771,24 @@ void WaveTrackMenuTable::OnWaveformColorManager(wxCommandEvent&)
       int newWaveformColor = colorDialog.GetColourData().GetColour().GetRGB();
       auto& track = FindWaveTrack();
 
-      WaveformAppearance::Get(track).SetColorValue(newWaveformColor);
-      ProjectHistory::Get( mpData->project )
-         .PushState(XO("Changed '%s' color to value %d")
-            .Format(track.GetName(), newWaveformColor),
-         XO("WaveColor Change"));
+      // If the user selects the default waveform color, set the color value to
+      // -1 so TrackArtist::SetColours() uses the theme's RMS color too, rather
+      // than our custom value.
+      if (newWaveformColor == theTheme.Colour(clrSample).GetRGB())
+      {
+         WaveformAppearance::Get(track).SetColorValue(-1);
+         ProjectHistory::Get( mpData->project )
+            .PushState(XO("Changed '%s' color to default")
+               .Format(track.GetName()),
+            XO("WaveColor Change"));
+      } else
+      {
+         WaveformAppearance::Get(track).SetColorValue(newWaveformColor);
+         ProjectHistory::Get( mpData->project )
+            .PushState(XO("Changed '%s' color to value %d")
+               .Format(track.GetName(), newWaveformColor),
+            XO("WaveColor Change"));
+      }
    }
 }
 

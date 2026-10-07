@@ -138,9 +138,12 @@ void TrackArtist::SetColours(int newWaveformColor)
       theTheme.SetPenColour(rmsPen, clrRms);
    } else
    {
+      // Set the sample pen color to the given color value.
+      // For the RMS pen, set it to one based on the sample color value, but
+      // change the lightness to 140 (an arbitrarily chosen value :)
       wxColour customColor(newWaveformColor);
       samplePen.SetColour(customColor);
-      rmsPen.SetColour(customColor.ChangeLightness(145));
+      rmsPen.SetColour(customColor.ChangeLightness(127));
    }
 }
 
