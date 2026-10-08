@@ -33,11 +33,11 @@ feature MIDI support. [libsbsms](https://github.com/claytonotey/libsbsms) is
 required for high-quality destructive stretching support, but not all
 distributions package it.
 
-If you want a fully featured build but are on a distribution that packages all
+If you want a fully featured build but are on a distribution that doesn't package all
 of Tenacity's dependencies, you can [use vcpkg](#vcpkg-on-Linux) to build
 dependencies from source. However, you must use our fork for MP2 support as
 upstream vcpkg doesn't contain a twolame package. There are also other reasons
-for the for, but none apply to Linux specifically.
+for the fork, but none apply to Linux specifically.
 
 Installing ccache and ninja-build is highly recommended for faster builds but
 not required. CMake will automatically use ccache if it is installed.
@@ -396,7 +396,7 @@ cmake -G Ninja -S . -B build
 
 **Note**: Under MSYS2, be sure to add `-DVCPKG=OFF` to ensure vcpkg does not
 automatically build dependencies. (You should install dependencies from the
-repos instead). You may also wisth to add `-DSBSMS=ON` to enable high-quality
+repos instead). You may also wish to add `-DSBSMS=ON` to enable high-quality
 stretching with libsbsms, if available, as it will be disabled by default.
 
 Build Tenacity:
