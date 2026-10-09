@@ -253,8 +253,8 @@ important:
 
    Example: `Co-authored-by: Jane Doe <jane.doe@example.com>`
 
-* If your commit is complicated and involves multiple changes, use asterisks
-  and explain of the changes you made in a few words.
+* If your commit is complicated and involves multiple changes, use asterisks or
+  dashes and explain of the changes you made in a few words.
 
    Example:
 
@@ -266,6 +266,18 @@ important:
    * Added 1 teaspoon of Mirin
    * Added Dashi Stock
    * Mixed ingredients together
+   ```
+
+   Alternatively:
+
+   ```
+   Prepare Teriyaki Sauce
+
+   - Added Soy Sauce
+   - Added Cooking Sake and Sugar
+   - Added 1 teaspon of Mirin
+   - Added Dashi Stock
+   - Mixed ingredients together
    ```
 
 * If you are using changes that were made by another person, the original
@@ -297,6 +309,12 @@ important:
 
    Signed-off-by: Pumpkin Hater <pumpkin.hater99@example.com>
    ```
+
+There are also a few notes to the above:
+
+* You can use past tense past the first line of your commit message.
+* Bullet points are not strictly necessary even if your commit is large. You
+  may opt for a short- to medium-sized description instead.
 
 ##### GitHub
 
