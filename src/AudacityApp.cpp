@@ -1008,9 +1008,6 @@ void AudacityApp::OnInit0()
    wxTheApp->SetVendorName(AppName);
 
    ::wxInitAllImageHandlers();
-
-   // AddHandler takes ownership
-   wxFileSystem::AddHandler(safenew wxZipFSHandler);
 }
 
 // The `main program' equivalent, creating the windows and returning the
