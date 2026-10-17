@@ -10,6 +10,43 @@ else()
   option(VCPKG "Use vcpkg for dependencies" OFF)
 endif()
 
+# CMAKE_HOST_SYSTEM_PROCESSOR isn't set until project(), so pick the mac arch
+# here the same way CMakeDetermineSystem does. uname -m alone follows the
+# arch of the calling shell (e.g. Rosetta).
+if(CMAKE_HOST_APPLE)
+    list(LENGTH CMAKE_OSX_ARCHITECTURES _OSX_ARCH_COUNT)
+    if(_OSX_ARCH_COUNT EQUAL 1)
+        set(_TENACITY_MAC_ARCH "${CMAKE_OSX_ARCHITECTURES}")
+    else()
+        if(DEFINED CMAKE_APPLE_SILICON_PROCESSOR)
+            set(_TENACITY_MAC_ARCH "${CMAKE_APPLE_SILICON_PROCESSOR}")
+        else()
+            set(_TENACITY_MAC_ARCH "$ENV{CMAKE_APPLE_SILICON_PROCESSOR}")
+        endif()
+        if(_TENACITY_MAC_ARCH)
+            # Only honored on Apple Silicon hardware
+            execute_process(
+                COMMAND sysctl -q hw.optional.arm64
+                OUTPUT_VARIABLE _SYSCTL_OUT
+                OUTPUT_STRIP_TRAILING_WHITESPACE
+                ERROR_QUIET
+            )
+            if(NOT _SYSCTL_OUT STREQUAL "hw.optional.arm64: 1"
+               OR NOT _TENACITY_MAC_ARCH MATCHES "^(arm64|x86_64)$")
+                set(_TENACITY_MAC_ARCH "")
+            endif()
+        endif()
+        if(NOT _TENACITY_MAC_ARCH)
+            execute_process(
+                COMMAND uname -m
+                OUTPUT_VARIABLE _TENACITY_MAC_ARCH
+                OUTPUT_STRIP_TRAILING_WHITESPACE
+            )
+        endif()
+    endif()
+    message(STATUS "Building for macOS arch: ${_TENACITY_MAC_ARCH}")
+endif()
+
 if(VCPKG)
     set(ENV{VCPKG_DISABLE_METRICS} true)
 
@@ -43,14 +80,7 @@ if(VCPKG)
     # Tenacity will use that instead.
     if(NOT DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
         if(APPLE)
-            # CMAKE_HOST_SYSTEM_PROCESSOR isn't populated until after project(),
-            # so shell out to uname to figure out the host arch here.
-            execute_process(
-                COMMAND uname -m
-                OUTPUT_VARIABLE _VCPKG_HOST_ARCH
-                OUTPUT_STRIP_TRAILING_WHITESPACE
-            )
-            if(_VCPKG_HOST_ARCH STREQUAL "arm64") # Apple Silicon
+            if(_TENACITY_MAC_ARCH STREQUAL "arm64") # Apple Silicon
                 set(VCPKG_TARGET_TRIPLET "arm64-osx-dynamic")
             else() # Intel
                 set(VCPKG_TARGET_TRIPLET "x64-osx-dynamic")
@@ -142,14 +172,7 @@ cmake_policy( SET CMP0127 NEW )
 
 # Definitions that must happen before the project() command
 if( APPLE )
-    # CMAKE_HOST_SYSTEM_PROCESSOR isn't populated until after project(), so
-    # detect the host arch directly here.
-    execute_process(
-        COMMAND uname -m
-        OUTPUT_VARIABLE _HOST_ARCH
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
-    if (_HOST_ARCH STREQUAL "arm64")
+    if (_TENACITY_MAC_ARCH STREQUAL "arm64")
         set( MIN_MACOS_VERSION 11 )
     else()
         set( MIN_MACOS_VERSION 10.15 )
