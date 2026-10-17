@@ -291,8 +291,11 @@ void AColor::UseThemeColour( wxDC * dc, int iBrush, int iPen, int alpha )
       return;
    wxColour col = wxColour(0,0,0);
    if( iBrush !=-1 ){
-      col = theTheme.Colour( iBrush );
-      col.Set( col.Red(), col.Green(), col.Blue(), alpha);
+      // Build a fresh colour from the components rather than calling Set()
+      // on a copy of the theme colour, so the brush never shares the theme
+      // colour's native (NSColor-backed on macOS) ref data.
+      const wxColour &themeCol = theTheme.Colour( iBrush );
+      col = wxColour( themeCol.Red(), themeCol.Green(), themeCol.Blue(), alpha );
       spareBrush.SetColour( col );
       dc->SetBrush( spareBrush );
    }
@@ -311,8 +314,11 @@ void AColor::UseThemeColour( wxGraphicsContext * gc, int iBrush, int iPen, int a
       return;
    wxColour col = wxColour(0,0,0);
    if( iBrush !=-1 ){
-      col = theTheme.Colour( iBrush );
-      col.Set( col.Red(), col.Green(), col.Blue(), alpha);
+      // Build a fresh colour from the components rather than calling Set()
+      // on a copy of the theme colour, so the brush never shares the theme
+      // colour's native (NSColor-backed on macOS) ref data.
+      const wxColour &themeCol = theTheme.Colour( iBrush );
+      col = wxColour( themeCol.Red(), themeCol.Green(), themeCol.Blue(), alpha );
       spareBrush.SetColour( col );
       gc->SetBrush( spareBrush );
    }
