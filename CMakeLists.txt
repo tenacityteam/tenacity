@@ -757,6 +757,22 @@ add_subdirectory( "nyquist" )
 add_subdirectory( "plug-ins" )
 add_subdirectory( "scripts" )
 
+if( CMAKE_SYSTEM_NAME STREQUAL "Darwin" )
+   # Ad-hoc sign the bundle last, once the modules and resources are in it
+   add_custom_target( TENACITY-ADHOC-SIGN ALL
+      COMMAND codesign --force --timestamp --deep --sign - "${_DESTDIR}/Tenacity.app"
+   )
+   add_dependencies( TENACITY-ADHOC-SIGN Tenacity locale nyquist-support plug-ins )
+   get_property( _MODULE_TARGETS GLOBAL PROPERTY TENACITY_MODULE_TARGETS )
+   foreach( _MODULE ${_MODULE_TARGETS} )
+      # Don't pull EXCLUDE_FROM_ALL modules into the build
+      get_target_property( _EXCLUDED ${_MODULE} EXCLUDE_FROM_ALL )
+      if( NOT _EXCLUDED )
+         add_dependencies( TENACITY-ADHOC-SIGN ${_MODULE} )
+      endif()
+   endforeach()
+endif()
+
 # Generate config file
 if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
    configure_file( src/tenacity_config.h.in src/private/configwin.h )

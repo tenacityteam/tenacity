@@ -364,16 +364,8 @@ function( tenacity_module_fn NAME SOURCES IMPORT_TARGETS
             PREFIX ""
             FOLDER "modules" # for IDE organization
       )
-      if( CMAKE_HOST_SYSTEM_NAME MATCHES "Darwin" )
-         add_custom_command(
-	    TARGET ${TARGET}
-            COMMAND ${CMAKE_COMMAND}
-	       -D SRC="${_MODDIR}/${TARGET}.so"
-               -D WXWIN="${_SHARED_PROXY_BASE_PATH}/$<CONFIG>"
-               -P ${TENACITY_MODULE_PATH}/CopyLibs.cmake
-            COMMAND codesign --force --sign - "${_MODDIR}/${TARGET}.so"
-            POST_BUILD )
-      endif()
+      # For TENACITY-ADHOC-SIGN
+      set_property( GLOBAL APPEND PROPERTY TENACITY_MODULE_TARGETS "${TARGET}" )
    else()
       set( ATTRIBUTES "shape=octagon" )
       set_target_property_all( ${TARGET} ${DIRECTORY_PROPERTY} "${_SHARED_PROXY_PATH}" )
@@ -434,6 +426,18 @@ function( tenacity_module_fn NAME SOURCES IMPORT_TARGETS
          POST_BUILD
          COMMAND $<IF:$<CONFIG:Debug>,echo,strip> -x $<TARGET_FILE:${TARGET}>
       )
+   endif()
+
+   # Sign modules after strip, since stripping breaks the signature
+   if( LIBTYPE STREQUAL "MODULE" AND CMAKE_HOST_SYSTEM_NAME STREQUAL "Darwin" )
+      add_custom_command(
+         TARGET ${TARGET}
+         COMMAND ${CMAKE_COMMAND}
+            -D SRC="${_MODDIR}/${TARGET}.so"
+            -D WXWIN="${_SHARED_PROXY_BASE_PATH}/$<CONFIG>"
+            -P ${TENACITY_MODULE_PATH}/CopyLibs.cmake
+         COMMAND codesign --force --sign - "${_MODDIR}/${TARGET}.so"
+         POST_BUILD )
    endif()
 
    if( NOT REAL_LIBTYPE STREQUAL "MODULE" )
