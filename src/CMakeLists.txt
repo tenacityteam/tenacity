@@ -1102,18 +1102,6 @@ elseif( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
             "-framework CoreServices"
             "-framework Foundation"
     )
-
-    # macOS refuses to launch unsigned binaries on Apple Silicon, so ad-hoc
-    # sign the bundle after all dylibs and the main executable have been
-    # copied in. Xcode 14+ auto-signs but re-signing is still needed because
-    # the wrapper is copied into the bundle after Xcode's own signing pass.
-    add_custom_command(
-        TARGET
-            ${TARGET}
-        COMMAND
-            codesign --force --timestamp --deep --sign - "${_DESTDIR}/Tenacity.app"
-        POST_BUILD
-    )
 else()
     set_target_properties(
         ${TARGET}
