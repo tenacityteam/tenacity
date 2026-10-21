@@ -1429,7 +1429,7 @@ MixerBoardFrame::MixerBoardFrame(AudacityProject* parent)
 #if !defined(__WXMAC__) && !defined(__WXX11__)
    {
 #ifdef __WXMSW__
-      wxIcon ic{ wxICON(AudacityLogo) };
+      wxIcon ic{ wxICON(TenacityLogo) };
 #else
       wxIcon ic{wxICON(TenacityLogo48x48)};
 #endif
