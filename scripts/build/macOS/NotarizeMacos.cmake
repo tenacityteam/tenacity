@@ -39,22 +39,45 @@ endif()
 function( notarize path )
     message( STATUS "Notarizing ${path}" )
 
+    # Submit and wait separately. With `submit --wait` the JSON we parse
+    # only shows up at the very end, so the build sits silent for minutes
+    # and looks hung, and if it gets killed partway you never learn the
+    # submission ID. Auth and network errors print to stderr instead of
+    # JSON and land here as NOTFOUND.
     execute_process(
         COMMAND
             xcrun notarytool submit "${path}"
                 ${credentials}
-                --wait
                 --output-format json
         OUTPUT_VARIABLE result
     )
 
-    # --wait returns once Apple finishes processing whether the upload was
-    # accepted or not, so go by the status it reports. Auth and network
-    # errors print to stderr instead of JSON and land here as NOTFOUND.
-    string( JSON status ERROR_VARIABLE json_error GET "${result}" status )
     string( JSON id ERROR_VARIABLE json_error GET "${result}" id )
 
+    if( NOT id )
+        message( FATAL_ERROR "Failed to submit ${path} for notarization:\n${result}\n" )
+    endif()
+
     message( STATUS "\t Submission ID: '${id}'" )
+    message( STATUS "\t Waiting on Apple, which usually takes a few minutes." )
+    message( STATUS "\t If this gets interrupted, check on it later with:" )
+    message( STATUS "\t   xcrun notarytool info ${id} <your notarytool credentials>" )
+
+    # Leave wait's output uncaptured so its progress lines reach the log
+    execute_process( COMMAND xcrun notarytool wait "${id}" ${credentials} )
+
+    # wait returns once Apple finishes whether the upload was accepted or
+    # not, so ask for the final status rather than trusting its exit code
+    execute_process(
+        COMMAND
+            xcrun notarytool info "${id}"
+                ${credentials}
+                --output-format json
+        OUTPUT_VARIABLE result
+    )
+
+    string( JSON status ERROR_VARIABLE json_error GET "${result}" status )
+
     message( STATUS "\t Status: ${status}" )
 
     if( NOT "${status}" STREQUAL "Accepted" )
