@@ -160,6 +160,10 @@ jobs:
       WINDOWS_CERTIFICATE: ${{ secrets.WINDOWS_CERTIFICATE }}
       WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
 
+      # macOS codesigning only runs when the certificate secret exists, so
+      # forks and pull requests (which don't get secrets) build unsigned.
+      HAS_APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE != '' }}
+
       TENACITY_ARCH_LABEL: ${{ matrix.config.arch }}
 
     steps:
@@ -183,10 +187,14 @@ jobs:
 
     - name: Install Apple codesigning certificates
       uses: apple-actions/import-codesign-certs@v7
-      if: startswith( matrix.config.os, 'macos' ) && github.event_name == 'push' && github.repository_owner == 'audacity'
+      if: startswith( matrix.config.os, 'macos' ) && github.event_name == 'push' && env.HAS_APPLE_CERTIFICATE == 'true'
       with:
         p12-file-base64: ${{ secrets.APPLE_CERTIFICATE }}
         p12-password: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+
+    - name: "[macOS] Enable codesigning and notarization"
+      if: startswith( matrix.config.os, 'macos' ) && github.event_name == 'push' && env.HAS_APPLE_CERTIFICATE == 'true'
+      run: echo "CODESIGN_CMAKE_FLAGS=-D PERFORM_CODESIGN=ON -D PERFORM_NOTARIZATION=ON" >> ${GITHUB_ENV}
 
     - name: Get Git commit of vcpkg submodule
       run: echo VCPKG_COMMIT=$(git ls-tree HEAD vcpkg | awk '{print $3}') >> ${GITHUB_ENV}
@@ -231,6 +239,7 @@ jobs:
         -D VCPKG=${{ matrix.config.use_vcpkg }}
         -D SBSMS=ON
         -D X_VCPKG_APPLOCAL_DEPS_SERIALIZED=ON
+        ${{ env.CODESIGN_CMAKE_FLAGS }}
         -S .
         -B build
         "${{ matrix.config.additional_cmake_flags }}"
@@ -239,6 +248,7 @@ jobs:
         APPLE_CODESIGN_IDENTITY: ${{ secrets.APPLE_CODESIGN_IDENTITY }}
         APPLE_NOTARIZATION_USER_NAME: ${{ secrets.APPLE_NOTARIZATION_USER_NAME }}
         APPLE_NOTARIZATION_PASSWORD: ${{ secrets.APPLE_NOTARIZATION_PASSWORD }}
+        APPLE_NOTARIZATION_TEAM_ID: ${{ secrets.APPLE_NOTARIZATION_TEAM_ID }}
         CC: ${{ matrix.config.cc }}
         CXX: ${{ matrix.config.cxx }}
 
