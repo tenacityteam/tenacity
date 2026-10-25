@@ -121,6 +121,23 @@
                 "lhs": "${hostSystemName}",
                 "rhs": "Windows"
             }
+        },
+        {
+            "name": "arm64-macos-release-ninja-signed",
+            "displayName": "arm64-macOS-Release (Ninja, signed + notarized)",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "installDir": "${sourceDir}/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "PERFORM_CODESIGN": "ON",
+                "PERFORM_NOTARIZATION": "ON"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Darwin"
+            }
         }
     ],
     "buildPresets": [
@@ -147,6 +164,11 @@
         {
             "name": "x64-msvc-release-ninja",
             "configurePreset": "x64-msvc-release-ninja",
+            "configuration": "Release"
+        },
+        {
+            "name": "arm64-macos-release-ninja-signed",
+            "configurePreset": "arm64-macos-release-ninja-signed",
             "configuration": "Release"
         }
     ],
