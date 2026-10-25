@@ -50,13 +50,19 @@ if( DEFINED APP_LOCATION )
         endif()
     endforeach()
 
+    # GLOB_RECURSE with LIST_DIRECTORIES On returns every directory it walks
+    # through, not just the ones matching the pattern, so it hands back
+    # Contents/Frameworks, Contents/Resources, every .lproj, etc. Filter on
+    # the name ourselves or codesign chokes on "bundle format unrecognized".
     file( GLOB_RECURSE frameworks
           LIST_DIRECTORIES On
           "${APP_LOCATION}/Contents/*.framework"
         )
 
     foreach( framework ${frameworks} )
-        if( IS_DIRECTORY "${framework}" AND NOT IS_SYMLINK "${framework}" )
+        if( framework MATCHES "\\.framework$"
+            AND IS_DIRECTORY "${framework}"
+            AND NOT IS_SYMLINK "${framework}" )
             codesign( "${framework}" --options runtime )
         endif()
     endforeach()
