@@ -1,111 +1,106 @@
-# CMake script to sign macOS build
+# CMake script to notarize macOS build
 # Arguments:
-# APP_IDENTIFIER - app identifier
-# APP_LOCATION - the path to Audacity.app
-# DMG_LOCATION - the path to Audacity dmg package
-# APPLE_NOTARIZATION_USER_NAME - notarization user name
-# APPLE_NOTARIZATION_PASSWORD - notarization password
+# APP_LOCATION - the path to Tenacity.app
+# DMG_LOCATION - the path to Tenacity dmg package
+#
+# Credentials, either:
+# APPLE_NOTARIZATION_KEYCHAIN_PROFILE - profile saved with
+#                                       `xcrun notarytool store-credentials`
+# or all of:
+# APPLE_NOTARIZATION_USER_NAME - Apple ID
+# APPLE_NOTARIZATION_PASSWORD - app-specific password for the Apple ID
+# APPLE_NOTARIZATION_TEAM_ID - developer team ID
 
 # https://cmake.org/cmake/help/latest/policy/CMP0054.html
 cmake_policy( SET CMP0054 NEW )
 # https://cmake.org/cmake/help/latest/policy/CMP0011.html
 cmake_policy( SET CMP0011 NEW )
 
-function( get_plist_value output path key )
-    execute_process(
-        COMMAND /usr/libexec/PlistBuddy -c "Print ${key}" "${path}"
-        OUTPUT_VARIABLE result
+# altool stopped accepting notarization uploads in Nov 2023, so this goes
+# through notarytool. A keychain profile is the easy path on a dev Mac;
+# CI runners don't have one, so they pass the Apple ID, app-specific
+# password and team ID instead.
+if( APPLE_NOTARIZATION_KEYCHAIN_PROFILE )
+    set( credentials --keychain-profile "${APPLE_NOTARIZATION_KEYCHAIN_PROFILE}" )
+elseif( APPLE_NOTARIZATION_USER_NAME AND APPLE_NOTARIZATION_PASSWORD AND APPLE_NOTARIZATION_TEAM_ID )
+    set( credentials
+        --apple-id "${APPLE_NOTARIZATION_USER_NAME}"
+        --password "${APPLE_NOTARIZATION_PASSWORD}"
+        --team-id "${APPLE_NOTARIZATION_TEAM_ID}"
     )
-
-    string( STRIP ${result} result )
-
-    set( ${output} ${result} PARENT_SCOPE )
-endfunction()
-
-if( APP_LOCATION )
-    get_filename_component( temp_dir "${APP_LOCATION}/.." ABSOLUTE )
 else()
-    get_filename_component( temp_dir "${DMG_LOCATION}" DIRECTORY )
+    message( FATAL_ERROR
+        "Notarization needs APPLE_NOTARIZATION_KEYCHAIN_PROFILE, or "
+        "APPLE_NOTARIZATION_USER_NAME, APPLE_NOTARIZATION_PASSWORD and "
+        "APPLE_NOTARIZATION_TEAM_ID. Create a profile with: "
+        "xcrun notarytool store-credentials <name>" )
 endif()
-
-set( temp_plist "${temp_dir}/NotarizationResult.plist" )
 
 function( notarize path )
     message( STATUS "Notarizing ${path}" )
 
-    execute_process( 
-        COMMAND 
-            xcrun altool 
-                --notarize-app
-                --primary-bundle-id "${APP_IDENTIFIER}"
-                --file "${path}"
-                --username "${APPLE_NOTARIZATION_USER_NAME}"
-                --password "${APPLE_NOTARIZATION_PASSWORD}"
-                --output-format xml 
-        OUTPUT_VARIABLE
-            result 
-    )
-
-    file( WRITE ${temp_plist} ${result} )
-
-    get_plist_value( req_id ${temp_plist} "notarization-upload:RequestUUID" )
-
-    message( STATUS "\t Request ID: '${req_id}'" )
-
-    set( success Off )
-
-    while( NOT success )
-        execute_process(COMMAND ${CMAKE_COMMAND} -E sleep 15)
-
-        execute_process(
-            COMMAND
-                xcrun altool 
-                    --notarization-info ${req_id}
-                    --username ${APPLE_NOTARIZATION_USER_NAME}
-                    --password ${APPLE_NOTARIZATION_PASSWORD}
-                    --output-format xml
-            OUTPUT_VARIABLE
-                result
-        )
-
-        file( WRITE ${temp_plist} ${result} )
-
-        get_plist_value( notarization_result ${temp_plist} "notarization-info:Status" )
-
-        message( STATUS "\t Status: ${notarization_result}" )
-
-        if( NOT "${notarization_result}" STREQUAL "in progress" )
-            if ( NOT "${notarization_result}" STREQUAL "success" ) 
-                message(FATAL_ERROR "Notarization failed:\n${result}\n")
-            else()
-                message(STATUS "Notarization successfull")
-            endif()
-
-            break()
-        endif()
-    endwhile()
-endfunction()
-
-if( DEFINED APP_LOCATION )
-    get_filename_component( archive "${APP_LOCATION}/../notarization.zip" ABSOLUTE )
-    
     execute_process(
         COMMAND
-            xcrun ditto 
-                -c -k --keepParent 
-                ${APP_LOCATION}
-                ${archive}    
+            xcrun notarytool submit "${path}"
+                ${credentials}
+                --wait
+                --output-format json
+        OUTPUT_VARIABLE result
     )
 
-    notarize( ${archive} )
-    execute_process( COMMAND stapler staple "${APP_LOCATION}" )
+    # --wait returns once Apple finishes processing whether the upload was
+    # accepted or not, so go by the status it reports. Auth and network
+    # errors print to stderr instead of JSON and land here as NOTFOUND.
+    string( JSON status ERROR_VARIABLE json_error GET "${result}" status )
+    string( JSON id ERROR_VARIABLE json_error GET "${result}" id )
 
-    file( REMOVE "${APP_LOCATION}/../notarization.zip" )
+    message( STATUS "\t Submission ID: '${id}'" )
+    message( STATUS "\t Status: ${status}" )
+
+    if( NOT "${status}" STREQUAL "Accepted" )
+        # The log is the only place Apple says which file it didn't like
+        if( id )
+            execute_process( COMMAND xcrun notarytool log "${id}" ${credentials} )
+        endif()
+
+        message( FATAL_ERROR "Notarization failed:\n${result}\n" )
+    endif()
+endfunction()
+
+# Stapling bakes the ticket into the file so Gatekeeper doesn't have to
+# look it up online the first time someone opens it.
+function( staple path )
+    execute_process(
+        COMMAND xcrun stapler staple "${path}"
+        RESULT_VARIABLE result
+    )
+
+    if( NOT result EQUAL 0 )
+        message( FATAL_ERROR "Failed to staple notarization ticket to ${path}" )
+    endif()
+endfunction()
+
+# notarytool won't take a bare .app, so zip it with ditto (which keeps the
+# bundle's symlinks and extended attributes intact), notarize the zip, and
+# staple the ticket to the app itself.
+if( DEFINED APP_LOCATION )
+    get_filename_component( archive "${APP_LOCATION}/../notarization.zip" ABSOLUTE )
+
+    execute_process(
+        COMMAND
+            xcrun ditto
+                -c -k --keepParent
+                "${APP_LOCATION}"
+                "${archive}"
+    )
+
+    notarize( "${archive}" )
+    staple( "${APP_LOCATION}" )
+
+    file( REMOVE "${archive}" )
 endif()
 
 if( DEFINED DMG_LOCATION )
-    notarize( ${DMG_LOCATION} )
-    execute_process( COMMAND stapler staple "${DMG_LOCATION}" )
+    notarize( "${DMG_LOCATION}" )
+    staple( "${DMG_LOCATION}" )
 endif()
-
-file( REMOVE ${temp_plist} )
