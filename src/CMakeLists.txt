@@ -1276,8 +1276,19 @@ if( NOT CCACHE_PROGRAM AND NOT SCCACHE_PROGRAM )
 endif()
 
 if (CMAKE_SYSTEM_NAME MATCHES "Darwin|Windows")
+    # Without a trailing slash install(DIRECTORY) copies the Release/ dir
+    # itself, which buried Tenacity.app under Release/ in the DMG and left
+    # the signing scripts looking for it at the top of the prefix. Inno
+    # Setup still wants the per-config dir on Windows, so only strip it on
+    # macOS.
+    if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
+        set( _install_dir "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/" )
+    else()
+        set( _install_dir "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}" )
+    endif()
+
     install(
-        DIRECTORY "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}"
+        DIRECTORY "${_install_dir}"
         DESTINATION "."
         USE_SOURCE_PERMISSIONS
         PATTERN "*.pdb" EXCLUDE
