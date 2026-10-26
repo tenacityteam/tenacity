@@ -89,6 +89,40 @@ bool ThemeBase::LoadPreferredTheme()
 // DA: Default themes differ.
    Identifier theme = GUITheme().Read();
 
+   // GP: On Windows, if either a light or dark theme was set, make the widgets
+   // correspond the closest to the current theme. We hard code a list of
+   // themes that we set the widget style to light or dark to achieve this.
+   // 
+   // This is far from an ideal implementation, but a much better
+   // implementation will come about in the future.
+   #if wxCHECK_VERSION(3,3,0)
+   auto string = theme.GET();
+   if (string.Matches("*light*") ||
+       string.equals("audacity") ||
+       string.equals("classic"))
+   {
+      auto result = wxTheApp->SetAppearance(wxApp::Appearance::Light);
+      if (result == wxApp::AppearanceResult::Failure)
+      {
+         wxLogError("Could not set native appearance mode to light!");
+      }
+   } else if (string.Matches("*dark*"))
+   {
+      auto result = wxTheApp->SetAppearance(wxApp::Appearance::Dark);
+      if (result == wxApp::AppearanceResult::Failure)
+      {
+         wxLogError("Could not set native appearance mode to dark!");
+      }
+   } else
+   {
+      auto result = wxTheApp->SetAppearance(wxApp::Appearance::System);
+      if (result == wxApp::AppearanceResult::Failure)
+      {
+         wxLogError("Could not set native appearance mode to system default!");
+      }
+   }
+   #endif
+
    theTheme.LoadTheme( theme );
    return true;
 }
