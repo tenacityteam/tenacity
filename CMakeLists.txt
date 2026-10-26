@@ -789,9 +789,13 @@ if (NYQUIST)
     # Force libnyquist to be built as a static library by temporarily setting
     # BUILD_SHARED_LIBS to OFF and restoring its value afterwards. Fixes bug
     # 781.
+    #
+    # EXCLUDE_FROM_ALL keeps libnyquist's own install rules out of our install
+    # tree. Otherwise the static libnyquist.a ends up in the packages even
+    # though it's already linked into Tenacity.
     set(SAVED_VALUE ${BUILD_SHARED_LIBS})
     set(BUILD_SHARED_LIBS OFF)
-    add_subdirectory("lib-src/libnyquist")
+    add_subdirectory("lib-src/libnyquist" EXCLUDE_FROM_ALL)
     set(BUILD_SHARED_LIBS ${SAVED_VALUE})
 
     set_target_properties(nyquist PROPERTIES POSITION_INDEPENDENT_CODE ON)
