@@ -861,9 +861,12 @@ if( CMAKE_SYSTEM_NAME STREQUAL "Darwin" )
             add_dependencies( TENACITY-ADHOC-SIGN ${_MODULE} )
         endif()
     endforeach()
-    if( TARGET nyquist-support )
-        add_dependencies( TENACITY-ADHOC-SIGN nyquist-support )
-    endif()
+    # These copy files into the bundle too
+    foreach( _RESOURCE_TARGET locale nyquist-support )
+        if( TARGET ${_RESOURCE_TARGET} )
+            add_dependencies( TENACITY-ADHOC-SIGN ${_RESOURCE_TARGET} )
+        endif()
+    endforeach()
 endif()
 
 # Generate config file
