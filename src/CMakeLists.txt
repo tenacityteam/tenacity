@@ -1212,6 +1212,7 @@ set( TENACITY_LIBRARIES
     lib-export-ui-interface
     lib-wave-track-paint-interface
     lib-wave-track-fft-interface
+    lib-wave-track-settings-interface
     lib-music-information-retrieval-interface
     lib-preference-pages-interface
     lib-audacity-application-logic-interface
