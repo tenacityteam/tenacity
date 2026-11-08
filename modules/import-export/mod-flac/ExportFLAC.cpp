@@ -14,8 +14,6 @@ Joshua Haberman
 
 **********************************************************************/
 
-#include <rapidjson/document.h>
-
 #include "Export.h"
 
 #include <wx/ffile.h>
@@ -213,8 +211,6 @@ public:
    int GetFormatCount() const override;
    FormatInfo GetFormatInfo(int) const override;
 
-   bool ParseConfig(int, const rapidjson::Value& config, ExportProcessor::Parameters& parameters) const override;
-
    std::vector<std::string> GetMimeTypes(int) const override;
 
    // Required
@@ -239,38 +235,6 @@ FormatInfo ExportFLAC::GetFormatInfo(int) const
    return {
       wxT("FLAC"), XO("FLAC Files"), { wxT("flac") }, FLAC__MAX_CHANNELS, true
    };
-}
-
-bool ExportFLAC::ParseConfig(int, const rapidjson::Value& config, ExportProcessor::Parameters& parameters) const
-{
-   if(!config.IsObject() ||
-      !config.HasMember("level") || !config["level"].IsNumber() ||
-      !config.HasMember("bit_depth") || !config["bit_depth"].IsNumber())
-      return false;
-
-   const auto level = ExportValue(std::to_string(config["level"].GetInt()));
-   const auto bitDepth = ExportValue(std::to_string(config["bit_depth"].GetInt()));
-
-   for(const auto& desc : FlacOptions)
-   {
-      const auto& option = desc.option;
-      if((option.id == FlacOptionIDLevel &&
-         std::find(option.values.begin(),
-            option.values.end(),
-            level) == option.values.end())
-         ||
-         (desc.option.id == FlacOptionIDBitDepth &&
-         std::find(option.values.begin(),
-            option.values.end(),
-            bitDepth) == option.values.end()))
-         return false;
-   }
-   ExportProcessor::Parameters result {
-      { FlacOptionIDLevel, level },
-      { FlacOptionIDBitDepth, bitDepth }
-   };
-   std::swap(parameters, result);
-   return true;
 }
 
 std::vector<std::string> ExportFLAC::GetMimeTypes(int) const

@@ -42,7 +42,6 @@ set( SOURCES
    PlainExportOptionsEditor.h
 )
 set( LIBRARIES
-   ${RapidJSON_LIBRARIES}
    lib-tags-interface
    lib-wave-track-interface
    lib-project-interface

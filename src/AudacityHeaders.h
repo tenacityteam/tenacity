@@ -26,9 +26,6 @@
 #include <initializer_list>
 #endif
 
-#include <rapidjson/document.h>
-#include <rapidjson/writer.h>
-
 #include <wx/wx.h>
 #include <wx/bitmap.h>
 #include <wx/filefn.h>

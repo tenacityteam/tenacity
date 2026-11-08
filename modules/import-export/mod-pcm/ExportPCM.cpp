@@ -443,8 +443,6 @@ public:
 
    std::vector<std::string> GetMimeTypes(int formatIndex) const override;
 
-   bool ParseConfig(int formatIndex, const rapidjson::Value&, ExportProcessor::Parameters& parameters) const override;
-
    std::unique_ptr<ExportOptionsEditor>
    CreateOptionsEditor(int, ExportOptionsEditor::Listener*) const override;
 
@@ -505,17 +503,6 @@ std::vector<std::string> ExportPCM::GetMimeTypes(int formatIndex) const
    if(formatIndex == FMT_WAV)
       return { "audio/x-wav" };
    return {};
-}
-
-bool ExportPCM::ParseConfig(int formatIndex, const rapidjson::Value&, ExportProcessor::Parameters& parameters) const
-{
-   if(formatIndex == FMT_WAV)
-   {
-      //no parameters available...
-      parameters = {};
-      return true;
-   }
-   return false;
 }
 
 std::unique_ptr<ExportOptionsEditor>

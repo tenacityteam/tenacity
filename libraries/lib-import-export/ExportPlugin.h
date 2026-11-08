@@ -11,8 +11,6 @@
 
 #include <memory>
 
-#include <rapidjson/fwd.h>
-
 #include <wx/string.h>
 
 #include "ExportOptionsEditor.h"
@@ -154,17 +152,6 @@ public:
  
    /// \return Mime type(s) supported by the format.
    virtual std::vector<std::string> GetMimeTypes(int formatIndex) const;
-
-   /**
-    * @brief Attempt to parse configuration JSON object and produce
-    * a suitable set of parameters. Configuration is format dependent.
-    *
-    * @param formatIndex Internal format index
-    * @param config Configuration JSON object
-    * @param parameters Where to put parameters
-    * @return Whether the parsing was successful
-    **/
-   virtual bool ParseConfig(int formatIndex, const rapidjson::Value& config, ExportProcessor::Parameters& parameters) const;
 
    virtual bool CheckFileName(wxFileName &filename, int format = 0) const;
 
