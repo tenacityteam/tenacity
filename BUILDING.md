@@ -48,7 +48,7 @@ On Debian 12 or later, Ubuntu 22.10 or later, or any applicable derivative,
 run:
 
 ```
-sudo apt-get install build-essential libavcodec-dev libavformat-dev libavutil-dev libflac++-dev libglib2.0-dev libgtk-3-dev libid3tag0-dev libjack-jackd2-dev liblilv-dev libmpg123-dev libmp3lame-dev libogg-dev libpng-dev portaudio19-dev libportmidi-dev libportsmf-dev libserd-dev libsndfile1-dev libsord-dev libsoundtouch-dev libsoxr-dev libsuil-dev libtwolame-dev vamp-plugin-sdk libvorbis-dev lv2-dev zlib1g-dev cmake ninja-build libjpeg-dev libtiff-dev liblzma-dev libsqlite3-dev libzip-dev zipcmp zipmerge ziptool rapidjson-dev wx-common wx3.2-headers libwxgtk3.2-dev
+sudo apt-get install build-essential libavcodec-dev libavformat-dev libavutil-dev libflac++-dev libglib2.0-dev libgtk-3-dev libid3tag0-dev libjack-jackd2-dev liblilv-dev libmpg123-dev libmp3lame-dev libogg-dev libpng-dev portaudio19-dev libportmidi-dev libportsmf-dev libserd-dev libsndfile1-dev libsord-dev libsoundtouch-dev libsoxr-dev libsuil-dev libtwolame-dev vamp-plugin-sdk libvorbis-dev lv2-dev zlib1g-dev cmake ninja-build libjpeg-dev libtiff-dev liblzma-dev libsqlite3-dev libzip-dev zipcmp zipmerge ziptool libsimdjson-dev wx-common wx3.2-headers libwxgtk3.2-dev
 ```
 
 On earlier versions of Debian, Ubuntu, and applicable derivatives, exclude
@@ -66,7 +66,7 @@ information.
 To install Tenacity's dependencies, run:
 
 ```
-sudo dnf install alsa-lib-devel cmake expat-devel flac-devel gcc-g++ gettext-devel rapidjson-devel lame-devel libid3tag-devel libmad-devel libmatroska-devel libogg-devel libsndfile-devel libvorbis-devel libzip-tools lilv-devel lv2-devel portaudio-devel portmidi-devel serd-devel sord-devel soundtouch-devel soxr-devel sqlite-devel sratom-devel suil-devel taglib-devel twolame-devel wavpack-devel vamp-plugin-sdk-devel wxGTK-devel zlib-devel ccache ninja-build git ffmpeg-free-devel wxGTK-devel
+sudo dnf install alsa-lib-devel cmake expat-devel flac-devel gcc-g++ gettext-devel simdjson-devel lame-devel libid3tag-devel libmad-devel libmatroska-devel libogg-devel libsndfile-devel libvorbis-devel libzip-tools lilv-devel lv2-devel portaudio-devel portmidi-devel serd-devel sord-devel soundtouch-devel soxr-devel sqlite-devel sratom-devel suil-devel taglib-devel twolame-devel wavpack-devel vamp-plugin-sdk-devel wxGTK-devel zlib-devel ccache ninja-build git ffmpeg-free-devel wxGTK-devel
 ```
 
 #### Arch
@@ -74,7 +74,7 @@ sudo dnf install alsa-lib-devel cmake expat-devel flac-devel gcc-g++ gettext-dev
 Install Tenacity's build dependencies with this command:
 
 ```
-sudo pacman -S cmake ninja ccache expat gcc-libs gdk-pixbuf2 glibc flac gtk3 glib2 libid3tag lilv mpg123 libmatroska libogg portaudio portmidi libsndfile libsoxr suil twolame vamp-plugin-sdk libvorbis opusfile wavpack soundtouch ffmpeg libsbsms wxwidgets-common wxwidgets-gtk3 rapidjson
+sudo pacman -S cmake ninja ccache expat gcc-libs gdk-pixbuf2 glibc flac gtk3 glib2 libid3tag lilv mpg123 libmatroska libogg portaudio portmidi libsndfile libsoxr suil twolame vamp-plugin-sdk libvorbis opusfile wavpack soundtouch ffmpeg libsbsms wxwidgets-common wxwidgets-gtk3 simdjson
 ```
 
 TODO: add portsmf to this package list when the package is updated.
@@ -86,7 +86,7 @@ found on Alpine's `community` repository. On Alpine Linux 3.17 or later, install
 the dependencies with this command:
 
 ```
-sudo apk add alpine-sdk cmake samurai lame-dev libsndfile-dev soxr-dev sqlite-dev portaudio-dev portmidi-dev libid3tag-dev soundtouch-dev libmad-dev ffmpeg-dev wxwidgets-dev rapidjson-dev libzip-dev libmatroska-dev portsmf-dev libsbsms-dev
+sudo apk add alpine-sdk cmake samurai lame-dev libsndfile-dev soxr-dev sqlite-dev portaudio-dev portmidi-dev libid3tag-dev soundtouch-dev libmad-dev ffmpeg-dev wxwidgets-dev simdjson-dev libzip-dev libmatroska-dev portsmf-dev libsbsms-dev
 ```
 
 For older versions of Alpine (i.e., 3.16 and below), please refer to the
@@ -107,7 +107,7 @@ wxWidgets is packaged in FreeBSD's repositories. Install it and the rest
 of Tenacity's dependencies:
 
 ```
-sudo pkg install wx32-gtk3 cmake ninja pkgconf lame libsndfile libsoxr portaudio lv2 lilv suil vamp-plugin-sdk portmidi libid3tag twolame libmad soundtouch ffmpeg libzip rapidjson
+sudo pkg install wx32-gtk3 cmake ninja pkgconf lame libsndfile libsoxr portaudio lv2 lilv suil vamp-plugin-sdk portmidi libid3tag twolame libmad soundtouch ffmpeg libzip simdjson
 ```
 
 #### vcpkg on Linux
@@ -217,7 +217,7 @@ $ pacman -S mingw-w64-clang-x86_64-cmake mingw-w64-clang-x86_64-ninja mingw-w64-
   mingw-w64-clang-x86_64-portaudio mingw-w64-clang-x86_64-wxwidgets3.2-common mingw-w64-clang-x86_64-wxwidgets3.2-msw \
   mingw-w64-clang-x86_64-twolame mingw-w64-clang-x86_64-lame mingw-w64-clang-x86_64-flac \
   mingw-w64-clang-x86_64-opusfile mingw-w64-clang-x86_64-libvorbis mingw-w64-clang-x86_64-libebml \
-  mingw-w64-clang-x86_64-libmatroska mingw-w64-clang-x86_64-portmidi mingw-w64-clang-x86_64-rapidjson \
+  mingw-w64-clang-x86_64-libmatroska mingw-w64-clang-x86_64-portmidi mingw-w64-clang-x86_64-simdjson \
   mingw-w64-clang-x86_64-libzip mingw-w64-clang-x86_64-libsoxr mingw-w64-clang-x86_64-sqlite3 \
   mingw-w64-clang-x86_64-libsbsms mingw-w64-clang-x86_64-lv2 mingw-w64-clang-x86_64-lilv \
   mingw-w64-clang-x86_64-suil mingw-w64-clang-x86_64-soundtouch mingw-w64-clang-x86_64-wavpack \
@@ -232,7 +232,7 @@ $ pacman -S mingw-w64-clang-aarch64-cmake mingw-w64-clang-aarch64-ninja mingw-w6
   mingw-w64-clang-aarch64-portaudio mingw-w64-clang-aarch64-wxwidgets3.2-common mingw-w64-clang-aarch64-wxwidgets3.2-msw \
   mingw-w64-clang-aarch64-twolame mingw-w64-clang-aarch64-lame mingw-w64-clang-aarch64-flac \
   mingw-w64-clang-aarch64-opusfile mingw-w64-clang-aarch64-libvorbis mingw-w64-clang-aarch64-libebml \
-  mingw-w64-clang-aarch64-libmatroska mingw-w64-clang-aarch64-portmidi mingw-w64-clang-aarch64-rapidjson \
+  mingw-w64-clang-aarch64-libmatroska mingw-w64-clang-aarch64-portmidi mingw-w64-clang-aarch64-simdjson \
   mingw-w64-clang-aarch64-libzip mingw-w64-clang-aarch64-libsoxr mingw-w64-clang-aarch64-sqlite3 \
   mingw-w64-clang-aarch64-libsbsms mingw-w64-clang-aarch64-lv2 mingw-w64-clang-aarch64-lilv \
   mingw-w64-clang-aarch64-suil mingw-w64-clang-aarch64-soundtouch mingw-w64-clang-aarch64-wavpack \
@@ -247,7 +247,7 @@ $ pacman -S mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-ninja mingw-w64-uc
   mingw-w64-ucrt-x86_64-portaudio mingw-w64-ucrt-x86_64-wxwidgets3.2-common mingw-w64-ucrt-x86_64-wxwidgets3.2-msw \
   mingw-w64-ucrt-x86_64-twolame mingw-w64-ucrt-x86_64-lame mingw-w64-ucrt-x86_64-flac \
   mingw-w64-ucrt-x86_64-opusfile mingw-w64-ucrt-x86_64-libvorbis mingw-w64-ucrt-x86_64-libebml \
-  mingw-w64-ucrt-x86_64-libmatroska mingw-w64-ucrt-x86_64-portmidi mingw-w64-ucrt-x86_64-rapidjson \
+  mingw-w64-ucrt-x86_64-libmatroska mingw-w64-ucrt-x86_64-portmidi mingw-w64-ucrt-x86_64-simdjson \
   mingw-w64-ucrt-x86_64-libzip mingw-w64-ucrt-x86_64-libsoxr mingw-w64-ucrt-x86_64-sqlite3 \
   mingw-w64-ucrt-x86_64-libsbsms mingw-w64-ucrt-x86_64-lv2 mingw-w64-ucrt-x86_64-lilv \
   mingw-w64-ucrt-x86_64-suil mingw-w64-ucrt-x86_64-soundtouch mingw-w64-ucrt-x86_64-wavpack \
@@ -308,7 +308,7 @@ To install Tenacity's dependencies on Haiku, run the following command:
 
 ```bash
 ~> pkgman install cmake ninja portaudio_devel wxgtk_source libsndfile_devel soxr_devel \
-   rapidjson libzip_devel zlib expat_devel lame_devel sqlite_devel portmidi_devel portsmf_devel \
+   simdjson libzip_devel zlib expat_devel lame_devel sqlite_devel portmidi_devel portsmf_devel \
    libid3tag_devel mpg123_devel twolame_devel libebml_devel libmatroska_devel libogg_devel \
    libvorbis_devel opusfile_devel flac_devel wavpack_devel libsbsms_devel libsoundtouch_devel \
    vamp_plugin_sdk_devel
