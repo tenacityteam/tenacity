@@ -228,7 +228,7 @@ function( tenacity_module_fn NAME SOURCES IMPORT_TARGETS
             PREFIX ""
             FOLDER "modules" # for IDE organization
       )
-      # For TENACITY-ADHOC-SIGN
+      # For TENACITY-MACOS-BUNDLE
       set_property( GLOBAL APPEND PROPERTY TENACITY_MODULE_TARGETS "${TARGET}" )
    else()
       set( ATTRIBUTES "shape=octagon" )

@@ -852,23 +852,41 @@ add_subdirectory( "modules" )
 add_subdirectory( "scripts" )
 
 if( CMAKE_SYSTEM_NAME STREQUAL "Darwin" )
-    # Ad-hoc sign the bundle last, once the modules and resources are in it
-    add_custom_target( TENACITY-ADHOC-SIGN ALL
+    # Where to find the third-party libraries the bundle links with @rpath
+    set( _BUNDLE_SEARCH_DIRS )
+    if( VCPKG )
+        list( APPEND _BUNDLE_SEARCH_DIRS
+            "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}$<$<CONFIG:Debug>:/debug>/lib" )
+    endif()
+    foreach( _PREFIX ${CMAKE_PREFIX_PATH} )
+        list( APPEND _BUNDLE_SEARCH_DIRS "${_PREFIX}/lib" )
+    endforeach()
+    string( JOIN "|" _BUNDLE_SEARCH_DIRS ${_BUNDLE_SEARCH_DIRS} )
+
+    # Copy third-party libraries into the bundle and drop build tree rpaths,
+    # then ad-hoc sign the bundle last, once the modules and resources are
+    # in it
+    add_custom_target( TENACITY-MACOS-BUNDLE ALL
+        COMMAND ${CMAKE_COMMAND}
+            -D "BUNDLE=${_DESTDIR}/Tenacity.app"
+            -D "SEARCH_DIRS=${_BUNDLE_SEARCH_DIRS}"
+            -P "${TENACITY_MODULE_PATH}/BundleMacDeps.cmake"
         COMMAND codesign --force --timestamp --deep --sign - "${_DESTDIR}/Tenacity.app"
+        VERBATIM
     )
-    add_dependencies( TENACITY-ADHOC-SIGN Tenacity )
+    add_dependencies( TENACITY-MACOS-BUNDLE Tenacity )
     get_property( _MODULE_TARGETS GLOBAL PROPERTY TENACITY_MODULE_TARGETS )
     foreach( _MODULE ${_MODULE_TARGETS} )
         # Don't pull EXCLUDE_FROM_ALL modules into the build
         get_target_property( _EXCLUDED ${_MODULE} EXCLUDE_FROM_ALL )
         if( NOT _EXCLUDED )
-            add_dependencies( TENACITY-ADHOC-SIGN ${_MODULE} )
+            add_dependencies( TENACITY-MACOS-BUNDLE ${_MODULE} )
         endif()
     endforeach()
     # These copy files into the bundle too
     foreach( _RESOURCE_TARGET locale nyquist-support )
         if( TARGET ${_RESOURCE_TARGET} )
-            add_dependencies( TENACITY-ADHOC-SIGN ${_RESOURCE_TARGET} )
+            add_dependencies( TENACITY-MACOS-BUNDLE ${_RESOURCE_TARGET} )
         endif()
     endforeach()
 endif()
