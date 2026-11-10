@@ -29,6 +29,8 @@ ThemePackage::ThemePackage()
 : mPackageArchive{nullptr},
   mColors{},
   mSubthemes{},
+  mRecognizedColors{},
+  mRecognizedBitmaps{},
   mIsMultiThemePackage{false}
 {
 }
@@ -205,9 +207,26 @@ void ThemePackage::OpenPackage(const std::string& path)
     try
     {
         dom::object colors = GetParsedJsonData("colors.json");
-        for (auto color = colors.begin(); color < colors.end(); color++)
+        if (mRecognizedColors.size() > 0)
         {
-            mColors[color.key()] = color.value();
+            std::string_view currentFoundColor;
+            for (const auto& recognizedColor : mRecognizedColors)
+            {
+                try
+                {
+                    mColors[recognizedColor] = colors[recognizedColor];
+                } catch (const simdjson_error&)
+                {
+                    // Ignore it
+                    continue;
+                }
+            }
+        } else
+        {
+            for (auto color = colors.begin(); color < colors.end(); color++)
+            {
+                mColors[color.key()] = color.value();
+            }
         }
     } catch(const simdjson_error&)
     {
@@ -232,6 +251,17 @@ void ThemePackage::ClosePackage()
 
     mColors.clear();
     mSubthemes.clear();
+    mRecognizedColors.clear();
+    mRecognizedBitmaps.clear();
+}
+
+void ThemePackage::SetRecognizedResources(
+    std::vector<std::string>& recognizedColors,
+    std::vector<std::string>& recognizedBitmaps
+)
+{
+    mRecognizedColors = recognizedColors;
+    mRecognizedBitmaps = recognizedBitmaps;
 }
 
 Theme ThemePackage::LoadTheme(const std::string& theme)

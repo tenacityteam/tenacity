@@ -66,6 +66,14 @@ class THEME_API ThemePackage final
         /// single-theme package).
         std::unordered_map<std::string_view, std::string_view> mColors;
 
+        /// All recognized color resources. Used to limit loading color
+        /// resources to only these resources for performance reasons.
+        std::vector<std::string> mRecognizedColors;
+
+        /// All recognized bitmap resources. Used to limit loading bitmap
+        /// resources to only these resources for performance reasons.
+        std::vector<std::string> mRecognizedBitmaps;
+
         /// Whether or not the theme package contains multiple themes.
         bool mIsMultiThemePackage;
 
@@ -148,6 +156,22 @@ class THEME_API ThemePackage final
          * empty array if the package is not a multi-theme package.
         */
         const std::vector<std::string_view>& GetSubthemes() const { return mSubthemes; }
+
+        /** @brief Limits loading to the specified resources.
+         *
+         * Recognized colors and bitmaps must be explicitly specified in
+         * separate vectors to make loading faster.
+         *
+         * @param recognizedColors The names of the recognized color resources
+         * to load.
+         *
+         * @param recognizedBitmaps The names of the recognized bitmap
+         * resources to load.
+         */
+        void SetRecognizedResources(
+            std::vector<std::string>& recognizedColors,
+            std::vector<std::string>& recognizedBitmaps
+        );
 
         /** @brief Loads a subtheme.
          *
