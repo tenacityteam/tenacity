@@ -13,27 +13,22 @@
 #include "ThemePackage.h"
 
 #include <cassert>
-#include <stdexcept>
+
+#include <simdjson.h>
 
 #include "exceptions/ArchiveError.h"
 #include "exceptions/IncompatibleTheme.h"
 #include "exceptions/InvalidState.h"
 
 using namespace ThemeExceptions;
+using namespace simdjson;
 
 #define THROW_NOT_IMPLEMENTED throw std::runtime_error("Not implemented")
 
-// Helper to get strings
-inline std::string GetJsonString(const rapidjson::Value& value)
-{
-    return std::string(value.GetString(), value.GetStringLength());
-}
-
 ThemePackage::ThemePackage()
 : mPackageArchive{nullptr},
-  mInfo{},
   mColors{},
-  mSelectedSubtheme{""},
+  mSubthemes{},
   mIsMultiThemePackage{false}
 {
 }
@@ -43,7 +38,6 @@ ThemePackage& ThemePackage::operator=(ThemePackage&& other)
     mPackageArchive = other.mPackageArchive;
     other.mPackageArchive = nullptr;
 
-    mInfo = std::move(other.mInfo);
     mColors = std::move(other.mColors);
 
     return *this;
@@ -62,7 +56,6 @@ ThemePackage::ThemePackage(ThemePackage&& other)
         other.mPackageArchive = nullptr;
     }
 
-    mInfo = std::move(other.mInfo);
     mColors = std::move(other.mColors);
 }
 
@@ -106,7 +99,7 @@ std::vector<char> ThemePackage::ReadFileFromArchive(const std::string& name)
     return fileData;
 }
 
-rapidjson::Document ThemePackage::GetParsedJsonData(const std::string& jsonFile)
+dom::element ThemePackage::GetParsedJsonData(const std::string& jsonFile)
 {
     std::vector<char> data = ReadFileFromArchive(jsonFile);
     if (data.empty())
@@ -114,15 +107,8 @@ rapidjson::Document ThemePackage::GetParsedJsonData(const std::string& jsonFile)
         throw ArchiveError(ArchiveError::Type::OperationalError);
     }
 
-    rapidjson::Document document;
-    document.Parse(data.data());
-
-    if (document.HasParseError())
-    {
-        throw ArchiveError(ArchiveError::Type::OperationalError);
-    }
-
-    return document;
+    simdjson::padded_string paddedData(data.data(), data.size());
+    return mParser.parse(paddedData);
 }
 
 void ThemePackage::OpenPackage(const std::string& path)
@@ -153,87 +139,86 @@ void ThemePackage::OpenPackage(const std::string& path)
     error = 0;
 
     // Read info.json from the archive all into memory.
-    mInfo = GetParsedJsonData("info.json");
+    dom::element info = GetParsedJsonData("info.json");
+
+    // Check the minimum required app version
+    try
+    {
+        dom::array versionArray = info["minAppVersion"];
+        uint64_t requiredMajorVersion = versionArray.at(0);
+        uint64_t requiredReleaseVersion = versionArray.at(1);
+
+        // Check the major version number
+        //
+        // Note: there shouldn't be any changes significant enough across
+        // different revisions (e.g., 1.4.1 vs 1.4.2, etc).
+        if (requiredMajorVersion > TENACITY_VERSION || requiredReleaseVersion > TENACITY_RELEASE)
+        {
+            // Will propogate outside this member function as we only catch
+            // simdjson_error exceptions.
+            throw IncompatibleTheme(
+                requiredMajorVersion,
+                requiredReleaseVersion,
+                requiredReleaseVersion
+            );
+        }
+    } catch (const simdjson_error& err)
+    {
+        ClosePackage();
+        throw ArchiveError(ArchiveError::Type::Invalid);
+    }
 
     // Check if the theme package contains a "subthemes" element. If it does, it
     // contains multiple subthemes.
-    if (mInfo.HasMember("subthemes") && mInfo["subthemes"].IsArray())
-    {
-        mIsMultiThemePackage = true;
-
-        auto subtheme = mInfo["subthemes"].GetArray();
-
-        if (subtheme[0].IsString())
-        {
-            mSelectedSubtheme = GetJsonString(subtheme[0]) + "/";
-            mIsMultiThemePackage = true;
-        }
-
-        // Don't parse the rest of the package. A compliant theme package will
-        // not have them at the root of the archive.
-        return;
-    }
-
-    // Prepare the package first.
-    LoadTheme(mSelectedSubtheme);
-
-    rapidjson::Value themeName;
-    rapidjson::Value minAppVersion;
-    int minVersionMajor;
-    int minVersionRelease;
-
-    auto& themeInfo = IsMultiThemePackage() ? mCurrentSubthemeInfo : mInfo;
-
-    // Parse the `minAppVersion` field. If it's not found, throw an invalid
-    // theme package exception.
-    if (!themeInfo.HasMember("minAppVersion"))
-    {
-        throw ArchiveError(ArchiveError::Type::Invalid);
-    }
-
-    // Otherwise, if the current program version is
-    // less than the package's minimum required program version, throw an
-    // incompatible theme exception
-    minAppVersion = themeInfo["minAppVersion"];
     try
     {
-        minVersionMajor = minAppVersion[0].GetInt();
-        minVersionRelease = minAppVersion[1].GetInt();
-    } catch (...)
+        dom::array subthemes = info["subthemes"];
+        for (std::string_view subtheme : subthemes)
+        {
+            mSubthemes.push_back(subtheme);
+        }
+
+        mIsMultiThemePackage = true;
+    } catch (const simdjson_error&)
     {
-        // Something happened when parsing the version number. Throw an invalid
-        // archive error to indicate a parsing error.
-        throw ArchiveError(ArchiveError::Type::Invalid);
+        mIsMultiThemePackage = false;
     }
 
-    // Handle minimum version compatibility
-    if (minVersionMajor < TENACITY_VERSION || minVersionRelease < TENACITY_RELEASE)
+    // Get the theme name
+    if (!mIsMultiThemePackage)
     {
-        // TODO: Better exception handling
-        throw IncompatibleTheme(minVersionMajor, minVersionRelease, 0);
+        try
+        {
+            mName = info["name"];
+        } catch (const simdjson_error&)
+        {
+            ClosePackage();
+            throw ArchiveError(ArchiveError::Type::Invalid);
+        }
     }
 
-    // Check for required fields and their types
-    if (!themeInfo.HasMember("name"))
+    // Finally, preload all color values.
+    //
+    // This is more oriented towards multi-theme packages, in which this can
+    // help us load themes faster, but it will certainly benefit single-theme
+    // packages as well.
+    try
     {
-        throw ArchiveError(ArchiveError::Type::Invalid);
-    }
-
-    themeName = themeInfo["name"];
-
-    // Check for required types and their types
-    if (!themeName.IsString())
+        dom::object colors = GetParsedJsonData("colors.json");
+        for (auto color = colors.begin(); color < colors.end(); color++)
+        {
+            mColors[color.key()] = color.value();
+        }
+    } catch(const simdjson_error&)
     {
-        throw ArchiveError(ArchiveError::Type::Invalid);
+        // There should be a colors.json at the root of the archive in a
+        // single-theme package. Throw an exception if that's the case.
+        if (!mIsMultiThemePackage)
+        {
+            ClosePackage();
+            throw ArchiveError(ArchiveError::Type::Invalid);
+        }
     }
-
-    // Check if the name is empty
-    if (GetJsonString(themeName).empty())
-    {
-        throw ArchiveError(ArchiveError::Type::Invalid);
-    }
-
-    // TODO: handle other properties.
 }
 
 void ThemePackage::ClosePackage()
@@ -245,179 +230,22 @@ void ThemePackage::ClosePackage()
 
     mPackageArchive = nullptr;
 
-    mInfo = rapidjson::Document(rapidjson::kNullType);
-    mColors = rapidjson::Document(rapidjson::kNullType);
-    mCurrentSubthemeInfo = rapidjson::Document(rapidjson::kNullType);
-    mSelectedSubtheme.clear();
+    mColors.clear();
+    mSubthemes.clear();
 }
 
-bool ThemePackage::IsValid() const
+Theme ThemePackage::LoadTheme(const std::string& theme)
 {
-    if (!SuccessfullyLoaded())
-    {
-        return false;
-    }
+    // Precondition: the package must be open first
+    if (!IsOpen()) throw InvalidState();
 
-    // Check if "subthemes", if a multi-theme package, is an array
-    if (mIsMultiThemePackage && !mInfo["subthemes"].IsArray())
-    {
-        return false;
-    }
-
-    return true;
-}
-
-bool ThemePackage::SuccessfullyLoaded() const
-{
-    if (!mPackageArchive) return false;
-
-    // Check the archive for errors
-    zip_error_t* err = zip_get_error(mPackageArchive);
-    int zipError = zip_error_code_zip(err);
-    int sysError = zip_error_code_system(err);
-
-    if (zipError != ZIP_ER_OK || sysError != 0)
-    {
-        return false;
-    }
-
-    // Check the JSON values for any errors
-    if (mInfo.IsNull() || mColors.IsNull())
-    {
-        return false;
-    }
-
-    return true;
-}
-
-void ThemePackage::LoadTheme(const std::string& theme)
-{
-    rapidjson::Document currentJsonDoc;
-
-    // Parse the subtheme's info.json into memory, but only if we're dealing
-    // with a multi-theme package.
-    if (mIsMultiThemePackage)
-    {
-        mCurrentSubthemeInfo = GetParsedJsonData(theme + "info.json");
-    }
-
-    // Parse colors.json from the archive all into memory.
-    mColors = GetParsedJsonData(theme + "colors.json");
-
-    // Check for the images/ subdir
-    zip_stat_t imageDir;
-
-    std::string imagesPath = theme + "images/";
-    int error = zip_stat(mPackageArchive, imagesPath.c_str(), ZIP_STAT_NAME, &imageDir);
-
-    // If this fails, chances are it doesn't exist. Throw a missing required
-    // resource error.
-    if (error != 0)
-    {
-        throw ArchiveError(ArchiveError::Type::MissingRequiredResource);
-    }
-}
-
-std::any ThemePackage::LoadResource(const std::string& name)
-{
-    if (!IsValid()) throw InvalidState();
-
-    std::string currentResourceName, currentResourcePath;
-    int status;
-    std::any resourceData;
-
-    // Search colors.json for any name matches first.
-    int colorData;
-    const rapidjson::Value& colorResource = mColors[name.c_str()];
-    if (!colorResource.IsNull())
-    {
-        resourceData = colorResource.GetInt();
-        return resourceData;
-    }
-
-    // If no resources matched in colors.json, find it in images/
-    std::vector<char> data;
-    zip_int64_t numEntries = zip_get_num_entries(mPackageArchive, ZIP_FL_UNCHANGED);
-    zip_stat_t currentFile;
-
-    for (zip_int64_t i = 0; i < numEntries; i++)
-    {
-        if (zip_stat_index(mPackageArchive, i, ZIP_STAT_NAME | ZIP_STAT_SIZE, &currentFile) != 0)
-        {
-            throw ArchiveError(ArchiveError::Type::OperationalError);
-        }
-
-        // Special case: remove any preceding directories from the name in case
-        // it's under any directory.
-        currentResourceName = currentFile.name;
-
-        size_t slash = currentResourceName.rfind("/");
-        if (slash != std::string::npos)
-        {
-            if (slash < currentResourceName.size())
-            {
-                slash++;
-            }
-
-            if (slash != currentResourceName.size())
-            {
-                currentResourceName = currentResourceName.substr(slash);
-            }
-        }
-
-        // Remove the file extension from the file name
-        size_t dot = currentResourceName.rfind(".");
-        if (dot != std::string::npos)
-        {
-            if (dot != currentResourceName.size())
-            {
-                currentResourceName = currentResourceName.substr(0, dot);
-            }
-        }
-
-        // Add the current selected subtheme to the resource's name.
-        currentResourcePath = mSelectedSubtheme + currentResourceName;
-
-        // Read the entire file into memory
-        if (currentResourceName == name)
-        {
-            // Use the original file name
-            auto data = ReadFileFromArchive(currentFile.name);
-            if (data.size() == 0)
-            {
-                // Reading failed. Throw an operational error
-                throw ArchiveError(ArchiveError::Type::OperationalError);
-            }
-
-            resourceData = data;
-
-            break;
-        }
-    }
-
-    // resourceData should contain a value. If there was an error, throw an
-    // exception since the resource wasn't found.
-    if (!resourceData.has_value())
-    {
-        throw ArchiveError(ArchiveError::Type::ResourceNotFound);
-    }
-
-    return resourceData;
-}
-
-const rapidjson::Value& ThemePackage::GetAttribute(const std::string& name)
-{
-    if (!mInfo.HasMember(name.c_str()))
-    {
-        throw ArchiveError(ArchiveError::Type::Invalid);
-    }
-
-    return mInfo[name.c_str()];
+    // TODO: Finish the LoadTheme() rewrite using simdjson
+    return {};
 }
 
 bool ThemePackage::IsMultiThemePackage() const
 {
-    if (!IsValid()) throw InvalidState();
+    if (!IsOpen()) throw InvalidState();
 
     return mIsMultiThemePackage;
 }

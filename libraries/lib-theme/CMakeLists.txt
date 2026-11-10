@@ -37,6 +37,7 @@ set( SOURCES
 set( LIBRARIES
    lib-files-interface
    libzip::zip
+   simdjson
    wxWidgets::wxWidgets
  )
 

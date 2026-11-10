@@ -13,18 +13,16 @@
 #pragma once
 
 #include <any>
-#include <list>
-#include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
-#include <fstream>
-#include <sstream>
 
-#include <rapidjson/document.h>
+#include <simdjson.h>
 #include <zip.h>
 
-#include "Types.h"
+#include "Theme.h"
+
+using namespace simdjson;
 
 /** @brief Represents a theme package.
  * 
@@ -51,10 +49,24 @@ class THEME_API ThemePackage final
 {
     private:
         zip_t* mPackageArchive;
-        rapidjson::Document mInfo;
-        rapidjson::Document mColors;
-        rapidjson::Document mCurrentSubthemeInfo;
-        std::string mSelectedSubtheme;
+
+        /// The JSON parser. We use simdjson's DOM API due to issues with the
+        /// on-demand API (we get incorrect type errors for some reason). 
+        dom::parser mParser;
+
+        /// The name of the theme (single-theme packages only).
+        std::string_view mName;
+
+        /// Contains paths to different subthemes in the package (multi-theme
+        /// packages only).
+        std::vector<std::string_view> mSubthemes;
+
+        /// Contains all color names and their values from `colors.json` at the
+        /// root of the archive (this is all the theme's colors for a
+        /// single-theme package).
+        std::unordered_map<std::string_view, std::string_view> mColors;
+
+        /// Whether or not the theme package contains multiple themes.
         bool mIsMultiThemePackage;
 
         /// @brief Reads a file from the package archive and returns a buffer
@@ -70,10 +82,11 @@ class THEME_API ThemePackage final
          * 
          * @param jsonFile The JSON file to parse.
          * 
-         * @return Returns a parsed JSON data.
+         * @return Returns a simdjson::dom::element object containing the
+         * parsed data.
          * 
          **/
-        rapidjson::Document GetParsedJsonData(const std::string& jsonFile);
+        dom::element GetParsedJsonData(const std::string& jsonFile);
 
     public:
         ThemePackage();
@@ -88,12 +101,24 @@ class THEME_API ThemePackage final
 
         /** @brief Opens a theme package.
          * 
-         * OpenPackage() first extracts a package with libzip and then attempts
-         * to read all of `info.json` and `colors.json`. If reading the archive fails, or if
-         * parsing the JSON data fails, this member function throws an
-         * exception.
+         * OpenPackage() first extracts a package with libzip. Then, it parses
+         * all of `info.json`, first checking the package's minimum supported
+         * version. If that fails, @ref IncompatibleTheme is thrown.
          *
-         * After
+         * Next, all subtheme paths are collected from `info.json` if such are
+         * found. Otherwise, the theme's name is collected. Finally, all colors
+         * are parsed. (If the package is a multi-theme package, then only the
+         * base colors at the root of the archive are parsed if they exist).
+         *
+         * On failure, an exception is thrown and the package is closed.
+         *
+         * @param path The path of the package to open.
+         *
+         * @exception ArchiveError Occurs if either opening the archive failed
+         * or a parsing error occurred (likely invalid JSON).
+         *
+         * @exception IncompatibleTheme Thrown if the package requires a newer
+         * version of Tenacity than the current one.
          * 
          */
         void OpenPackage(const std::string& path);
@@ -101,45 +126,32 @@ class THEME_API ThemePackage final
         /** @brief Closes a theme package.
          * 
          * This member function closes the backing package file and clears all
-         * loaded resources
+         * loaded resources.
          * 
         */
         void ClosePackage();
 
-        /** @brief Check if the package is in a valid state.
-         * 
-         * A package is in a valid state if:
-         * 
-         * 1. The package was successfully loaded (see @ref
-         * SuccessfullyLoaded()).
-         * 2. For multi-theme packages, the "subthemes" property is an array.
-         * 
-         * If you just want to check if the package was successfully loaded and
-         * don't care if the contents are valid, see @ref SuccessfullyLoaded()
-         * 
-        */
-        bool IsValid() const;
+        /// Returns true if the theme package is currently open, false otherwise.
+        bool IsOpen() const { return mPackageArchive; };
 
-        /** @brief Checks if the theme package was successfully loaded.
-         * 
-         * This member function only checks if the package was successfully
-         * loaded. A package might have successfully loaded but not be in a
-         * valid state. For example, it may load successfully but might have
-         * the "subthemes" property in it's root info.json incorrectly defined.
-         * 
-         * A package is considered successfully loaded if:
-         * 
-         * 1. It was opened.
-         * 2. The archive contains no errors.
-         * 3. info.json and colors.json have been loaded without errors.
-         * 
-         * @note A successfully loaded theme package does not mean its
-         * necessarily valid. For that, see @ref IsValid()
-         * 
+        /** @brief Gets all valid subthemes.
+         *
+         * This member function returns the paths of all subthemes. Each path
+         * is relative to the root of the archive and may not necessarily
+         * represent the theme's name. To get a subtheme's name, you must load
+         * it via @ref LoadTheme.
+         *
+         * Use this member function to get a subtheme path to pass to @ref
+         * LoadTheme.
+         *
+         * @return A string array containing all the subtheme paths, or an
+         * empty array if the package is not a multi-theme package.
         */
-        bool SuccessfullyLoaded() const;
+        const std::vector<std::string_view>& GetSubthemes() const { return mSubthemes; }
 
         /** @brief Loads a subtheme.
+         *
+         * @todo Finish rewrite with LoadTheme().
          * 
          * This member function loads a subtheme based on `theme`. If `theme` is
          * empty, it loads the theme at the root of the package (i.e., a
@@ -152,45 +164,8 @@ class THEME_API ThemePackage final
          * the root of the archive. By default, it loads the theme from the
          * root.
          * 
-         * @note You probably want to see the 
-         * 
         */
-        void LoadTheme(const std::string& theme = {});
-
-        /** @brief Loads an entire resource into memory.
-         * 
-         * Depending on the found resource, this can either be a `int` (for
-         * colors) or a `std::vector<char>` (for files). Other resource types
-         * may return different types. If the package is a multi-theme package,
-         * resources are loaded from the currently selected subtheme.
-         * 
-         * If loading a resource fails, or if the resource isn't found, an
-         * exception is thrown. This member function guarantees that a valid
-         * value for std::any is returned.
-         * 
-         * @exception ArchiveError Thrown when reading from the archive failed
-         * or when a resource wasn't found.
-         * 
-         * @param name The name of the resource to load. This should NOT be a
-         * path relative to the archive, nor should it be a file name.
-         * 
-         * @return Returns either an int (for color values) or a
-         * std::vector<char> containing all of the resource's data.
-         * 
-        */
-        std::any LoadResource(const std::string& name);
-
-        /** @brief Returns an attribute from the package's info.json.
-         * 
-         * If the attribute isn't found, ArchiveError with error type
-         * ArchiveError::Type::Invalid is thrown.
-         * 
-         * @param name The name of the attribute to get.
-         * @return Returns the value of the attribute. Or Json::Value::null if
-         * it doesn't exist.
-         * 
-        */
-        const rapidjson::Value& GetAttribute(const std::string& name);
+        Theme LoadTheme(const std::string& theme = {});
 
         /// @brief Returns if the theme package contains multiple themes.
         bool IsMultiThemePackage() const;
