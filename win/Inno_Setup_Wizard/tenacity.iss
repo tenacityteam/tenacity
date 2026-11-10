@@ -424,6 +424,9 @@ Filename: "{app}\tenacity.exe"; Description: "{cm:LaunchProgram,Tenacity}"; Flag
 ; This macro will use the Windows PowerShell to download the given translation into
 ; the Inno Setup Languages folder if it hasn't already been downloaded.
 ; (Sorry, it's not a quick process, but it only happens once.)
+; CPack already grabs all of these in BuildInnoSetupInstaller.cmake, so this
+; only actually downloads anything when you run iscc by hand or one of those
+; downloads failed.
 #define Get(URL) \
   Local[0] = ".\Languages\unofficial\" + Copy(URL, RPos("/", URL) + 1), \
   Local[1] = (FileExists(Local[0]) \

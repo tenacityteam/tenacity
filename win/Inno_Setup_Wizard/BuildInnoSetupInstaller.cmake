@@ -95,6 +95,50 @@ file(COPY
         "${OUTPUT_DIR}/Additional"
 )
 
+# Grab the translations here before iscc gets a chance to. The Get() and
+# GetOfficial() macros in the .iss start a powershell.exe per file, and on
+# Windows ARM64 the x86 iscc ends up launching the emulated SysWOW64
+# PowerShell, so 24 downloads ate 30 minutes of "Preprocessing". The macros
+# skip anything that's already there, so if one of these fails the .iss
+# just tries it again itself and errors out like it always did.
+function(tenacity_prefetch_translation url dest)
+    if(EXISTS "${dest}")
+        return()
+    endif()
+
+    foreach(attempt RANGE 1 3)
+        file(DOWNLOAD "${url}" "${dest}" TIMEOUT 60 TLS_VERIFY ON STATUS status)
+        list(GET status 0 code)
+        if(code EQUAL 0)
+            file(SIZE "${dest}" size)
+            if(size GREATER 0)
+                return()
+            endif()
+        endif()
+
+        file(REMOVE "${dest}")
+        message(WARNING "Attempt ${attempt} to download ${url} failed: ${status}")
+    endforeach()
+endfunction()
+
+set(_LANG_URL_BASE "https://raw.githubusercontent.com/jrsoftware/issrc/main/Files/Languages")
+file(STRINGS "${OUTPUT_DIR}/tenacity.iss" _LANG_LINES REGEX "#(Get|GetOfficial)\\('[^']+'\\)")
+
+foreach(_line IN LISTS _LANG_LINES)
+    string(REGEX MATCH "#(Get|GetOfficial)\\('([^']+)'\\)" _ "${_line}")
+    set(_lang_file "${CMAKE_MATCH_2}")
+
+    if(CMAKE_MATCH_1 STREQUAL "GetOfficial")
+        set(_lang_kind "official")
+        set(_lang_url "${_LANG_URL_BASE}/${_lang_file}")
+    else()
+        set(_lang_kind "unofficial")
+        set(_lang_url "${_LANG_URL_BASE}/Unofficial/${_lang_file}")
+    endif()
+
+    tenacity_prefetch_translation("${_lang_url}" "${OUTPUT_DIR}/Languages/${_lang_kind}/${_lang_file}")
+endforeach()
+
 execute_process(
     COMMAND
         ${CPACK_TENACITY_INNO_SETUP_COMPILER}
