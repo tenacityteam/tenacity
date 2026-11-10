@@ -66,7 +66,9 @@ jobs:
       matrix:
         config:
         - name: Ubuntu
-          os: ubuntu-latest
+          # Pinned: ubuntu-26.04's gdk-pixbuf 2.44 has no loader dir, which
+          # breaks linuxdeploy-plugin-gtk. Also keeps the AppImage glibc floor low.
+          os: ubuntu-24.04
           arch: x86_64 # as reported by `arch` or `uname -m`
           cc: cc
           cxx: c++
