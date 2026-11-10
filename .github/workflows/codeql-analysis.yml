@@ -183,3 +183,22 @@ jobs:
       uses: github/codeql-action/analyze@v4
       with:
         threads: 0
+        upload: never
+        output: sarif-results
+
+    # paths-ignore is a no-op for compiled languages, CodeQL extracts every
+    # file the build touches. Drop the bundled third-party code from the
+    # SARIF ourselves before uploading.
+    - name: Filter third-party results
+      run: |
+        for f in sarif-results/*.sarif; do
+          jq 'del(.runs[].results[] | select(
+                .locations[0].physicalLocation.artifactLocation.uri // ""
+                | startswith("lib-src/")))' "$f" > "$f.tmp"
+          mv "$f.tmp" "$f"
+        done
+
+    - name: Upload CodeQL SARIF to GitHub Code Scanning
+      uses: github/codeql-action/upload-sarif@v4
+      with:
+        sarif_file: sarif-results
