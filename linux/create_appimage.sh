@@ -90,9 +90,6 @@ linuxdeploy --list-plugins
 sed -i 's|env UBUNTU_MENUPROXY=0 ||' "${appdir}/share/applications/org.tenacityaudio.Tenacity.desktop"
 ln -sf --no-dereference . "${appdir}/usr"
 ln -sf share/applications/org.tenacityaudio.Tenacity.desktop "${appdir}/org.tenacityaudio.Tenacity.desktop"
-# No icon symlinks here. linuxdeploy puts org.tenacityaudio.Tenacity.svg in
-# the AppDir root from the desktop file's Icon= and appimagetool makes
-# .DirIcon from that, so a hand-made .DirIcon only goes stale.
 
 #============================================================================
 # Bundle dependencies
@@ -198,6 +195,12 @@ done
 #============================================================================
 # Build AppImage
 #============================================================================
+
+# appimagetool builds .DirIcon from a PNG or XPM in the AppDir root named
+# after Icon= in the desktop file. It won't use the SVG linuxdeploy puts
+# there, so give it the 256x256 PNG.
+cp "${appdir}/share/icons/hicolor/256x256/org.tenacityaudio.Tenacity.png" \
+   "${appdir}/org.tenacityaudio.Tenacity.png"
 
 appimagetool_args=(
     # none
