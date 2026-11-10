@@ -631,7 +631,8 @@ void FileNames::AddUniquePathToPathList(const FilePath &pathArg,
    // Do not seek to expand environment variables here: it is not needed, and
    // wxWidgets has an issue doing so - See
    // https://github.com/wxWidgets/wxWidgets/issues/19214
-   const auto flags = wxPATH_NORM_ALL & ~wxPATH_NORM_ENV_VARS;
+   const auto flags = wxPATH_NORM_SHORTCUT | wxPATH_NORM_LONG | wxPATH_NORM_ABSOLUTE |
+	              wxPATH_NORM_CASE | wxPATH_NORM_TILDE | wxPATH_NORM_DOTS;
    pathNorm.Normalize(flags);
    const wxString newpath{ pathNorm.GetFullPath() };
 
