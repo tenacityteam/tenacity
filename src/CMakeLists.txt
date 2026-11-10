@@ -1016,14 +1016,24 @@ if( CMAKE_SYSTEM_NAME MATCHES "Windows" )
             RESOURCE "${WIN_RESOURCES}"
     )
 
-    # Copy the VC runtime libraries as well
-    add_custom_command(
-        TARGET
-            ${TARGET}
-        COMMAND
-            ${CMAKE_COMMAND} -E copy ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} ${_DEST}
-        POST_BUILD
-    )
+    # Copy the VC runtime libraries next to the executables at configure time.
+    # This used to be a POST_BUILD step on Tenacity, but vcpkg's z-applocal
+    # scans every DLL it finds in the output directory, so a parallel applocal
+    # run for another executable (riff-test-util, say) could open MSVCP140.dll
+    # while this copy still held it open for writing and fail the build with
+    # "permission denied". Copying it before the build starts means nothing
+    # writes it while applocal reads it.
+    if( CMAKE_CONFIGURATION_TYPES )
+        set( _runtime_dirs )
+        foreach( _config IN LISTS CMAKE_CONFIGURATION_TYPES )
+            list( APPEND _runtime_dirs "${CMAKE_BINARY_DIR}/${_config}" )
+        endforeach()
+    else()
+        set( _runtime_dirs "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}" )
+    endif()
+    foreach( _runtime_dir IN LISTS _runtime_dirs )
+        file( COPY ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION "${_runtime_dir}" )
+    endforeach()
 
     # Copy resource files into build folder
     add_custom_command(
