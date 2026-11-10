@@ -202,6 +202,14 @@ done
 cp "${appdir}/share/icons/hicolor/256x256/org.tenacityaudio.Tenacity.png" \
    "${appdir}/org.tenacityaudio.Tenacity.png"
 
+# appimagetool only looks for the old .appdata.xml name, so point it at our
+# metainfo. Once it finds it, appstreamcli validates the AppDir and any
+# warning fails the build, and URL reachability counts (Weblate answers 403
+# to anything that isn't a browser), so keep the validation offline.
+ln -sf org.tenacityaudio.Tenacity.metainfo.xml \
+   "${appdir}/share/metainfo/org.tenacityaudio.Tenacity.appdata.xml"
+export AS_VALIDATE_NONET=1
+
 appimagetool_args=(
     # none
 )
