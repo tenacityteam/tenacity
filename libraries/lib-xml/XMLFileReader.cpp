@@ -23,6 +23,12 @@
 
 #include "expat.h"
 
+#if XML_MAJOR_VERSION == 2 && XML_MINOR_VERSION < 9
+#define XML_GetCurrentLineNumber XML_GetCurrentLineNumber
+#else
+#define XML_GetCurrentLineNumber XML_GetCurrentLineNumber64
+#endif
+
 XMLFileReader::XMLFileReader()
 {
    mParser = XML_ParserCreate(NULL);
