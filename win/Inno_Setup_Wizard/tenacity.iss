@@ -4,7 +4,7 @@
 ;
 ;   tenacity.iss
 ;
-; iscc overrides:  /DBuildDir=<path>   /DTargetArch=x64|x86
+; iscc overrides:  /DBuildDir=<path>   /DTargetArch=x64|x86|arm64
 ; Env vars:        WINDOWS_CERTIFICATE, WINDOWS_CERTIFICATE_PASSWORD, TENACITY_SIGN_SCRIPT
 
 ; Find Tenacity.exe
@@ -41,7 +41,7 @@
   #define ArchDetectFile   SourcePath + "arch.tmp"
   #expr Exec("powershell.exe", "-NoProfile -ExecutionPolicy Bypass -File """ + ArchDetectScript +  """ -ExePath """ + AppExe + """ -OutFile """ + ArchDetectFile + """", SourcePath, 0, 1)
   #if !FileExists(ArchDetectFile)
-    #error "Architecture auto-detection failed. Pass iscc /DTargetArch=x64|x86."
+    #error "Architecture auto-detection failed. Pass iscc /DTargetArch=x64|x86|arm64."
   #endif
   #define ArchDetectHandle FileOpen(ArchDetectFile)
   #define TargetArch       Trim(FileRead(ArchDetectHandle))
@@ -104,6 +104,9 @@ InfoBeforeFile=".\tenacity_InnoWizard_InfoBefore.rtf"
 ; Directives derived at compile time by ISPP
 #if TargetArch == "x64"
 ArchitecturesInstallIn64BitMode=x64
+#elif TargetArch == "arm64"
+ArchitecturesAllowed=arm64
+ArchitecturesInstallIn64BitMode=arm64
 #endif
 
 #if GetEnv("WINDOWS_CERTIFICATE") != ""

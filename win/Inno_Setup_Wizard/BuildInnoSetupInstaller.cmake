@@ -35,14 +35,32 @@ endif()
 
 set(OUTPUT_DIR "${CPACK_TEMPORARY_DIRECTORY}")
 
-# The .iss discovers exe, version, arch, and sign config on its own.
-# Point it at the config subdir; the filename mirrors the .iss formula.
+# The .iss works out the version and sign config from the exe and env on its
+# own, we hand it the arch. Point it at the config subdir, and keep the
+# filename below in sync with OutputBaseFilename in the .iss.
 set(TENACITY_BUILD_DIR "${OUTPUT_DIR}/${CPACK_TENACITY_INNO_SETUP_BUILD_CONFIG}")
 
-if( CMAKE_SYSTEM_PROCESSOR MATCHES "AMD64|ARM64" )
-    set( _INSTALLER_ARCH "x64" )
+# Don't trust CMAKE_SYSTEM_PROCESSOR for the arch. In here it's whatever host
+# CPack is running on, so the x86 build on an x64 runner says AMD64 and we'd
+# ship it as an x64 installer. Read the Machine field out of the exe instead.
+set(_TENACITY_EXE "${TENACITY_BUILD_DIR}/Tenacity.exe")
+if(NOT EXISTS "${_TENACITY_EXE}")
+    message(FATAL_ERROR "Cannot find ${_TENACITY_EXE} to detect the installer architecture")
+endif()
+# e_lfanew at 0x3C is where the PE header starts, Machine is the 2 bytes
+# right after the PE\0\0 signature. Both are little endian.
+file(READ "${_TENACITY_EXE}" _pe_offset_hex OFFSET 60 LIMIT 4 HEX)
+string(REGEX REPLACE "^(..)(..)(..)(..)$" "\\4\\3\\2\\1" _pe_offset_hex "${_pe_offset_hex}")
+math(EXPR _pe_machine_offset "0x${_pe_offset_hex} + 4")
+file(READ "${_TENACITY_EXE}" _pe_machine_hex OFFSET ${_pe_machine_offset} LIMIT 2 HEX)
+if(_pe_machine_hex STREQUAL "6486")
+    set(_INSTALLER_ARCH "x64")
+elseif(_pe_machine_hex STREQUAL "64aa")
+    set(_INSTALLER_ARCH "arm64")
+elseif(_pe_machine_hex STREQUAL "4c01")
+    set(_INSTALLER_ARCH "x86")
 else()
-    set( _INSTALLER_ARCH "x86" )
+    message(FATAL_ERROR "Unsupported PE machine type 0x${_pe_machine_hex} in ${_TENACITY_EXE}")
 endif()
 # .iss uses the exe's PE FILEVERSION (X.Y.Z); strip any pre-release suffix here.
 string(REGEX MATCH "^[0-9]+\\.[0-9]+\\.[0-9]+" _INSTALLER_VERSION "${CPACK_PACKAGE_VERSION}")
