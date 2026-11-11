@@ -36,8 +36,8 @@ jobs:
         VER=2.21.0
 
         # apt ships 2.13; SARIF output landed in 2.15. Build from source.
-        sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libpcre3-dev
+        # No PCRE needed, it's only used by --rule (HAVE_RULES), which we
+        # don't build or use.
         curl -fsSL "https://github.com/danmar/cppcheck/archive/refs/tags/${VER}.tar.gz" | tar -xz
         cmake -S "cppcheck-${VER}" -B cppcheck-build -DCMAKE_BUILD_TYPE=Release -DUSE_MATCHCOMPILER=ON
         cmake --build cppcheck-build -j "$(nproc)"
