@@ -360,6 +360,7 @@ SqliteSampleBlock::~SqliteSampleBlock()
    }
 
    // See ProjectFileIO::Bypass() for a description of mIO.mBypass
+   // cppcheck-suppress throwInNoexceptFunction
    GuardedCall( [this]{
       if (!mLocked && !Conn()->ShouldBypass())
       {

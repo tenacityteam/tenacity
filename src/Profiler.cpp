@@ -25,6 +25,7 @@ but it will probably work fine if you use it on a high level.
 
 #include <string.h>
 #include <wx/crt.h>
+#include <wx/datetime.h>
 
 ///write to a profile at the end of the test.
 Profiler::~Profiler()
@@ -33,11 +34,11 @@ Profiler::~Profiler()
    {
       //print everything out.  append to a log.
       FILE* log = fopen("TenacityProfilerLog.txt", "a");
-      time_t now;
+      if (!log)
+         return;
 
-      time(&now);
       wxFprintf(log,"Tenacity Profiler Run, Ended at ");
-      wxFprintf(log,"%s",ctime(&now));
+      wxFprintf(log,"%s\n",wxDateTime::Now().Format());
       wxFprintf(log,"****************************************\n");
       //print out the tasks
       for(int i=0;i<(int)mTasks.size();i++)

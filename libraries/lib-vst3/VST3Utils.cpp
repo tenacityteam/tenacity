@@ -43,6 +43,8 @@ wxString GetFactoryPresetsBasePath()
    return wxString("/Library/Audio/Presets/");
 #elif __WXGTK__
    return wxString("/usr/local/share/vst3/presets/");
+#else
+   return {};
 #endif
 }
 

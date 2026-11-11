@@ -56,9 +56,9 @@ struct RulerStruct {
 class RulerUpdater {
 public:
    struct Label {
-      double value;
-      int pos;
-      int lx, ly;
+      double value{};
+      int pos{};
+      int lx{}, ly{};
 
       // Minorminor tick draws only when optional is nonempty
       // Major or minor tick draws regardless
