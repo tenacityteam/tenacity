@@ -18,32 +18,19 @@ using namespace ThemeExceptions;
 
 Theme& Theme::operator=(const Theme& other)
 {
+    mName = other.mName;
     mResources = other.mResources;
     return *this;
 }
 
 Theme& Theme::operator=(Theme&& other)
 {
+    mName = std::move(other.mName);
     mResources = std::move(other.mResources);
     return *this;
 }
 
-const ThemeResourceMap& Theme::GetResourceMap()
-{
-    return mResources;
-}
-
-void Theme::SetName(const std::string& name)
-{
-    mName = name;
-}
-
-std::string Theme::GetName()
-{
-    return mName;
-}
-
-const std::any& Theme::GetResource(const std::string& name)
+const std::any& Theme::GetResource(const std::string& name) const
 {
     // First, search our map.
     auto exists = mResources.find(name);

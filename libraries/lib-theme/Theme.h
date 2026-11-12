@@ -46,10 +46,14 @@ class THEME_API Theme final
          * the theme is copied, including resources! You probably want to use a
          * reference to a Theme instead.
          */
-        Theme(const Theme& other) : mResources{other.mResources} {}
+        Theme(const Theme& other)
+        : mName{other.mName},
+          mResources{other.mResources} {}
 
         /// Move constructor.
-        Theme(Theme&& other) : mResources{std::move(other.mResources)} {}
+        Theme(Theme&& other)
+        : mName{std::move(other.mName)},
+          mResources{std::move(other.mResources)} {}
 
         /** @brief Copy assignment operators.
          *
@@ -71,13 +75,13 @@ class THEME_API Theme final
          *
          * @return A constant reference to a theme resource map.
          */
-        const ThemeResourceMap& GetResourceMap();
+        const ThemeResourceMap& GetResourceMap() const { return mResources; }
 
         /// Sets the theme's name.
-        void SetName(const std::string& name);
+        void SetName(std::string_view name) { mName = name; }
 
         /// Returns the theme's name.
-        std::string GetName();
+	std::string_view GetName() const { return mName; }
 
         /** @brief Returns data associated with an individual resource.
          * 
@@ -90,7 +94,7 @@ class THEME_API Theme final
          * @return Returns data with the associated resource.
          * 
         */
-        const std::any& GetResource(const std::string& name);
+        const std::any& GetResource(const std::string& name) const;
 
         /** @brief Adds a resource.
          * 
@@ -98,5 +102,5 @@ class THEME_API Theme final
          * @param data The data to associate with the new resource. Optional.
          * 
         */
-       void AddResource(const std::string& name, const std::any& data = {});
+        void AddResource(const std::string& name, const std::any& data = {});
 };
