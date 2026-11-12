@@ -20,10 +20,6 @@ set( SOURCES
    Theme.h
    ThemePackage.cpp
    ThemePackage.h
-   ThemeResourceList.cpp
-   ThemeResourceList.h
-   ThemeResources.cpp
-   ThemeResources.h
    Types.h
 
    exceptions/ArchiveError.cpp
