@@ -256,8 +256,8 @@ void ThemePackage::ClosePackage()
 }
 
 void ThemePackage::SetRecognizedResources(
-    std::vector<std::string>& recognizedColors,
-    std::vector<std::string>& recognizedBitmaps
+    const ThemeResourceList& recognizedColors,
+    const ThemeResourceList& recognizedBitmaps
 )
 {
     mRecognizedColors = recognizedColors;

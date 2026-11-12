@@ -21,6 +21,7 @@
 #include <zip.h>
 
 #include "Theme.h"
+#include "Types.h"
 
 using namespace simdjson;
 
@@ -68,11 +69,11 @@ class THEME_API ThemePackage final
 
         /// All recognized color resources. Used to limit loading color
         /// resources to only these resources for performance reasons.
-        std::vector<std::string> mRecognizedColors;
+        ThemeResourceList mRecognizedColors;
 
         /// All recognized bitmap resources. Used to limit loading bitmap
         /// resources to only these resources for performance reasons.
-        std::vector<std::string> mRecognizedBitmaps;
+        ThemeResourceList mRecognizedBitmaps;
 
         /// Whether or not the theme package contains multiple themes.
         bool mIsMultiThemePackage;
@@ -169,8 +170,8 @@ class THEME_API ThemePackage final
          * resources to load.
          */
         void SetRecognizedResources(
-            std::vector<std::string>& recognizedColors,
-            std::vector<std::string>& recognizedBitmaps
+            const ThemeResourceList& recognizedColors,
+            const ThemeResourceList& recognizedBitmaps
         );
 
         /** @brief Loads a subtheme.
