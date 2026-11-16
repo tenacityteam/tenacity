@@ -19,7 +19,10 @@ for fb_dir in "${APPDIR}/fallback"/*; do
   fi
 done
 
-export LD_LIBRARY_PATH="${APPDIR}/lib:${LD_LIBRARY_PATH}${fallback_libs}"
+# Bundled libs use RUNPATH. Adding lib/ here shadows the deps of system
+# libraries we dlopen, like FFmpeg
+LD_LIBRARY_PATH="${LD_LIBRARY_PATH}${fallback_libs}"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH#:}"
 
 export TENACITY_PATH="${TENACITY_PATH}:${APPDIR}/share/tenacity"
 export TENACITY_MODULES_PATH="${TENACITY_MODULES_PATH}:${APPDIR}/lib/modules"

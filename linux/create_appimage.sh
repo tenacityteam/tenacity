@@ -133,6 +133,7 @@ fi
 if [ -n "$(ls -A "${modules_stash}" 2>/dev/null)" ]; then
    mkdir -p "${appdir}/lib/modules"
    cp -a "${modules_stash}/." "${appdir}/lib/modules/"
+   find "${appdir}/lib/modules" -name '*.so' -exec patchelf --set-rpath '$ORIGIN/..' {} \;
 fi
 rm -rf "${modules_stash}"
 

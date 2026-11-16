@@ -227,9 +227,8 @@ struct FFmpegFunctions::Private final
 
    std::shared_ptr<wxDynamicLibrary> LoadLibrary(const wxString& libraryName, bool fromUserPathOnly) const
    {
-#if defined(__WXMAC__)
-      // On macOS dyld reads environment only when application starts.
-      // Let's emulate the process manually
+#if !defined(__WXMSW__)
+      // ld.so and dyld only read the environment at startup
       for (const wxString& path : FFmpegFunctions::GetSearchPaths(fromUserPathOnly))
       {
          const wxString fullName = wxFileName(path, libraryName).GetFullPath();
@@ -276,7 +275,7 @@ std::shared_ptr<FFmpegFunctions> FFmpegFunctions::Load(bool fromUserPathOnly)
    const auto supportedVersions =
       FFmpegAPIResolver::Get().GetSuportedAVFormatVersions();
 
-#if !defined(__WXMAC__)
+#if defined(__WXMSW__)
    EnvSetter envSetter(fromUserPathOnly);
 #endif
 
